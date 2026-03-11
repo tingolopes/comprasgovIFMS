@@ -98,7 +98,8 @@ def _modo_transformer_compras() -> None:
     log_info("📤 GERANDO compras.csv...")
     transformar_compras(
         pastas=[CONFIG_APIS["LEGADO"]["pasta_cache"]],
-        caminho_saida=os.path.join(EXPORT_CONFIG["pasta_saida"], "compras.csv"),
+        caminho_saida=os.path.join(
+            EXPORT_CONFIG["pasta_saida"], "compras.csv"),
     )
     log_info("=" * 60)
 
@@ -127,8 +128,8 @@ def _modo_extrator_compras() -> None:
     log_info("🚀 INICIANDO PIPELINE DE EXTRAÇÃO DE COMPRAS PÚBLICAS")
     log_info("=" * 60)
 
-    falhas_legado  = _executar_legado()
-    falhas_14133   = _executar_14133()
+    falhas_legado = _executar_legado()
+    falhas_14133 = _executar_14133()
     falhas_compras = falhas_legado + falhas_14133
 
     log_info("=" * 60)

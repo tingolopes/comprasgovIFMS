@@ -11,25 +11,21 @@ Consomem config/config.py e pipeline/api_client.py — sem estado próprio.
 """
 
 import os
-from datetime import datetime
 
 from config.config import CONFIG_APIS, PIPELINE_CONFIG
 from pipeline.api_client import consultar_api, salvar_dados, verificar_sucesso, deve_reverificar_pncp
-from pipeline.logger import log_skip
+from pipeline.logger import log_info, log_skip
 
 # ---------------------------------------------------------------------------
 # Helpers internos
 # ---------------------------------------------------------------------------
-
-def _ts() -> str:
-    return datetime.now().strftime("%H:%M:%S")
 
 
 def _log(linha: str, skip: bool = False) -> None:
     if skip:
         log_skip()
     else:
-        print(linha)
+        log_info(linha)
 
 
 # ---------------------------------------------------------------------------
@@ -59,7 +55,7 @@ def extrair_legado(unidade: dict, ano: int, endpoint: dict) -> bool:
             if not respostas.get("resultado", []):
                 break   # página vazia — fim da série
             _log(
-                f"[{_ts()}] ⏭️  SKIP | {unidade['sigla']} | "
+                f"⏭️  SKIP | {unidade['sigla']} | "
                 f"{endpoint['label'].upper():<15} | {ano}",
                 skip=True,
             )
@@ -78,7 +74,7 @@ def extrair_legado(unidade: dict, ano: int, endpoint: dict) -> bool:
             params["dt_ano_aviso"] = ano
         else:
             params[f"{endpoint['p_data']}_inicial"] = f"{ano}-01-01"
-            params[f"{endpoint['p_data']}_final"]   = f"{ano}-12-31"
+            params[f"{endpoint['p_data']}_final"] = f"{ano}-12-31"
 
         url = f"{cfg['base_url']}{endpoint['path']}"
         dados, status = consultar_api(url, params)
@@ -86,7 +82,7 @@ def extrair_legado(unidade: dict, ano: int, endpoint: dict) -> bool:
 
         if status == "SUCESSO":
             _log(
-                f"[{_ts()}] ✅ DONE | {unidade['sigla']} | "
+                f"✅ DONE | {unidade['sigla']} | "
                 f"{endpoint['label'].upper():<15} | {ano}"
             )
             if dados.get("paginasRestantes", 0) > 0:
@@ -95,8 +91,8 @@ def extrair_legado(unidade: dict, ano: int, endpoint: dict) -> bool:
             break
         else:
             _log(
-                f"[{_ts()}] ❌ FAIL | {unidade['sigla']} | "
-                f"{endpoint['label'].upper():<15} | {ano}"
+                f"❌ FAIL | {unidade['sigla']} | "
+                f"{endpoint['label'].upper():<17} | {ano}"
             )
             return False
 
@@ -132,7 +128,7 @@ def extrair_14133(unidade: dict, ano: int, cod_mod: int, nome_mod: str) -> bool:
             # Pula se não há resultado ou se o cache ainda é válido
             if not tem_resultado or not deve_reverificar_pncp(dados_cache):
                 _log(
-                    f"[{_ts()}] ⏭️  SKIP | {unidade['sigla']} | "
+                    f"⏭️  SKIP | {unidade['sigla']} | "
                     f"PNCP-{nome_mod.upper():<12} | {ano}",
                     skip=True,
                 )
@@ -157,7 +153,7 @@ def extrair_14133(unidade: dict, ano: int, cod_mod: int, nome_mod: str) -> bool:
 
         if status == "SUCESSO":
             _log(
-                f"[{_ts()}] ✅ DONE | {unidade['sigla']} | "
+                f"✅ DONE | {unidade['sigla']} | "
                 f"PNCP-{nome_mod.upper():<12} | {ano}"
             )
             if dados.get("paginasRestantes", 0) > 0:
@@ -166,7 +162,7 @@ def extrair_14133(unidade: dict, ano: int, cod_mod: int, nome_mod: str) -> bool:
             break
         else:
             _log(
-                f"[{_ts()}] ❌ FAIL | {unidade['sigla']} | "
+                f"❌ FAIL | {unidade['sigla']} | "
                 f"PNCP-{nome_mod.upper():<12} | {ano}"
             )
             return False
