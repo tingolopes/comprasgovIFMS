@@ -162,10 +162,10 @@ def _parse_id_compra(id_compra: str) -> dict[str, str]:
     if len(digitos) != 17:
         return {}
 
-    uasg   = digitos[0:6]
-    mod    = digitos[6:8]
+    uasg = digitos[0:6]
+    mod = digitos[6:8]
     numero = digitos[8:13]
-    ano    = digitos[13:17]
+    ano = digitos[13:17]
 
     try:
         cod_mod_int = int(mod)
@@ -221,8 +221,8 @@ def _coletar_por_id(pastas: list[str]) -> dict[str, dict[str, dict]]:
         if not isinstance(resultado, list):
             continue
 
-        fonte    = _fonte(caminho)
-        arquivo  = os.path.basename(caminho)
+        fonte = _fonte(caminho)
+        arquivo = os.path.basename(caminho)
         data_ext = envelope.get("metadata", {}).get("data_extracao", "")
 
         for reg in resultado:
@@ -233,7 +233,7 @@ def _coletar_por_id(pastas: list[str]) -> dict[str, dict[str, dict]]:
                 continue
 
             reg["_arquivo_origem"] = arquivo
-            reg["_data_extracao"]  = data_ext
+            reg["_data_extracao"] = data_ext
 
             if id_c not in banco:
                 banco[id_c] = {}
@@ -256,9 +256,9 @@ def _fusionar(id_c: str, fontes: dict[str, dict]) -> dict:
     Campos extraídos do id_compra são usados como fallback confiável.
     """
     pncp = fontes.get("PNCP",    {})
-    e3   = fontes.get("LEG_E3",  {})
-    e5   = fontes.get("LEG_E5",  {})
-    e1   = fontes.get("LEG_E1",  {})
+    e3 = fontes.get("LEG_E3",  {})
+    e5 = fontes.get("LEG_E5",  {})
+    e1 = fontes.get("LEG_E1",  {})
 
     master_key = next(
         (k for k in ("PNCP", "LEG_E3", "LEG_E5", "LEG_E1") if k in fontes),
@@ -269,8 +269,8 @@ def _fusionar(id_c: str, fontes: dict[str, dict]) -> dict:
     parsed = _parse_id_compra(id_c)
 
     # --- Metadados ---
-    modulo   = "LEI14133" if master_key == "PNCP" else "LEGADO"
-    arquivo  = m.get("_arquivo_origem", "")
+    modulo = "LEI14133" if master_key == "PNCP" else "LEGADO"
+    arquivo = m.get("_arquivo_origem", "")
     data_ext = m.get("_data_extracao", "")
 
     # --- UASG ---
@@ -312,9 +312,9 @@ def _fusionar(id_c: str, fontes: dict[str, dict]) -> dict:
         cod_mod_int = None
 
     nome_mod = _primeiro(
+        MODALIDADES.get(cod_mod_int, ""),
         pncp.get("modalidadeNome"),
         e1.get("nome_modalidade"),
-        MODALIDADES.get(cod_mod_int, ""),
         parsed.get("modalidade_nome"),
     )
 
@@ -357,7 +357,8 @@ def _fusionar(id_c: str, fontes: dict[str, dict]) -> dict:
     valor_estimado = _valor(_primeiro(
         pncp.get("valorTotalEstimado"),
         e1.get("valor_estimado_total"),
-        e5.get("vr_estimado"), e3.get("vr_estimado"), e3.get("vr_estimado_total"),
+        e5.get("vr_estimado"), e3.get(
+            "vr_estimado"), e3.get("vr_estimado_total"),
     ))
     valor_homologado = _valor(_primeiro(
         pncp.get("valorTotalHomologado"),
@@ -407,11 +408,11 @@ def _fusionar(id_c: str, fontes: dict[str, dict]) -> dict:
         "modo_disputa":               _primeiro(
             pncp.get("modoDisputaNomePncp"),
             e1.get("tipo_pregao"), e3.get("tipo_pregao"),
-        ),
+        ).capitalize(),
         "situacao":                   _primeiro(
             pncp.get("situacaoCompraNomePncp"),
             e3.get("ds_situacao_pregao"), e1.get("situacao_aviso"),
-        ),
+        ).capitalize(),
         "objeto":                     objeto,
         "responsavel_declaracao":     responsavel_declaracao,
         "cargo_declaracao":           cargo_declaracao,
@@ -450,10 +451,10 @@ def transformar(pastas: list[str], caminho_saida: str) -> None:
         writer.writeheader()
         writer.writerows(registros)
 
-    total_legado  = sum(1 for r in registros if r["modulo"] == "LEGADO")
-    total_14133   = sum(1 for r in registros if r["modulo"] == "LEI14133")
-    sem_objeto    = sum(1 for r in registros if not r["objeto"])
-    com_resp      = sum(1 for r in registros if r["responsavel_declaracao"])
+    total_legado = sum(1 for r in registros if r["modulo"] == "LEGADO")
+    total_14133 = sum(1 for r in registros if r["modulo"] == "LEI14133")
+    sem_objeto = sum(1 for r in registros if not r["objeto"])
+    com_resp = sum(1 for r in registros if r["responsavel_declaracao"])
 
     print(f"\n✅ CSV gerado: {caminho_saida}")
     print(f"   IDs únicos     : {len(registros)}")

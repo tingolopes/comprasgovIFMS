@@ -30,7 +30,7 @@ from config.config import EXPORT_CONFIG
 # Configuração
 # ---------------------------------------------------------------------------
 _PASTA_ITENS = "temp/itens"
-_SUFIXOS     = ["pncp", "E4", "E6", "E2"]   # ordem de prioridade (maior → menor)
+_SUFIXOS = ["pncp", "E4", "E6", "E2"]   # ordem de prioridade (maior → menor)
 
 # ---------------------------------------------------------------------------
 # Schema do CSV final
@@ -101,7 +101,10 @@ def _primeiro(*valores) -> str:
 def _limpar(texto: Optional[str]) -> str:
     if not texto or str(texto).lower() in ("null", "none"):
         return ""
-    return re.sub(r"\s+", " ", str(texto)).strip()
+    # Remove aspas primeiro
+    texto_sem_aspas = str(texto).replace('"', '')
+    # Normaliza espaços
+    return re.sub(r"\s+", " ", texto_sem_aspas).strip()
 
 
 def _valor(v) -> str:
@@ -180,8 +183,8 @@ def _indexar() -> dict[str, dict[str, dict[str, dict]]]:
         if envelope.get("metadata", {}).get("status") != "SUCESSO":
             continue
 
-        sufixo   = _sufixo_do_arquivo(caminho)
-        arquivo  = os.path.basename(caminho)
+        sufixo = _sufixo_do_arquivo(caminho)
+        arquivo = os.path.basename(caminho)
         data_ext = envelope.get("metadata", {}).get("data_extracao", "")
 
         respostas = envelope.get("respostas", {})
@@ -196,7 +199,7 @@ def _indexar() -> dict[str, dict[str, dict[str, dict]]]:
             if not isinstance(reg, dict):
                 continue
 
-            id_c    = str(reg.get("idCompra") or reg.get("id_compra") or "")
+            id_c = str(reg.get("idCompra") or reg.get("id_compra") or "")
             id_item = str(
                 reg.get("idCompraItem") or reg.get("id_compra_item") or
                 reg.get("nuItemMaterial") or ""
@@ -206,8 +209,8 @@ def _indexar() -> dict[str, dict[str, dict[str, dict]]]:
                 continue
 
             reg["_arquivo_origem"] = arquivo
-            reg["_data_extracao"]  = data_ext
-            reg["_sufixo"]         = sufixo
+            reg["_data_extracao"] = data_ext
+            reg["_sufixo"] = sufixo
 
             if id_c not in banco:
                 banco[id_c] = {}
@@ -229,9 +232,9 @@ def _fusionar_item(id_c: str, id_item: str,
     Monta uma linha por idCompraItem priorizando: PNCP > E4 > E6 > E2.
     """
     pncp = fontes.get("pncp", {})
-    e4   = fontes.get("E4",   {})
-    e6   = fontes.get("E6",   {})
-    e2   = fontes.get("E2",   {})
+    e4 = fontes.get("E4",   {})
+    e6 = fontes.get("E6",   {})
+    e2 = fontes.get("E2",   {})
 
     # Fonte primária para metadados
     master_key = next(
@@ -239,7 +242,7 @@ def _fusionar_item(id_c: str, id_item: str,
     )
     m = fontes[master_key]
 
-    modulo  = "LEI14133" if master_key == "pncp" else "LEGADO"
+    modulo = "LEI14133" if master_key == "pncp" else "LEGADO"
     arquivo = m.get("_arquivo_origem", "")
     data_ex = m.get("_data_extracao", "")
 
@@ -253,23 +256,23 @@ def _fusionar_item(id_c: str, id_item: str,
 
     # --- Tipo e código catálogo ---
     tipo_mat_serv = _primeiro(
-        pncp.get("tipoBeneficio"),        # aproximado
-        e2.get("tipoMaterialServico"),
-        e4.get("tipoMaterialServico"),
+        pncp.get("materialOuServicoNome"),
+        ("Material" if e2.get("codigoItemMaterial") is not None else "") or
+        ("Serviço" if e2.get("codigoItemServico") is not None else ""),
+        e6.get("inMaterialServico").replace("material", "Material").replace(
+            "servico", "Serviço") if e6.get("inMaterialServico") else "",
+        "Grupo"
     )
     codigo_catalogo = _primeiro(
-        pncp.get("codigoItem"),
-        e2.get("codigoCatalogoCompras"), e2.get("numeroNipc"),
-        e4.get("codigoCatalogoCompras"),
-        e6.get("coMaterial"),
+        pncp.get("codItemCatalogo"),
     )
 
     # --- Descrições ---
     descricao_simples = _limpar(_primeiro(
-        e2.get("nomeMaterial"), e2.get("nomeServico"),
-        e4.get("descricaoItem"),
-        e6.get("noServico"),
+        e2.get("nomeMaterial") or e2.get("nomeServico"),
         pncp.get("descricaoResumida"),
+        e4.get("descricaoItem"),
+        e6.get("noServico") or e6.get("noMaterial") or "",
     ))
     descricao_detalhada = _limpar(_primeiro(
         pncp.get("descricaodetalhada"),
@@ -281,19 +284,23 @@ def _fusionar_item(id_c: str, id_item: str,
 
     # --- Quantidades e valores ---
     quantidade = _primeiro(
-        pncp.get("quantidadeHomologada"), pncp.get("quantidade"),
-        e2.get("quantidadeItem"), e4.get("quantidadeItem"),
-        e6.get("qtMaterial"),
+        pncp.get("quantidade"),
+        e2.get("quantidade"),
+        e4.get("quantidadeItem"),
+        e6.get("qtMaterialAlt"),
     )
     unidade = _primeiro(
         pncp.get("unidadeMedida"),
-        e2.get("unidadeMedida"), e4.get("unidadeMedida"),
+        e2.get("unidade"),
+        e4.get("unidadeFornecimento"),
         e6.get("noUnidadeMedida"),
+        "Grupo"
     )
     valor_est = _valor(_primeiro(
         pncp.get("valorUnitarioEstimado"),
-        e2.get("valorUnitarioEstimado"), e4.get("valorUnitarioEstimado"),
-        e6.get("vrEstimado"),
+        e2.get("valorEstimado"),
+        e4.get("valorEstimadoItem"),
+        e6.get("vrEstimadoItem"),
     ))
     valor_hom = _valor(_primeiro(
         pncp.get("valorUnitarioHomologado"),
@@ -443,7 +450,7 @@ def transformar(
         writer.writeheader()
         writer.writerows(registros)
 
-    total_leg  = sum(1 for r in registros if r["modulo"] == "LEGADO")
+    total_leg = sum(1 for r in registros if r["modulo"] == "LEGADO")
     total_pncp = sum(1 for r in registros if r["modulo"] == "LEI14133")
 
     print(f"\n✅ CSV gerado: {caminho_saida}")

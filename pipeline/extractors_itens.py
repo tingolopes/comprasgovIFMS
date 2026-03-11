@@ -3,11 +3,8 @@ pipeline/extractors_itens.py
 -----------------------------
 Extrai itens de cada compra já presente em temp/compras/.
 
-Regras de roteamento por endpoint:
-  url contém 5_consultarComprasSemLicitacao → E6  (dispensa/inexigibilidade)
-  url contém 3_consultarPregoes             → E2 + E4
-  url contém 1_consultarContratacoes_PNCP   → pncp
-  demais (outrasmodalidades)                → E2
+Estratégia: consulta TODOS os endpoints de itens para CADA idCompra.
+Respostas vazias são ignoradas naturalmente pelo transformer.
 
 Uso como módulo:
     from pipeline.extractors_itens import executar
@@ -33,8 +30,8 @@ from config.config import CONFIG_APIS, PIPELINE_CONFIG
 # Configuração local
 # ---------------------------------------------------------------------------
 _PASTA_COMPRAS = CONFIG_APIS["LEGADO"]["pasta_cache"]   # temp/compras (única)
-_PASTA_ITENS   = "temp/itens"
-_BASE_URL      = CONFIG_APIS["LEGADO"]["base_url"]
+_PASTA_ITENS = "temp/itens"
+_BASE_URL = CONFIG_APIS["LEGADO"]["base_url"]
 
 ENDPOINTS: dict[str, dict] = {
     "E2": {
@@ -59,6 +56,7 @@ ENDPOINTS: dict[str, dict] = {
     },
 }
 
+_TODOS_SUFIXOS = list(ENDPOINTS.keys())   # ["E2", "E4", "E6", "pncp"]
 _LOG_INTERVALO_SKIP = PIPELINE_CONFIG.get("log_intervalo_skip", 100)
 
 
@@ -173,7 +171,7 @@ def _processar(t: dict) -> str:
             pagina += 1
             continue
 
-        url    = f"{_BASE_URL}{ep['path']}"
+        url = f"{_BASE_URL}{ep['path']}"
         params = ep["params_fn"](t["id"])
         if ep["paginavel"]:
             params.update({"pagina": pagina,
@@ -196,11 +194,14 @@ def _processar(t: dict) -> str:
 # Montagem da fila
 # ---------------------------------------------------------------------------
 
-def _ids_de_pasta(pasta: str) -> list[tuple[str, str]]:
-    """Retorna lista de (id_compra, url_consultada) dos JSONs de SUCESSO."""
-    resultado = []
+def _ids_unicos_de_pasta(pasta: str) -> list[str]:
+    """
+    Coleta todos os idCompra distintos dos arquivos de compras com SUCESSO.
+    Não usa a URL — simplesmente pega todos os IDs.
+    """
+    ids: set[str] = set()
     if not os.path.exists(pasta):
-        return resultado
+        return []
 
     for arq in sorted(os.listdir(pasta)):
         if not arq.endswith(".json"):
@@ -208,57 +209,51 @@ def _ids_de_pasta(pasta: str) -> list[tuple[str, str]]:
         dados = _carregar_json(os.path.join(pasta, arq))
         if dados.get("metadata", {}).get("status") != "SUCESSO":
             continue
-
-        url_orig = dados.get("metadata", {}).get("url_consultada", "")
         respostas = dados.get("respostas", {})
         if not isinstance(respostas, dict):
             continue
-
         for compra in respostas.get("resultado", []):
             id_c = compra.get("idCompra") or compra.get("id_compra")
             if id_c:
-                resultado.append((str(id_c), url_orig))
+                ids.add(str(id_c))
 
-    return resultado
+    return sorted(ids)
 
 
 def _montar_fila() -> list[dict]:
     """
-    Varre temp/compras/ e determina os endpoints corretos por tipo de compra.
+    Monta uma tarefa para CADA combinação (idCompra × endpoint).
+    Todos os 4 endpoints (E2, E4, E6, pncp) são consultados para
+    cada compra — respostas vazias são ignoradas pelo transformer.
+    O cache garante que consultas anteriores não sejam repetidas.
     """
-    print("🔍 Mapeando compras para montar a fila de itens...\n")
+    print("🔍 Coletando ids de compras para montar a fila de itens...\n")
 
-    visto: set[tuple[str, str]] = set()
+    ids = _ids_unicos_de_pasta(_PASTA_COMPRAS)
+
+    if not ids:
+        print("  ⚠️  Nenhum idCompra encontrado em", _PASTA_COMPRAS)
+        return []
+
+    # Gera (id × sufixo) pulando pares que já têm cache SUCESSO na p1
     fila: list[dict] = []
+    ja_ok = 0
+    for id_c in ids:
+        for sufixo in _TODOS_SUFIXOS:
+            nome_p1 = os.path.join(
+                _PASTA_ITENS, f"itens_{id_c}_{sufixo}_p1.json")
+            ok, _ = _verificar_sucesso(nome_p1)
+            if ok:
+                ja_ok += 1
+            else:
+                fila.append({"id": id_c, "sufixo": sufixo})
 
-    def _add(id_c: str, sufixo: str) -> None:
-        chave = (id_c, sufixo)
-        if chave not in visto:
-            visto.add(chave)
-            fila.append({"id": id_c, "sufixo": sufixo})
-
-    # --- Pasta única: distingue pela URL original salva no envelope ---
-    pares = _ids_de_pasta(_PASTA_COMPRAS)
-    n_leg = n_pncp = 0
-
-    for id_c, url in pares:
-        if "1_consultarContratacoes_PNCP" in url:
-            _add(id_c, "pncp")
-            n_pncp += 1
-        elif "5_consultarComprasSemLicitacao" in url:
-            _add(id_c, "E6")
-            n_leg += 1
-        elif "3_consultarPregoes" in url:
-            _add(id_c, "E2")
-            _add(id_c, "E4")
-            n_leg += 1
-        else:
-            _add(id_c, "E2")
-            n_leg += 1
-
-    print(f"   Legado : {n_leg} compras → {sum(1 for t in fila if t['sufixo'] in ('E2','E4','E6'))} tarefas")
-    print(f"   PNCP   : {n_pncp} compras → {sum(1 for t in fila if t['sufixo'] == 'pncp')} tarefas")
-    print(f"   TOTAL  : {len(fila)} tarefas\n")
+    n_endpoints = len(_TODOS_SUFIXOS)
+    print(f"   IDs únicos  : {len(ids)}")
+    print(f"   Endpoints   : {n_endpoints} ({', '.join(_TODOS_SUFIXOS)})")
+    print(f"   Já em cache : {ja_ok}")
+    print(f"   A extrair   : {len(fila)}")
+    print(f"   TOTAL fila  : {len(fila)}\n")
 
     return fila
 
@@ -278,11 +273,12 @@ def executar() -> int:
     total = len(fila)
 
     if total == 0:
-        print("⚠️  Nenhuma compra encontrada. Execute o extrator de compras primeiro.")
+        print("⚠️  Nenhuma compra encontrada ou todas já em cache.")
         return 0
 
     workers = PIPELINE_CONFIG["max_workers_itens"]
-    print(f"🚀 INICIANDO EXTRAÇÃO DE ITENS | WORKERS: {workers} | TOTAL: {total}\n")
+    print(
+        f"🚀 INICIANDO EXTRAÇÃO DE ITENS | WORKERS: {workers} | TOTAL: {total}\n")
 
     concluidas = erros = skips = ultimo_log_skip = 0
 
@@ -299,7 +295,7 @@ def executar() -> int:
                     skips += 1
 
                 perc = concluidas / total * 100
-                ts   = datetime.now().strftime("%H:%M:%S")
+                ts = datetime.now().strftime("%H:%M:%S")
 
                 if "⏭️ SKIP" in res:
                     if (skips - ultimo_log_skip) >= _LOG_INTERVALO_SKIP:

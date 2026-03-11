@@ -1,1 +1,16 @@
-/temp*
+# Ignorar arquivos brutos (Data Lake)
+temp/
+temp_*/
+
+# Ignorar o arquivo Power BI
+*.pbix
+
+# Permitir os bancos de dados consolidados
+!data/
+!data/*.csv
+
+# Ignorar lixo do Python e VS Code
+__pycache__/
+*.py[cod]
+.vscode/
+venv/

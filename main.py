@@ -35,58 +35,76 @@ from pipeline.logger import log_info, resumo_skips
 # Motores de extração
 # ---------------------------------------------------------------------------
 
+def _executar_motor(nome: str, tarefas: list, fn, workers: int) -> int:
+    """
+    Motor genérico com progresso em linha, igual ao extrator de itens.
+    Exibe skips periodicamente e loga DONE/FAIL linha a linha.
+    Retorna o número de falhas.
+    """
+    total = len(tarefas)
+    intervalo_skip = PIPELINE_CONFIG["log_intervalo_skip"]
+
+    log_info("▶ %s — %d tarefas | %d threads", nome, total, workers)
+
+    concluidas = falhas = skips = ultimo_log_skip = 0
+
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        futuros = {pool.submit(fn, *t): t for t in tarefas}
+        for futuro in as_completed(futuros):
+            concluidas += 1
+            res = futuro.result()   # string: "✅ DONE | ...", "⏭️  SKIP | ...", "❌ FAIL | ..."
+
+            if "❌ FAIL" in res:
+                falhas += 1
+            elif "⏭️" in res:
+                skips += 1
+
+            perc = concluidas / total * 100
+
+            if "⏭️" in res:
+                # Skips: loga periodicamente
+                if (skips - ultimo_log_skip) >= intervalo_skip or concluidas == total:
+                    ultimo_log_skip = skips
+                    log_info("⏭️  SKIPs acumulados: %d | %d/%d (%.1f%%) | Falhas: %d",
+                             skips, concluidas, total, perc, falhas)
+            else:
+                # DONE e FAIL: loga sempre
+                log_info("%s | %d/%d (%.1f%%) | Falhas: %d",
+                         res, concluidas, total, perc, falhas)
+
+    log_info("   Concluído — DONE: %d | SKIP: %d | FAIL: %d",
+             concluidas - skips - falhas, skips, falhas)
+    return falhas
+
+
 def _executar_legado() -> int:
     cfg = CONFIG_APIS["LEGADO"]
     os.makedirs(cfg["pasta_cache"], exist_ok=True)
-
     tarefas = [
         (unidade, ano, endpoint)
         for unidade in cfg["uasgs"]
         for ano in cfg["anos"]
         for endpoint in cfg["endpoints"]
     ]
-
-    log_info("▶ Módulo LEGADO — %d tarefas | %d threads",
-             len(tarefas), PIPELINE_CONFIG["max_workers_legado"])
-
-    falhas = 0
-    with ThreadPoolExecutor(max_workers=PIPELINE_CONFIG["max_workers_legado"]) as pool:
-        futuros = {
-            pool.submit(extrair_legado, unidade, ano, endpoint): (unidade, ano, endpoint)
-            for unidade, ano, endpoint in tarefas
-        }
-        for futuro in as_completed(futuros):
-            if not futuro.result():
-                falhas += 1
-
-    return falhas
+    return _executar_motor(
+        "Módulo LEGADO", tarefas, extrair_legado,
+        PIPELINE_CONFIG["max_workers_legado"],
+    )
 
 
 def _executar_14133() -> int:
     cfg = CONFIG_APIS["LEI14133"]
     os.makedirs(cfg["pasta_cache"], exist_ok=True)
-
     tarefas = [
         (unidade, ano, cod_mod, nome_mod)
         for unidade in cfg["uasgs"]
         for ano in cfg["anos"]
         for cod_mod, nome_mod in cfg["modalidades"].items()
     ]
-
-    log_info("▶ Módulo LEI 14.133 — %d tarefas | %d threads",
-             len(tarefas), PIPELINE_CONFIG["max_workers_14133"])
-
-    falhas = 0
-    with ThreadPoolExecutor(max_workers=PIPELINE_CONFIG["max_workers_14133"]) as pool:
-        futuros = {
-            pool.submit(extrair_14133, unidade, ano, cod_mod, nome_mod): (unidade, ano, cod_mod, nome_mod)
-            for unidade, ano, cod_mod, nome_mod in tarefas
-        }
-        for futuro in as_completed(futuros):
-            if not futuro.result():
-                falhas += 1
-
-    return falhas
+    return _executar_motor(
+        "Módulo LEI 14.133", tarefas, extrair_14133,
+        PIPELINE_CONFIG["max_workers_14133"],
+    )
 
 
 # ---------------------------------------------------------------------------
