@@ -108,13 +108,18 @@ def _fonte(arquivo: str) -> str:
 
 
 def _limpar(texto: Optional[str]) -> str:
-    if not texto or str(texto).lower() == "null":
+    if not texto or str(texto).lower() in ("null", "none"):
         return ""
-    texto = re.sub(r"\s+", " ", str(texto)).strip()
+    t = str(texto)
+    t = t.replace('"', '')        # remove aspas duplas
+    t = t.replace('`', "'")       # substitui crase por aspas simples
+    t = t.replace('´', '')        # remove acento agudo solto
+    t = re.sub(r"\s+", " ", t).strip()
+    t = re.sub(r"^- ", "", t)     # remove " - " do início
     for prefixo in ("Objeto:", "Fundamento Legal:", "Justificativa:"):
-        if texto.startswith(prefixo):
-            texto = texto[len(prefixo):].strip()
-    return texto
+        if t.startswith(prefixo):
+            t = t[len(prefixo):].strip()
+    return t
 
 
 def _valor(v) -> str:
@@ -129,9 +134,15 @@ def _valor(v) -> str:
 def _data(valor: Optional[str]) -> str:
     if not valor:
         return ""
-    for fmt in ("%Y-%m-%dT%H:%M:%S", "%Y-%m-%d %H:%M:%S", "%Y-%m-%d"):
+    tentativas = [
+        ("%Y-%m-%dT%H:%M:%S", 19),
+        ("%Y-%m-%d %H:%M:%S", 19),
+        ("%Y-%m-%d",          10),
+        ("%d/%m/%Y",          10),
+    ]
+    for fmt, tam in tentativas:
         try:
-            return datetime.strptime(str(valor)[:19], fmt).strftime("%d/%m/%Y")
+            return datetime.strptime(str(valor)[:tam], fmt).strftime("%d/%m/%Y")
         except (ValueError, TypeError):
             continue
     return str(valor)

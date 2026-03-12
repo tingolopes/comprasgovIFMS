@@ -119,12 +119,53 @@ def _valor(v) -> str:
         return str(v)
 
 
+# Mapa de normalização de unidade de medida (case-insensitive)
+_UNIDADE_MAPA: dict[str, str] = {
+    "unidade": "Unidade", "un": "Unidade", "und": "Unidade",
+    "und.": "Unidade", "unid": "Unidade", "unid.": "Unidade",
+    "quilograma": "Quilograma", "kg": "Quilograma", "kilo": "Quilograma",
+    "kilograma": "Quilograma",
+    "litro": "Litro", "lt": "Litro", "lts": "Litro", "l": "Litro",
+    "metro": "Metro", "mt": "Metro", "m": "Metro",
+    "metro quadrado": "Metro Quadrado", "m2": "Metro Quadrado", "m²": "Metro Quadrado",
+    "metro cubico": "Metro Cúbico", "m3": "Metro Cúbico", "m³": "Metro Cúbico",
+    "caixa": "Caixa", "cx": "Caixa", "cx.": "Caixa",
+    "pacote": "Pacote", "pct": "Pacote", "pct.": "Pacote",
+    "par": "Par",
+    "resma": "Resma",
+    "frasco": "Frasco",
+    "rolo": "Rolo",
+    "conjunto": "Conjunto", "cj": "Conjunto", "cj.": "Conjunto",
+    "folha": "Folha",
+    "hora": "Hora", "h": "Hora", "hr": "Hora",
+    "mes": "Mês", "mês": "Mês",
+    "ano": "Ano",
+    "servico": "Serviço", "serviço": "Serviço",
+    "grupo": "Grupo",
+    "embalagem": "Embalagem", "emb": "Embalagem", "emb.": "Embalagem",
+}
+
+
+def _normalizar_unidade(texto: Optional[str]) -> str:
+    """Normaliza variações de escrita da unidade de medida."""
+    if not texto or str(texto).strip() == "":
+        return ""
+    chave = str(texto).strip().lower()
+    return _UNIDADE_MAPA.get(chave, str(texto).strip().title())
+
+
 def _data(valor: Optional[str]) -> str:
     if not valor:
         return ""
-    for fmt in ("%Y-%m-%dT%H:%M:%S", "%Y-%m-%d %H:%M:%S", "%Y-%m-%d"):
+    tentativas = [
+        ("%Y-%m-%dT%H:%M:%S", 19),
+        ("%Y-%m-%d %H:%M:%S", 19),
+        ("%Y-%m-%d",          10),
+        ("%d/%m/%Y",          10),
+    ]
+    for fmt, tam in tentativas:
         try:
-            return datetime.strptime(str(valor)[:19], fmt).strftime("%d/%m/%Y")
+            return datetime.strptime(str(valor)[:tam], fmt).strftime("%d/%m/%Y")
         except (ValueError, TypeError):
             continue
     return str(valor)
@@ -292,13 +333,13 @@ def _fusionar_item(id_c: str, id_item: str,
         e4.get("quantidadeItem"),
         e6.get("qtMaterialAlt"),
     )
-    unidade = _primeiro(
+    unidade = _normalizar_unidade(_primeiro(
         pncp.get("unidadeMedida"),
         e2.get("unidade"),
         e4.get("unidadeFornecimento"),
         e6.get("noUnidadeMedida"),
         "Grupo"
-    )
+    ))
     valor_est = _valor(_primeiro(
         pncp.get("valorUnitarioEstimado"),
         e2.get("valorEstimado"),
