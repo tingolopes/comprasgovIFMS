@@ -101,10 +101,13 @@ def _primeiro(*valores) -> str:
 def _limpar(texto: Optional[str]) -> str:
     if not texto or str(texto).lower() in ("null", "none"):
         return ""
-    # Remove aspas primeiro
-    texto_sem_aspas = str(texto).replace('"', '')
-    # Normaliza espaços
-    return re.sub(r"\s+", " ", texto_sem_aspas).strip()
+    t = str(texto)
+    t = t.replace('"', '')        # remove aspas duplas
+    t = t.replace('`', "'")       # substitui crase por aspas simples
+    t = t.replace('´', '')        # remove acento agudo solto
+    t = re.sub(r"\s+", " ", t).strip()
+    t = re.sub(r"^- ", "", t)     # remove " - " do início
+    return t
 
 
 def _valor(v) -> str:
@@ -315,8 +318,7 @@ def _fusionar_item(id_c: str, id_item: str,
         e4.get("valorTotalResultado"),
     ))
     menor_lance = _valor(_primeiro(
-        e4.get("valorMenorLance"),
-        e3_val := e2.get("menorLance"),
+        e4.get("menorLance"),
     ) if True else _primeiro(e4.get("valorMenorLance")))
     valor_neg = _valor(_primeiro(
         pncp.get("valorNegociado"),
@@ -329,7 +331,7 @@ def _fusionar_item(id_c: str, id_item: str,
         e4.get("situacaoItem"), e4.get("dsSituacaoItem"),
         e2.get("situacaoItem"),
         e6.get("situacaoItem"),
-    )
+    ).capitalize()
     tem_resultado = _bool_str(_primeiro(
         pncp.get("temResultado"),
         e4.get("temResultado"),
@@ -337,12 +339,16 @@ def _fusionar_item(id_c: str, id_item: str,
 
     # --- Fornecedor vencedor ---
     forn_cnpj = _primeiro(
-        pncp.get("cnpjFornecedorVencedor"),
+        pncp.get("codFornecedor"),
+        e6.get("nuCnpjVencedor"),
         e4.get("cnpjFornecedor"),
+        e2.get("cnpjFornecedor"),
     )
     forn_nome = _limpar(_primeiro(
-        pncp.get("nomeFornecedorVencedor"),
+        pncp.get("nomeFornecedor"),
+        e6.get("noFornecedorVencedor"),
         e4.get("nomeFornecedor"),
+        e2.get("nomeFornecedor"),
     ))
 
     # --- Atributos ---
@@ -372,7 +378,7 @@ def _fusionar_item(id_c: str, id_item: str,
         "valor_homologado_item":    valor_hom,
         "valor_unitario_resultado": valor_unit_res,
         "valor_total_resultado":    valor_total_res,
-        "menor_lance":              _valor(_primeiro(e4.get("valorMenorLance"), e2.get("menorLance"))),
+        "menor_lance":              menor_lance,
         "valor_negociado":          valor_neg,
         "situacao_item":            situacao,
         "tem_resultado":            tem_resultado,
@@ -390,15 +396,15 @@ def _fusionar_item(id_c: str, id_item: str,
         )),
         "data_encerramento":        _data(_primeiro(
             pncp.get("dataEncerramentoPropostaPncp"),
-            e4.get("dataEncerramentoProposta"),
+            e4.get("dtEncerramento"),
         )),
         "data_adjudicacao":         _data(_primeiro(
             pncp.get("dataAdjudicacao"),
-            e4.get("dataAdjudicacao"),
+            e4.get("dtAdjudic"),
         )),
         "data_homologacao":         _data(_primeiro(
             pncp.get("dataHomologacao"),
-            e4.get("dataHomologacao"),
+            e4.get("dtHom"),
         )),
         "data_resultado":           _data(_primeiro(
             pncp.get("dataResultado"),
@@ -408,7 +414,9 @@ def _fusionar_item(id_c: str, id_item: str,
         "data_atualizacao_pncp":    _data(pncp.get("dataAtualizacaoPncp")),
         "data_alteracao":           _data(_primeiro(
             pncp.get("dataAlteracao"),
-            e4.get("dataAlteracao"), e2.get("dataAlteracao"),
+            e6.get("dtAlteracao"),
+            e4.get("dtAlteracao"),
+            e2.get("dtAlteracao"),
         )),
     }
 
