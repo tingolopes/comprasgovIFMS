@@ -194,14 +194,42 @@ def _processar(t: dict) -> str:
 # Montagem da fila
 # ---------------------------------------------------------------------------
 
-def _ids_unicos_de_pasta(pasta: str) -> list[str]:
+def _tipo_de_url(url: str) -> str:
+    """Classifica o tipo de compra pela URL do arquivo de compras."""
+    if "1_consultarContratacoes_PNCP" in url:
+        return "pncp"
+    if "5_consultarComprasSemLicitacao" in url:
+        return "dispensa"
+    if "3_consultarPregoes" in url:
+        return "pregao"
+    return "outras"
+
+
+# Roteamento baseado em dados reais (analisar_cobertura_itens.py):
+#
+#   dispensa → E2, E6          (E4 nunca tem itens)
+#   outras   → E2, E4          (E6 nunca tem itens)
+#   pregao   → E2, E4          (E6 e pncp nunca têm itens)
+#   pncp     → pncp            (E2, E4, E6 nunca têm itens)
+#
+# Compras que aparecem em múltiplos tipos recebem a união dos sufixos.
+_SUFIXOS_POR_TIPO: dict[str, list[str]] = {
+    "dispensa": ["E2", "E6"],
+    "outras":   ["E2", "E4"],
+    "pregao":   ["E2", "E4"],
+    "pncp":     ["pncp"],
+}
+
+
+def _ids_com_tipo_de_pasta(pasta: str) -> dict[str, set[str]]:
     """
     Coleta todos os idCompra distintos dos arquivos de compras com SUCESSO.
-    Não usa a URL — simplesmente pega todos os IDs.
+    Retorna {idCompra: {tipo, ...}} — um ID pode ter múltiplos tipos se
+    aparecer em arquivos de naturezas diferentes.
     """
-    ids: set[str] = set()
+    resultado: dict[str, set[str]] = {}
     if not os.path.exists(pasta):
-        return []
+        return resultado
 
     for arq in sorted(os.listdir(pasta)):
         if not arq.endswith(".json"):
@@ -209,37 +237,53 @@ def _ids_unicos_de_pasta(pasta: str) -> list[str]:
         dados = _carregar_json(os.path.join(pasta, arq))
         if dados.get("metadata", {}).get("status") != "SUCESSO":
             continue
+        url = dados.get("metadata", {}).get("url_consultada", "")
+        tipo = _tipo_de_url(url)
         respostas = dados.get("respostas", {})
         if not isinstance(respostas, dict):
             continue
         for compra in respostas.get("resultado", []):
             id_c = compra.get("idCompra") or compra.get("id_compra")
             if id_c:
-                ids.add(str(id_c))
+                resultado.setdefault(str(id_c), set()).add(tipo)
 
-    return sorted(ids)
+    return resultado
 
 
 def _montar_fila() -> list[dict]:
     """
-    Monta uma tarefa para CADA combinação (idCompra × endpoint).
-    Todos os 4 endpoints (E2, E4, E6, pncp) são consultados para
-    cada compra — respostas vazias são ignoradas pelo transformer.
-    O cache garante que consultas anteriores não sejam repetidas.
+    Monta a fila usando roteamento baseado em dados reais:
+      dispensa → E2 + E6
+      outras   → E2 + E4
+      pregao   → E2 + E4
+      pncp     → pncp
+
+    Um idCompra que apareça em múltiplos tipos recebe a união dos sufixos.
+    Pares que já têm cache SUCESSO na p1 são descartados antes de entrar na fila.
     """
     print("🔍 Coletando ids de compras para montar a fila de itens...\n")
 
-    ids = _ids_unicos_de_pasta(_PASTA_COMPRAS)
+    ids_tipos = _ids_com_tipo_de_pasta(_PASTA_COMPRAS)
 
-    if not ids:
+    if not ids_tipos:
         print("  ⚠️  Nenhum idCompra encontrado em", _PASTA_COMPRAS)
         return []
 
-    # Gera (id × sufixo) pulando pares que já têm cache SUCESSO na p1
+    # Monta conjunto de sufixos por id (sem duplicatas)
+    sufixos_por_id: dict[str, list[str]] = {}
+    for id_c, tipos in ids_tipos.items():
+        sufixos: set[str] = set()
+        for tipo in tipos:
+            sufixos.update(_SUFIXOS_POR_TIPO.get(tipo, ["E2"]))
+        sufixos_por_id[id_c] = sorted(sufixos)
+
+    # Gera tarefas pulando pares já em cache
     fila: list[dict] = []
     ja_ok = 0
-    for id_c in ids:
-        for sufixo in _TODOS_SUFIXOS:
+    total_esperado = sum(len(s) for s in sufixos_por_id.values())
+
+    for id_c, sufixos in sorted(sufixos_por_id.items()):
+        for sufixo in sufixos:
             nome_p1 = os.path.join(
                 _PASTA_ITENS, f"itens_{id_c}_{sufixo}_p1.json")
             ok, _ = _verificar_sucesso(nome_p1)
@@ -248,12 +292,12 @@ def _montar_fila() -> list[dict]:
             else:
                 fila.append({"id": id_c, "sufixo": sufixo})
 
-    n_endpoints = len(_TODOS_SUFIXOS)
-    print(f"   IDs únicos  : {len(ids)}")
-    print(f"   Endpoints   : {n_endpoints} ({', '.join(_TODOS_SUFIXOS)})")
-    print(f"   Já em cache : {ja_ok}")
-    print(f"   A extrair   : {len(fila)}")
-    print(f"   TOTAL fila  : {len(fila)}\n")
+    print(f"   IDs únicos     : {len(ids_tipos)}")
+    print(
+        f"   Consultas prev.: {total_esperado}  (vs {len(ids_tipos) * len(_TODOS_SUFIXOS)} no modo bruto)")
+    print(f"   Já em cache    : {ja_ok}")
+    print(f"   A extrair      : {len(fila)}")
+    print(f"   TOTAL fila     : {len(fila)}\n")
 
     return fila
 
