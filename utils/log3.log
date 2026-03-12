@@ -1,0 +1,210 @@
+C:\Users\2213226\Documents\comprasgovIFMS> python.exe .\main.py
+11:02:23 | INFO     | 🚀 INICIANDO PIPELINE DE EXTRAÇÃO DE COMPRAS PÚBLICAS
+11:02:23 | INFO     | ============================================================
+11:02:23 | INFO     | ▶ Módulo LEGADO — 363 tarefas | 3 threads
+11:02:44 | INFO     | ❌ FAIL | RT | OUTRASMODALIDADES | 2026 | 29/363 (8.0%) | Falhas: 1
+11:02:53 | INFO     | ❌ FAIL | RT | PREGAO            | 2024 | 30/363 (8.3%) | Falhas: 2
+11:03:00 | INFO     | ❌ FAIL | AQ | OUTRASMODALIDADES | 2018 | 38/363 (10.5%) | Falhas: 3
+11:03:01 | INFO     | ❌ FAIL | RT | PREGAO            | 2025 | 39/363 (10.7%) | Falhas: 4
+11:03:06 | INFO     | ❌ FAIL | RT | PREGAO            | 2026 | 47/363 (12.9%) | Falhas: 5
+11:03:07 | INFO     | ❌ FAIL | AQ | PREGAO            | 2018 | 48/363 (13.2%) | Falhas: 6
+11:03:08 | INFO     | ❌ FAIL | AQ | OUTRASMODALIDADES | 2021 | 50/363 (13.8%) | Falhas: 7
+11:03:18 | INFO     | ❌ FAIL | AQ | OUTRASMODALIDADES | 2022 | 51/363 (14.0%) | Falhas: 8
+11:03:25 | INFO     | ❌ FAIL | AQ | OUTRASMODALIDADES | 2023 | 53/363 (14.6%) | Falhas: 9
+11:03:25 | INFO     | ❌ FAIL | AQ | PREGAO            | 2021 | 54/363 (14.9%) | Falhas: 10
+11:03:31 | INFO     | ❌ FAIL | AQ | PREGAO            | 2023 | 56/363 (15.4%) | Falhas: 11
+11:03:35 | INFO     | ❌ FAIL | AQ | PREGAO            | 2022 | 57/363 (15.7%) | Falhas: 12
+11:03:45 | INFO     | ❌ FAIL | AQ | PREGAO            | 2024 | 59/363 (16.3%) | Falhas: 13
+11:03:47 | INFO     | ❌ FAIL | AQ | OUTRASMODALIDADES | 2025 | 60/363 (16.5%) | Falhas: 14
+11:03:52 | INFO     | ❌ FAIL | AQ | PREGAO            | 2025 | 62/363 (17.1%) | Falhas: 15
+11:04:06 | INFO     | ❌ FAIL | AQ | OUTRASMODALIDADES | 2024 | 63/363 (17.4%) | Falhas: 16
+11:04:06 | INFO     | ⏭️  SKIPs acumulados: 50 | 66/363 (18.2%) | Falhas: 16
+11:04:09 | INFO     | ❌ FAIL | AQ | PREGAO            | 2026 | 80/363 (22.0%) | Falhas: 17
+11:04:12 | INFO     | ❌ FAIL | AQ | OUTRASMODALIDADES | 2026 | 81/363 (22.3%) | Falhas: 18
+11:04:15 | INFO     | ❌ FAIL | CG | OUTRASMODALIDADES | 2021 | 83/363 (22.9%) | Falhas: 19
+11:04:20 | INFO     | ❌ FAIL | CG | OUTRASMODALIDADES | 2022 | 84/363 (23.1%) | Falhas: 20
+11:04:24 | INFO     | ❌ FAIL | CG | PREGAO            | 2021 | 86/363 (23.7%) | Falhas: 21
+11:04:26 | INFO     | ❌ FAIL | CG | PREGAO            | 2022 | 87/363 (24.0%) | Falhas: 22
+11:04:28 | INFO     | ❌ FAIL | CG | OUTRASMODALIDADES | 2023 | 89/363 (24.5%) | Falhas: 23
+11:04:34 | INFO     | ❌ FAIL | CG | OUTRASMODALIDADES | 2024 | 90/363 (24.8%) | Falhas: 24
+11:04:35 | INFO     | ❌ FAIL | CG | PREGAO            | 2023 | 92/363 (25.3%) | Falhas: 25
+11:04:41 | INFO     | ❌ FAIL | CG | OUTRASMODALIDADES | 2025 | 93/363 (25.6%) | Falhas: 26
+11:04:42 | INFO     | ❌ FAIL | CG | PREGAO            | 2025 | 95/363 (26.2%) | Falhas: 27
+11:04:49 | INFO     | ❌ FAIL | CG | PREGAO            | 2026 | 96/363 (26.4%) | Falhas: 28
+11:04:50 | INFO     | ❌ FAIL | CG | PREGAO            | 2024 | 113/363 (31.1%) | Falhas: 29
+11:04:51 | INFO     | ❌ FAIL | CG | OUTRASMODALIDADES | 2026 | 114/363 (31.4%) | Falhas: 30
+11:04:57 | INFO     | ❌ FAIL | CB | PREGAO            | 2021 | 116/363 (32.0%) | Falhas: 31
+11:04:59 | INFO     | ❌ FAIL | CB | OUTRASMODALIDADES | 2022 | 117/363 (32.2%) | Falhas: 32
+11:05:04 | INFO     | ❌ FAIL | CB | PREGAO            | 2022 | 119/363 (32.8%) | Falhas: 33
+11:05:06 | INFO     | ❌ FAIL | CB | OUTRASMODALIDADES | 2023 | 120/363 (33.1%) | Falhas: 34
+11:05:16 | INFO     | ❌ FAIL | CB | OUTRASMODALIDADES | 2021 | 122/363 (33.6%) | Falhas: 35
+11:05:17 | INFO     | ❌ FAIL | CB | PREGAO            | 2023 | 123/363 (33.9%) | Falhas: 36
+11:05:21 | INFO     | ❌ FAIL | CB | OUTRASMODALIDADES | 2024 | 125/363 (34.4%) | Falhas: 37
+11:05:26 | INFO     | ❌ FAIL | CB | PREGAO            | 2024 | 126/363 (34.7%) | Falhas: 38
+11:05:28 | INFO     | ❌ FAIL | CB | PREGAO            | 2025 | 128/363 (35.3%) | Falhas: 39
+11:05:33 | INFO     | ❌ FAIL | CB | OUTRASMODALIDADES | 2025 | 129/363 (35.5%) | Falhas: 40
+11:05:33 | INFO     | ⏭️  SKIPs acumulados: 100 | 140/363 (38.6%) | Falhas: 40
+11:05:36 | INFO     | ❌ FAIL | CB | OUTRASMODALIDADES | 2026 | 146/363 (40.2%) | Falhas: 41
+11:05:37 | INFO     | ❌ FAIL | CB | PREGAO            | 2026 | 147/363 (40.5%) | Falhas: 42
+11:05:42 | INFO     | ❌ FAIL | CX | OUTRASMODALIDADES | 2021 | 149/363 (41.0%) | Falhas: 43
+11:05:42 | INFO     | ❌ FAIL | CX | PREGAO            | 2021 | 150/363 (41.3%) | Falhas: 44
+11:05:44 | INFO     | ❌ FAIL | CX | OUTRASMODALIDADES | 2022 | 152/363 (41.9%) | Falhas: 45
+11:06:00 | INFO     | ❌ FAIL | CX | PREGAO            | 2023 | 153/363 (42.1%) | Falhas: 46
+11:06:09 | INFO     | ❌ FAIL | CX | OUTRASMODALIDADES | 2023 | 155/363 (42.7%) | Falhas: 47
+11:06:10 | INFO     | ❌ FAIL | CX | PREGAO            | 2022 | 156/363 (43.0%) | Falhas: 48
+11:06:16 | INFO     | ❌ FAIL | CX | OUTRASMODALIDADES | 2024 | 158/363 (43.5%) | Falhas: 49
+11:06:23 | INFO     | ❌ FAIL | CX | PREGAO            | 2024 | 159/363 (43.8%) | Falhas: 50
+11:06:34 | INFO     | ❌ FAIL | CX | OUTRASMODALIDADES | 2025 | 161/363 (44.4%) | Falhas: 51
+11:06:36 | INFO     | ❌ FAIL | CX | OUTRASMODALIDADES | 2026 | 162/363 (44.6%) | Falhas: 52
+11:07:00 | INFO     | ❌ FAIL | CX | PREGAO            | 2025 | 164/363 (45.2%) | Falhas: 53
+11:07:05 | INFO     | ❌ FAIL | CX | PREGAO            | 2026 | 165/363 (45.5%) | Falhas: 54
+11:07:06 | INFO     | ❌ FAIL | DR | OUTRASMODALIDADES | 2016 | 179/363 (49.3%) | Falhas: 55
+11:07:13 | INFO     | ❌ FAIL | DR | PREGAO            | 2021 | 180/363 (49.6%) | Falhas: 56
+11:07:16 | INFO     | ❌ FAIL | DR | PREGAO            | 2016 | 182/363 (50.1%) | Falhas: 57
+11:07:20 | INFO     | ❌ FAIL | DR | OUTRASMODALIDADES | 2022 | 183/363 (50.4%) | Falhas: 58
+11:07:23 | INFO     | ❌ FAIL | DR | PREGAO            | 2022 | 185/363 (51.0%) | Falhas: 59
+11:07:25 | INFO     | ❌ FAIL | DR | OUTRASMODALIDADES | 2021 | 186/363 (51.2%) | Falhas: 60
+11:07:31 | INFO     | ❌ FAIL | DR | OUTRASMODALIDADES | 2023 | 188/363 (51.8%) | Falhas: 61
+11:07:37 | INFO     | ❌ FAIL | DR | PREGAO            | 2023 | 189/363 (52.1%) | Falhas: 62
+11:07:44 | INFO     | ❌ FAIL | DR | OUTRASMODALIDADES | 2024 | 191/363 (52.6%) | Falhas: 63
+11:07:47 | INFO     | ❌ FAIL | DR | PREGAO            | 2024 | 192/363 (52.9%) | Falhas: 64
+11:07:50 | INFO     | ❌ FAIL | DR | OUTRASMODALIDADES | 2025 | 194/363 (53.4%) | Falhas: 65
+11:07:56 | INFO     | ❌ FAIL | DR | OUTRASMODALIDADES | 2026 | 195/363 (53.7%) | Falhas: 66
+11:07:58 | INFO     | ❌ FAIL | DR | PREGAO            | 2026 | 197/363 (54.3%) | Falhas: 67
+11:08:05 | INFO     | ❌ FAIL | JD | OUTRASMODALIDADES | 2016 | 198/363 (54.5%) | Falhas: 68
+11:08:06 | INFO     | ❌ FAIL | JD | PREGAO            | 2016 | 200/363 (55.1%) | Falhas: 69
+11:08:07 | INFO     | ❌ FAIL | DR | PREGAO            | 2025 | 201/363 (55.4%) | Falhas: 70
+11:08:13 | INFO     | ❌ FAIL | JD | OUTRASMODALIDADES | 2018 | 203/363 (55.9%) | Falhas: 71
+11:08:16 | INFO     | ❌ FAIL | JD | PREGAO            | 2017 | 204/363 (56.2%) | Falhas: 72
+11:08:32 | INFO     | ❌ FAIL | JD | OUTRASMODALIDADES | 2017 | 209/363 (57.6%) | Falhas: 73
+11:08:37 | INFO     | ❌ FAIL | JD | PREGAO            | 2018 | 210/363 (57.9%) | Falhas: 74
+11:08:37 | INFO     | ❌ FAIL | JD | OUTRASMODALIDADES | 2020 | 212/363 (58.4%) | Falhas: 75
+11:08:39 | INFO     | ❌ FAIL | JD | PREGAO            | 2020 | 213/363 (58.7%) | Falhas: 76
+11:08:45 | INFO     | ❌ FAIL | JD | OUTRASMODALIDADES | 2021 | 215/363 (59.2%) | Falhas: 77
+11:08:45 | INFO     | ❌ FAIL | JD | OUTRASMODALIDADES | 2022 | 216/363 (59.5%) | Falhas: 78
+11:08:46 | INFO     | ❌ FAIL | JD | PREGAO            | 2021 | 218/363 (60.1%) | Falhas: 79
+11:08:51 | INFO     | ❌ FAIL | JD | PREGAO            | 2022 | 219/363 (60.3%) | Falhas: 80
+11:08:52 | INFO     | ❌ FAIL | JD | OUTRASMODALIDADES | 2023 | 221/363 (60.9%) | Falhas: 81
+11:08:53 | INFO     | ❌ FAIL | JD | PREGAO            | 2023 | 222/363 (61.2%) | Falhas: 82
+11:08:58 | INFO     | ❌ FAIL | JD | OUTRASMODALIDADES | 2024 | 224/363 (61.7%) | Falhas: 83
+11:08:59 | INFO     | ❌ FAIL | JD | PREGAO            | 2024 | 225/363 (62.0%) | Falhas: 84
+11:08:59 | INFO     | ❌ FAIL | JD | OUTRASMODALIDADES | 2025 | 227/363 (62.5%) | Falhas: 85
+11:09:04 | INFO     | ❌ FAIL | JD | PREGAO            | 2025 | 228/363 (62.8%) | Falhas: 86
+11:09:04 | INFO     | ⏭️  SKIPs acumulados: 150 | 236/363 (65.0%) | Falhas: 86
+11:09:06 | INFO     | ❌ FAIL | JD | OUTRASMODALIDADES | 2026 | 245/363 (67.5%) | Falhas: 87
+11:09:13 | INFO     | ❌ FAIL | JD | PREGAO            | 2026 | 246/363 (67.8%) | Falhas: 88
+11:09:13 | INFO     | ❌ FAIL | NA | PREGAO            | 2021 | 248/363 (68.3%) | Falhas: 89
+11:09:13 | INFO     | ❌ FAIL | NA | OUTRASMODALIDADES | 2021 | 249/363 (68.6%) | Falhas: 90
+11:09:19 | INFO     | ❌ FAIL | NA | OUTRASMODALIDADES | 2022 | 251/363 (69.1%) | Falhas: 91
+11:09:22 | INFO     | ❌ FAIL | NA | OUTRASMODALIDADES | 2023 | 252/363 (69.4%) | Falhas: 92
+11:09:23 | INFO     | ❌ FAIL | NA | PREGAO            | 2022 | 254/363 (70.0%) | Falhas: 93
+11:09:26 | INFO     | ❌ FAIL | NA | PREGAO            | 2023 | 255/363 (70.2%) | Falhas: 94
+11:09:29 | INFO     | ❌ FAIL | NA | OUTRASMODALIDADES | 2024 | 257/363 (70.8%) | Falhas: 95
+11:09:30 | INFO     | ❌ FAIL | NA | PREGAO            | 2024 | 258/363 (71.1%) | Falhas: 96
+11:09:33 | INFO     | ❌ FAIL | NA | OUTRASMODALIDADES | 2025 | 260/363 (71.6%) | Falhas: 97
+11:09:35 | INFO     | ❌ FAIL | NA | PREGAO            | 2025 | 261/363 (71.9%) | Falhas: 98
+11:09:40 | INFO     | ❌ FAIL | NA | PREGAO            | 2026 | 263/363 (72.5%) | Falhas: 99
+11:09:43 | INFO     | ❌ FAIL | NV | OUTRASMODALIDADES | 2016 | 264/363 (72.7%) | Falhas: 100
+11:09:51 | INFO     | ❌ FAIL | NV | PREGAO            | 2017 | 267/363 (73.6%) | Falhas: 101
+11:09:54 | INFO     | ❌ FAIL | NA | OUTRASMODALIDADES | 2026 | 278/363 (76.6%) | Falhas: 102
+11:09:59 | INFO     | ❌ FAIL | NV | PREGAO            | 2016 | 279/363 (76.9%) | Falhas: 103
+11:09:59 | INFO     | ❌ FAIL | NV | OUTRASMODALIDADES | 2021 | 281/363 (77.4%) | Falhas: 104
+11:10:00 | INFO     | ❌ FAIL | NV | PREGAO            | 2021 | 282/363 (77.7%) | Falhas: 105
+11:10:05 | INFO     | ❌ FAIL | NV | OUTRASMODALIDADES | 2022 | 284/363 (78.2%) | Falhas: 106
+11:10:07 | INFO     | ❌ FAIL | NV | OUTRASMODALIDADES | 2023 | 285/363 (78.5%) | Falhas: 107
+11:10:10 | INFO     | ❌ FAIL | NV | PREGAO            | 2022 | 287/363 (79.1%) | Falhas: 108
+11:10:12 | INFO     | ❌ FAIL | NV | PREGAO            | 2023 | 288/363 (79.3%) | Falhas: 109
+11:10:14 | INFO     | ❌ FAIL | NV | OUTRASMODALIDADES | 2024 | 290/363 (79.9%) | Falhas: 110
+11:10:16 | INFO     | ❌ FAIL | NV | PREGAO            | 2024 | 291/363 (80.2%) | Falhas: 111
+11:10:21 | INFO     | ❌ FAIL | NV | OUTRASMODALIDADES | 2025 | 293/363 (80.7%) | Falhas: 112
+11:10:21 | INFO     | ❌ FAIL | NV | PREGAO            | 2025 | 294/363 (81.0%) | Falhas: 113
+11:10:23 | INFO     | ❌ FAIL | NV | OUTRASMODALIDADES | 2026 | 311/363 (85.7%) | Falhas: 114
+11:10:31 | INFO     | ❌ FAIL | NV | PREGAO            | 2026 | 312/363 (86.0%) | Falhas: 115
+11:10:31 | INFO     | ❌ FAIL | PP | OUTRASMODALIDADES | 2021 | 314/363 (86.5%) | Falhas: 116
+11:10:34 | INFO     | ❌ FAIL | PP | PREGAO            | 2021 | 315/363 (86.8%) | Falhas: 117
+11:10:38 | INFO     | ❌ FAIL | PP | PREGAO            | 2022 | 317/363 (87.3%) | Falhas: 118
+11:10:39 | INFO     | ❌ FAIL | PP | OUTRASMODALIDADES | 2022 | 318/363 (87.6%) | Falhas: 119
+11:10:39 | INFO     | ⏭️  SKIPs acumulados: 200 | 319/363 (87.9%) | Falhas: 119
+11:10:40 | INFO     | ❌ FAIL | PP | OUTRASMODALIDADES | 2023 | 320/363 (88.2%) | Falhas: 120
+11:10:48 | INFO     | ❌ FAIL | PP | OUTRASMODALIDADES | 2024 | 321/363 (88.4%) | Falhas: 121
+11:10:49 | INFO     | ❌ FAIL | PP | PREGAO            | 2023 | 323/363 (89.0%) | Falhas: 122
+11:10:51 | INFO     | ❌ FAIL | PP | PREGAO            | 2024 | 324/363 (89.3%) | Falhas: 123
+11:10:55 | INFO     | ❌ FAIL | PP | OUTRASMODALIDADES | 2025 | 326/363 (89.8%) | Falhas: 124
+11:10:56 | INFO     | ❌ FAIL | PP | PREGAO            | 2025 | 327/363 (90.1%) | Falhas: 125
+11:11:02 | INFO     | ❌ FAIL | PP | PREGAO            | 2026 | 344/363 (94.8%) | Falhas: 126
+11:11:02 | INFO     | ❌ FAIL | PP | OUTRASMODALIDADES | 2026 | 345/363 (95.0%) | Falhas: 127
+11:11:10 | INFO     | ❌ FAIL | TL | PREGAO            | 2021 | 347/363 (95.6%) | Falhas: 128
+11:11:10 | INFO     | ❌ FAIL | TL | OUTRASMODALIDADES | 2022 | 348/363 (95.9%) | Falhas: 129
+11:11:17 | INFO     | ❌ FAIL | TL | PREGAO            | 2022 | 350/363 (96.4%) | Falhas: 130
+11:11:18 | INFO     | ❌ FAIL | TL | OUTRASMODALIDADES | 2021 | 351/363 (96.7%) | Falhas: 131
+11:11:22 | INFO     | ❌ FAIL | TL | OUTRASMODALIDADES | 2023 | 353/363 (97.2%) | Falhas: 132
+11:11:24 | INFO     | ❌ FAIL | TL | OUTRASMODALIDADES | 2024 | 354/363 (97.5%) | Falhas: 133
+11:11:27 | INFO     | ❌ FAIL | TL | PREGAO            | 2023 | 356/363 (98.1%) | Falhas: 134
+11:11:28 | INFO     | ❌ FAIL | TL | PREGAO            | 2024 | 357/363 (98.3%) | Falhas: 135
+11:11:31 | INFO     | ❌ FAIL | TL | OUTRASMODALIDADES | 2025 | 359/363 (98.9%) | Falhas: 136
+11:11:33 | INFO     | ❌ FAIL | TL | PREGAO            | 2025 | 360/363 (99.2%) | Falhas: 137
+11:11:35 | INFO     | ❌ FAIL | TL | OUTRASMODALIDADES | 2026 | 362/363 (99.7%) | Falhas: 138
+11:11:38 | INFO     | ❌ FAIL | TL | PREGAO            | 2026 | 363/363 (100.0%) | Falhas: 139
+11:11:38 | INFO     |    Concluído — DONE: 0 | SKIP: 224 | FAIL: 139
+11:11:38 | INFO     | ▶ Módulo LEI 14.133 — 24 tarefas | 2 threads
+11:11:38 | INFO     | ⏭️  SKIPs acumulados: 24 | 24/24 (100.0%) | Falhas: 0
+11:11:38 | INFO     |    Concluído — DONE: 0 | SKIP: 24 | FAIL: 0
+11:11:38 | INFO     | ============================================================
+11:11:38 | INFO     | 📊 RESUMO DA EXTRAÇÃO DE COMPRAS
+11:11:38 | INFO     |   Falhas Legado   : 139
+11:11:38 | INFO     |   Falhas Lei14133 : 0
+11:11:38 | INFO     |   SKIPs           : 0
+11:11:38 | INFO     | ============================================================
+11:11:38 | INFO     | 📤 GERANDO compras.csv...
+📂 4900 arquivo(s) encontrado(s). Processando...
+
+✅ CSV gerado: data\compras.csv
+   IDs únicos     : 2351
+   Legado         : 1924
+   Lei 14.133     : 427
+   Com responsável: 2061
+   Sem objeto     : 0
+   Colunas        : 27
+11:11:39 | INFO     | ============================================================
+11:11:39 | INFO     | 🔩 INICIANDO EXTRAÇÃO DE ITENS
+🔍 Coletando ids de compras para montar a fila de itens...
+
+   IDs únicos     : 2351
+   Consultas prev.: 4663  (vs 9404 no modo bruto)
+   Já em cache    : 4663
+   A extrair      : 0
+   TOTAL fila     : 0
+
+⚠️  Nenhuma compra encontrada ou todas já em cache.
+11:11:42 | INFO     | ============================================================
+11:11:42 | INFO     | 📤 GERANDO itens.csv...
+📂 6586 arquivo(s) de itens encontrado(s). Processando...
+
+✅ CSV gerado: data\itens.csv
+   Itens únicos  : 27423
+   Legado        : 20870
+   Lei 14.133    : 6553
+   Colunas       : 33
+11:11:46 | INFO     | ============================================================
+11:11:46 | INFO     | 📋 INICIANDO EXTRAÇÃO DE ATAS
+   UASG        : RT (158132)
+   Anos        : 2023–2026
+   Já em cache : 4
+   A extrair   : 0
+
+⏭️  Tudo em cache. Nada a extrair.
+11:11:46 | INFO     | ============================================================
+11:11:46 | INFO     | 📤 GERANDO atas.csv...
+📂 4 arquivo(s) de atas encontrado(s). Processando...
+
+✅ CSV gerado: data\atas.csv
+   Atas únicas   : 355
+   Atas excluídas: 0
+   Colunas       : 22
+11:11:46 | INFO     | ============================================================
+11:11:46 | INFO     | ============================================================
+11:11:46 | INFO     | 📊 RESUMO FINAL
+11:11:46 | INFO     |   Falhas compras : 139
+11:11:46 | INFO     |   Falhas itens   : 0
+11:11:46 | INFO     |   Falhas atas    : 0
+11:11:46 | INFO     | ⚠️  Pipeline finalizado com 139 falha(s).

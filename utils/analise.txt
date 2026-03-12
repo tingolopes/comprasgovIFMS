@@ -1,0 +1,230 @@
+
+#################################################################
+  RELATÓRIO DE QUALIDADE DE DADOS — 2026-03-12 10:10:32
+#################################################################
+
+=================================================================
+  ANÁLISE — COMPRAS.CSV
+=================================================================
+
+  Arquivo    : data/compras.csv
+  Tamanho    : 919.6 KB
+  Linhas     : 2,351
+  Colunas    : 27
+
+  ─────────────────────────────────────────────────────────────
+  PREENCHIMENTO DAS COLUNAS
+  ─────────────────────────────────────────────────────────────
+
+  ✅ Completas (100% preenchidas)  : 14
+  🟡 Parcialmente vazias (<50%)    : 4
+  🟠 Muito vazias (≥50%)           : 9
+  ❌ Completamente vazias (100%)   : 0
+
+  Colunas muito vazias (≥50% vazios):
+    🟠  responsavel_ratificacao                   92.4% vazio  (179 preenchidos)
+    🟠  cargo_ratificacao                         92.4% vazio  (179 preenchidos)
+    🟠  numero_controle_pncp                      81.8% vazio  (427 preenchidos)
+    🟠  data_abertura_proposta                    78.3% vazio  (509 preenchidos)
+    🟠  data_encerramento_proposta                77.2% vazio  (537 preenchidos)
+    🟠  valor_homologado                          68.5% vazio  (741 preenchidos)
+    🟠  modo_disputa                              67.0% vazio  (775 preenchidos)
+    🟠  situacao                                  67.0% vazio  (776 preenchidos)
+    🟠  data_publicacao                           66.2% vazio  (795 preenchidos)
+
+  Colunas parcialmente vazias:
+    🟡  amparo_legal                              14.8% vazio  (2,002 preenchidos)
+    🟡  responsavel_declaracao                    12.3% vazio  (2,061 preenchidos)
+    🟡  cargo_declaracao                          12.3% vazio  (2,061 preenchidos)
+    🟡  valor_estimado                             4.0% vazio  (2,256 preenchidos)
+
+  ─────────────────────────────────────────────────────────────
+  ANÁLISE DE VALORES NUMÉRICOS
+  ─────────────────────────────────────────────────────────────
+
+  valor_estimado:
+    Registros c/ valor : 2,255
+    Soma total         : R$ 2,857,032,617,429.67
+    Média              : R$ 1,266,976,770.48
+    Mediana            : R$ 6,286.00
+    Mínimo             : R$ 0.01
+    Máximo             : R$ 2,809,000,641,300.01
+  valor_homologado:
+    Registros c/ valor : 740
+    Soma total         : R$ 254,667,903.43
+    Média              : R$ 344,145.82
+    Mediana            : R$ 33,500.00
+    Mínimo             : R$ 0.01
+    Máximo             : R$ 13,170,173.93
+
+  ─────────────────────────────────────────────────────────────
+  DISTRIBUIÇÕES CATEGÓRICAS
+  ─────────────────────────────────────────────────────────────
+
+
+  situacao  (9 valores únicos — top 10):
+    Divulgada no pncp                                418   17.8%  ████████
+    Homologado                                       260   11.1%  █████
+    Publicado                                         55    2.3%  █
+    Aberto                                            22    0.9%  
+    Suspenso                                           9    0.4%  
+    Revogada                                           7    0.3%  
+    Deserto                                            3    0.1%  
+    Anulada                                            1    0.0%  
+    Suspensa                                           1    0.0%  
+
+  lei_14133  (2 valores únicos — top 10):
+    Não                                            1,924   81.8%  ████████████████████████████████████████
+    Sim                                              427   18.2%  █████████
+
+  modulo  (2 valores únicos — top 10):
+    LEGADO                                         1,924   81.8%  ████████████████████████████████████████
+    LEI14133                                         427   18.2%  █████████
+
+  ─────────────────────────────────────────────────────────────
+  VERIFICAÇÃO DE INCONSISTÊNCIAS
+  ─────────────────────────────────────────────────────────────
+
+  ⚠️  96 outlier(s) em 'valor_estimado' (>628,600 | mediana=6,286.00) — ex: R$ 2,809,000,641,300.01
+  ⚠️  15 outlier(s) em 'valor_homologado' (>3,350,000 | mediana=33,500.00) — ex: R$ 13,170,173.93
+
+  ─────────────────────────────────────────────────────────────
+  COBERTURA POR UASG
+  ─────────────────────────────────────────────────────────────
+
+    158132                                   1,027   43.7%
+    158450                                     229    9.7%
+    158449                                     213    9.1%
+    158454                                     156    6.6%
+    158452                                     148    6.3%
+    158451                                     118    5.0%
+    158453                                     118    5.0%
+    155848                                     106    4.5%
+    155849                                     102    4.3%
+    158448                                      91    3.9%
+    155850                                      43    1.8%
+
+=================================================================
+  ANÁLISE — ITENS.CSV
+=================================================================
+
+  Arquivo    : data/itens.csv
+  Tamanho    : 14062.9 KB
+  Linhas     : 27,423
+  Colunas    : 33
+
+  ─────────────────────────────────────────────────────────────
+  PREENCHIMENTO DAS COLUNAS
+  ─────────────────────────────────────────────────────────────
+
+  ✅ Completas (100% preenchidas)  : 7
+  🟡 Parcialmente vazias (<50%)    : 9
+  🟠 Muito vazias (≥50%)           : 17
+  ❌ Completamente vazias (100%)   : 0
+
+  Colunas muito vazias (≥50% vazios):
+    🟠  valor_negociado                           98.2% vazio  (488 preenchidos)
+    🟠  tem_resultado                             82.1% vazio  (4,910 preenchidos)
+    🟠  valor_unitario_resultado                  82.1% vazio  (4,922 preenchidos)
+    🟠  valor_total_resultado                     82.1% vazio  (4,922 preenchidos)
+    🟠  data_resultado                            82.1% vazio  (4,922 preenchidos)
+    🟠  codigo_item_catalogo                      77.3% vazio  (6,214 preenchidos)
+    🟠  criterio_julgamento                       76.1% vazio  (6,553 preenchidos)
+    🟠  data_inclusao_pncp                        76.1% vazio  (6,553 preenchidos)
+    🟠  data_atualizacao_pncp                     76.1% vazio  (6,553 preenchidos)
+    🟠  valor_homologado_item                     65.9% vazio  (9,352 preenchidos)
+    🟠  menor_lance                               58.8% vazio  (11,285 preenchidos)
+    🟠  data_adjudicacao                          56.6% vazio  (11,915 preenchidos)
+    🟠  data_homologacao                          56.3% vazio  (11,994 preenchidos)
+    🟠  fornecedor_vencedor_cnpj                  56.0% vazio  (12,065 preenchidos)
+    🟠  fornecedor_vencedor_nome                  55.6% vazio  (12,168 preenchidos)
+    🟠  data_encerramento                         55.0% vazio  (12,349 preenchidos)
+    🟠  situacao_item                             52.8% vazio  (12,940 preenchidos)
+
+  Colunas parcialmente vazias:
+    🟡  sustentavel                               35.8% vazio  (17,600 preenchidos)
+    🟡  decreto7174                               14.1% vazio  (23,543 preenchidos)
+    🟡  data_alteracao                            12.2% vazio  (24,082 preenchidos)
+    🟡  valor_estimado_item                        2.2% vazio  (26,833 preenchidos)
+    🟡  numero_item                                1.9% vazio  (26,895 preenchidos)
+    🟡  beneficio                                  1.9% vazio  (26,895 preenchidos)
+    🟡  quantidade                                 1.6% vazio  (26,996 preenchidos)
+    🟡  descricao_simples                          0.1% vazio  (27,395 preenchidos)
+    🟡  descricao_detalhada                        0.1% vazio  (27,395 preenchidos)
+
+  ─────────────────────────────────────────────────────────────
+  ANÁLISE DE VALORES NUMÉRICOS
+  ─────────────────────────────────────────────────────────────
+
+  valor_estimado_item:
+    Registros c/ valor : 18,965
+    Soma total         : R$ 319,280,054.64
+    Média              : R$ 16,835.23
+    Mediana            : R$ 160.00
+    Mínimo             : R$ 0.01
+    Máximo             : R$ 33,781,584.29
+  valor_unitario_resultado:
+    Registros c/ valor : 4,910
+    Soma total         : R$ 58,410,916.12
+    Média              : R$ 11,896.32
+    Mediana            : R$ 32.00
+    Mínimo             : R$ 0.01
+    Máximo             : R$ 6,327,002.74
+  valor_total_resultado:
+    Registros c/ valor : 4,910
+    Soma total         : R$ 175,032,632.35
+    Média              : R$ 35,648.19
+    Mediana            : R$ 2,590.00
+    Mínimo             : R$ 0.01
+    Máximo             : R$ 9,625,084.00
+  quantidade:
+    Registros c/ valor : 26,468
+    Soma total         : R$ 111,006,007.00
+    Média              : R$ 4,193.97
+    Mediana            : R$ 15.00
+    Mínimo             : R$ 1.00
+    Máximo             : R$ 53,000,011.00
+
+  ─────────────────────────────────────────────────────────────
+  DISTRIBUIÇÕES CATEGÓRICAS
+  ─────────────────────────────────────────────────────────────
+
+
+  modulo  (2 valores únicos — top 10):
+    LEGADO                                        20,870   76.1%  ██████████████████████████████████████
+    LEI14133                                       6,553   23.9%  ███████████
+
+  tipo_material_servico  (3 valores únicos — top 10):
+    Material                                      20,778   75.8%  █████████████████████████████████████
+    Serviço                                        6,117   22.3%  ███████████
+    Grupo                                            528    1.9%  
+
+  situacao_item  (7 valores únicos — top 10):
+    Homologado                                     9,352   34.1%  █████████████████
+    Cancelado                                      1,655    6.0%  ███
+    Cancelado no julgamento                        1,123    4.1%  ██
+    Encerrado                                        725    2.6%  █
+    Cancelado na adjudicação                          82    0.3%  
+    Em análise                                         2    0.0%  
+    Adjudicado                                         1    0.0%  
+
+  unidade_medida  (489 valores únicos — top 10):
+    Unidade                                       17,389   63.4%  ███████████████████████████████
+    Quilograma                                     2,578    9.4%  ████
+    Grupo                                            528    1.9%  
+    Serviço                                          423    1.5%  
+    Litro                                            393    1.4%  
+    Embalagem                                        393    1.4%  
+    Caixa                                            353    1.3%  
+    Metro Quadrado                                   351    1.3%  
+    Pacote                                           339    1.2%  
+    Rolo                                             274    1.0%  
+
+  ─────────────────────────────────────────────────────────────
+  VERIFICAÇÃO DE INCONSISTÊNCIAS
+  ─────────────────────────────────────────────────────────────
+
+  ⚠️  1199 outlier(s) em 'valor_estimado_item' (>16,000 | mediana=160.00) — ex: R$ 33,781,584.29
+  ⚠️  518 outlier(s) em 'valor_unitario_resultado' (>3,200 | mediana=32.00) — ex: R$ 6,327,002.74
+  ⚠️  107 outlier(s) em 'valor_total_resultado' (>259,000 | mediana=2,590.00) — ex: R$ 9,625,084.00
+  ⚠️  1213 outlier(s) em 'quantidade' (>1,500 | mediana=15.00) — ex: R$ 53,000,011.00
