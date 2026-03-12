@@ -89,6 +89,20 @@ MODALIDADES: dict[int, str] = {
 SITUACOES_FINAIS_PNCP: set[int] = {3, 4, 5}
 
 # ---------------------------------------------------------------------------
+# ATAS DE REGISTRO DE PREÇO (ARP)
+# Apenas a unidade gerenciadora (RT) realiza compras centralizadas.
+# Filtramos por dataVigenciaInicial por ano e deduplicamos no transformer.
+# Vigência máxima pela Lei 14.133: 1 ano + 1 ano de prorrogação.
+# ---------------------------------------------------------------------------
+CONFIG_ATAS = {
+    "base_url":    BASE_URL,
+    "path":        "/modulo-arp/1_consultarARP",
+    "pasta_cache": "temp/atas",
+    "uasg":        {"sigla": "RT", "codigo": "158132"},
+    "anos":        list(range(2023, datetime.now().year + 1)),
+}
+
+# ---------------------------------------------------------------------------
 # EXPORTAÇÃO CSV (Power BI)
 # ---------------------------------------------------------------------------
 EXPORT_CONFIG = {
@@ -105,6 +119,7 @@ PIPELINE_CONFIG = {
     "max_workers_legado":  3,
     "max_workers_14133":   2,
     "max_workers_itens":   3,
+    "max_workers_atas":    3,
 
     # Requisições HTTP
     "timeout_segundos":    30,

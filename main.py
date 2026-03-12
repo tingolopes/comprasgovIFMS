@@ -9,12 +9,16 @@ Fluxo completo (padrão):
   3. Consolida JSONs                        → data/compras.csv
   4. Extrai itens de cada compra            → temp/itens/
   5. Consolida itens                        → data/itens.csv
+  6. Extrai atas de registro de preço       → temp/atas/
+  7. Consolida atas                         → data/atas.csv
 
 Modos disponíveis:
   python main.py                              # pipeline completo
   python main.py --modo transformer_compras   # só gera compras.csv
   python main.py --modo extrator_itens        # extrai itens + gera itens.csv
   python main.py --modo transformer_itens     # só gera itens.csv
+  python main.py --modo extrator_atas         # extrai atas + gera atas.csv
+  python main.py --modo transformer_atas      # só gera atas.csv
 """
 
 import argparse
@@ -23,11 +27,13 @@ import shutil
 import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-from config.config import CONFIG_APIS, EXPORT_CONFIG, PIPELINE_CONFIG
+from config.config import CONFIG_APIS, CONFIG_ATAS, EXPORT_CONFIG, PIPELINE_CONFIG
 from pipeline.extractors_compras import extrair_legado, extrair_14133
 from pipeline.extractors_itens import executar as executar_itens
+from pipeline.extractors_atas import executar as executar_atas
 from pipeline.transformer_compras import transformar as transformar_compras
 from pipeline.transformer_itens import transformar as transformar_itens
+from pipeline.transformer_atas import transformar as transformar_atas
 from pipeline.logger import log_info, resumo_skips
 
 
@@ -142,6 +148,26 @@ def _modo_extrator_itens() -> None:
         sys.exit(1)
 
 
+def _modo_transformer_atas() -> None:
+    log_info("=" * 60)
+    log_info("📤 GERANDO atas.csv...")
+    transformar_atas(
+        pasta_atas=CONFIG_ATAS["pasta_cache"],
+        caminho_saida=os.path.join(EXPORT_CONFIG["pasta_saida"], "atas.csv"),
+    )
+    log_info("=" * 60)
+
+
+def _modo_extrator_atas() -> None:
+    log_info("=" * 60)
+    log_info("📋 EXTRAINDO ATAS DE REGISTRO DE PREÇO...")
+    falhas = executar_atas()
+    _modo_transformer_atas()
+    if falhas > 0:
+        log_info("⚠️  Extração de atas finalizada com %d falha(s).", falhas)
+        sys.exit(1)
+
+
 def _modo_extrator_compras() -> None:
     log_info("🚀 INICIANDO PIPELINE DE EXTRAÇÃO DE COMPRAS PÚBLICAS")
     log_info("=" * 60)
@@ -163,12 +189,18 @@ def _modo_extrator_compras() -> None:
 
     _modo_transformer_itens()
 
-    falhas_totais = falhas_compras + falhas_itens
+    log_info("📋 INICIANDO EXTRAÇÃO DE ATAS")
+    falhas_atas = executar_atas()
+
+    _modo_transformer_atas()
+
+    falhas_totais = falhas_compras + falhas_itens + falhas_atas
 
     log_info("=" * 60)
     log_info("📊 RESUMO FINAL")
     log_info("  Falhas compras : %d", falhas_compras)
     log_info("  Falhas itens   : %d", falhas_itens)
+    log_info("  Falhas atas    : %d", falhas_atas)
 
     if falhas_totais > 0:
         log_info("⚠️  Pipeline finalizado com %d falha(s).", falhas_totais)
@@ -194,13 +226,17 @@ def _parse_args():
             "transformer_compras",
             "extrator_itens",
             "transformer_itens",
+            "extrator_atas",
+            "transformer_atas",
         ],
         default="extrator_compras",
         help=(
             "extrator_compras    → pipeline completo (padrão)\n"
             "transformer_compras → gera compras.csv dos JSONs já baixados\n"
             "extrator_itens      → extrai itens + gera itens.csv\n"
-            "transformer_itens   → gera itens.csv dos JSONs já baixados"
+            "transformer_itens   → gera itens.csv dos JSONs já baixados\n"
+            "extrator_atas       → extrai atas ARP + gera atas.csv\n"
+            "transformer_atas    → gera atas.csv dos JSONs já baixados"
         ),
     )
     return parser.parse_args()
@@ -227,6 +263,10 @@ if __name__ == "__main__":
             _modo_extrator_itens()
         elif args.modo == "transformer_itens":
             _modo_transformer_itens()
+        elif args.modo == "extrator_atas":
+            _modo_extrator_atas()
+        elif args.modo == "transformer_atas":
+            _modo_transformer_atas()
         else:
             _modo_extrator_compras()
     finally:
