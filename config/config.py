@@ -110,6 +110,17 @@ CONFIG_ATAS = {
 }
 
 # ---------------------------------------------------------------------------
+# CONTRATOS (contratos.comprasnet.gov.br)
+# API diferente da dadosabertos — retorna listas diretas sem paginação.
+# ---------------------------------------------------------------------------
+CONFIG_CONTRATOS = {
+    "base_url":                  "https://contratos.comprasnet.gov.br/api",
+    "pasta_cache":               "temp/contratos",
+    "pasta_cache_responsaveis":  "temp/contratos_responsaveis",
+    "uasgs":                     UASGS,
+}
+
+# ---------------------------------------------------------------------------
 # EXPORTAÇÃO CSV (Power BI)
 # ---------------------------------------------------------------------------
 EXPORT_CONFIG = {
@@ -123,10 +134,12 @@ EXPORT_CONFIG = {
 # ---------------------------------------------------------------------------
 PIPELINE_CONFIG = {
     # Threads simultâneas por motor
-    "max_workers_legado":  3,
-    "max_workers_14133":   2,
-    "max_workers_itens":   3,
-    "max_workers_atas":    3,
+    "max_workers_legado":         3,
+    "max_workers_14133":          2,
+    "max_workers_itens":          3,
+    "max_workers_atas":           3,
+    "max_workers_contratos":      5,
+    "max_workers_responsaveis":  15,
 
     # Requisições HTTP
     "timeout_segundos":        30,
@@ -142,13 +155,17 @@ PIPELINE_CONFIG = {
     "backoff_tentativas_saldos": 6,     # mais tentativas para endpoint instável
 
     # Cache: dias antes de re-verificar contratos ainda em aberto (PNCP)
-    "dias_validade_cache_pncp": 7,
+    "dias_validade_cache_pncp":          7,
 
     # Cache: dias antes de re-verificar atas (cabeçalho) para detectar prorrogações
-    "dias_validade_cache_atas": 30,
+    "dias_validade_cache_atas":          30,
 
     # Janela de alerta: re-verifica se há atas com vigência final nos próximos N dias
-    "dias_alerta_prorrogacao_atas": 60,
+    "dias_alerta_prorrogacao_atas":      60,
+
+    # Cache: contratos e responsáveis — dados que mudam com aditivos/rescisões
+    "dias_validade_cache_contratos":      1,
+    "dias_validade_cache_responsaveis":   1,
 
     # Log: a cada N skips imprime resumo (evita flood no terminal)
     "log_intervalo_skip":  50,

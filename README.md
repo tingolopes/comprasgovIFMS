@@ -37,6 +37,10 @@ comprasgovIFMS/
 │   ├── transformer_atas_itens.py    # Consolidação de itens das atas em CSV
 │   ├── transformer_atas_saldos.py   # Consolidação de saldos em CSV
 │   ├── transformer_atas_unidades.py # Consolidação de unidades em CSV
+│   ├── extractors_contratos.py      # Extração de contratos (contratos.comprasnet.gov.br)
+│   ├── transformer_contratos.py     # Consolidação de contratos em CSV
+│   ├── extractors_contratos_responsaveis.py  # Extração de responsáveis dos contratos
+│   ├── transformer_contratos_responsaveis.py # Consolidação de responsáveis em CSV
 │   └── logger.py                    # Logging e resumo de execução
 ├── data/
 │   ├── compras.csv                  # dataset consolidado de compras
@@ -44,14 +48,18 @@ comprasgovIFMS/
 │   ├── atas.csv                     # dataset consolidado de atas
 │   ├── atas_itens.csv               # dataset consolidado de itens das atas
 │   ├── atas_saldos.csv              # dataset consolidado de saldos das atas
-│   └── atas_unidades.csv            # dataset consolidado de unidades participantes
+│   ├── atas_unidades.csv            # dataset consolidado de unidades participantes
+│   ├── contratos.csv                # dataset consolidado de contratos
+│   └── contratos_responsaveis.csv   # dataset consolidado de responsáveis dos contratos
 ├── temp/
 │   ├── compras/                     # Cache JSON das compras por período/modalidade
 │   ├── itens/                       # Cache JSON dos itens por compra
 │   ├── atas/                        # Cache JSON das atas por período
 │   ├── atas_itens/                  # Cache JSON dos itens das atas
 │   ├── atas_saldos/                 # Cache JSON dos saldos das atas
-│   └── atas_unidades/               # Cache JSON das unidades participantes
+│   ├── atas_unidades/               # Cache JSON das unidades participantes
+│   ├── contratos/                   # Cache JSON dos contratos
+│   └── contratos_responsaveis/      # Cache JSON dos responsáveis dos contratos
 ├── utils/
 │   ├── analisar_cobertura_itens.py  # Análise de cobertura de itens
 │   ├── analisar_csv.py              # Análise estatística dos CSVs
@@ -108,6 +116,8 @@ python main.py
 12. Extrai unidades participantes → `temp/atas_unidades/`
 13. Consolida unidades → `data/atas_unidades.csv`
 
+> **Nota:** A extração de contratos e responsáveis é feita por módulos separados (não faz parte do pipeline padrão). Use os modos específicos abaixo.
+
 #### Modos Específicos
 
 Execute apenas uma etapa do pipeline:
@@ -145,6 +155,18 @@ python main.py --modo extrator_atas_unidades
 
 # Consolidar unidades (sem re-extrair)
 python main.py --modo transformer_atas_unidades
+
+# Extrair e consolidar contratos
+python main.py --modo extrator_contratos
+
+# Consolidar contratos (sem re-extrair)
+python main.py --modo transformer_contratos
+
+# Extrair e consolidar responsáveis dos contratos
+python main.py --modo extrator_contratos_resp
+
+# Consolidar responsáveis dos contratos (sem re-extrair)
+python main.py --modo transformer_contratos_resp
 ```
 
 ## ⚙️ Configuração
@@ -197,6 +219,14 @@ Os endpoints consultados são configuráveis em `CONFIG_APIS` e `CONFIG_ATAS`. A
 - Itens das atas
 - Saldos remanescentes
 - Unidades participantes
+
+**Contratos / Responsáveis (contratos.comprasnet.gov.br):**
+- Contratos
+- Responsáveis pelos contratos
+
+**Contratos / Responsáveis:**
+- Contratos (contratos.comprasnet.gov.br)
+- Responsáveis pelos contratos
 
 ## 📊 Dados Utilizados
 
@@ -255,6 +285,26 @@ Unidades gestoras que participam das atas.
 - Número da ata
 - Código UASG, nome unidade
 - Percentual participação
+
+### Contratos
+
+Dados obtidos da API `https://contratos.comprasnet.gov.br/api`.
+
+**Campos principais:**
+- Contrato ID, número do contrato, objeto, valor
+- Datas (assinatura, vigência, término)
+- Unidade gestora
+- Fornecedor
+
+### Responsáveis dos Contratos
+
+Dados relacionados aos responsáveis pela execução dos contratos.
+
+**Campos principais:**
+- Contrato ID
+- Nome do responsável
+- CPF/CNPJ
+- Papel/Função
 
 ## 🔄 Cache e Performance
 

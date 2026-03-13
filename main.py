@@ -31,6 +31,10 @@ Modos disponíveis:
   python main.py --modo transformer_atas_saldos     # só gera atas_saldos.csv
   python main.py --modo extrator_atas_unidades      # extrai unidades + gera atas_unidades.csv
   python main.py --modo transformer_atas_unidades   # só gera atas_unidades.csv
+  python main.py --modo extrator_contratos          # extrai contratos + gera contratos.csv
+  python main.py --modo transformer_contratos       # só gera contratos.csv
+  python main.py --modo extrator_contratos_resp     # extrai responsáveis + gera contratos_responsaveis.csv
+  python main.py --modo transformer_contratos_resp  # só gera contratos_responsaveis.csv
 """
 
 import argparse
@@ -39,7 +43,7 @@ import shutil
 import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-from config.config import CONFIG_APIS, CONFIG_ATAS, EXPORT_CONFIG, PIPELINE_CONFIG
+from config.config import CONFIG_APIS, CONFIG_ATAS, CONFIG_CONTRATOS, EXPORT_CONFIG, PIPELINE_CONFIG
 from pipeline.extractors_compras import extrair_legado, extrair_14133
 from pipeline.extractors_itens import executar as executar_itens
 from pipeline.extractors_atas import executar as executar_atas
@@ -52,6 +56,10 @@ from pipeline.transformer_atas import transformar as transformar_atas
 from pipeline.transformer_atas_itens import transformar as transformar_atas_itens
 from pipeline.transformer_atas_saldos import transformar as transformar_atas_saldos
 from pipeline.transformer_atas_unidades import transformar as transformar_atas_unidades
+from pipeline.extractors_contratos import executar as executar_contratos
+from pipeline.extractors_contratos_responsaveis import executar as executar_contratos_responsaveis
+from pipeline.transformer_contratos import transformar as transformar_contratos
+from pipeline.transformer_contratos_responsaveis import transformar as transformar_contratos_responsaveis
 from pipeline.logger import log_info, resumo_skips
 
 
@@ -249,6 +257,48 @@ def _modo_extrator_atas_unidades() -> None:
         sys.exit(1)
 
 
+def _modo_transformer_contratos() -> None:
+    log_info("=" * 60)
+    log_info("📤 GERANDO contratos.csv...")
+    transformar_contratos(
+        pasta_contratos=CONFIG_CONTRATOS["pasta_cache"],
+        caminho_saida=os.path.join(
+            EXPORT_CONFIG["pasta_saida"], "contratos.csv"),
+    )
+    log_info("=" * 60)
+
+
+def _modo_extrator_contratos() -> None:
+    log_info("=" * 60)
+    log_info("📄 EXTRAINDO CONTRATOS...")
+    falhas = executar_contratos()
+    _modo_transformer_contratos()
+    if falhas > 0:
+        log_info("⚠️  Extração de contratos finalizada com %d falha(s).", falhas)
+        sys.exit(1)
+
+
+def _modo_transformer_contratos_responsaveis() -> None:
+    log_info("=" * 60)
+    log_info("📤 GERANDO contratos_responsaveis.csv...")
+    transformar_contratos_responsaveis(
+        pasta_responsaveis=CONFIG_CONTRATOS["pasta_cache_responsaveis"],
+        caminho_saida=os.path.join(
+            EXPORT_CONFIG["pasta_saida"], "contratos_responsaveis.csv"),
+    )
+    log_info("=" * 60)
+
+
+def _modo_extrator_contratos_responsaveis() -> None:
+    log_info("=" * 60)
+    log_info("👥 EXTRAINDO RESPONSÁVEIS DOS CONTRATOS...")
+    falhas = executar_contratos_responsaveis()
+    _modo_transformer_contratos_responsaveis()
+    if falhas > 0:
+        log_info("⚠️  Extração de responsáveis finalizada com %d falha(s).", falhas)
+        sys.exit(1)
+
+
 def _modo_extrator_compras() -> None:
     log_info("🚀 INICIANDO PIPELINE DE EXTRAÇÃO DE COMPRAS PÚBLICAS")
     log_info("=" * 60)
@@ -330,21 +380,29 @@ def _parse_args():
             "transformer_atas_saldos",
             "extrator_atas_unidades",
             "transformer_atas_unidades",
+            "extrator_contratos",
+            "transformer_contratos",
+            "extrator_contratos_resp",
+            "transformer_contratos_resp",
         ],
         default="extrator_compras",
         help=(
-            "extrator_compras          → pipeline completo (padrão)\n"
-            "transformer_compras       → gera compras.csv dos JSONs já baixados\n"
-            "extrator_itens            → extrai itens + gera itens.csv\n"
-            "transformer_itens         → gera itens.csv dos JSONs já baixados\n"
-            "extrator_atas             → extrai atas ARP + gera atas.csv\n"
-            "transformer_atas          → gera atas.csv dos JSONs já baixados\n"
-            "extrator_atas_itens       → extrai itens das atas + gera atas_itens.csv\n"
-            "transformer_atas_itens    → gera atas_itens.csv dos JSONs já baixados\n"
-            "extrator_atas_saldos      → extrai saldos das atas + gera atas_saldos.csv\n"
-            "transformer_atas_saldos   → gera atas_saldos.csv dos JSONs já baixados\n"
-            "extrator_atas_unidades    → extrai unidades participantes + gera atas_unidades.csv\n"
-            "transformer_atas_unidades → gera atas_unidades.csv dos JSONs já baixados"
+            "extrator_compras           → pipeline completo (padrão)\n"
+            "transformer_compras        → gera compras.csv dos JSONs já baixados\n"
+            "extrator_itens             → extrai itens + gera itens.csv\n"
+            "transformer_itens          → gera itens.csv dos JSONs já baixados\n"
+            "extrator_atas              → extrai atas ARP + gera atas.csv\n"
+            "transformer_atas           → gera atas.csv dos JSONs já baixados\n"
+            "extrator_atas_itens        → extrai itens das atas + gera atas_itens.csv\n"
+            "transformer_atas_itens     → gera atas_itens.csv dos JSONs já baixados\n"
+            "extrator_atas_saldos       → extrai saldos das atas + gera atas_saldos.csv\n"
+            "transformer_atas_saldos    → gera atas_saldos.csv dos JSONs já baixados\n"
+            "extrator_atas_unidades     → extrai unidades participantes + gera atas_unidades.csv\n"
+            "transformer_atas_unidades  → gera atas_unidades.csv dos JSONs já baixados\n"
+            "extrator_contratos         → extrai contratos de todas as UASGs + gera contratos.csv\n"
+            "transformer_contratos      → gera contratos.csv dos JSONs já baixados\n"
+            "extrator_contratos_resp    → extrai responsáveis dos contratos + gera contratos_responsaveis.csv\n"
+            "transformer_contratos_resp → gera contratos_responsaveis.csv dos JSONs já baixados"
         ),
     )
     return parser.parse_args()
@@ -387,6 +445,14 @@ if __name__ == "__main__":
             _modo_extrator_atas_unidades()
         elif args.modo == "transformer_atas_unidades":
             _modo_transformer_atas_unidades()
+        elif args.modo == "extrator_contratos":
+            _modo_extrator_contratos()
+        elif args.modo == "transformer_contratos":
+            _modo_transformer_contratos()
+        elif args.modo == "extrator_contratos_resp":
+            _modo_extrator_contratos_responsaveis()
+        elif args.modo == "transformer_contratos_resp":
+            _modo_transformer_contratos_responsaveis()
         else:
             _modo_extrator_compras()
     finally:
