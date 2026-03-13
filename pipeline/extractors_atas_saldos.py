@@ -31,7 +31,7 @@ from urllib.parse import urlencode
 
 import requests
 
-from config.config import CONFIG_ATAS, PIPELINE_CONFIG
+from config.config import CONFIG_ATAS, HTTP_HEADERS, PIPELINE_CONFIG
 
 # ---------------------------------------------------------------------------
 # Configuração local
@@ -96,12 +96,17 @@ def _verificar_cache(caminho: str) -> tuple[bool, dict]:
     return True, dados
 
 
+def _e_sucesso(caminho: str) -> bool:
+    """Retorna True se o arquivo existe e tem status SUCESSO — ignora validade."""
+    dados = _carregar_json(caminho)
+    return dados.get("metadata", {}).get("status") == "SUCESSO"
+
+
 def _salvar(caminho: str, url: str, params: dict,
             conteudo, status: str = "SUCESSO") -> None:
-    """Nunca sobrescreve cache SUCESSO válido com falha."""
+    """Nunca sobrescreve cache SUCESSO com falha — independente da validade."""
     if status != "SUCESSO" and os.path.exists(caminho):
-        valido, _ = _verificar_cache(caminho)
-        if valido:
+        if _e_sucesso(caminho):
             return
 
     envelope = {
@@ -122,10 +127,15 @@ def _salvar(caminho: str, url: str, params: dict,
 
 def _get(url: str, params: dict) -> tuple[dict | None, str]:
     atraso = PIPELINE_CONFIG["backoff_inicial"]
-    for tentativa in range(1, PIPELINE_CONFIG["backoff_tentativas"] + 1):
+    timeout = PIPELINE_CONFIG.get(
+        "timeout_segundos_saldos",    PIPELINE_CONFIG["timeout_segundos"])
+    tentativas = PIPELINE_CONFIG.get(
+        "backoff_tentativas_saldos",  PIPELINE_CONFIG["backoff_tentativas"])
+    for tentativa in range(1, tentativas + 1):
         try:
             resp = requests.get(url, params=params,
-                                timeout=PIPELINE_CONFIG["timeout_segundos"])
+                                headers=HTTP_HEADERS,
+                                timeout=timeout)
             if resp.status_code == 200:
                 return resp.json(), "SUCESSO"
             elif resp.status_code == 429:

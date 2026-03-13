@@ -12,7 +12,7 @@ from urllib.parse import urlencode
 
 import requests
 
-from config.config import PIPELINE_CONFIG, SITUACOES_FINAIS_PNCP
+from config.config import HTTP_HEADERS, PIPELINE_CONFIG, SITUACOES_FINAIS_PNCP
 
 
 # ---------------------------------------------------------------------------
@@ -91,20 +91,23 @@ def deve_reverificar_pncp(dados_cache: dict) -> bool:
 # HTTP
 # ---------------------------------------------------------------------------
 
-def consultar_api(url: str, params: dict) -> tuple[dict | None, str]:
+def consultar_api(url: str, params: dict, legado: bool = False) -> tuple[dict | None, str]:
     """
     GET com backoff exponencial.
     Retorna (dados, status) onde status é 'SUCESSO' ou 'FALHA'.
+
+    legado=True usa timeout_segundos_legado (menor) — a API legado
+    responde rápido quando está no ar; timeout longo só desperdiça tempo.
     """
     atraso = PIPELINE_CONFIG["backoff_inicial"]
     tentativas = PIPELINE_CONFIG["backoff_tentativas"]
+    timeout = (PIPELINE_CONFIG.get("timeout_segundos_legado", 10)
+               if legado else PIPELINE_CONFIG["timeout_segundos"])
 
     for tentativa in range(1, tentativas + 1):
         try:
-            resp = requests.get(
-                url, params=params,
-                timeout=PIPELINE_CONFIG["timeout_segundos"],
-            )
+            resp = requests.get(url, params=params,
+                                headers=HTTP_HEADERS, timeout=timeout)
             if resp.status_code == 200:
                 dados = resp.json()
                 if isinstance(dados, dict) and "resultado" in dados:

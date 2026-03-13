@@ -10,6 +10,9 @@ Este projeto extrai dados de compras públicas do IFMS a partir da API pública 
 - **Compras Lei 14.133** (novo marco legal a partir de 2021)
 - **Itens de Compras**: produtos/serviços associados a cada compra
 - **Atas de Registro de Preço (ARP)**: atas de compra centralizada
+- **Itens das Atas**: produtos/serviços registrados nas atas
+- **Saldos das Atas**: saldos remanescentes dos itens nas atas
+- **Unidades Participantes**: unidades gestoras participantes das atas
 
 Os dados são consolidados em arquivos CSV para análise e consulta.
 
@@ -25,19 +28,39 @@ comprasgovIFMS/
 │   ├── extractors_compras.py        # Extração de dados do módulo legado e Lei 14.133
 │   ├── extractors_itens.py          # Extração de itens de compras
 │   ├── extractors_atas.py           # Extração de atas de registro de preço
+│   ├── extractors_atas_itens.py     # Extração de itens das atas
+│   ├── extractors_atas_saldos.py    # Extração de saldos das atas
+│   ├── extractors_atas_unidades.py  # Extração de unidades participantes das atas
 │   ├── transformer_compras.py       # Consolidação de compras em CSV
 │   ├── transformer_itens.py         # Consolidação de itens em CSV
 │   ├── transformer_atas.py          # Consolidação de atas em CSV
+│   ├── transformer_atas_itens.py    # Consolidação de itens das atas em CSV
+│   ├── transformer_atas_saldos.py   # Consolidação de saldos em CSV
+│   ├── transformer_atas_unidades.py # Consolidação de unidades em CSV
 │   └── logger.py                    # Logging e resumo de execução
 ├── data/
 │   ├── compras.csv                  # dataset consolidado de compras
 │   ├── itens.csv                    # dataset consolidado de itens
-│   └── atas.csv                     # dataset consolidado de atas
+│   ├── atas.csv                     # dataset consolidado de atas
+│   ├── atas_itens.csv               # dataset consolidado de itens das atas
+│   ├── atas_saldos.csv              # dataset consolidado de saldos das atas
+│   └── atas_unidades.csv            # dataset consolidado de unidades participantes
 ├── temp/
 │   ├── compras/                     # Cache JSON das compras por período/modalidade
 │   ├── itens/                       # Cache JSON dos itens por compra
 │   ├── atas/                        # Cache JSON das atas por período
-│   └── *.py                         # Scripts auxiliares de análise/diagnóstico
+│   ├── atas_itens/                  # Cache JSON dos itens das atas
+│   ├── atas_saldos/                 # Cache JSON dos saldos das atas
+│   └── atas_unidades/               # Cache JSON das unidades participantes
+├── utils/
+│   ├── analisar_cobertura_itens.py  # Análise de cobertura de itens
+│   ├── analisar_csv.py              # Análise estatística dos CSVs
+│   ├── diagnosticar_id.py           # Diagnóstico de IDs duplicados/faltantes
+│   ├── explorar_itens.py            # Exploração da estrutura de itens
+│   ├── limpar_itens.py              # Limpeza e validação de dados de itens
+│   ├── migrar_cache_antigo.py       # Migração de cache antigo
+│   ├── recuperar_cache.py           # Recuperação de dados de cache corrompidos
+│   └── analise.txt                  # Arquivo de análise
 └── README.md
 ```
 
@@ -64,7 +87,7 @@ pip install requests pandas
 
 #### Pipeline Completo
 
-Executa toda a sequência: extração de compras, itens e atas, seguida de consolidação em CSV.
+Executa toda a sequência: extração de compras, itens, atas e seus subcomponentes, seguida de consolidação em CSV.
 
 ```bash
 python main.py
@@ -78,6 +101,12 @@ python main.py
 5. Consolida itens → `data/itens.csv`
 6. Extrai atas de registro de preço → `temp/atas/`
 7. Consolida atas → `data/atas.csv`
+8. Extrai itens das atas → `temp/atas_itens/`
+9. Consolida itens das atas → `data/atas_itens.csv`
+10. Extrai saldos das atas → `temp/atas_saldos/`
+11. Consolida saldos → `data/atas_saldos.csv`
+12. Extrai unidades participantes → `temp/atas_unidades/`
+13. Consolida unidades → `data/atas_unidades.csv`
 
 #### Modos Específicos
 
@@ -98,6 +127,24 @@ python main.py --modo extrator_atas
 
 # Consolidar atas (sem re-extrair)
 python main.py --modo transformer_atas
+
+# Extrair e consolidar itens das atas
+python main.py --modo extrator_atas_itens
+
+# Consolidar itens das atas (sem re-extrair)
+python main.py --modo transformer_atas_itens
+
+# Extrair e consolidar saldos das atas
+python main.py --modo extrator_atas_saldos
+
+# Consolidar saldos (sem re-extrair)
+python main.py --modo transformer_atas_saldos
+
+# Extrair e consolidar unidades participantes
+python main.py --modo extrator_atas_unidades
+
+# Consolidar unidades (sem re-extrair)
+python main.py --modo transformer_atas_unidades
 ```
 
 ## ⚙️ Configuração
@@ -129,12 +176,13 @@ Para modificar a lista de unidades, edite `UASGS` em [config/config.py](config/c
 Por padrão, o pipeline coleta dados de:
 - **Módulo Legado:** 2016 até o ano atual
 - **Lei 14.133:** 2021 até o ano atual
+- **Atas e Itens/Saldos/Unidades:** 2023 até o ano atual + 1
 
-Ajuste em `CONFIG_APIS['LEGADO']['anos']` ou `CONFIG_APIS['LEI14133']['anos']`.
+Ajuste em `CONFIG_APIS['LEGADO']['anos']`, `CONFIG_APIS['LEI14133']['anos']` ou `CONFIG_ATAS['anos']` / `CONFIG_ATAS['anos_itens']`.
 
 ### Endpoints
 
-Os endpoints consultados são configuráveis em `CONFIG_APIS`. Atualmente:
+Os endpoints consultados são configuráveis em `CONFIG_APIS` e `CONFIG_ATAS`. Atualmente:
 
 **Módulo Legado:**
 - Outras Modalidades (licitações abertas)
@@ -146,6 +194,9 @@ Os endpoints consultados são configuráveis em `CONFIG_APIS`. Atualmente:
 
 **Atas de Registro de Preço:**
 - Consolidado nacional (filtrando por UASG)
+- Itens das atas
+- Saldos remanescentes
+- Unidades participantes
 
 ## 📊 Dados Utilizados
 
@@ -178,11 +229,38 @@ Dados de atas de compra centralizada (Lei 14.133).
 - Fornecedores, empresas
 - Preços registrados
 
+### Itens das Atas
+
+Produtos/serviços registrados nas atas.
+
+**Campos principais:**
+- Número da ata, item ID
+- Descrição, quantidade, valor
+- Fornecedor
+
+### Saldos das Atas
+
+Saldos remanescentes dos itens nas atas.
+
+**Campos principais:**
+- Número da ata, item ID
+- Saldo quantidade, saldo valor
+- Unidade gestora
+
+### Unidades Participantes
+
+Unidades gestoras que participam das atas.
+
+**Campos principais:**
+- Número da ata
+- Código UASG, nome unidade
+- Percentual participação
+
 ## 🔄 Cache e Performance
 
 O pipeline utiliza **cache em disco** para evitar re-consultas desnecessárias:
 
-- Arquivos JSON são armazenados em `temp/compras/`, `temp/itens/`, `temp/atas/`
+- Arquivos JSON são armazenados em `temp/compras/`, `temp/itens/`, `temp/atas/`, etc.
 - Cache é validado por status (marcado como `SUCESSO` ou `FALHA`)
 - Dados com sucesso não são sobrescritos por falhas
 
@@ -190,7 +268,7 @@ Para limpar o cache e re-extrair tudo, delete os arquivos JSON de `temp/`.
 
 ## 📈 Scripts Auxiliares
 
-Em `temp/` há vários scripts de análise:
+Em `utils/` há vários scripts de análise:
 
 | Script | Descrição |
 |--------|-----------|
@@ -200,11 +278,12 @@ Em `temp/` há vários scripts de análise:
 | `explorar_itens.py` | Exploração de estrutura de itens |
 | `limpar_itens.py` | Limpeza e validação de dados de itens |
 | `recuperar_cache.py` | Recuperação de dados de cache corrompidos |
+| `migrar_cache_antigo.py` | Migração de cache de versões anteriores |
 
 Exemplo:
 
 ```bash
-python temp/analisar_csv.py
+python utils/analisar_csv.py
 ```
 
 ## 📝 Logging
@@ -229,7 +308,7 @@ Um resumo é exibido ao final da execução com estatísticas de sucesso/falha.
 
 ### "CSV vazio ou incompleto"
 - Verifique se há dados em `temp/compras/`, `temp/itens/` ou `temp/atas/`
-- Use scripts de análise: `python temp/analisar_csv.py`
+- Use scripts de análise: `python utils/analisar_csv.py`
 
 ## 📞 Suporte
 
@@ -240,3 +319,4 @@ Para dúvidas sobre a API de dados abertos, consulte:
 ## 📄 Licença
 
 Este projeto está associado ao Instituto Federal de Mato Grosso do Sul (IFMS).
+

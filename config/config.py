@@ -99,7 +99,7 @@ CONFIG_ATAS = {
     "path":             "/modulo-arp/1_consultarARP",
     "pasta_cache":      "temp/atas",
     "uasg":             {"sigla": "RT", "codigo": "158132"},
-    "anos":             list(range(2023, datetime.now().year + 1)),
+    "anos":             list(range(2021, datetime.now().year + 1)),
 
     # Itens das atas — janelas anuais (01/01 → 31/12) de 2023 em diante.
     # Cobre até ano_atual + 1 para capturar atas com prorrogação ainda vigentes.
@@ -129,12 +129,17 @@ PIPELINE_CONFIG = {
     "max_workers_atas":    3,
 
     # Requisições HTTP
-    "timeout_segundos":    30,
+    "timeout_segundos":        30,
+    # Timeout menor para a API legado (instável mas responde rápido quando está no ar)
+    "timeout_segundos_legado": 10,
+    # Timeout maior para saldos — endpoint mais lento
+    "timeout_segundos_saldos": 120,
     "tamanho_pagina":      500,
 
     # Backoff exponencial (segundos)
-    "backoff_inicial":     2,
-    "backoff_tentativas":  2,      # 2 s → 4 s
+    "backoff_inicial":          2,
+    "backoff_tentativas":       2,      # 2 s → 4 s
+    "backoff_tentativas_saldos": 6,     # mais tentativas para endpoint instável
 
     # Cache: dias antes de re-verificar contratos ainda em aberto (PNCP)
     "dias_validade_cache_pncp": 7,
@@ -147,4 +152,20 @@ PIPELINE_CONFIG = {
 
     # Log: a cada N skips imprime resumo (evita flood no terminal)
     "log_intervalo_skip":  50,
+}
+
+# ---------------------------------------------------------------------------
+# HEADERS HTTP
+# Simula navegador para evitar bloqueios anti-bot em endpoints sensíveis
+# (ex: 4_consultarEmpenhosSaldoItem rejeita requests sem User-Agent)
+# ---------------------------------------------------------------------------
+HTTP_HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/124.0.0.0 Safari/537.36"
+    ),
+    "Accept":          "application/json, text/plain, */*",
+    "Accept-Language": "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7",
+    "Connection":      "keep-alive",
 }
