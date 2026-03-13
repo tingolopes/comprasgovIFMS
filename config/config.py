@@ -95,11 +95,16 @@ SITUACOES_FINAIS_PNCP: set[int] = {3, 4, 5}
 # Vigência máxima pela Lei 14.133: 1 ano + 1 ano de prorrogação.
 # ---------------------------------------------------------------------------
 CONFIG_ATAS = {
-    "base_url":    BASE_URL,
-    "path":        "/modulo-arp/1_consultarARP",
-    "pasta_cache": "temp/atas",
-    "uasg":        {"sigla": "RT", "codigo": "158132"},
-    "anos":        list(range(2023, datetime.now().year + 1)),
+    "base_url":         BASE_URL,
+    "path":             "/modulo-arp/1_consultarARP",
+    "pasta_cache":      "temp/atas",
+    "uasg":             {"sigla": "RT", "codigo": "158132"},
+    "anos":             list(range(2023, datetime.now().year + 1)),
+
+    # Itens das atas — janelas anuais (01/01 → 31/12) de 2023 em diante.
+    # Cobre até ano_atual + 1 para capturar atas com prorrogação ainda vigentes.
+    "pasta_cache_itens": "temp/atas_itens",
+    "anos_itens":        list(range(2023, datetime.now().year + 2)),
 }
 
 # ---------------------------------------------------------------------------
@@ -131,6 +136,12 @@ PIPELINE_CONFIG = {
 
     # Cache: dias antes de re-verificar contratos ainda em aberto (PNCP)
     "dias_validade_cache_pncp": 7,
+
+    # Cache: dias antes de re-verificar atas (cabeçalho) para detectar prorrogações
+    "dias_validade_cache_atas": 30,
+
+    # Janela de alerta: re-verifica se há atas com vigência final nos próximos N dias
+    "dias_alerta_prorrogacao_atas": 60,
 
     # Log: a cada N skips imprime resumo (evita flood no terminal)
     "log_intervalo_skip":  50,

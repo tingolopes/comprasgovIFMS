@@ -1,17 +1,20 @@
 """
-pipeline/extractors_atas.py
-----------------------------
-Extrai Atas de Registro de Preço (ARP) da unidade gerenciadora (RT/158132).
+pipeline/extractors_atas_itens.py
+-----------------------------------
+Extrai itens das Atas de Registro de Preço (ARP) via endpoint 2_consultarARPItem.
 
-Consulta por janelas de vigência anuais e salva JSONs em temp/atas/.
-A deduplicação por numeroControlePncpAta é feita pelo transformer.
+Consulta por janelas anuais (01/01 → 31/12) a partir de 2023.
+Como a vigência máxima de uma ata é 2 anos (Lei 14.133), o extrator
+cobre até ano_atual + 1 para capturar prorrogações em vigor.
+
+Deduplicação por (numeroControlePncpAta + numeroItem) feita no transformer.
 
 Uso como módulo:
-    from pipeline.extractors_atas import executar
-    falhas = executar()   # retorna int
+    from pipeline.extractors_atas_itens import executar
+    falhas = executar()
 
 Uso via CLI:
-    python -m pipeline.extractors_atas
+    python -m pipeline.extractors_atas_itens
 """
 
 import json
@@ -29,20 +32,13 @@ from config.config import CONFIG_ATAS, PIPELINE_CONFIG
 # ---------------------------------------------------------------------------
 # Configuração local
 # ---------------------------------------------------------------------------
-_CFG = CONFIG_ATAS
-_PASTA = _CFG["pasta_cache"]
-_BASE_URL = _CFG["base_url"]
-_PATH = _CFG["path"]
-_UASG = _CFG["uasg"]
-_ANOS = _CFG["anos"]
+_BASE_URL = CONFIG_ATAS["base_url"]
+_PATH = "/modulo-arp/2_consultarARPItem"
+_UASG = CONFIG_ATAS["uasg"]
+_PASTA = CONFIG_ATAS["pasta_cache_itens"]
+_ANOS = CONFIG_ATAS["anos_itens"]          # 2023 → ano_atual + 1
 
 _LOG_INTERVALO_SKIP = PIPELINE_CONFIG.get("log_intervalo_skip", 50)
-
-# Re-verificação de prorrogação: re-consulta atas cujo cache tem mais de N dias
-# e que contenham atas com vigência final nos próximos M dias.
-_DIAS_VALIDADE_CACHE_ATAS = PIPELINE_CONFIG.get("dias_validade_cache_atas", 30)
-_DIAS_ALERTA_PRORROGACAO = PIPELINE_CONFIG.get(
-    "dias_alerta_prorrogacao_atas", 60)
 
 
 # ---------------------------------------------------------------------------
@@ -64,46 +60,6 @@ def _verificar_sucesso(caminho: str) -> tuple[bool, dict]:
     dados = _carregar_json(caminho)
     ok = dados.get("metadata", {}).get("status") == "SUCESSO"
     return ok, dados
-
-
-def _deve_reverificar_ata(dados_cache: dict) -> bool:
-    """
-    Re-verifica atas que ainda podem ser prorrogadas:
-    - cache com mais de DIAS_VALIDADE_CACHE_ATAS dias, E
-    - há pelo menos uma ata com dataVigenciaFinal nos próximos
-      DIAS_ALERTA_PRORROGACAO dias (próxima de vencer ou já prorrogada).
-    """
-    data_ext_str = dados_cache.get("metadata", {}).get("data_extracao", "")
-    if not data_ext_str:
-        return False
-
-    try:
-        data_ext = datetime.strptime(data_ext_str, "%Y-%m-%d %H:%M:%S")
-    except ValueError:
-        return False
-
-    dias_cache = (datetime.now() - data_ext).days
-    if dias_cache < _DIAS_VALIDADE_CACHE_ATAS:
-        return False  # Cache ainda fresco — não re-verifica
-
-    # Verifica se há atas com vigência final próxima (candidatas a prorrogação)
-    resultado = dados_cache.get("respostas", {}).get("resultado", []) or []
-    hoje = datetime.now().date()
-    janela = hoje + \
-        __import__("datetime").timedelta(days=_DIAS_ALERTA_PRORROGACAO)
-
-    for ata in resultado:
-        fim_str = ata.get("dataVigenciaFinal", "")
-        if not fim_str:
-            continue
-        try:
-            fim = datetime.strptime(fim_str[:10], "%Y-%m-%d").date()
-            if hoje <= fim <= janela:
-                return True  # Ata dentro da janela de possível prorrogação
-        except ValueError:
-            continue
-
-    return False
 
 
 def _salvar(caminho: str, url: str, params: dict,
@@ -155,67 +111,90 @@ def _get(url: str, params: dict) -> tuple[dict | None, str]:
 
 
 # ---------------------------------------------------------------------------
-# Tarefa individual
+# Tarefa individual — paginação em loop interno
 # ---------------------------------------------------------------------------
 
 def _processar(t: dict) -> str:
-    """Processa uma tarefa {ano, pagina}. Retorna string de log."""
-    pagina = t["pagina"]
+    """
+    Extrai todos os itens de uma janela anual, percorrendo páginas em loop.
+    Arquivo: atas_itens_RT_{ano}_p{pagina}.json
+    """
+    pagina = 1
 
     while True:
         nome = os.path.join(
-            _PASTA, f"atas_{t['sigla']}_{t['ano']}_p{pagina}.json")
+            _PASTA, f"atas_itens_{_UASG['sigla']}_{t['ano']}_p{pagina}.json"
+        )
         ok, cache = _verificar_sucesso(nome)
 
         if ok:
-            # Re-verifica se há atas próximas de prorrogação e cache velho
-            if _deve_reverificar_ata(cache):
-                pass  # Cai para a consulta abaixo
-            else:
-                pag_rest = cache.get("respostas", {}).get(
-                    "paginasRestantes", 0)
-                if pag_rest and pag_rest > 0:
-                    pagina += 1
-                    continue
-                return f"⏭️ SKIP | {t['sigla']} | {t['ano']}"
+            pag_rest = cache.get("respostas", {}).get("paginasRestantes", 0)
+            if pag_rest and pag_rest > 0:
+                pagina += 1
+                continue
+            # Todas as páginas já estão em cache
+            return f"⏭️ SKIP | {_UASG['sigla']} | {t['ano']}"
 
         url = f"{_BASE_URL}{_PATH}"
         params = {
-            "pagina":                   pagina,
-            "tamanhoPagina":            PIPELINE_CONFIG["tamanho_pagina"],
+            "pagina":                    pagina,
+            "tamanhoPagina":             PIPELINE_CONFIG["tamanho_pagina"],
             "codigoUnidadeGerenciadora": _UASG["codigo"],
-            "dataVigenciaInicialMin":   f"{t['ano']}-01-01",
-            "dataVigenciaInicialMax":   f"{t['ano']}-12-31",
+            "dataVigenciaInicialMin":    f"{t['ano']}-01-01",
+            "dataVigenciaInicialMax":    f"{t['ano']}-12-31",
         }
 
         dados, status = _get(url, params)
         _salvar(nome, url, params, dados, status)
 
         if status == "SUCESSO":
-            pag_rest = dados.get("respostas", {}).get(
-                "paginasRestantes", 0) if isinstance(dados, dict) else 0
+            pag_rest = (
+                dados.get("respostas", {}).get("paginasRestantes", 0)
+                if isinstance(dados, dict) else 0
+            )
             if pag_rest and pag_rest > 0:
                 pagina += 1
                 continue
-            return f"✅ DONE | {t['sigla']} | {t['ano']}"
+            return f"✅ DONE | {_UASG['sigla']} | {t['ano']}"
         else:
-            return f"❌ {status} | {t['sigla']} | {t['ano']}"
+            return f"❌ {status} | {_UASG['sigla']} | {t['ano']}"
 
 
 # ---------------------------------------------------------------------------
-# Montagem da fila
+# Montagem da fila — uma tarefa por ano
 # ---------------------------------------------------------------------------
 
 def _montar_fila() -> list[dict]:
-    """Uma tarefa por ano — paginação tratada dentro de _processar."""
+    """
+    Verifica se todas as páginas do ano estão em cache com SUCESSO.
+    Segue a cadeia de paginasRestantes a partir da p1 para saber
+    quantas páginas existem — só pula o ano se todas estiverem completas.
+    """
     fila = []
-    sigla = _UASG["sigla"]
     for ano in _ANOS:
-        # Só entra na fila se a p1 ainda não tem SUCESSO
-        nome_p1 = os.path.join(_PASTA, f"atas_{sigla}_{ano}_p1.json")
-        ok, _ = _verificar_sucesso(nome_p1)
-        if not ok:
-            fila.append({"sigla": sigla, "ano": ano, "pagina": 1})
+        pagina = 1
+        ano_completo = True
+
+        while True:
+            nome = os.path.join(
+                _PASTA, f"atas_itens_{_UASG['sigla']}_{ano}_p{pagina}.json"
+            )
+            ok, cache = _verificar_sucesso(nome)
+
+            if not ok:
+                # Esta página não está em cache — ano precisa ser processado
+                ano_completo = False
+                break
+
+            pag_rest = cache.get("respostas", {}).get("paginasRestantes", 0)
+            if pag_rest and pag_rest > 0:
+                pagina += 1  # Verifica a próxima página
+            else:
+                break  # Última página encontrada e está OK
+
+        if not ano_completo:
+            fila.append({"ano": ano})
+
     return fila
 
 
@@ -224,7 +203,7 @@ def _montar_fila() -> list[dict]:
 # ---------------------------------------------------------------------------
 
 def executar() -> int:
-    """Extrai atas ARP. Retorna número de falhas."""
+    """Extrai itens das atas ARP. Retorna número de falhas."""
     os.makedirs(_PASTA, exist_ok=True)
 
     fila = _montar_fila()
@@ -242,7 +221,7 @@ def executar() -> int:
 
     workers = PIPELINE_CONFIG.get("max_workers_atas", 3)
     print(
-        f"🚀 INICIANDO EXTRAÇÃO DE ATAS | WORKERS: {workers} | TOTAL: {total}\n")
+        f"🚀 INICIANDO EXTRAÇÃO DE ITENS DE ATAS | WORKERS: {workers} | TOTAL: {total}\n")
 
     concluidas = erros = skips = ultimo_log_skip = 0
 
@@ -265,10 +244,14 @@ def executar() -> int:
                     if (skips - ultimo_log_skip) >= _LOG_INTERVALO_SKIP:
                         ultimo_log_skip = skips
                         print(
-                            f"[{ts}] ⏭️  SKIPs: {skips} | {concluidas}/{total} ({perc:.1f}%) | Falhas: {erros}")
+                            f"[{ts}] ⏭️  SKIPs: {skips} | "
+                            f"{concluidas}/{total} ({perc:.1f}%) | Falhas: {erros}"
+                        )
                 else:
                     print(
-                        f"[{ts}] {res} | {concluidas}/{total} ({perc:.1f}%) | Falhas: {erros}")
+                        f"[{ts}] {res} | "
+                        f"{concluidas}/{total} ({perc:.1f}%) | Falhas: {erros}"
+                    )
         except KeyboardInterrupt:
             print("\n🛑 Interrompido pelo usuário.")
             pool.shutdown(wait=False, cancel_futures=True)

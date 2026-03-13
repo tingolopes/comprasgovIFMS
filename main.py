@@ -11,14 +11,18 @@ Fluxo completo (padrão):
   5. Consolida itens                        → data/itens.csv
   6. Extrai atas de registro de preço       → temp/atas/
   7. Consolida atas                         → data/atas.csv
+  8. Extrai itens das atas                  → temp/atas_itens/
+  9. Consolida itens das atas               → data/atas_itens.csv
 
 Modos disponíveis:
-  python main.py                              # pipeline completo
-  python main.py --modo transformer_compras   # só gera compras.csv
-  python main.py --modo extrator_itens        # extrai itens + gera itens.csv
-  python main.py --modo transformer_itens     # só gera itens.csv
-  python main.py --modo extrator_atas         # extrai atas + gera atas.csv
-  python main.py --modo transformer_atas      # só gera atas.csv
+  python main.py                                # pipeline completo
+  python main.py --modo transformer_compras     # só gera compras.csv
+  python main.py --modo extrator_itens          # extrai itens + gera itens.csv
+  python main.py --modo transformer_itens       # só gera itens.csv
+  python main.py --modo extrator_atas           # extrai atas + gera atas.csv
+  python main.py --modo transformer_atas        # só gera atas.csv
+  python main.py --modo extrator_atas_itens     # extrai itens das atas + gera atas_itens.csv
+  python main.py --modo transformer_atas_itens  # só gera atas_itens.csv
 """
 
 import argparse
@@ -31,9 +35,11 @@ from config.config import CONFIG_APIS, CONFIG_ATAS, EXPORT_CONFIG, PIPELINE_CONF
 from pipeline.extractors_compras import extrair_legado, extrair_14133
 from pipeline.extractors_itens import executar as executar_itens
 from pipeline.extractors_atas import executar as executar_atas
+from pipeline.extractors_atas_itens import executar as executar_atas_itens
 from pipeline.transformer_compras import transformar as transformar_compras
 from pipeline.transformer_itens import transformar as transformar_itens
 from pipeline.transformer_atas import transformar as transformar_atas
+from pipeline.transformer_atas_itens import transformar as transformar_atas_itens
 from pipeline.logger import log_info, resumo_skips
 
 
@@ -168,6 +174,27 @@ def _modo_extrator_atas() -> None:
         sys.exit(1)
 
 
+def _modo_transformer_atas_itens() -> None:
+    log_info("=" * 60)
+    log_info("📤 GERANDO atas_itens.csv...")
+    transformar_atas_itens(
+        pasta_itens=CONFIG_ATAS["pasta_cache_itens"],
+        caminho_saida=os.path.join(
+            EXPORT_CONFIG["pasta_saida"], "atas_itens.csv"),
+    )
+    log_info("=" * 60)
+
+
+def _modo_extrator_atas_itens() -> None:
+    log_info("=" * 60)
+    log_info("📦 EXTRAINDO ITENS DAS ATAS...")
+    falhas = executar_atas_itens()
+    _modo_transformer_atas_itens()
+    if falhas > 0:
+        log_info("⚠️  Extração de itens das atas finalizada com %d falha(s).", falhas)
+        sys.exit(1)
+
+
 def _modo_extrator_compras() -> None:
     log_info("🚀 INICIANDO PIPELINE DE EXTRAÇÃO DE COMPRAS PÚBLICAS")
     log_info("=" * 60)
@@ -191,16 +218,20 @@ def _modo_extrator_compras() -> None:
 
     log_info("📋 INICIANDO EXTRAÇÃO DE ATAS")
     falhas_atas = executar_atas()
-
     _modo_transformer_atas()
 
-    falhas_totais = falhas_compras + falhas_itens + falhas_atas
+    log_info("📦 INICIANDO EXTRAÇÃO DE ITENS DAS ATAS")
+    falhas_atas_itens = executar_atas_itens()
+    _modo_transformer_atas_itens()
+
+    falhas_totais = falhas_compras + falhas_itens + falhas_atas + falhas_atas_itens
 
     log_info("=" * 60)
     log_info("📊 RESUMO FINAL")
-    log_info("  Falhas compras : %d", falhas_compras)
-    log_info("  Falhas itens   : %d", falhas_itens)
-    log_info("  Falhas atas    : %d", falhas_atas)
+    log_info("  Falhas compras     : %d", falhas_compras)
+    log_info("  Falhas itens       : %d", falhas_itens)
+    log_info("  Falhas atas        : %d", falhas_atas)
+    log_info("  Falhas atas_itens  : %d", falhas_atas_itens)
 
     if falhas_totais > 0:
         log_info("⚠️  Pipeline finalizado com %d falha(s).", falhas_totais)
@@ -228,15 +259,19 @@ def _parse_args():
             "transformer_itens",
             "extrator_atas",
             "transformer_atas",
+            "extrator_atas_itens",
+            "transformer_atas_itens",
         ],
         default="extrator_compras",
         help=(
-            "extrator_compras    → pipeline completo (padrão)\n"
-            "transformer_compras → gera compras.csv dos JSONs já baixados\n"
-            "extrator_itens      → extrai itens + gera itens.csv\n"
-            "transformer_itens   → gera itens.csv dos JSONs já baixados\n"
-            "extrator_atas       → extrai atas ARP + gera atas.csv\n"
-            "transformer_atas    → gera atas.csv dos JSONs já baixados"
+            "extrator_compras       → pipeline completo (padrão)\n"
+            "transformer_compras    → gera compras.csv dos JSONs já baixados\n"
+            "extrator_itens         → extrai itens + gera itens.csv\n"
+            "transformer_itens      → gera itens.csv dos JSONs já baixados\n"
+            "extrator_atas          → extrai atas ARP + gera atas.csv\n"
+            "transformer_atas       → gera atas.csv dos JSONs já baixados\n"
+            "extrator_atas_itens    → extrai itens das atas + gera atas_itens.csv\n"
+            "transformer_atas_itens → gera atas_itens.csv dos JSONs já baixados"
         ),
     )
     return parser.parse_args()
@@ -267,6 +302,10 @@ if __name__ == "__main__":
             _modo_extrator_atas()
         elif args.modo == "transformer_atas":
             _modo_transformer_atas()
+        elif args.modo == "extrator_atas_itens":
+            _modo_extrator_atas_itens()
+        elif args.modo == "transformer_atas_itens":
+            _modo_transformer_atas_itens()
         else:
             _modo_extrator_compras()
     finally:
