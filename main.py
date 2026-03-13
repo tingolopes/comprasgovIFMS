@@ -13,16 +13,24 @@ Fluxo completo (padrão):
   7. Consolida atas                         → data/atas.csv
   8. Extrai itens das atas                  → temp/atas_itens/
   9. Consolida itens das atas               → data/atas_itens.csv
+ 10. Extrai saldos das atas                 → temp/atas_saldos/
+ 11. Consolida saldos                       → data/atas_saldos.csv
+ 12. Extrai unidades participantes          → temp/atas_unidades/
+ 13. Consolida unidades                     → data/atas_unidades.csv
 
 Modos disponíveis:
-  python main.py                                # pipeline completo
-  python main.py --modo transformer_compras     # só gera compras.csv
-  python main.py --modo extrator_itens          # extrai itens + gera itens.csv
-  python main.py --modo transformer_itens       # só gera itens.csv
-  python main.py --modo extrator_atas           # extrai atas + gera atas.csv
-  python main.py --modo transformer_atas        # só gera atas.csv
-  python main.py --modo extrator_atas_itens     # extrai itens das atas + gera atas_itens.csv
-  python main.py --modo transformer_atas_itens  # só gera atas_itens.csv
+  python main.py                                    # pipeline completo
+  python main.py --modo transformer_compras         # só gera compras.csv
+  python main.py --modo extrator_itens              # extrai itens + gera itens.csv
+  python main.py --modo transformer_itens           # só gera itens.csv
+  python main.py --modo extrator_atas               # extrai atas + gera atas.csv
+  python main.py --modo transformer_atas            # só gera atas.csv
+  python main.py --modo extrator_atas_itens         # extrai itens das atas + gera atas_itens.csv
+  python main.py --modo transformer_atas_itens      # só gera atas_itens.csv
+  python main.py --modo extrator_atas_saldos        # extrai saldos + gera atas_saldos.csv
+  python main.py --modo transformer_atas_saldos     # só gera atas_saldos.csv
+  python main.py --modo extrator_atas_unidades      # extrai unidades + gera atas_unidades.csv
+  python main.py --modo transformer_atas_unidades   # só gera atas_unidades.csv
 """
 
 import argparse
@@ -36,10 +44,14 @@ from pipeline.extractors_compras import extrair_legado, extrair_14133
 from pipeline.extractors_itens import executar as executar_itens
 from pipeline.extractors_atas import executar as executar_atas
 from pipeline.extractors_atas_itens import executar as executar_atas_itens
+from pipeline.extractors_atas_saldos import executar as executar_atas_saldos
+from pipeline.extractors_atas_unidades import executar as executar_atas_unidades
 from pipeline.transformer_compras import transformar as transformar_compras
 from pipeline.transformer_itens import transformar as transformar_itens
 from pipeline.transformer_atas import transformar as transformar_atas
 from pipeline.transformer_atas_itens import transformar as transformar_atas_itens
+from pipeline.transformer_atas_saldos import transformar as transformar_atas_saldos
+from pipeline.transformer_atas_unidades import transformar as transformar_atas_unidades
 from pipeline.logger import log_info, resumo_skips
 
 
@@ -195,6 +207,48 @@ def _modo_extrator_atas_itens() -> None:
         sys.exit(1)
 
 
+def _modo_transformer_atas_saldos() -> None:
+    log_info("=" * 60)
+    log_info("📤 GERANDO atas_saldos.csv...")
+    transformar_atas_saldos(
+        pasta_saldos=CONFIG_ATAS["pasta_cache_saldos"],
+        caminho_saida=os.path.join(
+            EXPORT_CONFIG["pasta_saida"], "atas_saldos.csv"),
+    )
+    log_info("=" * 60)
+
+
+def _modo_extrator_atas_saldos() -> None:
+    log_info("=" * 60)
+    log_info("💰 EXTRAINDO SALDOS DAS ATAS...")
+    falhas = executar_atas_saldos()
+    _modo_transformer_atas_saldos()
+    if falhas > 0:
+        log_info("⚠️  Extração de saldos finalizada com %d falha(s).", falhas)
+        sys.exit(1)
+
+
+def _modo_transformer_atas_unidades() -> None:
+    log_info("=" * 60)
+    log_info("📤 GERANDO atas_unidades.csv...")
+    transformar_atas_unidades(
+        pasta_unidades=CONFIG_ATAS["pasta_cache_unidades"],
+        caminho_saida=os.path.join(
+            EXPORT_CONFIG["pasta_saida"], "atas_unidades.csv"),
+    )
+    log_info("=" * 60)
+
+
+def _modo_extrator_atas_unidades() -> None:
+    log_info("=" * 60)
+    log_info("🏢 EXTRAINDO UNIDADES PARTICIPANTES DAS ATAS...")
+    falhas = executar_atas_unidades()
+    _modo_transformer_atas_unidades()
+    if falhas > 0:
+        log_info("⚠️  Extração de unidades finalizada com %d falha(s).", falhas)
+        sys.exit(1)
+
+
 def _modo_extrator_compras() -> None:
     log_info("🚀 INICIANDO PIPELINE DE EXTRAÇÃO DE COMPRAS PÚBLICAS")
     log_info("=" * 60)
@@ -224,14 +278,25 @@ def _modo_extrator_compras() -> None:
     falhas_atas_itens = executar_atas_itens()
     _modo_transformer_atas_itens()
 
-    falhas_totais = falhas_compras + falhas_itens + falhas_atas + falhas_atas_itens
+    log_info("💰 INICIANDO EXTRAÇÃO DE SALDOS DAS ATAS")
+    falhas_atas_saldos = executar_atas_saldos()
+    _modo_transformer_atas_saldos()
+
+    log_info("🏢 INICIANDO EXTRAÇÃO DE UNIDADES PARTICIPANTES")
+    falhas_atas_unidades = executar_atas_unidades()
+    _modo_transformer_atas_unidades()
+
+    falhas_totais = (falhas_compras + falhas_itens + falhas_atas
+                     + falhas_atas_itens + falhas_atas_saldos + falhas_atas_unidades)
 
     log_info("=" * 60)
     log_info("📊 RESUMO FINAL")
-    log_info("  Falhas compras     : %d", falhas_compras)
-    log_info("  Falhas itens       : %d", falhas_itens)
-    log_info("  Falhas atas        : %d", falhas_atas)
-    log_info("  Falhas atas_itens  : %d", falhas_atas_itens)
+    log_info("  Falhas compras        : %d", falhas_compras)
+    log_info("  Falhas itens          : %d", falhas_itens)
+    log_info("  Falhas atas           : %d", falhas_atas)
+    log_info("  Falhas atas_itens     : %d", falhas_atas_itens)
+    log_info("  Falhas atas_saldos    : %d", falhas_atas_saldos)
+    log_info("  Falhas atas_unidades  : %d", falhas_atas_unidades)
 
     if falhas_totais > 0:
         log_info("⚠️  Pipeline finalizado com %d falha(s).", falhas_totais)
@@ -261,17 +326,25 @@ def _parse_args():
             "transformer_atas",
             "extrator_atas_itens",
             "transformer_atas_itens",
+            "extrator_atas_saldos",
+            "transformer_atas_saldos",
+            "extrator_atas_unidades",
+            "transformer_atas_unidades",
         ],
         default="extrator_compras",
         help=(
-            "extrator_compras       → pipeline completo (padrão)\n"
-            "transformer_compras    → gera compras.csv dos JSONs já baixados\n"
-            "extrator_itens         → extrai itens + gera itens.csv\n"
-            "transformer_itens      → gera itens.csv dos JSONs já baixados\n"
-            "extrator_atas          → extrai atas ARP + gera atas.csv\n"
-            "transformer_atas       → gera atas.csv dos JSONs já baixados\n"
-            "extrator_atas_itens    → extrai itens das atas + gera atas_itens.csv\n"
-            "transformer_atas_itens → gera atas_itens.csv dos JSONs já baixados"
+            "extrator_compras          → pipeline completo (padrão)\n"
+            "transformer_compras       → gera compras.csv dos JSONs já baixados\n"
+            "extrator_itens            → extrai itens + gera itens.csv\n"
+            "transformer_itens         → gera itens.csv dos JSONs já baixados\n"
+            "extrator_atas             → extrai atas ARP + gera atas.csv\n"
+            "transformer_atas          → gera atas.csv dos JSONs já baixados\n"
+            "extrator_atas_itens       → extrai itens das atas + gera atas_itens.csv\n"
+            "transformer_atas_itens    → gera atas_itens.csv dos JSONs já baixados\n"
+            "extrator_atas_saldos      → extrai saldos das atas + gera atas_saldos.csv\n"
+            "transformer_atas_saldos   → gera atas_saldos.csv dos JSONs já baixados\n"
+            "extrator_atas_unidades    → extrai unidades participantes + gera atas_unidades.csv\n"
+            "transformer_atas_unidades → gera atas_unidades.csv dos JSONs já baixados"
         ),
     )
     return parser.parse_args()
@@ -306,6 +379,14 @@ if __name__ == "__main__":
             _modo_extrator_atas_itens()
         elif args.modo == "transformer_atas_itens":
             _modo_transformer_atas_itens()
+        elif args.modo == "extrator_atas_saldos":
+            _modo_extrator_atas_saldos()
+        elif args.modo == "transformer_atas_saldos":
+            _modo_transformer_atas_saldos()
+        elif args.modo == "extrator_atas_unidades":
+            _modo_extrator_atas_unidades()
+        elif args.modo == "transformer_atas_unidades":
+            _modo_transformer_atas_unidades()
         else:
             _modo_extrator_compras()
     finally:

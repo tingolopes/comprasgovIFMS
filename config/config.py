@@ -104,6 +104,8 @@ CONFIG_ATAS = {
     # Itens das atas — janelas anuais (01/01 → 31/12) de 2023 em diante.
     # Cobre até ano_atual + 1 para capturar atas com prorrogação ainda vigentes.
     "pasta_cache_itens": "temp/atas_itens",
+    "pasta_cache_saldos":    "temp/atas_saldos",
+    "pasta_cache_unidades":  "temp/atas_unidades",
     "anos_itens":        list(range(2023, datetime.now().year + 2)),
 }
 
