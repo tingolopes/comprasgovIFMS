@@ -31,6 +31,7 @@ from config.config import EXPORT_CONFIG, CONFIG_ATAS, UASGS
 
 _PASTA_UNIDADES = CONFIG_ATAS["pasta_cache_unidades"]
 _PASTA_SALDOS = CONFIG_ATAS["pasta_cache_saldos"]
+_PASTA_ITENS = CONFIG_ATAS["pasta_cache_itens"]
 
 _SIGLA_POR_UASG = {u['codigo']: u['sigla'] for u in UASGS}
 
@@ -48,6 +49,8 @@ COLUNAS = [
     "numero_item",
     "codigo_pdm",
     "descricao_item",
+    "tipo_item",
+    "valor_unitario",
 
     # Fornecedor vencedor
     "fornecedor_cnpj",
@@ -185,6 +188,42 @@ def _indexar_saldos() -> dict[str, str]:
     return mapa
 
 
+def _indexar_itens_info() -> dict[str, dict[str, str]]:
+    """Retorna mapa para lookup de tipo_item + valor_unitario por numero_ata|numero_item."""
+    mapa: dict[str, dict[str, str]] = {}
+    jsons = sorted(glob.glob(f"{_PASTA_ITENS}/*.json"))
+    for caminho in jsons:
+        try:
+            with open(caminho, encoding="utf-8") as f:
+                envelope = json.load(f)
+        except Exception:
+            continue
+        if envelope.get("metadata", {}).get("status") != "SUCESSO":
+            continue
+        respostas = envelope.get("respostas", {})
+        resultado = (respostas.get("resultado", []) or []
+                     ) if isinstance(respostas, dict) else []
+        for reg in resultado:
+            if not isinstance(reg, dict):
+                continue
+            num_ata = str(reg.get("numeroAtaRegistroPreco")
+                          or reg.get("numeroAta") or "")
+            num_item = str(reg.get("numeroItem") or "")
+            if not num_ata or not num_item:
+                continue
+            chave = f"{num_ata}|{num_item}"
+            tipo_item = str(reg.get("tipoItem") or "")
+            valor_unitario = _valor(reg.get("valorUnitario"))
+            if chave not in mapa:
+                mapa[chave] = {}
+            # Substitui sempre para manter último valor do JSON ordenado
+            if tipo_item:
+                mapa[chave]["tipo_item"] = tipo_item
+            if valor_unitario:
+                mapa[chave]["valor_unitario"] = valor_unitario
+    return mapa
+
+
 # ---------------------------------------------------------------------------
 # Indexação — deduplicação por (numero_ata + numero_item + codigo_unidade)
 # ---------------------------------------------------------------------------
@@ -204,6 +243,7 @@ def _indexar() -> dict[str, dict]:
     print(f"📂 {len(jsons)} arquivo(s) de unidades encontrado(s). Processando...")
 
     saldos = _indexar_saldos()
+    itens_info = _indexar_itens_info()
 
     for caminho in jsons:
         try:
@@ -242,6 +282,9 @@ def _indexar() -> dict[str, dict]:
             reg["_quantidade_empenhada"] = saldos.get(chave, "")
             reg["_sigla_unidade"] = _SIGLA_POR_UASG.get(
                 str(reg.get("codigoUnidade") or ""), "")
+            info = itens_info.get(f"{num_ata}|{num_item}", {})
+            reg["_tipo_item"] = info.get("tipo_item", "")
+            reg["_valor_unitario"] = info.get("valor_unitario", "")
 
             if chave not in banco:
                 banco[chave] = reg
@@ -266,6 +309,8 @@ def _mapear(reg: dict) -> dict:
         "numero_item":                  reg.get("numeroItem", ""),
         "codigo_pdm":                   reg.get("codigoPdm", "") or "",
         "descricao_item":               _limpar(reg.get("descricaoItem")),
+        "tipo_item":                    reg.get("_tipo_item", ""),
+        "valor_unitario":               reg.get("_valor_unitario", ""),
         "fornecedor_cnpj":              cnpj,
         "fornecedor_nome":              nome_forn,
         "codigo_unidade":               reg.get("codigoUnidade", ""),
