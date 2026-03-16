@@ -27,9 +27,12 @@ import sys
 from datetime import datetime
 from typing import Optional
 
-from config.config import EXPORT_CONFIG, CONFIG_ATAS
+from config.config import EXPORT_CONFIG, CONFIG_ATAS, UASGS
 
 _PASTA_UNIDADES = CONFIG_ATAS["pasta_cache_unidades"]
+_PASTA_SALDOS = CONFIG_ATAS["pasta_cache_saldos"]
+
+_SIGLA_POR_UASG = {u['codigo']: u['sigla'] for u in UASGS}
 
 # ---------------------------------------------------------------------------
 # Schema do CSV final
@@ -54,6 +57,7 @@ COLUNAS = [
     "codigo_unidade",
     "nome_unidade",
     "tipo_unidade",
+    "sigla_unidade",
     "aceita_adesao",
 
     # Quantidades e saldos
@@ -62,6 +66,7 @@ COLUNAS = [
     "saldo_remanejamento_empenho",
     "qtd_limite_adesao",
     "qtd_limite_informado_compra",
+    "quantidade_empenhada",
 
     # Datas
     "data_inclusao",
@@ -137,6 +142,49 @@ def _parse_fornecedor(fornecedor_str: str) -> tuple[str, str]:
     return cnpj, nome
 
 
+def _parse_unidade(unidade_str: str) -> str:
+    """Extrai código da unidade de "codigo - nome"."""
+    if not unidade_str:
+        return ""
+    return str(unidade_str).split(" - ", 1)[0].strip()
+
+
+def _indexar_saldos() -> dict[str, str]:
+    """Retorna mapa chave->quantidadeEmpenhada para saldos deduplicados."""
+    mapa: dict[str, str] = {}
+    jsons = sorted(glob.glob(f"{_PASTA_SALDOS}/*.json"))
+    for caminho in jsons:
+        try:
+            with open(caminho, encoding="utf-8") as f:
+                envelope = json.load(f)
+        except Exception:
+            continue
+        if envelope.get("metadata", {}).get("status") != "SUCESSO":
+            continue
+        numero_ata = ""
+        arquivo = os.path.basename(caminho)
+        # Tenta extrair numero_ata do nome (como transformer_atas_saldos)
+        if arquivo.startswith("atas_saldos_RT_"):
+            partes = arquivo.replace(".json", "").split("_")
+            if len(partes) >= 5:
+                numero_ata = f"{partes[-3]}/{partes[-2]}"
+        respostas = envelope.get("respostas", {})
+        resultado = (respostas.get("resultado", []) or []
+                     ) if isinstance(respostas, dict) else []
+        for reg in resultado:
+            if not isinstance(reg, dict):
+                continue
+            num_item = str(reg.get("numeroItem") or "")
+            cod_un = _parse_unidade(reg.get("unidade", ""))
+            if not numero_ata or not num_item or not cod_un:
+                continue
+            chave = f"{numero_ata}|{num_item}|{cod_un}"
+            quantidade_empenhada = _valor(reg.get("quantidade_empenhada"))
+            if quantidade_empenhada:
+                mapa[chave] = quantidade_empenhada
+    return mapa
+
+
 # ---------------------------------------------------------------------------
 # Indexação — deduplicação por (numero_ata + numero_item + codigo_unidade)
 # ---------------------------------------------------------------------------
@@ -154,6 +202,8 @@ def _indexar() -> dict[str, dict]:
         return banco
 
     print(f"📂 {len(jsons)} arquivo(s) de unidades encontrado(s). Processando...")
+
+    saldos = _indexar_saldos()
 
     for caminho in jsons:
         try:
@@ -189,6 +239,9 @@ def _indexar() -> dict[str, dict]:
             chave = f"{num_ata}|{num_item}|{cod_un}"
             reg["_arquivo_origem"] = arquivo
             reg["_data_extracao"] = data_ext
+            reg["_quantidade_empenhada"] = saldos.get(chave, "")
+            reg["_sigla_unidade"] = _SIGLA_POR_UASG.get(
+                str(reg.get("codigoUnidade") or ""), "")
 
             if chave not in banco:
                 banco[chave] = reg
@@ -218,12 +271,14 @@ def _mapear(reg: dict) -> dict:
         "codigo_unidade":               reg.get("codigoUnidade", ""),
         "nome_unidade":                 _limpar(reg.get("nomeUnidade")),
         "tipo_unidade":                 reg.get("tipoUnidade", ""),
+        "sigla_unidade":                reg.get("_sigla_unidade", ""),
         "aceita_adesao":                _bool_str(reg.get("aceitaAdesao")),
         "quantidade_registrada":        _valor(reg.get("quantidadeRegistrada")),
         "saldo_adesoes":                _valor(reg.get("saldoAdesoes")),
         "saldo_remanejamento_empenho":  _valor(reg.get("saldoRemanejamentoEmpenho")),
         "qtd_limite_adesao":            _valor(reg.get("qtdLimiteAdesao")),
         "qtd_limite_informado_compra":  _valor(reg.get("qtdLimiteInformadoCompra")),
+        "quantidade_empenhada":         _valor(reg.get("_quantidade_empenhada")),
         "data_inclusao":                _data(reg.get("dataHoraInclusao")),
         "data_atualizacao":             _data(reg.get("dataHoraAtualizacao")),
         "data_exclusao":                _data(reg.get("dataHoraExclusao")),

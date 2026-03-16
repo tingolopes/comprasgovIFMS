@@ -291,12 +291,9 @@ def _fusionar_item(id_c: str, id_item: str,
     data_ex = m.get("_data_extracao", "")
 
     # --- Número do item ---
-    # E4.coItem é ID interno do SIDEC — não usar como numero_item
-    numero_item = _primeiro(
-        pncp.get("numeroItemCompra"),
-        e2.get("numeroItemLicitacao"),
-        e6.get("nuItemMaterial"),
-    )
+    # Deve ser sempre os 5 últimos dígitos de id_compra_item.
+    id_item_str = str(id_item or "")
+    numero_item = id_item_str[-5:] if len(id_item_str) >= 5 else id_item_str
 
     # --- Tipo e código catálogo ---
     tipo_mat_serv = _primeiro(
@@ -347,7 +344,7 @@ def _fusionar_item(id_c: str, id_item: str,
         e6.get("vrEstimadoItem"),
     ))
     valor_hom = _valor(_primeiro(
-        pncp.get("valorUnitarioHomologado"),
+        pncp.get("valorUnitarioResultado"),
         e4.get("valorHomologadoItem"),
     ))
     valor_unit_res = _valor(_primeiro(
@@ -368,10 +365,9 @@ def _fusionar_item(id_c: str, id_item: str,
 
     # --- Situação ---
     situacao = _primeiro(
-        pncp.get("situacaoItemNome"),
-        e4.get("situacaoItem"), e4.get("dsSituacaoItem"),
-        e2.get("situacaoItem"),
-        e6.get("situacaoItem"),
+        pncp.get("situacaoCompraItemNome"),
+        e4.get("situacaoItem"),
+        e6.get("noFornecedorVencedor") is None and "Pendente/Outro" or "Homologado",
     ).capitalize()
     tem_resultado = _bool_str(_primeiro(
         pncp.get("temResultado"),

@@ -58,7 +58,7 @@ COLUNAS = [
     # Status e objeto
     "status_ata",
     "ata_excluida",
-    "objeto",
+    "objeto_ata",
 
     # Links
     "link_ata_pncp",
@@ -204,7 +204,7 @@ def _mapear(reg: dict) -> dict:
         "quantidade_itens":            str(reg.get("quantidadeItens") or ""),
         "status_ata":                  reg.get("statusAta", ""),
         "ata_excluida":                _bool_str(reg.get("ataExcluido")),
-        "objeto":                      _limpar(reg.get("objeto")),
+        "objeto_ata":                  _limpar(reg.get("objeto")),
         "link_ata_pncp":               reg.get("linkAtaPNCP", ""),
         "link_compra_pncp":            reg.get("linkCompraPNCP", ""),
     }
