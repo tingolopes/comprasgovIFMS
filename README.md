@@ -79,7 +79,6 @@ comprasgovIFMS/
 - Python 3.8+
 - Pacotes necessários (instalados com `pip`):
   - `requests` — requisições HTTP
-  - `pandas` — processamento de dados
 
 ### Instalação
 
@@ -88,7 +87,7 @@ comprasgovIFMS/
 cd comprasgovIFMS
 
 # 2. Instalar dependências
-pip install requests pandas
+pip install requirements.txt
 ```
 
 ### Execução

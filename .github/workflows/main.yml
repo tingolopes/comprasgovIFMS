@@ -1,8 +1,5 @@
-name: Pipeline completo
-
+name: Atualizacao Diaria IFMS
 on:
-  push:
-    branches: [main]
   schedule:
     - cron: '0 3 * * *' # Executa diariamente às 03:00 (opcional, remova se não desejar)
   workflow_dispatch:
