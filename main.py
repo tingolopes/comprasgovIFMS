@@ -335,9 +335,14 @@ def _modo_extrator_compras() -> None:
     falhas_atas_itens = executar_atas_itens()
     _modo_transformer_atas_itens()
 
-    log_info("💰 INICIANDO EXTRAÇÃO DE SALDOS DAS ATAS")
-    falhas_atas_saldos = executar_atas_saldos()
-    _modo_transformer_atas_saldos()
+    if CONFIG_ATAS.get("executar_saldos", True):
+        log_info("💰 INICIANDO EXTRAÇÃO DE SALDOS DAS ATAS")
+        falhas_atas_saldos = executar_atas_saldos()
+        _modo_transformer_atas_saldos()
+    else:
+        log_info(
+            "ℹ️  Módulo ATAS SALDOS está desativado em config.config['CONFIG_ATAS']['executar_saldos']; pulando extração.")
+        falhas_atas_saldos = 0
 
     log_info("🏢 INICIANDO EXTRAÇÃO DE UNIDADES PARTICIPANTES")
     falhas_atas_unidades = executar_atas_unidades()
