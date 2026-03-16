@@ -1,0 +1,45 @@
+name: Pipeline completo
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Upgrade pip
+        run: python -m pip install --upgrade pip
+
+      - name: Download default cache (first run)
+        run: |
+          mkdir -p temp
+          curl -L -o cache.zip https://github.com/tingolopes/comprasgovIFMS/raw/refs/heads/main/cache.zip
+          unzip -o cache.zip -d .
+
+      - name: Show temp cache overview
+        run: |
+          echo "Temp directories:"
+          ls -1 temp || true
+
+      - name: Run full default pipeline (compras + atas)
+        run: python main.py
+
+      - name: Run contratos modules (não executados no modo padrão)
+        run: |
+          python main.py --modo extrator_contratos
+          python main.py --modo extrator_contratos_resp
+
+      - name: List generated CSVs
+        run: |
+          echo "Generated CSVs:"
+          ls -1 data || true
