@@ -109,7 +109,7 @@ CONFIG_ATAS = {
     "pasta_cache_saldos":    "temp/atas_saldos",
     "pasta_cache_unidades":  "temp/atas_unidades",
     # Configure False para pular extração de saldos das atas no pipeline completo
-    "executar_saldos": True,
+    "executar_saldos": False,
     "anos_itens":        list(range(2023, datetime.now().year + 2)),
 }
 

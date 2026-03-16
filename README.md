@@ -224,9 +224,14 @@ Os endpoints consultados são configuráveis em `CONFIG_APIS` e `CONFIG_ATAS`. A
 - Contratos
 - Responsáveis pelos contratos
 
-**Contratos / Responsáveis:**
-- Contratos (contratos.comprasnet.gov.br)
-- Responsáveis pelos contratos
+### Flags de execução condicional
+
+Você pode controlar se os módulos mais pesados devem ser executados no pipeline completo diretamente em `config/config.py`:
+
+- `CONFIG_APIS["LEGADO"]["executar_legado"] = False` → pula a extração de compras do módulo Legado.
+- `CONFIG_ATAS["executar_saldos"] = False` → pula a extração/transformação de saldos das atas.
+
+Para rodar novamente esses módulos, altere a flag para `True` e execute `python main.py`.
 
 ## 📊 Dados Utilizados
 
