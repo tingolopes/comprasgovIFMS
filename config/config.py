@@ -99,7 +99,7 @@ CONFIG_ATAS = {
     "path":             "/modulo-arp/1_consultarARP",
     "pasta_cache":      "temp/atas",
     "uasg":             {"sigla": "RT", "codigo": "158132"},
-    "anos":             list(range(2021, datetime.now().year + 1)),
+    "anos":             list(range(2023, datetime.now().year + 1)),
 
     # Itens das atas — janelas anuais (01/01 → 31/12) de 2023 em diante.
     # Cobre até ano_atual + 1 para capturar atas com prorrogação ainda vigentes.

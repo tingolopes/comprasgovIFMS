@@ -289,6 +289,7 @@ Unidades gestoras que participam das atas.
 ### Contratos
 
 Dados obtidos da API `https://contratos.comprasnet.gov.br/api`.
+A documentação pode ser consultada em `https://contratos.comprasnet.gov.br/api/docs`
 
 **Campos principais:**
 - Contrato ID, número do contrato, objeto, valor
@@ -363,8 +364,7 @@ Um resumo é exibido ao final da execução com estatísticas de sucesso/falha.
 ## 📞 Suporte
 
 Para dúvidas sobre a API de dados abertos, consulte:
-- Portal: https://dadosabertos.compras.gov.br
-- Documentação API: https://dadosabertos.compras.gov.br/docs
+- Documentação API: https://dadosabertos.compras.gov.br/swagger-ui/index.html
 
 ## 📄 Licença
 
