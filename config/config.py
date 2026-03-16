@@ -35,6 +35,8 @@ CONFIG_APIS = {
         "pasta_cache": "temp/compras",      # pasta única para legado + PNCP
         "anos": list(range(2016, datetime.now().year + 1)),
         "uasgs": UASGS,
+        # Configure False para pular extração Legado no pipeline padrão
+        "executar_legado": False,
         "endpoints": [
             {
                 "label": "outrasmodalidades",

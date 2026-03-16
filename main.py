@@ -304,7 +304,13 @@ def _modo_extrator_compras() -> None:
     log_info("🚀 INICIANDO PIPELINE DE EXTRAÇÃO DE COMPRAS PÚBLICAS")
     log_info("=" * 60)
 
-    falhas_legado = _executar_legado()
+    falhas_legado = 0
+    if CONFIG_APIS["LEGADO"].get("executar_legado", True):
+        falhas_legado = _executar_legado()
+    else:
+        log_info(
+            "ℹ️  Módulo LEGADO está desativado em config.config['CONFIG_APIS']['LEGADO']['executar_legado']; pulando extração.")
+
     falhas_14133 = _executar_14133()
     falhas_compras = falhas_legado + falhas_14133
 
