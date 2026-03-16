@@ -1,7 +1,7 @@
 """
 limpar_itens.py
 ---------------
-Remove arquivos de itens vazios da pasta temp/itens.
+Remove arquivos de itens vazios da pasta temp/compras_itens.
 
 Critérios para remoção (TODOS devem ser satisfeitos):
   1. status == "SUCESSO"         — não apaga falhas (podem ser re-tentadas)
@@ -11,7 +11,7 @@ Critérios para remoção (TODOS devem ser satisfeitos):
 Uso:
     python limpar_itens.py               # mostra o que seria apagado (dry-run)
     python limpar_itens.py --executar    # apaga de verdade
-    python limpar_itens.py --executar --pasta-itens temp/itens
+    python limpar_itens.py --executar --pasta-itens temp/compras_itens
 """
 
 import argparse
@@ -20,7 +20,7 @@ import json
 import os
 
 PASTA_COMPRAS = "temp/compras"
-PASTA_ITENS = "temp/itens"
+PASTA_ITENS = "temp/compras_itens"
 
 # Combinações tipo×endpoint que nunca produzem itens (baseado em analisar_cobertura_itens.py)
 COMBINACOES_INUTEIS: set[tuple[str, str]] = {

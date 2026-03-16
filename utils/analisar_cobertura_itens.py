@@ -2,12 +2,12 @@
 analisar_cobertura_itens.py
 ----------------------------
 Analisa quais endpoints de itens retornaram dados para cada compra.
-Cruza temp/compras/ com temp/itens/ e gera um relatório mostrando
+Cruza temp/compras/ com temp/compras_itens/ e gera um relatório mostrando
 padrões de cobertura por tipo/modalidade de compra.
 
 Uso:
     python analisar_cobertura_itens.py
-    python analisar_cobertura_itens.py --pasta-compras temp/compras --pasta-itens temp/itens
+    python analisar_cobertura_itens.py --pasta-compras temp/compras --pasta-itens temp/compras_itens
     python analisar_cobertura_itens.py --csv cobertura.csv
 """
 
@@ -18,7 +18,7 @@ import os
 from collections import defaultdict
 
 PASTA_COMPRAS = "temp/compras"
-PASTA_ITENS = "temp/itens"
+PASTA_ITENS = "temp/compras_itens"
 SUFIXOS = ["E2", "E4", "E6", "pncp"]
 
 

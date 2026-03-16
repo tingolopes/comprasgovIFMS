@@ -26,13 +26,13 @@ comprasgovIFMS/
 ├── pipeline/
 │   ├── api_client.py                # Cliente HTTP e gerenciamento de cache
 │   ├── extractors_compras.py        # Extração de dados do módulo legado e Lei 14.133
-│   ├── extractors_itens.py          # Extração de itens de compras
+│   ├── extractors_compras_itens.py   # Extração de itens de compras
 │   ├── extractors_atas.py           # Extração de atas de registro de preço
 │   ├── extractors_atas_itens.py     # Extração de itens das atas
 │   ├── extractors_atas_saldos.py    # Extração de saldos das atas
 │   ├── extractors_atas_unidades.py  # Extração de unidades participantes das atas
 │   ├── transformer_compras.py       # Consolidação de compras em CSV
-│   ├── transformer_itens.py         # Consolidação de itens em CSV
+│   ├── transformer_compras_itens.py # Consolidação de itens em CSV
 │   ├── transformer_atas.py          # Consolidação de atas em CSV
 │   ├── transformer_atas_itens.py    # Consolidação de itens das atas em CSV
 │   ├── transformer_atas_saldos.py   # Consolidação de saldos em CSV
@@ -44,7 +44,7 @@ comprasgovIFMS/
 │   └── logger.py                    # Logging e resumo de execução
 ├── data/
 │   ├── compras.csv                  # dataset consolidado de compras
-│   ├── itens.csv                    # dataset consolidado de itens
+│   ├── compras_itens.csv            # dataset consolidado de itens
 │   ├── atas.csv                     # dataset consolidado de atas
 │   ├── atas_itens.csv               # dataset consolidado de itens das atas
 │   ├── atas_saldos.csv              # dataset consolidado de saldos das atas
@@ -53,7 +53,7 @@ comprasgovIFMS/
 │   └── contratos_responsaveis.csv   # dataset consolidado de responsáveis dos contratos
 ├── temp/
 │   ├── compras/                     # Cache JSON das compras por período/modalidade
-│   ├── itens/                       # Cache JSON dos itens por compra
+│   ├── compras_itens/               # Cache JSON dos itens por compra
 │   ├── atas/                        # Cache JSON das atas por período
 │   ├── atas_itens/                  # Cache JSON dos itens das atas
 │   ├── atas_saldos/                 # Cache JSON dos saldos das atas
@@ -105,8 +105,8 @@ python main.py
 1. Extrai compras — módulo Legado → `temp/compras/`
 2. Extrai compras — módulo Lei 14.133 → `temp/compras/`
 3. Consolida JSONs → `data/compras.csv`
-4. Extrai itens de cada compra → `temp/itens/`
-5. Consolida itens → `data/itens.csv`
+4. Extrai itens de cada compra → `temp/compras_itens/`
+5. Consolida itens → `data/compras_itens.csv`
 6. Extrai atas de registro de preço → `temp/atas/`
 7. Consolida atas → `data/atas.csv`
 8. Extrai itens das atas → `temp/atas_itens/`
@@ -127,10 +127,10 @@ Execute apenas uma etapa do pipeline:
 python main.py --modo transformer_compras
 
 # Extrair e consolidar itens
-python main.py --modo extrator_itens
+python main.py --modo extrator_compras_itens
 
 # Consolidar itens (sem re-extrair)
-python main.py --modo transformer_itens
+python main.py --modo transformer_compras_itens
 
 # Extrair e consolidar atas
 python main.py --modo extrator_atas
@@ -311,7 +311,7 @@ Dados relacionados aos responsáveis pela execução dos contratos.
 
 O pipeline utiliza **cache em disco** para evitar re-consultas desnecessárias:
 
-- Arquivos JSON são armazenados em `temp/compras/`, `temp/itens/`, `temp/atas/`, etc.
+- Arquivos JSON são armazenados em `temp/compras/`, `temp/compras_itens/`, `temp/atas/`, etc.
 - Cache é validado por status (marcado como `SUCESSO` ou `FALHA`)
 - Dados com sucesso não são sobrescritos por falhas
 
@@ -358,7 +358,7 @@ Um resumo é exibido ao final da execução com estatísticas de sucesso/falha.
 - Re-execute o pipeline para regenerar
 
 ### "CSV vazio ou incompleto"
-- Verifique se há dados em `temp/compras/`, `temp/itens/` ou `temp/atas/`
+- Verifique se há dados em `temp/compras/`, `temp/compras_itens/` ou `temp/atas/`
 - Use scripts de análise: `python utils/analisar_csv.py`
 
 ## 📞 Suporte

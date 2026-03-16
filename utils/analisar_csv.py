@@ -1,13 +1,13 @@
 """
 analisar_csv.py
 ---------------
-Análise exploratória dos CSVs gerados pelo pipeline (compras.csv e itens.csv).
+Análise exploratória dos CSVs gerados pelo pipeline (compras.csv e compras_itens.csv).
 Mostra qualidade dos dados, colunas vazias, distribuições e inconsistências.
 
 Uso:
     python analisar_csv.py                          # analisa ambos
     python analisar_csv.py --arquivo data/compras.csv
-    python analisar_csv.py --arquivo data/itens.csv
+    python analisar_csv.py --arquivo data/compras_itens.csv
     python analisar_csv.py --exportar relatorio.txt
 """
 
@@ -21,20 +21,20 @@ from typing import Any
 
 ARQUIVOS_PADRAO = [
     "data/compras.csv",
-    "data/itens.csv",
+    "data/compras_itens.csv",
 ]
 
 # Colunas de valor (para análise numérica)
 COLUNAS_VALOR = {
     "compras.csv": ["valor_estimado", "valor_homologado", "valor_contratado"],
-    "itens.csv":   ["valor_estimado_item", "valor_unitario_estimado",
-                    "valor_unitario_resultado", "valor_total_resultado", "quantidade"],
+    "compras_itens.csv":   ["valor_estimado_item", "valor_unitario_estimado",
+                            "valor_unitario_resultado", "valor_total_resultado", "quantidade"],
 }
 
 # Colunas de data
 COLUNAS_DATA = {
     "compras.csv": ["data_publicacao", "data_abertura", "data_homologacao", "data_extracao"],
-    "itens.csv":   ["data_alteracao", "data_inclusao_pncp", "data_resultado", "data_extracao"],
+    "compras_itens.csv":   ["data_alteracao", "data_inclusao_pncp", "data_resultado", "data_extracao"],
 }
 
 

@@ -1,18 +1,18 @@
 """
-pipeline/transformer_itens.py
+pipeline/transformer_compras_itens.py
 ------------------------------
-Varre temp/itens/ e gera itens.csv consolidado para Power BI.
+Varre temp/compras_itens/ e gera compras_itens.csv consolidado para Power BI.
 
 Estratégia de fusão por idCompraItem:
   Prioridade: PNCP > E4 > E6 > E2
   Campos específicos de cada fonte completam os da outra.
 
 Uso como módulo:
-    from pipeline.transformer_itens import transformar
+    from pipeline.transformer_compras_itens import transformar
     transformar()
 
 Uso via CLI:
-    python -m pipeline.transformer_itens
+    python -m pipeline.transformer_compras_itens
 """
 
 import csv
@@ -29,7 +29,7 @@ from config.config import EXPORT_CONFIG
 # ---------------------------------------------------------------------------
 # Configuração
 # ---------------------------------------------------------------------------
-_PASTA_ITENS = "temp/itens"
+_PASTA_ITENS = "temp/compras_itens"
 _SUFIXOS = ["pncp", "E4", "E6", "E2"]   # ordem de prioridade (maior → menor)
 
 # ---------------------------------------------------------------------------
@@ -474,7 +474,8 @@ def transformar(
     _PASTA_ITENS = pasta_itens
 
     if caminho_saida is None:
-        caminho_saida = os.path.join(EXPORT_CONFIG["pasta_saida"], "itens.csv")
+        caminho_saida = os.path.join(
+            EXPORT_CONFIG["pasta_saida"], "compras_itens.csv")
 
     banco = _indexar()
 
@@ -517,13 +518,14 @@ if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser(
-        description="Transforma JSONs de itens em itens.csv para Power BI."
+        description="Transforma JSONs de itens em compras_itens.csv para Power BI."
     )
     parser.add_argument("--pasta", default=_PASTA_ITENS,
                         help="Pasta com os JSONs de itens")
     parser.add_argument(
         "--saida",
-        default=os.path.join(EXPORT_CONFIG["pasta_saida"], "itens.csv"),
+        default=os.path.join(
+            EXPORT_CONFIG["pasta_saida"], "compras_itens.csv"),
         help="Caminho do CSV de saída",
     )
     args = parser.parse_args()

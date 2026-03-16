@@ -105,10 +105,10 @@
     155850                                      43    1.8%
 
 =================================================================
-  ANÁLISE — ITENS.CSV
+  ANÁLISE — COMPRAS_ITENS.CSV
 =================================================================
 
-  Arquivo    : data/itens.csv
+  Arquivo    : data/compras_itens.csv
   Tamanho    : 14062.9 KB
   Linhas     : 27,423
   Colunas    : 33

@@ -1,5 +1,5 @@
 """
-pipeline/extractors_itens.py
+pipeline/extractors_compras_itens.py
 -----------------------------
 Extrai itens de cada compra já presente em temp/compras/.
 
@@ -7,11 +7,11 @@ Estratégia: consulta TODOS os endpoints de itens para CADA idCompra.
 Respostas vazias são ignoradas naturalmente pelo transformer.
 
 Uso como módulo:
-    from pipeline.extractors_itens import executar
+    from pipeline.extractors_compras_itens import executar
     falhas = executar()   # retorna int
 
 Uso via CLI:
-    python -m pipeline.extractors_itens
+    python -m pipeline.extractors_compras_itens
 """
 
 import json
@@ -30,7 +30,7 @@ from config.config import CONFIG_APIS, PIPELINE_CONFIG
 # Configuração local
 # ---------------------------------------------------------------------------
 _PASTA_COMPRAS = CONFIG_APIS["LEGADO"]["pasta_cache"]   # temp/compras (única)
-_PASTA_ITENS = "temp/itens"
+_PASTA_ITENS = "temp/compras_itens"
 _BASE_URL = CONFIG_APIS["LEGADO"]["base_url"]
 
 ENDPOINTS: dict[str, dict] = {

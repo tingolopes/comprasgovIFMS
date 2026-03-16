@@ -16,7 +16,7 @@ import json
 import os
 
 PASTA_COMPRAS = r"temp\compras"
-PASTA_ITENS = r"temp\itens"
+PASTA_ITENS = r"temp\compras_itens"
 
 
 def _carregar_json(caminho: str) -> dict:
