@@ -232,6 +232,16 @@ Você pode controlar se os módulos mais pesados devem ser executados no pipelin
 
 Para rodar novamente esses módulos, altere a flag para `True` e execute `python main.py`.
 
+### Atas manuais e fallback de idCompra
+
+Se a API não retornar uma ata já presente em `atas.csv`, o script de itens (`transformer_atas_itens`) gera ou atualiza `temp/atas/atas_manuais.json` com um esqueleto de ata.
+
+- A geração usa `numeroControlePncpAta` dos itens para identificar atas ausentes.
+- Para preencher `idCompra`, o pipeline faz lookup no `compras.csv` via `numeroControlePncpCompra`.
+- Depois de criar `atas_manuais.json`, `transformer_atas` é reexecutado para incluir manualmente essas atas no `atas.csv`.
+
+Isso garante que itens órfãos de ata sejam associados a uma ata no CSV principal.
+
 ## 📊 Dados Utilizados
 
 ### Compras
