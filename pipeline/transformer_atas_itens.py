@@ -158,29 +158,37 @@ def _parse_id_compra(id_compra: str) -> tuple[str, str]:
     return "", ""
 
 
-def _carregar_mapa_atas(caminho_atas_csv: str) -> dict[str, str]:
+def _carregar_mapa_atas(caminho_atas_csv: str) -> tuple[dict[str, str], set[str]]:
     """
-    Lê atas.csv e retorna { numeroControlePncpCompra: id_compra }.
-    Usado para enriquecer itens que vieram sem id_compra da API.
+    Lê atas.csv e retorna:
+      - { numeroControlePncpCompra: id_compra }  → enriquece itens sem id_compra
+      - set de numeroControlePncpAta conhecidos   → detecta atas ausentes
     """
     mapa: dict[str, str] = {}
+    ctrl_atas_conhecidas: set[str] = set()
+
     if not os.path.exists(caminho_atas_csv):
         print(
             f"  ℹ️  atas.csv não encontrado em {caminho_atas_csv} — id_compra não será enriquecido.")
-        return mapa
+        return mapa, ctrl_atas_conhecidas
     try:
         import csv as _csv
         with open(caminho_atas_csv, encoding=EXPORT_CONFIG["encoding"]) as f:
             reader = _csv.DictReader(f, delimiter=EXPORT_CONFIG["separador"])
             for row in reader:
-                ctrl = row.get("numero_controle_pncp_compra", "").strip()
+                ctrl_compra = row.get(
+                    "numero_controle_pncp_compra", "").strip()
                 id_c = row.get("id_compra", "").strip()
-                if ctrl and id_c:
-                    mapa[ctrl] = id_c
-        print(f"  ✅ Mapa de atas carregado: {len(mapa)} entradas")
+                ctrl_ata = row.get("numero_controle_pncp_ata", "").strip()
+                if ctrl_compra and id_c:
+                    mapa[ctrl_compra] = id_c
+                if ctrl_ata:
+                    ctrl_atas_conhecidas.add(ctrl_ata)
+        print(
+            f"  ✅ Mapa de atas carregado: {len(mapa)} compras | {len(ctrl_atas_conhecidas)} atas conhecidas")
     except Exception as exc:
         print(f"  ⚠️  Erro ao carregar atas.csv: {exc}")
-    return mapa
+    return mapa, ctrl_atas_conhecidas
 
 
 # ---------------------------------------------------------------------------
@@ -307,6 +315,125 @@ def _mapear(reg: dict, mapa_atas: dict[str, str]) -> dict:
 
 
 # ---------------------------------------------------------------------------
+# Atas manuais — reconstrói esqueleto para atas ausentes do atas.csv
+# ---------------------------------------------------------------------------
+
+def _criar_atas_manuais(
+    banco: dict[str, dict],
+    ctrl_atas_conhecidas: set[str],
+    pasta_atas: str,
+) -> int:
+    """
+    Detecta atas referenciadas nos itens mas ausentes do atas.csv.
+    Para cada uma, reconstrói o esqueleto a partir dos campos do item
+    e salva/atualiza temp/atas/atas_manuais.json.
+
+    Retorna o número de atas novas adicionadas.
+    """
+    # Agrupa os itens por ctrl_ata — pega o primeiro item de cada ata como fonte
+    atas_nos_itens: dict[str, dict] = {}
+    for reg in banco.values():
+        ctrl_ata = str(reg.get("numeroControlePncpAta") or "")
+        if ctrl_ata and ctrl_ata not in atas_nos_itens:
+            atas_nos_itens[ctrl_ata] = reg
+
+    # Identifica as ausentes
+    ausentes = {
+        ctrl: reg
+        for ctrl, reg in atas_nos_itens.items()
+        if ctrl not in ctrl_atas_conhecidas
+    }
+
+    if not ausentes:
+        print("  ✅ Nenhuma ata ausente detectada.")
+        return 0
+
+    print(
+        f"  ⚠️  {len(ausentes)} ata(s) ausente(s) do atas.csv — gerando esqueletos...")
+
+    # Carrega atas_manuais.json existente (se houver) para não perder entradas anteriores
+    caminho_manual = os.path.join(pasta_atas, "atas_manuais.json")
+    existente: list[dict] = []
+    ctrl_ja_no_manual: set[str] = set()
+
+    if os.path.exists(caminho_manual):
+        try:
+            with open(caminho_manual, encoding="utf-8") as f:
+                env = json.load(f)
+            existente = env.get("respostas", {}).get("resultado", []) or []
+            ctrl_ja_no_manual = {
+                str(r.get("numeroControlePncpAta") or "")
+                for r in existente
+            }
+        except Exception as exc:
+            print(f"  ⚠️  Erro ao ler atas_manuais.json: {exc}")
+
+    novas: list[dict] = []
+    for ctrl_ata, reg in sorted(ausentes.items()):
+        if ctrl_ata in ctrl_ja_no_manual:
+            continue  # já estava no manual de execução anterior
+
+        # Reconstrói o esqueleto com os campos disponíveis no item
+        id_compra = str(reg.get("idCompra") or "").strip()
+        esqueleto = {
+            "numeroAtaRegistroPreco":     reg.get("numeroAtaRegistroPreco", ""),
+            "codigoUnidadeGerenciadora":  str(reg.get("codigoUnidadeGerenciadora") or ""),
+            "nomeUnidadeGerenciadora":    reg.get("nomeUnidadeGerenciadora", ""),
+            "codigoOrgao":                "",
+            "nomeOrgao":                  reg.get("nomeUnidadeGerenciadora", ""),
+            "linkAtaPNCP":                "",
+            "linkCompraPNCP":             "",
+            "numeroCompra":               reg.get("numeroCompra", ""),
+            "anoCompra":                  str(reg.get("anoCompra") or ""),
+            "codigoModalidadeCompra":     str(reg.get("codigoModalidadeCompra") or ""),
+            "nomeModalidadeCompra":       reg.get("nomeModalidadeCompra", ""),
+            "dataAssinatura":             reg.get("dataAssinatura", ""),
+            "dataVigenciaInicial":        reg.get("dataVigenciaInicial", ""),
+            "dataVigenciaFinal":          reg.get("dataVigenciaFinal", ""),
+            "valorTotal":                 None,
+            "statusAta":                  "Ata de Registro de Preços",
+            "objeto":                     "",
+            "quantidadeItens":            None,
+            "dataHoraAtualizacao":        reg.get("dataHoraAtualizacao", ""),
+            "dataHoraInclusao":           reg.get("dataHoraInclusao", ""),
+            "dataHoraExclusao":           None,
+            "ataExcluido":                False,
+            "numeroControlePncpAta":      ctrl_ata,
+            "numeroControlePncpCompra":   reg.get("numeroControlePncpCompra", ""),
+            "idCompra":                   id_compra,
+        }
+        novas.append(esqueleto)
+        print(f"    ➕ {ctrl_ata} (ata {esqueleto['numeroAtaRegistroPreco']})")
+
+    if not novas:
+        print("  ✅ Nenhuma ata nova para adicionar ao manual.")
+        return 0
+
+    todas = existente + novas
+    envelope = {
+        "metadata": {
+            "url_consultada": "MANUAL — gerado por transformer_atas_itens",
+            "data_extracao":  datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "status":         "SUCESSO",
+        },
+        "respostas": {
+            "resultado":       todas,
+            "totalRegistros":  len(todas),
+            "totalPaginas":    1,
+            "paginasRestantes": 0,
+        },
+    }
+
+    os.makedirs(pasta_atas, exist_ok=True)
+    with open(caminho_manual, "w", encoding="utf-8") as f:
+        json.dump(envelope, f, ensure_ascii=False, indent=4)
+
+    print(
+        f"  💾 atas_manuais.json salvo: {len(todas)} ata(s) total ({len(novas)} nova(s))")
+    return len(novas)
+
+
+# ---------------------------------------------------------------------------
 # Entry point
 # ---------------------------------------------------------------------------
 
@@ -321,15 +448,31 @@ def transformar(
         caminho_saida = os.path.join(
             EXPORT_CONFIG["pasta_saida"], "atas_itens.csv")
 
-    # Carrega mapa de atas.csv para enriquecer id_compra quando a API não retornou
+    # Carrega mapa de atas.csv para enriquecer id_compra e detectar atas ausentes
     caminho_atas = os.path.join(EXPORT_CONFIG["pasta_saida"], "atas.csv")
-    mapa_atas = _carregar_mapa_atas(caminho_atas)
+    mapa_atas, ctrl_atas_conhecidas = _carregar_mapa_atas(caminho_atas)
 
     banco = _indexar()
 
     if not banco:
         print("⚠️  Nenhum item de ata válido encontrado.")
         sys.exit(1)
+
+    # Detecta atas ausentes e cria/atualiza atas_manuais.json
+    novas_manuais = _criar_atas_manuais(
+        banco=banco,
+        ctrl_atas_conhecidas=ctrl_atas_conhecidas,
+        pasta_atas=CONFIG_ATAS["pasta_cache"],
+    )
+
+    # Se novas atas manuais foram criadas, regenera atas.csv antes de prosseguir
+    if novas_manuais > 0:
+        print("\n🔄 Regenerando atas.csv com as novas entradas manuais...")
+        from pipeline.transformer_atas import transformar as _transformar_atas
+        _transformar_atas()
+        # Recarrega o mapa atualizado
+        mapa_atas, ctrl_atas_conhecidas = _carregar_mapa_atas(caminho_atas)
+        print()
 
     registros = [_mapear(reg, mapa_atas) for reg in banco.values()]
 
