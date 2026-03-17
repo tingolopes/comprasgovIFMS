@@ -40,7 +40,7 @@ _LOG_INTERVALO_SKIP = PIPELINE_CONFIG.get("log_intervalo_skip", 50)
 
 # Re-verificação de prorrogação: re-consulta atas cujo cache tem mais de N dias
 # e que contenham atas com vigência final nos próximos M dias.
-_DIAS_VALIDADE_CACHE_ATAS = PIPELINE_CONFIG.get("dias_validade_cache_atas", 30)
+_DIAS_VALIDADE_CACHE_ATAS = PIPELINE_CONFIG.get("dias_validade_cache_atas", 3)
 _DIAS_ALERTA_PRORROGACAO = PIPELINE_CONFIG.get(
     "dias_alerta_prorrogacao_atas", 60)
 

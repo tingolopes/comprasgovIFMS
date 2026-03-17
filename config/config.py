@@ -150,7 +150,7 @@ PIPELINE_CONFIG = {
     # Timeout menor para a API legado (instável mas responde rápido quando está no ar)
     "timeout_segundos_legado": 10,
     # Timeout maior para saldos — endpoint mais lento
-    "timeout_segundos_saldos": 120,
+    "timeout_segundos_saldos": 30,
     "tamanho_pagina":      500,
 
     # Backoff exponencial (segundos)
@@ -162,7 +162,7 @@ PIPELINE_CONFIG = {
     "dias_validade_cache_pncp":          7,
 
     # Cache: dias antes de re-verificar atas (cabeçalho) para detectar prorrogações
-    "dias_validade_cache_atas":          30,
+    "dias_validade_cache_atas":          1,
 
     # Janela de alerta: re-verifica se há atas com vigência final nos próximos N dias
     "dias_alerta_prorrogacao_atas":      60,
