@@ -321,6 +321,7 @@ def _mapear(reg: dict, mapa_atas: dict[str, str]) -> dict:
 def _criar_atas_manuais(
     banco: dict[str, dict],
     ctrl_atas_conhecidas: set[str],
+    mapa_compras: dict[str, str],
     pasta_atas: str,
 ) -> int:
     """
@@ -375,6 +376,11 @@ def _criar_atas_manuais(
 
         # Reconstrói o esqueleto com os campos disponíveis no item
         id_compra = str(reg.get("idCompra") or "").strip()
+        if not id_compra:
+            ctrl_compra = str(
+                reg.get("numeroControlePncpCompra") or "").strip()
+            id_compra = mapa_compras.get(ctrl_compra, "")
+
         esqueleto = {
             "numeroAtaRegistroPreco":     reg.get("numeroAtaRegistroPreco", ""),
             "codigoUnidadeGerenciadora":  str(reg.get("codigoUnidadeGerenciadora") or ""),
@@ -462,6 +468,7 @@ def transformar(
     novas_manuais = _criar_atas_manuais(
         banco=banco,
         ctrl_atas_conhecidas=ctrl_atas_conhecidas,
+        mapa_compras=mapa_atas,
         pasta_atas=CONFIG_ATAS["pasta_cache"],
     )
 
