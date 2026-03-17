@@ -392,7 +392,7 @@ def _criar_atas_manuais(
             "dataVigenciaFinal":          reg.get("dataVigenciaFinal", ""),
             "valorTotal":                 None,
             "statusAta":                  "Ata de Registro de Preços",
-            "objeto":                     "",
+            "objeto":                     "Dado não disponível na API do governo",
             "quantidadeItens":            None,
             "dataHoraAtualizacao":        reg.get("dataHoraAtualizacao", ""),
             "dataHoraInclusao":           reg.get("dataHoraInclusao", ""),
