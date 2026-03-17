@@ -182,7 +182,7 @@ def _indexar_saldos() -> dict[str, str]:
             if not numero_ata or not num_item or not cod_un:
                 continue
             chave = f"{numero_ata}|{num_item}|{cod_un}"
-            quantidade_empenhada = _valor(reg.get("quantidade_empenhada"))
+            quantidade_empenhada = _valor(reg.get("quantidadeEmpenhada"))
             if quantidade_empenhada:
                 mapa[chave] = quantidade_empenhada
     return mapa
