@@ -1,13 +1,14 @@
 name: Atualizacao Diaria IFMS
 on:
+  push:
+    branches: [main]
   schedule:
-    - cron: '0 3 * * *' # Executa diariamente às 03:00 (opcional, remova se não desejar)
+    - cron: '0 3 * * *'
   workflow_dispatch:
 
 jobs:
   run-pipeline:
     runs-on: ubuntu-latest
-    # Adicionamos permissão de escrita para o robô poder salvar os CSVs no Git
     permissions:
       contents: write
 
@@ -16,17 +17,15 @@ jobs:
         uses: actions/checkout@v4
 
       - name: 🔄 Restaurar Cache do GitHub
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: cache-datalake
         with:
           path: temp/
-          # Alteramos para v2 para garantir que o novo sistema de semente seja registrado
           key: ${{ runner.os }}-data-lake-v2
           restore-keys: |
             ${{ runner.os }}-data-lake-
 
       - name: 💾 Download default cache (Seed - Apenas se o cache falhar)
-        # Este passo só roda se o GitHub NÃO encontrar um cache salvo anteriormente
         if: steps.cache-datalake.outputs.cache-hit != 'true'
         run: |
           mkdir -p temp
@@ -62,11 +61,7 @@ jobs:
         run: |
           git config --global user.name 'Michell-Bot'
           git config --global user.email 'tingolopes@gmail.com'
-          
-          # Adiciona apenas os CSVs para o Power BI
           git add data/*.csv
-          
-          # Commit apenas se houver alterações reais nos dados
           git commit -m "Auto-update Bases: $(date +'%Y-%m-%d %H:%M')" || exit 0
           git push
 
