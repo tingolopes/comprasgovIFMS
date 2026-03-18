@@ -102,6 +102,20 @@ def _valor(v) -> str:
         return str(v)
 
 
+def _to_float(v) -> Optional[float]:
+    if v is None:
+        return None
+    s = str(v).strip()
+    if s == "":
+        return None
+    # Permite vírgula decimal
+    s = s.replace(" ", "").replace("\u00A0", "").replace(",", ".")
+    try:
+        return float(s)
+    except (ValueError, TypeError):
+        return None
+
+
 def _data(valor: Optional[str]) -> str:
     if not valor:
         return ""
@@ -301,7 +315,7 @@ def _indexar() -> dict[str, dict]:
 
 def _mapear(reg: dict) -> dict:
     cnpj, nome_forn = _parse_fornecedor(reg.get("fornecedor", ""))
-    return {
+    reg_map = {
         "arquivo_origem":               reg.get("_arquivo_origem", ""),
         "data_extracao":                reg.get("_data_extracao", ""),
         "numero_ata":                   reg.get("numeroAta", ""),
@@ -323,11 +337,25 @@ def _mapear(reg: dict) -> dict:
         "saldo_remanejamento_empenho":  _valor(reg.get("saldoRemanejamentoEmpenho")),
         "qtd_limite_adesao":            _valor(reg.get("qtdLimiteAdesao")),
         "qtd_limite_informado_compra":  _valor(reg.get("qtdLimiteInformadoCompra")),
-        "quantidade_empenhada":         _valor(reg.get("_quantidade_empenhada")),
+    }
+
+    qtd_registrada_num = _to_float(reg.get("quantidadeRegistrada"))
+    qtd_empenhada_num = _to_float(reg.get("_quantidade_empenhada"))
+    if qtd_registrada_num is not None and qtd_empenhada_num is not None:
+        if qtd_empenhada_num > qtd_registrada_num:
+            reg_map["quantidade_empenhada"] = _valor(qtd_registrada_num)
+        else:
+            reg_map["quantidade_empenhada"] = _valor(qtd_empenhada_num)
+    else:
+        reg_map["quantidade_empenhada"] = _valor(
+            reg.get("_quantidade_empenhada"))
+
+    reg_map.update({
         "data_inclusao":                _data(reg.get("dataHoraInclusao")),
         "data_atualizacao":             _data(reg.get("dataHoraAtualizacao")),
         "data_exclusao":                _data(reg.get("dataHoraExclusao")),
-    }
+    })
+    return reg_map
 
 
 # ---------------------------------------------------------------------------
