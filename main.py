@@ -64,11 +64,19 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 # na ordem correta no log do GitHub Actions e em ambientes com pipe.
 os.environ.setdefault("PYTHONUNBUFFERED", "1")
 sys.stdout.reconfigure(line_buffering=True)
-
+# Fuso horário: UTC-4 (Mato Grosso do Sul)
+# Afeta datetime.now() em todos os módulos do pipeline.
+os.environ["TZ"] = "America/Campo_Grande"
+try:
+    import time as _time
+    _time.tzset()   # aplica TZ no processo (Linux/macOS; ignorado no Windows)
+except AttributeError:
+    pass  # Windows — usa o fuso do sistema, que já deve estar correto
 
 # ---------------------------------------------------------------------------
 # Motores de extração
 # ---------------------------------------------------------------------------
+
 
 def _executar_motor(nome: str, tarefas: list, fn, workers: int) -> int:
     """
