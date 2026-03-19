@@ -62,7 +62,8 @@ def extrair_legado(unidade: dict, ano: int, endpoint: dict) -> str:
         salvar_dados(arquivo, url, params, dados, status)
 
         if status == "SUCESSO":
-            if dados.get("paginasRestantes", 0) > 0:
+            resultado = dados.get("resultado") or []
+            if dados.get("paginasRestantes", 0) > 0 and resultado:
                 pagina += 1
                 continue
             return f"✅ DONE | {sigla} | {label:<17} | {ano}"
@@ -115,7 +116,8 @@ def extrair_14133(unidade: dict, ano: int, cod_mod: int, nome_mod: str) -> str:
         salvar_dados(arquivo, url, params, dados, status)
 
         if status == "SUCESSO":
-            if dados.get("paginasRestantes", 0) > 0:
+            resultado = dados.get("resultado") or []
+            if dados.get("paginasRestantes", 0) > 0 and resultado:
                 pagina += 1
                 continue
             return f"✅ DONE | {sigla} | {mod_label:<17} | {ano}"

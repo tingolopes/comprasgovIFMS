@@ -152,10 +152,27 @@ def _get(url: str, params: dict) -> tuple[dict | None, str]:
 # Tarefa individual
 # ---------------------------------------------------------------------------
 
+def _fingerprint(resultado: list) -> frozenset:
+    """Identifica unicamente o conteúdo de uma página pelo conjunto de idCompraItem."""
+    return frozenset(
+        str(item.get("idCompraItem") or item.get("numeroItemPncp") or i)
+        for i, item in enumerate(resultado)
+    )
+
+
+def _resultado_de(dados: dict) -> list:
+    """Extrai a lista de itens de um envelope ou resposta direta."""
+    res = dados.get("resultado")
+    if res is None:
+        res = dados.get("respostas", {}).get("resultado")
+    return res or []
+
+
 def _processar(t: dict) -> str:
     """Processa uma tarefa {id, sufixo}. Retorna string de log."""
     ep = ENDPOINTS[t["sufixo"]]
     pagina = 1
+    fp_anterior: frozenset | None = None  # fingerprint da página anterior
 
     while True:
         nome = os.path.join(
@@ -168,6 +185,17 @@ def _processar(t: dict) -> str:
             pag_rest, tem_res = _paginacao(cache)
             if not ep["paginavel"] or pag_rest == 0 or not tem_res:
                 return f"⏭️ SKIP | {t['id']} | {t['sufixo']}"
+
+            # Guarda anti-loop: verifica se o cache desta página
+            # já tem conteúdo idêntico à página anterior
+            fp_atual = _fingerprint(_resultado_de(cache))
+            if fp_anterior is not None and fp_atual == fp_anterior:
+                ts = datetime.now().strftime("%H:%M:%S")
+                print(
+                    f"[{ts}] 🔁 LOOP detectado (cache) | {t['id']} | {t['sufixo']} p{pagina} — parando.")
+                return f"⏭️ SKIP | {t['id']} | {t['sufixo']}"
+            fp_anterior = fp_atual
+
             pagina += 1
             continue
 
@@ -177,15 +205,26 @@ def _processar(t: dict) -> str:
             params.update({"pagina": pagina,
                            "tamanhoPagina": PIPELINE_CONFIG["tamanho_pagina"]})
 
+        ts = datetime.now().strftime("%H:%M:%S")
+        print(f"[{ts}] 🌐 Consultando | {t['id']} | {t['sufixo']} p{pagina}...")
         dados, status = _get(url, params)
-        _salvar(nome, url, params, dados, status)
 
         if status == "SUCESSO" and ep["paginavel"]:
             pag_rest, tem_res = _paginacao(dados)
             if pag_rest > 0 and tem_res:
+                # Guarda anti-loop: não salva nem avança se conteúdo é igual à página anterior
+                fp_atual = _fingerprint(_resultado_de(dados))
+                if fp_anterior is not None and fp_atual == fp_anterior:
+                    ts = datetime.now().strftime("%H:%M:%S")
+                    print(
+                        f"[{ts}] 🔁 LOOP detectado (API) | {t['id']} | {t['sufixo']} p{pagina} — parando.")
+                    return f"✅ SUCESSO | {t['id']} | {t['sufixo']}"
+                fp_anterior = fp_atual
+                _salvar(nome, url, params, dados, status)
                 pagina += 1
                 continue
 
+        _salvar(nome, url, params, dados, status)
         icone = "✅" if status == "SUCESSO" else "❌"
         return f"{icone} {status} | {t['id']} | {t['sufixo']}"
 
