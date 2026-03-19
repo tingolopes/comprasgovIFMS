@@ -19,8 +19,11 @@ jobs:
         id: cache-datalake
         with:
           path: temp/
-          key: ${{ runner.os }}-data-lake-v2
+          # Chave inclui a data — garante que o cache é salvo a cada execução
+          key: ${{ runner.os }}-data-lake-v2-${{ github.run_id }}
+          # Fallback: pega o cache mais recente disponível (qualquer data anterior)
           restore-keys: |
+            ${{ runner.os }}-data-lake-v2-
             ${{ runner.os }}-data-lake-
 
       - name: 💾 Download default cache (Seed - Apenas se o cache falhar)
