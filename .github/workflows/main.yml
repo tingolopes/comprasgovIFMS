@@ -19,9 +19,7 @@ jobs:
         id: cache-datalake
         with:
           path: temp/
-          # Chave inclui a data — garante que o cache é salvo a cada execução
           key: ${{ runner.os }}-data-lake-v2-${{ github.run_id }}
-          # Fallback: pega o cache mais recente disponível (qualquer data anterior)
           restore-keys: |
             ${{ runner.os }}-data-lake-v2-
             ${{ runner.os }}-data-lake-
@@ -65,6 +63,17 @@ jobs:
           git add data/*.csv
           git commit -m "Auto-update Bases: $(date +'%Y-%m-%d %H:%M')" || exit 0
           git push
+
+      - name: 🧹 Limpar caches antigos (mantém apenas o atual)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          CURRENT_KEY="${{ runner.os }}-data-lake-v2-${{ github.run_id }}"
+          echo "Cache atual: $CURRENT_KEY"
+          # Lista todos os caches e apaga os que não são o atual
+          gh cache list --limit 100 --json key,id \
+            --jq '.[] | select(.key != "'"$CURRENT_KEY"'") | .id' \
+            | xargs -r -I{} gh cache delete {} && echo "✅ Caches antigos removidos." || echo "⚠️ Nenhum cache antigo para remover."
 
       - name: List generated CSVs
         run: |
