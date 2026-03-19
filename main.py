@@ -37,30 +37,33 @@ Modos disponíveis:
   python main.py --modo transformer_contratos_resp  # só gera contratos_responsaveis.csv
 """
 
+from pipeline.logger import log_info, resumo_skips
+from pipeline.transformer_contratos_responsaveis import transformar as transformar_contratos_responsaveis
+from pipeline.transformer_contratos import transformar as transformar_contratos
+from pipeline.extractors_contratos_responsaveis import executar as executar_contratos_responsaveis
+from pipeline.extractors_contratos import executar as executar_contratos
+from pipeline.transformer_atas_unidades import transformar as transformar_atas_unidades
+from pipeline.transformer_atas_saldos import transformar as transformar_atas_saldos
+from pipeline.transformer_atas_itens import transformar as transformar_atas_itens
+from pipeline.transformer_atas import transformar as transformar_atas
+from pipeline.transformer_compras_itens import transformar as transformar_itens
+from pipeline.transformer_compras import transformar as transformar_compras
+from pipeline.extractors_atas_unidades import executar as executar_atas_unidades
+from pipeline.extractors_atas_saldos import executar as executar_atas_saldos
+from pipeline.extractors_atas_itens import executar as executar_atas_itens
+from pipeline.extractors_atas import executar as executar_atas
+from pipeline.extractors_compras_itens import executar as executar_itens
+from pipeline.extractors_compras import extrair_legado, extrair_14133
+from config.config import CONFIG_APIS, CONFIG_ATAS, CONFIG_CONTRATOS, EXPORT_CONFIG, PIPELINE_CONFIG
 import argparse
 import os
 import shutil
 import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
-
-from config.config import CONFIG_APIS, CONFIG_ATAS, CONFIG_CONTRATOS, EXPORT_CONFIG, PIPELINE_CONFIG
-from pipeline.extractors_compras import extrair_legado, extrair_14133
-from pipeline.extractors_compras_itens import executar as executar_itens
-from pipeline.extractors_atas import executar as executar_atas
-from pipeline.extractors_atas_itens import executar as executar_atas_itens
-from pipeline.extractors_atas_saldos import executar as executar_atas_saldos
-from pipeline.extractors_atas_unidades import executar as executar_atas_unidades
-from pipeline.transformer_compras import transformar as transformar_compras
-from pipeline.transformer_compras_itens import transformar as transformar_itens
-from pipeline.transformer_atas import transformar as transformar_atas
-from pipeline.transformer_atas_itens import transformar as transformar_atas_itens
-from pipeline.transformer_atas_saldos import transformar as transformar_atas_saldos
-from pipeline.transformer_atas_unidades import transformar as transformar_atas_unidades
-from pipeline.extractors_contratos import executar as executar_contratos
-from pipeline.extractors_contratos_responsaveis import executar as executar_contratos_responsaveis
-from pipeline.transformer_contratos import transformar as transformar_contratos
-from pipeline.transformer_contratos_responsaveis import transformar as transformar_contratos_responsaveis
-from pipeline.logger import log_info, resumo_skips
+# Força saída sem buffer — garante que prints de threads aparecem
+# na ordem correta no log do GitHub Actions e em ambientes com pipe.
+os.environ.setdefault("PYTHONUNBUFFERED", "1")
+sys.stdout.reconfigure(line_buffering=True)
 
 
 # ---------------------------------------------------------------------------
