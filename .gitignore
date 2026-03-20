@@ -2,8 +2,8 @@
 temp/
 temp_*/
 
-# Ignorar o arquivo Power BI
-*.pbix
+# Ignorar pasta do Power BI
+painel/
 
 # Permitir os bancos de dados consolidados
 !data/
