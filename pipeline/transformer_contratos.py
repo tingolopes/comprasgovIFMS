@@ -130,7 +130,7 @@ def _parse_fornecedor(c: dict) -> tuple[str, str]:
     """
     forn = c.get("fornecedor", {}) or {}
     if isinstance(forn, dict):
-        return str(forn.get("cnpj") or "").strip(), _limpar(forn.get("nome"))
+        return str(forn.get("cnpj_cpf_idgener") or "").strip(), _limpar(forn.get("nome"))
     return "", ""
 
 
