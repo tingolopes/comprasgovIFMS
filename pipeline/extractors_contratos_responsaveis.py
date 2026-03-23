@@ -33,6 +33,7 @@ from urllib.parse import urlencode
 import requests
 
 from config.config import CONFIG_CONTRATOS, HTTP_HEADERS, PIPELINE_CONFIG
+from pipeline.logger import log_aviso, log_erro, log_info
 
 # ---------------------------------------------------------------------------
 # Configuração local
@@ -56,7 +57,7 @@ def _carregar_json(caminho: str) -> dict:
         with open(caminho, "r", encoding="utf-8") as f:
             return json.load(f) or {}
     except Exception as exc:
-        print(f"⚠️  Erro ao ler {caminho}: {exc}")
+        log_aviso("Erro ao ler %s: %s", caminho, exc)
         return {}
 
 
@@ -128,7 +129,7 @@ def _get(url: str) -> tuple[list | None, str]:
             else:
                 return None, f"ERRO_{resp.status_code}"
         except Exception as exc:
-            print(f"⚠️  Tentativa {tentativa} ({url}): {exc}")
+            log_aviso("Tentativa %d (%s): %s", tentativa, url, exc)
         time.sleep(atraso)
         atraso *= 2
 
@@ -221,19 +222,19 @@ def executar() -> int:
     os.makedirs(_PASTA, exist_ok=True)
 
     if not os.path.exists(_PASTA_CONTRATOS) or not os.listdir(_PASTA_CONTRATOS):
-        print("⚠️  Cache de contratos vazio. Execute extrator_contratos primeiro.")
+        log_aviso("Cache de contratos vazio. Execute extrator_contratos primeiro.")
         return 0
 
     fila    = _montar_fila()
     total   = len(fila)
     workers = PIPELINE_CONFIG.get("max_workers_responsaveis", 15)
 
-    print(f"   Contratos na fila : {total}")
-    print(f"   Validade cache    : {_DIAS_VALIDADE} dia(s)")
-    print(f"\n🚀 INICIANDO EXTRAÇÃO DE RESPONSÁVEIS | WORKERS: {workers} | TOTAL: {total}\n")
+    log_info("   Contratos na fila : %d", total)
+    log_info("   Validade cache    : %d dia(s)", _DIAS_VALIDADE)
+    log_info("🚀 INICIANDO EXTRAÇÃO DE RESPONSÁVEIS | WORKERS: %d | TOTAL: %d", workers, total)
 
     if total == 0:
-        print("⏭️  Nada a extrair.")
+        log_info("⏭️  Nada a extrair.")
         return 0
 
     concluidas = erros = skips = ultimo_log_skip = 0
@@ -256,16 +257,18 @@ def executar() -> int:
                 if "⏭️" in res:
                     if (skips - ultimo_log_skip) >= _LOG_INTERVALO_SKIP:
                         ultimo_log_skip = skips
-                        print(f"[{ts}] ⏭️  SKIPs: {skips} | {concluidas}/{total} ({perc:.1f}%) | Falhas: {erros}")
+                        log_info("[%s] ⏭️  SKIPs: %d | %d/%d (%.1f%%) | Falhas: %d",
+                                 ts, skips, concluidas, total, perc, erros)
                 else:
-                    print(f"[{ts}] {res} | {concluidas}/{total} ({perc:.1f}%) | Falhas: {erros}")
+                    log_info("[%s] %s | %d/%d (%.1f%%) | Falhas: %d",
+                             ts, res, concluidas, total, perc, erros)
 
         except KeyboardInterrupt:
-            print("\n🛑 Interrompido pelo usuário.")
+            log_erro("🛑 Interrompido pelo usuário.")
             pool.shutdown(wait=False, cancel_futures=True)
             sys.exit(0)
 
-    print(f"\n✅ FIM | Falhas: {erros} | SKIPs: {skips}")
+    log_info("✅ FIM | Falhas: %d | SKIPs: %d", erros, skips)
     return erros
 
 

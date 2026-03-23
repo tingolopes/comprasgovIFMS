@@ -32,6 +32,7 @@ from urllib.parse import urlencode
 import requests
 
 from config.config import CONFIG_ATAS, HTTP_HEADERS, PIPELINE_CONFIG
+from pipeline.logger import log_aviso, log_erro, log_info
 
 # ---------------------------------------------------------------------------
 # Configuração local
@@ -72,7 +73,7 @@ def _carregar_json(caminho: str) -> dict:
         with open(caminho, "r", encoding="utf-8") as f:
             return json.load(f) or {}
     except Exception as exc:
-        print(f"⚠️  Erro ao ler {caminho}: {exc}")
+        log_aviso("Erro ao ler %s: %s", caminho, exc)
         return {}
 
 
@@ -144,7 +145,7 @@ def _get(url: str, params: dict) -> tuple[dict | None, str]:
             else:
                 return None, f"ERRO_{resp.status_code}"
         except Exception as exc:
-            print(f"⚠️  Tentativa {tentativa} ({url}): {exc}")
+            log_aviso("Tentativa %d (%s): %s", tentativa, url, exc)
         time.sleep(atraso)
         atraso *= 2
     return None, "FALHA"
@@ -235,23 +236,22 @@ def executar() -> int:
     os.makedirs(_PASTA, exist_ok=True)
 
     if not os.path.exists(_PASTA_ATAS) or not os.listdir(_PASTA_ATAS):
-        print("⚠️  Cache de atas vazio. Execute extrator_atas primeiro.")
+        log_aviso("Cache de atas vazio. Execute extrator_atas primeiro.")
         return 0
 
     fila = _montar_fila()
     total = len(fila)
 
-    print(f"   UASG             : {_UASG['sigla']} ({_UASG['codigo']})")
-    print(f"   Validade cache   : {_DIAS_VALIDADE} dias")
-    print(f"   A extrair/atualizar: {total}\n")
+    log_info("   UASG               : %s (%s)", _UASG['sigla'], _UASG['codigo'])
+    log_info("   Validade cache     : %d dias", _DIAS_VALIDADE)
+    log_info("   A extrair/atualizar: %d", total)
 
     if total == 0:
-        print("⏭️  Tudo em cache e dentro da validade. Nada a extrair.")
+        log_info("⏭️  Tudo em cache e dentro da validade. Nada a extrair.")
         return 0
 
     workers = PIPELINE_CONFIG.get("max_workers_atas", 3)
-    print(
-        f"🚀 INICIANDO EXTRAÇÃO DE SALDOS | WORKERS: {workers} | TOTAL: {total}\n")
+    log_info("🚀 INICIANDO EXTRAÇÃO DE SALDOS | WORKERS: %d | TOTAL: %d", workers, total)
 
     concluidas = erros = skips = ultimo_log_skip = 0
 
@@ -273,21 +273,17 @@ def executar() -> int:
                 if "⏭️ SKIP" in res:
                     if (skips - ultimo_log_skip) >= _LOG_INTERVALO_SKIP:
                         ultimo_log_skip = skips
-                        print(
-                            f"[{ts}] ⏭️  SKIPs: {skips} | "
-                            f"{concluidas}/{total} ({perc:.1f}%) | Falhas: {erros}"
-                        )
+                        log_info("[%s] ⏭️  SKIPs: %d | %d/%d (%.1f%%) | Falhas: %d",
+                                 ts, skips, concluidas, total, perc, erros)
                 else:
-                    print(
-                        f"[{ts}] {res} | "
-                        f"{concluidas}/{total} ({perc:.1f}%) | Falhas: {erros}"
-                    )
+                    log_info("[%s] %s | %d/%d (%.1f%%) | Falhas: %d",
+                             ts, res, concluidas, total, perc, erros)
         except KeyboardInterrupt:
-            print("\n🛑 Interrompido pelo usuário.")
+            log_erro("🛑 Interrompido pelo usuário.")
             pool.shutdown(wait=False, cancel_futures=True)
             sys.exit(0)
 
-    print(f"\n✅ FIM | Falhas: {erros} | SKIPs: {skips}")
+    log_info("✅ FIM | Falhas: %d | SKIPs: %d", erros, skips)
     return erros
 
 

@@ -28,6 +28,7 @@ from datetime import datetime
 from typing import Optional
 
 from config.config import EXPORT_CONFIG, CONFIG_ATAS, UASGS
+from pipeline.logger import log_aviso, log_info
 
 _PASTA_UNIDADES = CONFIG_ATAS["pasta_cache_unidades"]
 _PASTA_SALDOS = CONFIG_ATAS["pasta_cache_saldos"]
@@ -251,10 +252,10 @@ def _indexar() -> dict[str, dict]:
 
     jsons = sorted(glob.glob(f"{_PASTA_UNIDADES}/*.json"))
     if not jsons:
-        print(f"⚠️  Nenhum JSON em {_PASTA_UNIDADES}")
+        log_aviso("Nenhum JSON em %s", _PASTA_UNIDADES)
         return banco
 
-    print(f"📂 {len(jsons)} arquivo(s) de unidades encontrado(s). Processando...")
+    log_info("📂 %d arquivo(s) de unidades encontrado(s). Processando...", len(jsons))
 
     saldos = _indexar_saldos()
     itens_info = _indexar_itens_info()
@@ -264,7 +265,7 @@ def _indexar() -> dict[str, dict]:
             with open(caminho, encoding="utf-8") as f:
                 envelope = json.load(f)
         except Exception as exc:
-            print(f"  ⚠️  Erro ao ler {caminho}: {exc}")
+            log_aviso("Erro ao ler %s: %s", caminho, exc)
             continue
 
         if envelope.get("metadata", {}).get("status") != "SUCESSO":
@@ -376,7 +377,7 @@ def transformar(
     banco = _indexar()
 
     if not banco:
-        print("⚠️  Nenhuma unidade válida encontrada.")
+        log_aviso("Nenhuma unidade válida encontrada.")
         sys.exit(1)
 
     registros = [_mapear(reg) for reg in banco.values()]
@@ -404,12 +405,12 @@ def transformar(
         1 for r in registros if r["tipo_unidade"] != "PARTICIPANTE" and r["tipo_unidade"])
     aceita_adesao = sum(1 for r in registros if r["aceita_adesao"] == "Sim")
 
-    print(f"\n✅ CSV gerado: {caminho_saida}")
-    print(f"   Registros        : {len(registros)}")
-    print(f"   Participantes    : {participantes}")
-    print(f"   Não participantes: {nao_participantes}")
-    print(f"   Aceita adesão    : {aceita_adesao}")
-    print(f"   Colunas          : {len(COLUNAS)}")
+    log_info("✅ CSV gerado: %s", caminho_saida)
+    log_info("   Registros        : %d", len(registros))
+    log_info("   Participantes    : %d", participantes)
+    log_info("   Não participantes: %d", nao_participantes)
+    log_info("   Aceita adesão    : %d", aceita_adesao)
+    log_info("   Colunas          : %d", len(COLUNAS))
 
 
 # ---------------------------------------------------------------------------

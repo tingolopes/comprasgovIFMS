@@ -13,6 +13,7 @@ from urllib.parse import urlencode
 import requests
 
 from config.config import HTTP_HEADERS, PIPELINE_CONFIG, SITUACOES_FINAIS_PNCP
+from pipeline.logger import log_aviso
 
 
 # ---------------------------------------------------------------------------
@@ -29,7 +30,7 @@ def verificar_sucesso(caminho: str) -> tuple[bool, dict]:
         status = dados.get("metadata", {}).get("status") == "SUCESSO"
         return status, dados
     except Exception as exc:
-        print(f"⚠️  Cache inválido em {caminho}: {exc}")
+        log_aviso("Cache inválido em %s: %s", caminho, exc)
         return False, {}
 
 
@@ -116,7 +117,7 @@ def consultar_api(url: str, params: dict, legado: bool = False) -> tuple[dict | 
                 time.sleep(15 * tentativa)
                 continue
         except Exception as exc:
-            print(f"⚠️  Tentativa {tentativa} falhou ({url}): {exc}")
+            log_aviso("Tentativa %d falhou (%s): %s", tentativa, url, exc)
 
         time.sleep(atraso)
         atraso *= 2

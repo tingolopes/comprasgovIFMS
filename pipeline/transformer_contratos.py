@@ -25,6 +25,7 @@ from datetime import datetime
 from typing import Optional
 
 from config.config import EXPORT_CONFIG, CONFIG_CONTRATOS
+from pipeline.logger import log_aviso, log_info
 
 _PASTA_CONTRATOS = CONFIG_CONTRATOS["pasta_cache"]
 
@@ -146,17 +147,17 @@ def _indexar() -> dict[str, dict]:
 
     jsons = sorted(glob.glob(f"{_PASTA_CONTRATOS}/contratos_*.json"))
     if not jsons:
-        print(f"⚠️  Nenhum JSON em {_PASTA_CONTRATOS}")
+        log_aviso("Nenhum JSON em %s", _PASTA_CONTRATOS)
         return banco
 
-    print(f"📂 {len(jsons)} arquivo(s) de contratos encontrado(s). Processando...")
+    log_info("📂 %d arquivo(s) de contratos encontrado(s). Processando...", len(jsons))
 
     for caminho in jsons:
         try:
             with open(caminho, encoding="utf-8") as f:
                 envelope = json.load(f)
         except Exception as exc:
-            print(f"  ⚠️  Erro ao ler {caminho}: {exc}")
+            log_aviso("Erro ao ler %s: %s", caminho, exc)
             continue
 
         if envelope.get("metadata", {}).get("status") != "SUCESSO":
@@ -244,7 +245,7 @@ def transformar(
     banco = _indexar()
 
     if not banco:
-        print("⚠️  Nenhum contrato válido encontrado.")
+        log_aviso("Nenhum contrato válido encontrado.")
         sys.exit(1)
 
     registros = [_mapear(reg) for reg in banco.values()]
@@ -265,10 +266,10 @@ def transformar(
 
     prorrogaveis = sum(1 for r in registros if r["prorrogavel"] == "Sim")
 
-    print(f"\n✅ CSV gerado: {caminho_saida}")
-    print(f"   Contratos    : {len(registros)}")
-    print(f"   Prorrogáveis : {prorrogaveis}")
-    print(f"   Colunas      : {len(COLUNAS)}")
+    log_info("✅ CSV gerado: %s", caminho_saida)
+    log_info("   Contratos    : %d", len(registros))
+    log_info("   Prorrogáveis : %d", prorrogaveis)
+    log_info("   Colunas      : %d", len(COLUNAS))
 
 
 # ---------------------------------------------------------------------------

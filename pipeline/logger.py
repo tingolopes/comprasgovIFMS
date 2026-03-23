@@ -24,6 +24,10 @@ def log_info(msg: str, *args) -> None:
     _logger.info(msg, *args)
 
 
+def log_aviso(msg: str, *args) -> None:
+    _logger.warning(msg, *args)
+
+
 def log_erro(msg: str, *args) -> None:
     _logger.error(msg, *args)
 

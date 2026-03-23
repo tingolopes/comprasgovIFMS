@@ -27,6 +27,7 @@ from datetime import datetime
 from typing import Optional
 
 from config.config import CONFIG_APIS, EXPORT_CONFIG, MODALIDADES
+from pipeline.logger import log_aviso, log_info
 
 # ---------------------------------------------------------------------------
 # Schema do CSV final
@@ -212,17 +213,17 @@ def _coletar_por_id(pastas: list[str]) -> dict[str, dict[str, dict]]:
     todos_jsons = sorted(set(todos_jsons))
 
     if not todos_jsons:
-        print(f"⚠️  Nenhum arquivo JSON encontrado nas pastas: {pastas}")
+        log_aviso("Nenhum arquivo JSON encontrado nas pastas: %s", pastas)
         sys.exit(1)
 
-    print(f"📂 {len(todos_jsons)} arquivo(s) encontrado(s). Processando...")
+    log_info("📂 %d arquivo(s) encontrado(s). Processando...", len(todos_jsons))
 
     for caminho in todos_jsons:
         try:
             with open(caminho, encoding="utf-8") as f:
                 envelope = json.load(f)
         except Exception as exc:
-            print(f"  ⚠️  Erro ao ler {caminho}: {exc}")
+            log_aviso("Erro ao ler %s: %s", caminho, exc)
             continue
 
         if envelope.get("metadata", {}).get("status") != "SUCESSO":
@@ -447,7 +448,7 @@ def transformar(pastas: list[str], caminho_saida: str) -> None:
     registros = [_fusionar(id_c, fontes) for id_c, fontes in banco.items()]
 
     if not registros:
-        print("⚠️  Nenhum registro válido encontrado.")
+        log_aviso("Nenhum registro válido encontrado.")
         sys.exit(1)
 
     os.makedirs(os.path.dirname(caminho_saida) or ".", exist_ok=True)
@@ -467,13 +468,13 @@ def transformar(pastas: list[str], caminho_saida: str) -> None:
     sem_objeto = sum(1 for r in registros if not r["objeto"])
     com_resp = sum(1 for r in registros if r["responsavel_declaracao"])
 
-    print(f"\n✅ CSV gerado: {caminho_saida}")
-    print(f"   IDs únicos     : {len(registros)}")
-    print(f"   Legado         : {total_legado}")
-    print(f"   Lei 14.133     : {total_14133}")
-    print(f"   Com responsável: {com_resp}")
-    print(f"   Sem objeto     : {sem_objeto}")
-    print(f"   Colunas        : {len(COLUNAS)}")
+    log_info("✅ CSV gerado: %s", caminho_saida)
+    log_info("   IDs únicos     : %d", len(registros))
+    log_info("   Legado         : %d", total_legado)
+    log_info("   Lei 14.133     : %d", total_14133)
+    log_info("   Com responsável: %d", com_resp)
+    log_info("   Sem objeto     : %d", sem_objeto)
+    log_info("   Colunas        : %d", len(COLUNAS))
 
 
 # ---------------------------------------------------------------------------

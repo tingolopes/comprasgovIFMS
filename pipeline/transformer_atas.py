@@ -21,6 +21,7 @@ from datetime import datetime
 from typing import Optional
 
 from config.config import EXPORT_CONFIG, CONFIG_ATAS
+from pipeline.logger import log_aviso, log_info
 
 _PASTA_ATAS = CONFIG_ATAS["pasta_cache"]
 
@@ -134,17 +135,17 @@ def _indexar() -> dict[str, dict]:
 
     jsons = sorted(glob.glob(f"{_PASTA_ATAS}/*.json"))
     if not jsons:
-        print(f"⚠️  Nenhum JSON em {_PASTA_ATAS}")
+        log_aviso("Nenhum JSON em %s", _PASTA_ATAS)
         return banco
 
-    print(f"📂 {len(jsons)} arquivo(s) de atas encontrado(s). Processando...")
+    log_info("📂 %d arquivo(s) de atas encontrado(s). Processando...", len(jsons))
 
     for caminho in jsons:
         try:
             with open(caminho, encoding="utf-8") as f:
                 envelope = json.load(f)
         except Exception as exc:
-            print(f"  ⚠️  Erro ao ler {caminho}: {exc}")
+            log_aviso("Erro ao ler %s: %s", caminho, exc)
             continue
 
         if envelope.get("metadata", {}).get("status") != "SUCESSO":
@@ -227,7 +228,7 @@ def transformar(
     banco = _indexar()
 
     if not banco:
-        print("⚠️  Nenhuma ata válida encontrada.")
+        log_aviso("Nenhuma ata válida encontrada.")
         sys.exit(1)
 
     registros = [_mapear(reg) for reg in banco.values()]
@@ -249,10 +250,10 @@ def transformar(
         writer.writeheader()
         writer.writerows(registros)
 
-    print(f"\n✅ CSV gerado: {caminho_saida}")
-    print(f"   Atas únicas   : {len(registros)}")
-    print(f"   Atas excluídas: {excluidas}")
-    print(f"   Colunas       : {len(COLUNAS)}")
+    log_info("✅ CSV gerado: %s", caminho_saida)
+    log_info("   Atas únicas   : %d", len(registros))
+    log_info("   Atas excluídas: %d", excluidas)
+    log_info("   Colunas       : %d", len(COLUNAS))
 
 
 # ---------------------------------------------------------------------------
