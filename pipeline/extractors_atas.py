@@ -36,88 +36,13 @@ _PATH = _CFG["path"]
 _UASG = _CFG["uasg"]
 _ANOS = _CFG["anos"]
 
-_LOG_INTERVALO_SKIP = PIPELINE_CONFIG.get("log_intervalo_skip", 50)
-
-# Re-verificação de prorrogação: re-consulta atas cujo cache tem mais de N dias
-# e que contenham atas com vigência final nos próximos M dias.
-_DIAS_VALIDADE_CACHE_ATAS = PIPELINE_CONFIG.get("dias_validade_cache_atas", 3)
-_DIAS_ALERTA_PRORROGACAO = PIPELINE_CONFIG.get(
-    "dias_alerta_prorrogacao_atas", 60)
-
 
 # ---------------------------------------------------------------------------
-# Cache
+# Salvar
 # ---------------------------------------------------------------------------
-
-def _carregar_json(caminho: str) -> dict:
-    if not os.path.exists(caminho):
-        return {}
-    try:
-        with open(caminho, "r", encoding="utf-8") as f:
-            return json.load(f) or {}
-    except Exception as exc:
-        print(f"⚠️  Erro ao ler {caminho}: {exc}")
-        return {}
-
-
-def _verificar_sucesso(caminho: str) -> tuple[bool, dict]:
-    dados = _carregar_json(caminho)
-    ok = dados.get("metadata", {}).get("status") == "SUCESSO"
-    return ok, dados
-
-
-def _deve_reverificar_ata(dados_cache: dict) -> bool:
-    """
-    Re-verifica atas que ainda podem ser prorrogadas:
-    - cache com mais de DIAS_VALIDADE_CACHE_ATAS dias, E
-    - há pelo menos uma ata com dataVigenciaFinal nos próximos
-      DIAS_ALERTA_PRORROGACAO dias (próxima de vencer ou já prorrogada).
-    """
-    data_ext_str = dados_cache.get("metadata", {}).get("data_extracao", "")
-    if not data_ext_str:
-        return False
-
-    try:
-        data_ext = datetime.strptime(data_ext_str, "%Y-%m-%d %H:%M:%S")
-    except ValueError:
-        return False
-
-    dias_cache = (datetime.now() - data_ext).days
-    if dias_cache < _DIAS_VALIDADE_CACHE_ATAS:
-        return False  # Cache ainda fresco — não re-verifica
-
-    # Verifica se há atas com vigência final próxima (candidatas a prorrogação)
-    resultado = dados_cache.get("respostas", {}).get("resultado", []) or []
-    hoje = datetime.now().date()
-    janela = hoje + \
-        __import__("datetime").timedelta(days=_DIAS_ALERTA_PRORROGACAO)
-
-    for ata in resultado:
-        fim_str = ata.get("dataVigenciaFinal", "")
-        if not fim_str:
-            continue
-        try:
-            fim = datetime.strptime(fim_str[:10], "%Y-%m-%d").date()
-            if hoje <= fim <= janela:
-                return True  # Ata dentro da janela de possível prorrogação
-        except ValueError:
-            continue
-
-    return False
-
 
 def _salvar(caminho: str, url: str, params: dict,
             conteudo, status: str = "SUCESSO") -> None:
-    """Nunca sobrescreve cache SUCESSO com falha."""
-    if status != "SUCESSO" and os.path.exists(caminho):
-        try:
-            with open(caminho, "r", encoding="utf-8") as f:
-                antigo = json.load(f)
-            if antigo.get("metadata", {}).get("status") == "SUCESSO":
-                return
-        except Exception:
-            pass
-
     envelope = {
         "metadata": {
             "url_consultada": f"{url}?{urlencode(params)}",
@@ -165,27 +90,14 @@ def _processar(t: dict) -> str:
     while True:
         nome = os.path.join(
             _PASTA, f"atas_{t['sigla']}_{t['ano']}_p{pagina}.json")
-        ok, cache = _verificar_sucesso(nome)
-
-        if ok:
-            # Re-verifica se há atas próximas de prorrogação e cache velho
-            if _deve_reverificar_ata(cache):
-                pass  # Cai para a consulta abaixo
-            else:
-                pag_rest = cache.get("respostas", {}).get(
-                    "paginasRestantes", 0)
-                if pag_rest and pag_rest > 0:
-                    pagina += 1
-                    continue
-                return f"⏭️ SKIP | {t['sigla']} | {t['ano']}"
 
         url = f"{_BASE_URL}{_PATH}"
         params = {
-            "pagina":                   pagina,
-            "tamanhoPagina":            PIPELINE_CONFIG["tamanho_pagina"],
+            "pagina":                    pagina,
+            "tamanhoPagina":             PIPELINE_CONFIG["tamanho_pagina"],
             "codigoUnidadeGerenciadora": _UASG["codigo"],
-            "dataVigenciaInicialMin":   f"{t['ano']}-01-01",
-            "dataVigenciaInicialMax":   f"{t['ano']}-12-31",
+            "dataVigenciaInicialMin":    f"{t['ano']}-01-01",
+            "dataVigenciaInicialMax":    f"{t['ano']}-12-31",
         }
 
         dados, status = _get(url, params)
@@ -208,15 +120,8 @@ def _processar(t: dict) -> str:
 
 def _montar_fila() -> list[dict]:
     """Uma tarefa por ano — paginação tratada dentro de _processar."""
-    fila = []
     sigla = _UASG["sigla"]
-    for ano in _ANOS:
-        # Só entra na fila se a p1 ainda não tem SUCESSO
-        nome_p1 = os.path.join(_PASTA, f"atas_{sigla}_{ano}_p1.json")
-        ok, _ = _verificar_sucesso(nome_p1)
-        if not ok:
-            fila.append({"sigla": sigla, "ano": ano, "pagina": 1})
-    return fila
+    return [{"sigla": sigla, "ano": ano, "pagina": 1} for ano in _ANOS]
 
 
 # ---------------------------------------------------------------------------
@@ -229,22 +134,15 @@ def executar() -> int:
 
     fila = _montar_fila()
     total = len(fila)
-    ja_ok = len(_ANOS) - total
 
-    print(f"   UASG        : {_UASG['sigla']} ({_UASG['codigo']})")
-    print(f"   Anos        : {_ANOS[0]}–{_ANOS[-1]}")
-    print(f"   Já em cache : {ja_ok}")
-    print(f"   A extrair   : {total}\n")
-
-    if total == 0:
-        print("⏭️  Tudo em cache. Nada a extrair.")
-        return 0
+    print(f"   UASG      : {_UASG['sigla']} ({_UASG['codigo']})")
+    print(f"   Anos      : {_ANOS[0]}–{_ANOS[-1]}")
+    print(f"   A extrair : {total}\n")
 
     workers = PIPELINE_CONFIG.get("max_workers_atas", 3)
-    print(
-        f"🚀 INICIANDO EXTRAÇÃO DE ATAS | WORKERS: {workers} | TOTAL: {total}\n")
+    print(f"🚀 INICIANDO EXTRAÇÃO DE ATAS | WORKERS: {workers} | TOTAL: {total}\n")
 
-    concluidas = erros = skips = ultimo_log_skip = 0
+    concluidas = erros = 0
 
     with ThreadPoolExecutor(max_workers=workers) as pool:
         try:
@@ -255,26 +153,17 @@ def executar() -> int:
 
                 if "❌" in res or "FALHA" in res:
                     erros += 1
-                elif "⏭️ SKIP" in res:
-                    skips += 1
 
                 perc = concluidas / total * 100
                 ts = datetime.now().strftime("%H:%M:%S")
+                print(f"[{ts}] {res} | {concluidas}/{total} ({perc:.1f}%) | Falhas: {erros}")
 
-                if "⏭️ SKIP" in res:
-                    if (skips - ultimo_log_skip) >= _LOG_INTERVALO_SKIP:
-                        ultimo_log_skip = skips
-                        print(
-                            f"[{ts}] ⏭️  SKIPs: {skips} | {concluidas}/{total} ({perc:.1f}%) | Falhas: {erros}")
-                else:
-                    print(
-                        f"[{ts}] {res} | {concluidas}/{total} ({perc:.1f}%) | Falhas: {erros}")
         except KeyboardInterrupt:
             print("\n🛑 Interrompido pelo usuário.")
             pool.shutdown(wait=False, cancel_futures=True)
             sys.exit(0)
 
-    print(f"\n✅ FIM | Falhas: {erros} | SKIPs: {skips}")
+    print(f"\n✅ FIM | Falhas: {erros}")
     return erros
 
 

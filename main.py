@@ -412,8 +412,8 @@ def _parse_args():
         help=(
             "extrator_compras           → pipeline completo (padrão)\n"
             "transformer_compras        → gera compras.csv dos JSONs já baixados\n"
-            "extrator_compras_itens      → extrai itens + gera compras_itens.csv\n"
-            "transformer_compras_itens   → gera compras_itens.csv dos JSONs já baixados\n"
+            "extrator_compras_itens     → extrai itens + gera compras_itens.csv\n"
+            "transformer_compras_itens  → gera compras_itens.csv dos JSONs já baixados\n"
             "extrator_atas              → extrai atas ARP + gera atas.csv\n"
             "transformer_atas           → gera atas.csv dos JSONs já baixados\n"
             "extrator_atas_itens        → extrai itens das atas + gera atas_itens.csv\n"

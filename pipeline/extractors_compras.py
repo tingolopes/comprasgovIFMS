@@ -8,14 +8,14 @@ Funções de extração das compras públicas.
 
 Retornam uma string descritiva que começa com:
   "✅ DONE"  — nova consulta com sucesso
-  "⏭️  SKIP"  — cache válido aproveitado
+  "⏭️  SKIP"  — cache válido aproveitado (apenas legado)
   "❌ FAIL"  — falha na API
 """
 
 import os
 
 from config.config import CONFIG_APIS, PIPELINE_CONFIG
-from pipeline.api_client import consultar_api, salvar_dados, verificar_sucesso, deve_reverificar_pncp
+from pipeline.api_client import consultar_api, salvar_dados, verificar_sucesso
 
 
 # ---------------------------------------------------------------------------
@@ -89,17 +89,6 @@ def extrair_14133(unidade: dict, ano: int, cod_mod: int, nome_mod: str) -> str:
     while True:
         arquivo = os.path.join(
             pasta, f"pncp_{sigla}_{nome_mod}_{ano}_p{pagina}.json")
-        sucesso, dados_cache = verificar_sucesso(arquivo)
-
-        if sucesso:
-            respostas = dados_cache.get("respostas", {})
-            tem_result = bool(respostas.get("resultado", []))
-
-            if not tem_result or not deve_reverificar_pncp(dados_cache):
-                if respostas.get("paginasRestantes", 0) > 0 and tem_result:
-                    pagina += 1
-                    continue
-                break   # skip
 
         # --- Parâmetros e consulta ---
         params: dict = {
@@ -123,5 +112,3 @@ def extrair_14133(unidade: dict, ano: int, cod_mod: int, nome_mod: str) -> str:
             return f"✅ DONE | {sigla} | {mod_label:<17} | {ano}"
         else:
             return f"❌ FAIL | {sigla} | {mod_label:<17} | {ano}"
-
-    return f"⏭️  SKIP | {sigla} | {mod_label:<17} | {ano}"
