@@ -25,6 +25,7 @@ from urllib.parse import urlencode
 import requests
 
 from config.config import CONFIG_APIS, PIPELINE_CONFIG
+from pipeline.api_client import extraido_hoje
 
 # ---------------------------------------------------------------------------
 # Configuração local
@@ -78,7 +79,10 @@ def _carregar_json(caminho: str) -> dict:
 
 def _verificar_sucesso(caminho: str) -> tuple[bool, dict]:
     dados = _carregar_json(caminho)
-    ok = dados.get("metadata", {}).get("status") == "SUCESSO"
+    ok = (
+        dados.get("metadata", {}).get("status") == "SUCESSO"
+        and extraido_hoje(dados)
+    )
     return ok, dados
 
 

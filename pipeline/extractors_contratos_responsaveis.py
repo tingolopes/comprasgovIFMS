@@ -33,6 +33,7 @@ from urllib.parse import urlencode
 import requests
 
 from config.config import CONFIG_CONTRATOS, HTTP_HEADERS, PIPELINE_CONFIG
+from pipeline.api_client import extraido_hoje
 
 # ---------------------------------------------------------------------------
 # Configuração local
@@ -41,7 +42,6 @@ _BASE_URL        = CONFIG_CONTRATOS["base_url"]
 _PASTA           = CONFIG_CONTRATOS["pasta_cache_responsaveis"]
 _PASTA_CONTRATOS = CONFIG_CONTRATOS["pasta_cache"]
 
-_DIAS_VALIDADE      = PIPELINE_CONFIG.get("dias_validade_cache_responsaveis", 1)
 _LOG_INTERVALO_SKIP = PIPELINE_CONFIG.get("log_intervalo_skip", 50)
 
 
@@ -79,12 +79,7 @@ def _verificar_cache(caminho: str, encerrado: bool = False) -> tuple[bool, dict]
     if encerrado:
         return True, dados
 
-    data_str = dados.get("metadata", {}).get("data_extracao", "")
-    try:
-        data_ext = datetime.strptime(data_str, "%Y-%m-%d %H:%M:%S")
-        if (datetime.now() - data_ext).days >= _DIAS_VALIDADE:
-            return False, dados
-    except ValueError:
+    if not extraido_hoje(dados):
         return False, dados
 
     return True, dados
@@ -229,7 +224,7 @@ def executar() -> int:
     workers = PIPELINE_CONFIG.get("max_workers_responsaveis", 15)
 
     print(f"   Contratos na fila : {total}")
-    print(f"   Validade cache    : {_DIAS_VALIDADE} dia(s)")
+    print("   Validade cache    : diário (cache de hoje)")
     print(f"\n🚀 INICIANDO EXTRAÇÃO DE RESPONSÁVEIS | WORKERS: {workers} | TOTAL: {total}\n")
 
     if total == 0:
