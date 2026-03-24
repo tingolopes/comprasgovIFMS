@@ -7,7 +7,7 @@ Utilitários compartilhados de acesso à API e cache em disco.
 import json
 import os
 import time
-from datetime import datetime
+from datetime import date, datetime
 from urllib.parse import urlencode
 
 import requests
@@ -31,6 +31,24 @@ def verificar_sucesso(caminho: str) -> tuple[bool, dict]:
     except Exception as exc:
         print(f"⚠️  Cache inválido em {caminho}: {exc}")
         return False, {}
+
+
+def extraido_hoje(dados_cache: dict, hoje: date | None = None) -> bool:
+    """
+    Retorna True quando o cache possui `data_extracao` do dia atual.
+
+    Formato esperado: YYYY-mm-dd HH:MM:SS.
+    """
+    data_str = dados_cache.get("metadata", {}).get("data_extracao", "")
+    if not data_str:
+        return False
+
+    try:
+        data_ext = datetime.strptime(data_str, "%Y-%m-%d %H:%M:%S").date()
+    except ValueError:
+        return False
+
+    return data_ext == (hoje or date.today())
 
 
 def salvar_dados(caminho: str, url: str, params: dict,
