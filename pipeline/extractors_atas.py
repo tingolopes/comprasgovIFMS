@@ -25,6 +25,7 @@ from urllib.parse import urlencode
 import requests
 
 from config.config import CONFIG_ATAS, PIPELINE_CONFIG
+from pipeline.api_client import extraido_hoje
 
 # ---------------------------------------------------------------------------
 # Configuração local
@@ -90,6 +91,21 @@ def _processar(t: dict) -> str:
     while True:
         nome = os.path.join(
             _PASTA, f"atas_{t['sigla']}_{t['ano']}_p{pagina}.json")
+        if os.path.exists(nome):
+            try:
+                with open(nome, "r", encoding="utf-8") as f:
+                    cache = json.load(f) or {}
+                if (
+                    cache.get("metadata", {}).get("status") == "SUCESSO"
+                    and extraido_hoje(cache)
+                ):
+                    pag_rest = cache.get("respostas", {}).get("paginasRestantes", 0)
+                    if pag_rest and pag_rest > 0:
+                        pagina += 1
+                        continue
+                    return f"⏭️ SKIP | {t['sigla']} | {t['ano']}"
+            except Exception:
+                pass
 
         url = f"{_BASE_URL}{_PATH}"
         params = {

@@ -31,6 +31,7 @@ from urllib.parse import urlencode
 import requests
 
 from config.config import CONFIG_CONTRATOS, HTTP_HEADERS, PIPELINE_CONFIG
+from pipeline.api_client import extraido_hoje
 
 # ---------------------------------------------------------------------------
 # Configuração local
@@ -39,7 +40,6 @@ _BASE_URL  = CONFIG_CONTRATOS["base_url"]
 _PASTA     = CONFIG_CONTRATOS["pasta_cache"]
 _UASGS     = CONFIG_CONTRATOS["uasgs"]
 
-_DIAS_VALIDADE      = PIPELINE_CONFIG.get("dias_validade_cache_contratos", 1)
 _LOG_INTERVALO_SKIP = PIPELINE_CONFIG.get("log_intervalo_skip", 50)
 
 
@@ -72,12 +72,7 @@ def _verificar_cache(caminho: str) -> tuple[bool, dict]:
     if dados.get("metadata", {}).get("status") != "SUCESSO":
         return False, dados
 
-    data_str = dados.get("metadata", {}).get("data_extracao", "")
-    try:
-        data_ext = datetime.strptime(data_str, "%Y-%m-%d %H:%M:%S")
-        if (datetime.now() - data_ext).days >= _DIAS_VALIDADE:
-            return False, dados
-    except ValueError:
+    if not extraido_hoje(dados):
         return False, dados
 
     return True, dados
@@ -178,7 +173,7 @@ def executar() -> int:
     workers = PIPELINE_CONFIG.get("max_workers_contratos", 5)
 
     print(f"   UASGs       : {total}")
-    print(f"   Validade    : {_DIAS_VALIDADE} dia(s)")
+    print("   Validade    : diário (cache de hoje)")
     print(f"\n🚀 INICIANDO EXTRAÇÃO DE CONTRATOS | WORKERS: {workers} | TOTAL: {total}\n")
 
     concluidas = erros = skips = ultimo_log_skip = 0
