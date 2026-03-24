@@ -15,7 +15,12 @@ Retornam uma string descritiva que começa com:
 import os
 
 from config.config import CONFIG_APIS, PIPELINE_CONFIG
-from pipeline.api_client import consultar_api, salvar_dados, verificar_sucesso
+from pipeline.api_client import (
+    consultar_api,
+    extraido_hoje,
+    salvar_dados,
+    verificar_sucesso,
+)
 
 
 # ---------------------------------------------------------------------------
@@ -36,7 +41,7 @@ def extrair_legado(unidade: dict, ano: int, endpoint: dict) -> str:
             pasta, f"{endpoint['label']}_{sigla}_{ano}_p{pagina}.json")
         sucesso, dados_cache = verificar_sucesso(arquivo)
 
-        if sucesso:
+        if sucesso and extraido_hoje(dados_cache):
             respostas = dados_cache.get("respostas", {})
             if not respostas.get("resultado", []):
                 break   # página vazia — fim da série, conta como skip
@@ -90,6 +95,16 @@ def extrair_14133(unidade: dict, ano: int, cod_mod: int, nome_mod: str) -> str:
         arquivo = os.path.join(
             pasta, f"pncp_{sigla}_{nome_mod}_{ano}_p{pagina}.json")
 
+        sucesso, dados_cache = verificar_sucesso(arquivo)
+        if sucesso and extraido_hoje(dados_cache):
+            respostas = dados_cache.get("respostas", {})
+            if not respostas.get("resultado", []):
+                break
+            if respostas.get("paginasRestantes", 0) > 0:
+                pagina += 1
+                continue
+            break
+
         # --- Parâmetros e consulta ---
         params: dict = {
             "pagina": pagina,
@@ -112,3 +127,5 @@ def extrair_14133(unidade: dict, ano: int, cod_mod: int, nome_mod: str) -> str:
             return f"✅ DONE | {sigla} | {mod_label:<17} | {ano}"
         else:
             return f"❌ FAIL | {sigla} | {mod_label:<17} | {ano}"
+
+    return f"⏭️  SKIP | {sigla} | {mod_label:<17} | {ano}"
