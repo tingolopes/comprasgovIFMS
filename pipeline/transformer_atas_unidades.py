@@ -27,7 +27,7 @@ import sys
 from datetime import datetime
 from typing import Optional
 
-from config.config import EXPORT_CONFIG, CONFIG_ATAS, UASGS
+from config.config import EXPORT_CONFIG, CONFIG_ATAS, CONFIG_APIS, UASGS
 
 _PASTA_UNIDADES = CONFIG_ATAS["pasta_cache_unidades"]
 _PASTA_SALDOS = CONFIG_ATAS["pasta_cache_saldos"]
@@ -47,6 +47,8 @@ COLUNAS = [
     "numero_ata",
     "uasg_gerenciadora",
     "numero_item",
+    "id_compra",
+    "id_compra_item",
     "codigo_pdm",
     "descricao_item",
     "tipo_item",
@@ -203,9 +205,47 @@ def _indexar_saldos() -> dict[str, str]:
 
 
 def _indexar_itens_info() -> dict[str, dict[str, str]]:
-    """Retorna mapa para lookup de tipo_item + valor_unitario por numero_ata|numero_item."""
+    """
+    Retorna mapa { "numero_ata|numero_item": { tipo_item, valor_unitario,
+                                               id_compra, id_compra_item } }
+
+    idCompra e obtido diretamente do atas_itens quando disponivel.
+    Fallback: quando idCompra esta vazio, busca nos JSONs de temp/compras/
+    via numeroControlePncpCompra -> numeroControlePNCP.
+    """
+
+    # ------------------------------------------------------------------
+    # Pre-carrega mapa de fallback: numeroControlePncpCompra -> idCompra
+    # lendo todos os JSONs pncp_* de temp/compras/
+    # ------------------------------------------------------------------
+    pasta_compras = CONFIG_APIS["LEI14133"]["pasta_cache"]
+    mapa_ctrl_para_id: dict[str, str] = {}
+
+    for caminho in sorted(glob.glob(os.path.join(pasta_compras, "pncp_*.json"))):
+        try:
+            with open(caminho, encoding="utf-8") as f:
+                envelope = json.load(f)
+        except Exception:
+            continue
+        if envelope.get("metadata", {}).get("status") != "SUCESSO":
+            continue
+        respostas = envelope.get("respostas", {})
+        resultado = (respostas.get("resultado", []) or []
+                     ) if isinstance(respostas, dict) else []
+        for compra in resultado:
+            if not isinstance(compra, dict):
+                continue
+            ctrl = str(compra.get("numeroControlePNCP") or "").strip()
+            id_c = str(compra.get("idCompra") or "").strip()
+            if ctrl and id_c:
+                mapa_ctrl_para_id[ctrl] = id_c
+
+    # ------------------------------------------------------------------
+    # Le atas_itens e monta o mapa principal
+    # ------------------------------------------------------------------
     mapa: dict[str, dict[str, str]] = {}
     jsons = sorted(glob.glob(f"{_PASTA_ITENS}/*.json"))
+
     for caminho in jsons:
         try:
             with open(caminho, encoding="utf-8") as f:
@@ -220,21 +260,36 @@ def _indexar_itens_info() -> dict[str, dict[str, str]]:
         for reg in resultado:
             if not isinstance(reg, dict):
                 continue
-            num_ata = str(reg.get("numeroAtaRegistroPreco")
-                          or reg.get("numeroAta") or "")
-            num_item = str(reg.get("numeroItem") or "")
+            num_ata  = str(reg.get("numeroAtaRegistroPreco")
+                           or reg.get("numeroAta") or "")
+            num_item = str(reg.get("numeroItem") or "").strip().zfill(5)
             if not num_ata or not num_item:
                 continue
+
             chave = f"{num_ata}|{num_item}"
-            tipo_item = str(reg.get("tipoItem") or "")
+
+            # idCompra: direto do registro ou via fallback pelo ctrl compra
+            id_compra = str(reg.get("idCompra") or "").strip()
+            if not id_compra:
+                ctrl_compra = str(reg.get("numeroControlePncpCompra") or "").strip()
+                id_compra   = mapa_ctrl_para_id.get(ctrl_compra, "")
+
+            id_compra_item = f"{id_compra}{num_item}" if id_compra else ""
+
+            tipo_item      = str(reg.get("tipoItem") or "")
             valor_unitario = _valor(reg.get("valorUnitario"))
+
             if chave not in mapa:
                 mapa[chave] = {}
-            # Substitui sempre para manter último valor do JSON ordenado
             if tipo_item:
-                mapa[chave]["tipo_item"] = tipo_item
+                mapa[chave]["tipo_item"]      = tipo_item
             if valor_unitario:
                 mapa[chave]["valor_unitario"] = valor_unitario
+            if id_compra:
+                mapa[chave]["id_compra"]      = id_compra
+            if id_compra_item:
+                mapa[chave]["id_compra_item"] = id_compra_item
+
     return mapa
 
 
@@ -297,8 +352,10 @@ def _indexar() -> dict[str, dict]:
             reg["_sigla_unidade"] = _SIGLA_POR_UASG.get(
                 str(reg.get("codigoUnidade") or ""), "")
             info = itens_info.get(f"{num_ata}|{num_item}", {})
-            reg["_tipo_item"] = info.get("tipo_item", "")
+            reg["_tipo_item"]      = info.get("tipo_item", "")
             reg["_valor_unitario"] = info.get("valor_unitario", "")
+            reg["_id_compra"]      = info.get("id_compra", "")
+            reg["_id_compra_item"] = info.get("id_compra_item", "")
 
             if chave not in banco:
                 banco[chave] = reg
@@ -321,6 +378,8 @@ def _mapear(reg: dict) -> dict:
         "numero_ata":                   reg.get("numeroAta", ""),
         "uasg_gerenciadora":            reg.get("unidadeGerenciadora", ""),
         "numero_item":                  reg.get("numeroItem", ""),
+        "id_compra":                    reg.get("_id_compra", ""),
+        "id_compra_item":               reg.get("_id_compra_item", ""),
         "codigo_pdm":                   reg.get("codigoPdm", "") or "",
         "descricao_item":               _limpar(reg.get("descricaoItem")),
         "tipo_item":                    reg.get("_tipo_item", ""),
