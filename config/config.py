@@ -6,6 +6,10 @@ Altere aqui as UASGs, endpoints, anos e parâmetros de comportamento.
 """
 
 from datetime import datetime
+import os
+from dotenv import load_dotenv
+
+load_dotenv()  # carrega o .env da raiz do projeto
 
 # ---------------------------------------------------------------------------
 # UNIDADES GESTORAS (UASGs)
@@ -125,6 +129,29 @@ CONFIG_CONTRATOS = {
 }
 
 # ---------------------------------------------------------------------------
+# EMPENHOS (contratos.comprasnet.gov.br + api.portaldatransparencia.gov.br)
+# ---------------------------------------------------------------------------
+CONFIG_EMPENHOS = {
+    # Endpoint 1 — lista de empenhos por ano/ug (aberto, sem token)
+    "base_url_comprasnet":  "https://contratos.comprasnet.gov.br/api",
+    "path_empenhos":        "/empenho/ano/{ano}/ug/{codigo}",
+
+    # Endpoint 2 — itens do empenho (requer token)
+    # Endpoint 3 — histórico por sequencial (requer token)
+    "base_url_transparencia": "https://api.portaldatransparencia.gov.br/api-de-dados",
+    "path_itens":             "/despesas/itens-de-empenho",
+    "path_historico":         "/despesas/itens-de-empenho/historico",
+    "token":                  os.getenv("PORTAL_TRANSPARENCIA_TOKEN", ""),
+
+    "pasta_cache":            "temp/empenhos",
+    "pasta_cache_itens":      "temp/empenhos_itens",
+    "pasta_cache_historico":  "temp/empenhos_historico",
+
+    "anos":   list(range(2021, datetime.now().year + 1)),
+    "uasgs":  UASGS,
+}
+
+# ---------------------------------------------------------------------------
 # EXPORTAÇÃO CSV (Power BI)
 # ---------------------------------------------------------------------------
 EXPORT_CONFIG = {
@@ -144,6 +171,10 @@ PIPELINE_CONFIG = {
     "max_workers_atas":           3,
     "max_workers_contratos":      5,
     "max_workers_responsaveis":  15,
+    "max_workers_empenhos":       1,   # Portal da Transparência: limite de 1 req/s
+
+    # Cache: empenhos — dados volumosos, validade de 1 semana
+    "dias_validade_cache_empenhos": 7,
 
     # Requisições HTTP
     "timeout_segundos":        30,
