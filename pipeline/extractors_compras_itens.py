@@ -218,7 +218,7 @@ def _processar(t: dict) -> str:
                     ts = datetime.now().strftime("%H:%M:%S")
                     print(
                         f"[{ts}] 🔁 LOOP detectado (API) | {t['id']} | {t['sufixo']} p{pagina} — parando.")
-                    return f"✅ SUCESSO | {t['id']} | {t['sufixo']}"
+                    return f"✅ DONE | {t['id']} | {t['sufixo']}"
                 fp_anterior = fp_atual
                 _salvar(nome, url, params, dados, status)
                 pagina += 1

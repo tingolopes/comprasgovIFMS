@@ -71,11 +71,11 @@ def extrair_legado(unidade: dict, ano: int, endpoint: dict) -> str:
             if dados.get("paginasRestantes", 0) > 0 and resultado:
                 pagina += 1
                 continue
-            return f"✅ DONE | {sigla} | {label:<17} | {ano}"
+            return f"✅ DONE | {sigla} | {label:<21} | {ano}"
         else:
-            return f"❌ FAIL | {sigla} | {label:<17} | {ano}"
+            return f"❌ FAIL | {sigla} | {label:<21} | {ano}"
 
-    return f"⏭️  SKIP | {sigla} | {label:<17} | {ano}"
+    return f"⏭️  SKIP | {sigla} | {label:<21} | {ano}"
 
 
 # ---------------------------------------------------------------------------
@@ -124,8 +124,8 @@ def extrair_14133(unidade: dict, ano: int, cod_mod: int, nome_mod: str) -> str:
             if dados.get("paginasRestantes", 0) > 0 and resultado:
                 pagina += 1
                 continue
-            return f"✅ DONE | {sigla} | {mod_label:<17} | {ano}"
+            return f"✅ DONE | {sigla} | {mod_label:<21} | {ano}"
         else:
-            return f"❌ FAIL | {sigla} | {mod_label:<17} | {ano}"
+            return f"❌ FAIL | {sigla} | {mod_label:<21} | {ano}"
 
-    return f"⏭️  SKIP | {sigla} | {mod_label:<17} | {ano}"
+    return f"⏭️  SKIP | {sigla} | {mod_label:<21} | {ano}"
