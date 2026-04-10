@@ -220,7 +220,7 @@ def _mapear(reg: dict) -> dict:
         "vigencia_fim":       _data(reg.get("vigencia_fim")),
         "prorrogavel":        _bool_str(reg.get("prorrogavel")),
         "link_responsaveis": (
-            f"https://contratos.comprasnet.gov.br/api/contrato/{id_c}/responsaveis"
+            f"https://contratos.comprasnet.gov.br/gescon/contrato/{id_c}/responsaveis"
             if id_c else ""
         ),
     }
