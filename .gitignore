@@ -17,3 +17,6 @@ venv/
 
 # Ignorar arquivos de configuração sensíveis
 .env
+
+# Ignorar arquivos do CLAUDE
+CLAUDE.md
