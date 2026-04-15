@@ -17,6 +17,7 @@ Fluxo completo (padrão):
  11. Consolida saldos                       → data/atas_saldos.csv
  12. Extrai unidades participantes          → temp/atas_unidades/
  13. Consolida unidades                     → data/atas_unidades.csv
+ 14. Obter itens empenhados TG              → data/itens_empenhados_TG.xlsx
 
 Modos disponíveis:
   python main.py                                    # pipeline completo
@@ -35,6 +36,7 @@ Modos disponíveis:
   python main.py --modo transformer_contratos       # só gera contratos.csv
   python main.py --modo extrator_contratos_resp     # extrai responsáveis + gera contratos_responsaveis.csv
   python main.py --modo transformer_contratos_resp  # só gera contratos_responsaveis.csv
+  python main.py --modo itens_empenhados            # obtem dados do Google Drive e salva em data/itens_empenhados_TG.xlsx
 """
 
 from pipeline.logger import log_info, resumo_skips
@@ -54,6 +56,7 @@ from pipeline.extractors_atas_itens import executar as executar_atas_itens
 from pipeline.extractors_atas import executar as executar_atas
 from pipeline.extractors_compras_itens import executar as executar_itens
 from pipeline.extractors_compras import extrair_legado, extrair_14133
+from pipeline.obtain_itens_empenhados_TG import obter_itens_empenhados_TG
 from config.config import CONFIG_APIS, CONFIG_ATAS, CONFIG_CONTRATOS, EXPORT_CONFIG, PIPELINE_CONFIG
 import argparse
 import os
@@ -310,6 +313,9 @@ def _modo_extrator_contratos_responsaveis() -> None:
         log_info("⚠️  Extração de responsáveis finalizada com %d falha(s).", falhas)
         sys.exit(1)
 
+def _modo_itens_empenhados_tg():
+    print("\n=== MODO: ITENS EMPENHADOS TG ===")
+    obter_itens_empenhados_TG()
 
 def _modo_extrator_compras() -> None:
     log_info("🚀 INICIANDO PIPELINE DE EXTRAÇÃO DE COMPRAS PÚBLICAS")
@@ -476,6 +482,8 @@ if __name__ == "__main__":
             _modo_extrator_contratos_responsaveis()
         elif args.modo == "transformer_contratos_resp":
             _modo_transformer_contratos_responsaveis()
+        elif args.modo == "itens_empenhados":
+            _modo_itens_empenhados_tg()
         else:
             _modo_extrator_compras()
     finally:

@@ -57,11 +57,16 @@ jobs:
           python main.py --modo extrator_contratos
           python main.py --modo extrator_contratos_resp
 
+      - name: Run itens empenhados module
+        run: |
+          python main.py --modo itens_empenhados
+
       - name: 💾 Salvar Bases Consolidadas no GitHub
         run: |
           git config --global user.name 'Michell-Bot'
           git config --global user.email 'tingolopes@gmail.com'
           git add data/*.csv
+          git add data/*.xlsx
           git commit -m "Auto-update Bases: $(date +'%Y-%m-%d %H:%M')" || exit 0
           git push
 
