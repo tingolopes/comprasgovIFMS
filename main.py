@@ -314,8 +314,9 @@ def _modo_extrator_contratos_responsaveis() -> None:
         sys.exit(1)
 
 def _modo_itens_empenhados_tg():
-    print("\n=== MODO: ITENS EMPENHADOS TG ===")
+    log_info("📦 OBTENDO ITENS EMPENHADOS DO GOOGLE DRIVE...")
     obter_itens_empenhados_TG()
+    log_info("✅ ITENS EMPENHADOS OBTIDOS E SALVOS")
 
 def _modo_extrator_compras() -> None:
     log_info("🚀 INICIANDO PIPELINE DE EXTRAÇÃO DE COMPRAS PÚBLICAS")
@@ -413,6 +414,7 @@ def _parse_args():
             "transformer_contratos",
             "extrator_contratos_resp",
             "transformer_contratos_resp",
+            "itens_empenhados",
         ],
         default="extrator_compras",
         help=(
@@ -431,7 +433,8 @@ def _parse_args():
             "extrator_contratos         → extrai contratos de todas as UASGs + gera contratos.csv\n"
             "transformer_contratos      → gera contratos.csv dos JSONs já baixados\n"
             "extrator_contratos_resp    → extrai responsáveis dos contratos + gera contratos_responsaveis.csv\n"
-            "transformer_contratos_resp → gera contratos_responsaveis.csv dos JSONs já baixados"
+            "transformer_contratos_resp → gera contratos_responsaveis.csv dos JSONs já baixados\n"
+            "itens_empenhados           → obtem os itens empenhados do Google Drive e salva em data/itens_empenhados_TG.xlsx\n"
         ),
     )
     return parser.parse_args()
