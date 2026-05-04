@@ -126,15 +126,24 @@ def consultar_api(url: str, params: dict, legado: bool = False) -> tuple[dict | 
         try:
             resp = requests.get(url, params=params,
                                 headers=HTTP_HEADERS, timeout=timeout)
+            
+            # Sucesso
             if resp.status_code == 200:
                 dados = resp.json()
                 if isinstance(dados, dict) and "resultado" in dados:
                     return dados, "SUCESSO"
-            elif resp.status_code == 429:
-                time.sleep(15 * tentativa)
+            
+            # Rate Limit ou Erro Temporário do Servidor (400 muitas vezes é instabilidade no PNCP)
+            elif resp.status_code in [400, 429, 500, 502, 503, 504]:
+                wait = (15 * tentativa) if resp.status_code == 429 else (5 * tentativa)
+                print(f"⚠️  Servidor retornou {resp.status_code} em {url}. Aguardando {wait}s (Tentativa {tentativa}/{tentativas})...")
+                time.sleep(wait)
                 continue
+
+        except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as exc:
+            print(f"⚠️  Tentativa {tentativa} falhou por rede ({url}): {exc}")
         except Exception as exc:
-            print(f"⚠️  Tentativa {tentativa} falhou ({url}): {exc}")
+            print(f"⚠️  Erro inesperado na tentativa {tentativa} ({url}): {exc}")
 
         time.sleep(atraso)
         atraso *= 2

@@ -1,0 +1,1102 @@
+07:30:47 | INFO     | 🚀 INICIANDO PIPELINE DE EXTRAÇÃO DE COMPRAS PÚBLICAS
+07:30:47 | INFO     | ============================================================
+07:30:47 | INFO     | ℹ️  Módulo LEGADO está desativado em config.config['CONFIG_APIS']['LEGADO']['executar_legado']; pulando extração.
+07:30:47 | INFO     | ▶ Módulo LEI 14.133 — 24 tarefas | 2 threads
+⚠️  Tentativa 1 falhou (https://dadosabertos.compras.gov.br/modulo-contratacoes/1_consultarContratacoes_PNCP_14133): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+07:31:34 | INFO     | ❌ FAIL | RT | PNCP-CONCORRENCIA     | 2021 | 1/24 (4.2%) | Falhas: 1
+07:31:44 | INFO     | ❌ FAIL | RT | PNCP-PREGAO           | 2021 | 2/24 (8.3%) | Falhas: 2
+07:32:01 | INFO     | ✅ DONE | RT | PNCP-DISPENSA         | 2021 | 3/24 (12.5%) | Falhas: 2
+07:32:04 | INFO     | ✅ DONE | RT | PNCP-INEXIGIBILIDADE  | 2021 | 4/24 (16.7%) | Falhas: 2
+07:32:21 | INFO     | ✅ DONE | RT | PNCP-PREGAO           | 2022 | 5/24 (20.8%) | Falhas: 2
+⚠️  Tentativa 1 falhou (https://dadosabertos.compras.gov.br/modulo-contratacoes/1_consultarContratacoes_PNCP_14133): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+07:32:41 | INFO     | ✅ DONE | RT | PNCP-CONCORRENCIA     | 2022 | 6/24 (25.0%) | Falhas: 2
+07:32:41 | INFO     | ✅ DONE | RT | PNCP-DISPENSA         | 2022 | 7/24 (29.2%) | Falhas: 2
+07:32:56 | INFO     | ✅ DONE | RT | PNCP-INEXIGIBILIDADE  | 2022 | 8/24 (33.3%) | Falhas: 2
+07:33:02 | INFO     | ✅ DONE | RT | PNCP-CONCORRENCIA     | 2023 | 9/24 (37.5%) | Falhas: 2
+07:33:05 | INFO     | ✅ DONE | RT | PNCP-PREGAO           | 2023 | 10/24 (41.7%) | Falhas: 2
+07:33:19 | INFO     | ✅ DONE | RT | PNCP-INEXIGIBILIDADE  | 2023 | 11/24 (45.8%) | Falhas: 2
+⚠️  Tentativa 1 falhou (https://dadosabertos.compras.gov.br/modulo-contratacoes/1_consultarContratacoes_PNCP_14133): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 2 falhou (https://dadosabertos.compras.gov.br/modulo-contratacoes/1_consultarContratacoes_PNCP_14133): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+07:34:07 | INFO     | ❌ FAIL | RT | PNCP-CONCORRENCIA     | 2024 | 12/24 (50.0%) | Falhas: 3
+07:34:09 | INFO     | ❌ FAIL | RT | PNCP-DISPENSA         | 2023 | 13/24 (54.2%) | Falhas: 4
+⚠️  Tentativa 2 falhou (https://dadosabertos.compras.gov.br/modulo-contratacoes/1_consultarContratacoes_PNCP_14133): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 2 falhou (https://dadosabertos.compras.gov.br/modulo-contratacoes/1_consultarContratacoes_PNCP_14133): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+07:35:04 | INFO     | ❌ FAIL | RT | PNCP-PREGAO           | 2024 | 14/24 (58.3%) | Falhas: 5
+07:35:06 | INFO     | ❌ FAIL | RT | PNCP-DISPENSA         | 2024 | 15/24 (62.5%) | Falhas: 6
+07:35:36 | INFO     | ✅ DONE | RT | PNCP-CONCORRENCIA     | 2025 | 16/24 (66.7%) | Falhas: 6
+⚠️  Tentativa 2 falhou (https://dadosabertos.compras.gov.br/modulo-contratacoes/1_consultarContratacoes_PNCP_14133): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 falhou (https://dadosabertos.compras.gov.br/modulo-contratacoes/1_consultarContratacoes_PNCP_14133): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+07:36:09 | INFO     | ❌ FAIL | RT | PNCP-INEXIGIBILIDADE  | 2024 | 17/24 (70.8%) | Falhas: 7
+07:36:32 | INFO     | ❌ FAIL | RT | PNCP-PREGAO           | 2025 | 18/24 (75.0%) | Falhas: 8
+⚠️  Tentativa 1 falhou (https://dadosabertos.compras.gov.br/modulo-contratacoes/1_consultarContratacoes_PNCP_14133): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+07:37:01 | INFO     | ✅ DONE | RT | PNCP-DISPENSA         | 2025 | 19/24 (79.2%) | Falhas: 8
+⚠️  Tentativa 1 falhou (https://dadosabertos.compras.gov.br/modulo-contratacoes/1_consultarContratacoes_PNCP_14133): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+07:37:15 | INFO     | ✅ DONE | RT | PNCP-CONCORRENCIA     | 2026 | 20/24 (83.3%) | Falhas: 8
+⚠️  Tentativa 2 falhou (https://dadosabertos.compras.gov.br/modulo-contratacoes/1_consultarContratacoes_PNCP_14133): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+07:37:39 | INFO     | ❌ FAIL | RT | PNCP-INEXIGIBILIDADE  | 2025 | 21/24 (87.5%) | Falhas: 9
+07:37:44 | INFO     | ✅ DONE | RT | PNCP-PREGAO           | 2026 | 22/24 (91.7%) | Falhas: 9
+⚠️  Tentativa 1 falhou (https://dadosabertos.compras.gov.br/modulo-contratacoes/1_consultarContratacoes_PNCP_14133): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+07:38:28 | INFO     | ✅ DONE | RT | PNCP-DISPENSA         | 2026 | 23/24 (95.8%) | Falhas: 9
+07:38:36 | INFO     | ✅ DONE | RT | PNCP-INEXIGIBILIDADE  | 2026 | 24/24 (100.0%) | Falhas: 9
+07:38:36 | INFO     |    Concluído — DONE: 15 | SKIP: 0 | FAIL: 9
+07:38:36 | INFO     | ============================================================
+07:38:36 | INFO     | 📊 RESUMO DA EXTRAÇÃO DE COMPRAS
+07:38:36 | INFO     |   Falhas Legado   : 0
+07:38:36 | INFO     |   Falhas Lei14133 : 9
+07:38:36 | INFO     |   SKIPs           : 0
+07:38:36 | INFO     | ============================================================
+07:38:36 | INFO     | 📤 GERANDO compras.csv...
+📂 415 arquivo(s) encontrado(s). Processando...
+
+✅ CSV gerado: data\compras.csv
+   IDs únicos     : 2360
+   Legado         : 1924
+   Lei 14.133     : 436
+   Com responsável: 2061
+   Sem objeto     : 0
+   Colunas        : 27
+07:38:38 | INFO     | ============================================================
+07:38:38 | INFO     | 🔩 INICIANDO EXTRAÇÃO DE ITENS
+🔍 Coletando ids de compras para montar a fila de itens...
+
+   IDs únicos     : 2360
+   Consultas prev.: 4672  (vs 9440 no modo bruto)
+   Já em cache    : 4667
+   A extrair      : 5
+   TOTAL fila     : 5
+
+🚀 INICIANDO EXTRAÇÃO DE ITENS | WORKERS: 3 | TOTAL: 5
+
+[07:39:02] 🌐 Consultando | 15813203900872026 | pncp p1...
+[07:39:02] 🌐 Consultando | 15813206000502026 | pncp p1...
+[07:39:02] 🌐 Consultando | 15813206000662026 | pncp p1...
+[07:39:17] ❌ ERRO_400 | 15813203900872026 | pncp | 1/5 (20.0%) | Falhas: 1
+[07:39:17] ❌ ERRO_400 | 15813206000662026 | pncp | 2/5 (40.0%) | Falhas: 2
+[07:39:17] 🌐 Consultando | 15813206000742026 | pncp p1...
+[07:39:17] 🌐 Consultando | 15813206000842026 | pncp p1...
+[07:39:22] ❌ ERRO_400 | 15813206000502026 | pncp | 3/5 (60.0%) | Falhas: 3
+[07:39:30] ❌ ERRO_400 | 15813206000742026 | pncp | 4/5 (80.0%) | Falhas: 4
+[07:39:30] ❌ ERRO_400 | 15813206000842026 | pncp | 5/5 (100.0%) | Falhas: 5
+
+✅ FIM | Falhas: 5 | SKIPs: 0
+07:39:30 | INFO     | ============================================================
+07:39:30 | INFO     | 📤 GERANDO compras_itens.csv...
+📂 6962 arquivo(s) de itens encontrado(s). Processando...
+
+✅ CSV gerado: data\compras_itens.csv
+   Itens únicos  : 27453
+   Legado        : 20870
+   Lei 14.133    : 6583
+   Colunas       : 33
+07:39:42 | INFO     | ============================================================
+07:39:42 | INFO     | 📋 INICIANDO EXTRAÇÃO DE ATAS
+   UASG      : RT (158132)
+   Anos      : 2023–2026
+   A extrair : 4
+
+🚀 INICIANDO EXTRAÇÃO DE ATAS | WORKERS: 3 | TOTAL: 4
+
+[07:40:02] ❌ ERRO_400 | RT | 2024 | 1/4 (25.0%) | Falhas: 1
+[07:40:02] ❌ ERRO_400 | RT | 2025 | 2/4 (50.0%) | Falhas: 2
+[07:40:02] ❌ ERRO_400 | RT | 2023 | 3/4 (75.0%) | Falhas: 3
+[07:40:20] ✅ DONE | RT | 2026 | 4/4 (100.0%) | Falhas: 3
+
+✅ FIM | Falhas: 3
+07:40:20 | INFO     | ============================================================
+07:40:20 | INFO     | 📤 GERANDO atas.csv...
+📂 4 arquivo(s) de atas encontrado(s). Processando...
+
+✅ CSV gerado: data\atas.csv
+   Atas únicas   : 18
+   Atas excluídas: 0
+   Colunas       : 22
+07:40:20 | INFO     | ============================================================
+07:40:20 | INFO     | 📦 INICIANDO EXTRAÇÃO DE ITENS DAS ATAS
+   UASG        : RT (158132)
+   Anos        : 2023–2027
+   Já em cache : 5
+   A extrair   : 0
+
+⏭️  Tudo em cache. Nada a extrair.
+07:40:20 | INFO     | ============================================================
+07:40:20 | INFO     | 📤 GERANDO atas_itens.csv...
+  ✅ Mapa de atas carregado: 9 compras | 18 atas conhecidas
+📂 9 arquivo(s) de itens de atas encontrado(s). Processando...
+  ⚠️  342 ata(s) ausente(s) do atas.csv — gerando esqueletos...
+    ➕ 10673078000120-1-000002/2024-000001 (ata 00010/2024)
+    ➕ 10673078000120-1-000007/2025-000001 (ata 00005/2025)
+    ➕ 10673078000120-1-000007/2025-000002 (ata 00006/2025)
+    ➕ 10673078000120-1-000007/2025-000003 (ata 00007/2025)
+    ➕ 10673078000120-1-000007/2025-000004 (ata 00008/2025)
+    ➕ 10673078000120-1-000007/2025-000005 (ata 00009/2025)
+    ➕ 10673078000120-1-000014/2024-000001 (ata 00015/2024)
+    ➕ 10673078000120-1-000014/2024-000002 (ata 00016/2024)
+    ➕ 10673078000120-1-000018/2025-000001 (ata 00016/2025)
+    ➕ 10673078000120-1-000020/2025-000001 (ata 00025/2025)
+    ➕ 10673078000120-1-000020/2025-000002 (ata 00026/2025)
+    ➕ 10673078000120-1-000020/2025-000003 (ata 00027/2025)
+    ➕ 10673078000120-1-000020/2025-000004 (ata 00028/2025)
+    ➕ 10673078000120-1-000020/2025-000005 (ata 00029/2025)
+    ➕ 10673078000120-1-000020/2025-000006 (ata 00030/2025)
+    ➕ 10673078000120-1-000020/2025-000007 (ata 00031/2025)
+    ➕ 10673078000120-1-000020/2025-000008 (ata 00032/2025)
+    ➕ 10673078000120-1-000020/2025-000009 (ata 00033/2025)
+    ➕ 10673078000120-1-000020/2025-000010 (ata 00034/2025)
+    ➕ 10673078000120-1-000020/2025-000011 (ata 00035/2025)
+    ➕ 10673078000120-1-000020/2025-000012 (ata 00036/2025)
+    ➕ 10673078000120-1-000020/2025-000013 (ata 00037/2025)
+    ➕ 10673078000120-1-000020/2025-000014 (ata 00038/2025)
+    ➕ 10673078000120-1-000020/2025-000015 (ata 00039/2025)
+    ➕ 10673078000120-1-000020/2025-000016 (ata 00040/2025)
+    ➕ 10673078000120-1-000020/2025-000017 (ata 00041/2025)
+    ➕ 10673078000120-1-000020/2025-000018 (ata 00042/2025)
+    ➕ 10673078000120-1-000020/2025-000019 (ata 00043/2025)
+    ➕ 10673078000120-1-000020/2025-000020 (ata 00044/2025)
+    ➕ 10673078000120-1-000020/2025-000021 (ata 00045/2025)
+    ➕ 10673078000120-1-000020/2025-000022 (ata 00046/2025)
+    ➕ 10673078000120-1-000023/2025-000001 (ata 00017/2025)
+    ➕ 10673078000120-1-000023/2025-000002 (ata 00018/2025)
+    ➕ 10673078000120-1-000023/2025-000003 (ata 00019/2025)
+    ➕ 10673078000120-1-000023/2025-000004 (ata 00020/2025)
+    ➕ 10673078000120-1-000023/2025-000005 (ata 00021/2025)
+    ➕ 10673078000120-1-000023/2025-000006 (ata 00022/2025)
+    ➕ 10673078000120-1-000023/2025-000007 (ata 00023/2025)
+    ➕ 10673078000120-1-000025/2025-000001 (ata 00015/2025)
+    ➕ 10673078000120-1-000026/2024-000001 (ata 00045/2024)
+    ➕ 10673078000120-1-000026/2024-000002 (ata 00048/2024)
+    ➕ 10673078000120-1-000026/2024-000003 (ata 00051/2024)
+    ➕ 10673078000120-1-000026/2024-000004 (ata 00054/2024)
+    ➕ 10673078000120-1-000026/2024-000005 (ata 00055/2024)
+    ➕ 10673078000120-1-000026/2024-000006 (ata 00052/2024)
+    ➕ 10673078000120-1-000026/2024-000007 (ata 00058/2024)
+    ➕ 10673078000120-1-000026/2024-000008 (ata 00053/2024)
+    ➕ 10673078000120-1-000026/2024-000009 (ata 00059/2024)
+    ➕ 10673078000120-1-000026/2024-000010 (ata 00049/2024)
+    ➕ 10673078000120-1-000026/2024-000011 (ata 00061/2024)
+    ➕ 10673078000120-1-000026/2024-000012 (ata 00062/2024)
+    ➕ 10673078000120-1-000026/2024-000013 (ata 00063/2024)
+    ➕ 10673078000120-1-000026/2024-000014 (ata 00065/2024)
+    ➕ 10673078000120-1-000026/2024-000015 (ata 00066/2024)
+    ➕ 10673078000120-1-000026/2024-000016 (ata 00067/2024)
+    ➕ 10673078000120-1-000026/2024-000017 (ata 00068/2024)
+    ➕ 10673078000120-1-000026/2024-000018 (ata 00069/2024)
+    ➕ 10673078000120-1-000026/2024-000019 (ata 00046/2024)
+    ➕ 10673078000120-1-000026/2024-000020 (ata 00047/2024)
+    ➕ 10673078000120-1-000026/2024-000021 (ata 00056/2024)
+    ➕ 10673078000120-1-000026/2024-000022 (ata 00057/2024)
+    ➕ 10673078000120-1-000026/2024-000023 (ata 00070/2024)
+    ➕ 10673078000120-1-000026/2024-000024 (ata 00060/2024)
+    ➕ 10673078000120-1-000026/2024-000025 (ata 00064/2024)
+    ➕ 10673078000120-1-000026/2024-000026 (ata 00050/2024)
+    ➕ 10673078000120-1-000028/2024-000001 (ata 00013/2024)
+    ➕ 10673078000120-1-000028/2024-000002 (ata 00014/2024)
+    ➕ 10673078000120-1-000030/2023-000001 (ata 00002/2023)
+    ➕ 10673078000120-1-000030/2023-000002 (ata 00003/2023)
+    ➕ 10673078000120-1-000030/2023-000003 (ata 00004/2023)
+    ➕ 10673078000120-1-000030/2023-000004 (ata 00005/2023)
+    ➕ 10673078000120-1-000030/2023-000005 (ata 00006/2023)
+    ➕ 10673078000120-1-000030/2023-000006 (ata 00007/2023)
+    ➕ 10673078000120-1-000030/2023-000007 (ata 00008/2023)
+    ➕ 10673078000120-1-000030/2023-000008 (ata 00009/2023)
+    ➕ 10673078000120-1-000030/2023-000009 (ata 00010/2023)
+    ➕ 10673078000120-1-000030/2023-000010 (ata 00011/2023)
+    ➕ 10673078000120-1-000030/2023-000011 (ata 00012/2023)
+    ➕ 10673078000120-1-000030/2023-000012 (ata 00013/2023)
+    ➕ 10673078000120-1-000030/2023-000013 (ata 00014/2023)
+    ➕ 10673078000120-1-000030/2023-000014 (ata 00015/2023)
+    ➕ 10673078000120-1-000030/2023-000015 (ata 00016/2023)
+    ➕ 10673078000120-1-000030/2023-000016 (ata 00017/2023)
+    ➕ 10673078000120-1-000030/2023-000017 (ata 00018/2023)
+    ➕ 10673078000120-1-000030/2023-000018 (ata 00019/2023)
+    ➕ 10673078000120-1-000034/2024-000001 (ata 00018/2024)
+    ➕ 10673078000120-1-000034/2024-000002 (ata 00019/2024)
+    ➕ 10673078000120-1-000034/2024-000003 (ata 00021/2024)
+    ➕ 10673078000120-1-000034/2024-000004 (ata 00023/2024)
+    ➕ 10673078000120-1-000034/2024-000005 (ata 00028/2024)
+    ➕ 10673078000120-1-000034/2024-000006 (ata 00031/2024)
+    ➕ 10673078000120-1-000034/2024-000007 (ata 00034/2024)
+    ➕ 10673078000120-1-000034/2024-000008 (ata 00020/2024)
+    ➕ 10673078000120-1-000034/2024-000009 (ata 00017/2024)
+    ➕ 10673078000120-1-000034/2024-000010 (ata 00022/2024)
+    ➕ 10673078000120-1-000034/2024-000011 (ata 00026/2024)
+    ➕ 10673078000120-1-000034/2024-000012 (ata 00029/2024)
+    ➕ 10673078000120-1-000034/2024-000013 (ata 00032/2024)
+    ➕ 10673078000120-1-000034/2024-000014 (ata 00033/2024)
+    ➕ 10673078000120-1-000034/2024-000015 (ata 00025/2024)
+    ➕ 10673078000120-1-000034/2024-000016 (ata 00035/2024)
+    ➕ 10673078000120-1-000034/2024-000017 (ata 00036/2024)
+    ➕ 10673078000120-1-000034/2024-000018 (ata 00037/2024)
+    ➕ 10673078000120-1-000034/2024-000019 (ata 00038/2024)
+    ➕ 10673078000120-1-000034/2024-000020 (ata 00027/2024)
+    ➕ 10673078000120-1-000034/2024-000021 (ata 00039/2024)
+    ➕ 10673078000120-1-000034/2024-000022 (ata 00024/2024)
+    ➕ 10673078000120-1-000034/2024-000023 (ata 00030/2024)
+    ➕ 10673078000120-1-000034/2025-000001 (ata 00058/2025)
+    ➕ 10673078000120-1-000034/2025-000002 (ata 00057/2025)
+    ➕ 10673078000120-1-000036/2024-000001 (ata 00073/2024)
+    ➕ 10673078000120-1-000036/2024-000002 (ata 00074/2024)
+    ➕ 10673078000120-1-000036/2024-000003 (ata 00072/2024)
+    ➕ 10673078000120-1-000036/2024-000004 (ata 00118/2025)
+    ➕ 10673078000120-1-000038/2024-000001 (ata 00044/2024)
+    ➕ 10673078000120-1-000038/2024-000002 (ata 00043/2024)
+    ➕ 10673078000120-1-000038/2024-000003 (ata 00042/2024)
+    ➕ 10673078000120-1-000038/2024-000004 (ata 00041/2024)
+    ➕ 10673078000120-1-000038/2024-000005 (ata 00024/2025)
+    ➕ 10673078000120-1-000039/2025-000001 (ata 00078/2025)
+    ➕ 10673078000120-1-000039/2025-000002 (ata 00079/2025)
+    ➕ 10673078000120-1-000039/2025-000003 (ata 00080/2025)
+    ➕ 10673078000120-1-000039/2025-000004 (ata 00081/2025)
+    ➕ 10673078000120-1-000039/2025-000005 (ata 00082/2025)
+    ➕ 10673078000120-1-000039/2025-000006 (ata 00083/2025)
+    ➕ 10673078000120-1-000039/2025-000007 (ata 00084/2025)
+    ➕ 10673078000120-1-000039/2025-000008 (ata 00085/2025)
+    ➕ 10673078000120-1-000039/2025-000009 (ata 00086/2025)
+    ➕ 10673078000120-1-000039/2025-000010 (ata 00087/2025)
+    ➕ 10673078000120-1-000039/2025-000011 (ata 00088/2025)
+    ➕ 10673078000120-1-000039/2025-000012 (ata 00089/2025)
+    ➕ 10673078000120-1-000039/2025-000013 (ata 00090/2025)
+    ➕ 10673078000120-1-000039/2025-000014 (ata 00091/2025)
+    ➕ 10673078000120-1-000039/2025-000015 (ata 00092/2025)
+    ➕ 10673078000120-1-000039/2025-000016 (ata 00093/2025)
+    ➕ 10673078000120-1-000039/2025-000017 (ata 00094/2025)
+    ➕ 10673078000120-1-000039/2025-000018 (ata 00095/2025)
+    ➕ 10673078000120-1-000039/2025-000019 (ata 00096/2025)
+    ➕ 10673078000120-1-000041/2025-000001 (ata 00056/2025)
+    ➕ 10673078000120-1-000043/2024-000001 (ata 00071/2024)
+    ➕ 10673078000120-1-000047/2023-000001 (ata 00001/2023)
+    ➕ 10673078000120-1-000047/2025-000001 (ata 00062/2025)
+    ➕ 10673078000120-1-000047/2025-000002 (ata 00063/2025)
+    ➕ 10673078000120-1-000052/2023-000001 (ata 00020/2023)
+    ➕ 10673078000120-1-000052/2024-000001 (ata 00080/2024)
+    ➕ 10673078000120-1-000052/2024-000002 (ata 00081/2024)
+    ➕ 10673078000120-1-000054/2025-000001 (ata 00116/2025)
+    ➕ 10673078000120-1-000056/2024-000001 (ata 00075/2024)
+    ➕ 10673078000120-1-000056/2024-000002 (ata 00076/2024)
+    ➕ 10673078000120-1-000056/2024-000003 (ata 00077/2024)
+    ➕ 10673078000120-1-000056/2024-000004 (ata 00078/2024)
+    ➕ 10673078000120-1-000056/2024-000005 (ata 00079/2024)
+    ➕ 10673078000120-1-000056/2025-000001 (ata 00065/2025)
+    ➕ 10673078000120-1-000056/2025-000002 (ata 00066/2025)
+    ➕ 10673078000120-1-000056/2025-000003 (ata 00067/2025)
+    ➕ 10673078000120-1-000056/2025-000004 (ata 00068/2025)
+    ➕ 10673078000120-1-000056/2025-000005 (ata 00069/2025)
+    ➕ 10673078000120-1-000056/2025-000006 (ata 00070/2025)
+    ➕ 10673078000120-1-000056/2025-000007 (ata 00071/2025)
+    ➕ 10673078000120-1-000056/2025-000008 (ata 00072/2025)
+    ➕ 10673078000120-1-000056/2025-000009 (ata 00073/2025)
+    ➕ 10673078000120-1-000056/2025-000010 (ata 00074/2025)
+    ➕ 10673078000120-1-000056/2025-000011 (ata 00075/2025)
+    ➕ 10673078000120-1-000056/2025-000012 (ata 00076/2025)
+    ➕ 10673078000120-1-000056/2025-000013 (ata 00077/2025)
+    ➕ 10673078000120-1-000056/2025-000014 (ata 00097/2025)
+    ➕ 10673078000120-1-000056/2025-000015 (ata 00114/2025)
+    ➕ 10673078000120-1-000056/2025-000016 (ata 00064/2025)
+    ➕ 10673078000120-1-000057/2023-000001 (ata 00022/2023)
+    ➕ 10673078000120-1-000057/2023-000002 (ata 00021/2023)
+    ➕ 10673078000120-1-000057/2023-000003 (ata 00023/2023)
+    ➕ 10673078000120-1-000057/2023-000004 (ata 00026/2023)
+    ➕ 10673078000120-1-000057/2023-000005 (ata 00028/2023)
+    ➕ 10673078000120-1-000057/2023-000006 (ata 00027/2023)
+    ➕ 10673078000120-1-000057/2023-000007 (ata 00024/2023)
+    ➕ 10673078000120-1-000057/2023-000008 (ata 00025/2023)
+    ➕ 10673078000120-1-000057/2023-000009 (ata 00004/2024)
+    ➕ 10673078000120-1-000058/2025-000001 (ata 00098/2025)
+    ➕ 10673078000120-1-000058/2025-000002 (ata 00099/2025)
+    ➕ 10673078000120-1-000058/2025-000003 (ata 00101/2025)
+    ➕ 10673078000120-1-000058/2025-000004 (ata 00103/2025)
+    ➕ 10673078000120-1-000058/2025-000005 (ata 00104/2025)
+    ➕ 10673078000120-1-000058/2025-000006 (ata 00105/2025)
+    ➕ 10673078000120-1-000058/2025-000007 (ata 00106/2025)
+    ➕ 10673078000120-1-000058/2025-000008 (ata 00107/2025)
+    ➕ 10673078000120-1-000058/2025-000009 (ata 00108/2025)
+    ➕ 10673078000120-1-000058/2025-000010 (ata 00109/2025)
+    ➕ 10673078000120-1-000058/2025-000011 (ata 00110/2025)
+    ➕ 10673078000120-1-000058/2025-000012 (ata 00111/2025)
+    ➕ 10673078000120-1-000058/2025-000013 (ata 00100/2025)
+    ➕ 10673078000120-1-000058/2025-000014 (ata 00102/2025)
+    ➕ 10673078000120-1-000058/2025-000015 (ata 00112/2025)
+    ➕ 10673078000120-1-000062/2025-000001 (ata 00060/2025)
+    ➕ 10673078000120-1-000062/2025-000002 (ata 00061/2025)
+    ➕ 10673078000120-1-000062/2025-000003 (ata 00113/2025)
+    ➕ 10673078000120-1-000065/2025-000001 (ata 00059/2025)
+    ➕ 10673078000120-1-000068/2023-000001 (ata 00029/2023)
+    ➕ 10673078000120-1-000068/2023-000002 (ata 00030/2023)
+    ➕ 10673078000120-1-000068/2023-000003 (ata 00031/2023)
+    ➕ 10673078000120-1-000068/2023-000004 (ata 00032/2023)
+    ➕ 10673078000120-1-000068/2023-000005 (ata 00033/2023)
+    ➕ 10673078000120-1-000068/2023-000006 (ata 00034/2023)
+    ➕ 10673078000120-1-000068/2023-000007 (ata 00035/2023)
+    ➕ 10673078000120-1-000068/2023-000008 (ata 00036/2023)
+    ➕ 10673078000120-1-000068/2023-000009 (ata 00037/2023)
+    ➕ 10673078000120-1-000068/2023-000010 (ata 00038/2023)
+    ➕ 10673078000120-1-000068/2023-000011 (ata 00039/2023)
+    ➕ 10673078000120-1-000068/2023-000012 (ata 00040/2023)
+    ➕ 10673078000120-1-000068/2023-000013 (ata 00003/2024)
+    ➕ 10673078000120-1-000068/2025-000001 (ata 00115/2025)
+    ➕ 10673078000120-1-000069/2025-000001 (ata 00011/2025)
+    ➕ 10673078000120-1-000069/2025-000002 (ata 00010/2025)
+    ➕ 10673078000120-1-000070/2024-000001 (ata 00082/2024)
+    ➕ 10673078000120-1-000070/2024-000002 (ata 00100/2024)
+    ➕ 10673078000120-1-000070/2024-000003 (ata 00099/2024)
+    ➕ 10673078000120-1-000070/2024-000004 (ata 00098/2024)
+    ➕ 10673078000120-1-000070/2024-000005 (ata 00101/2024)
+    ➕ 10673078000120-1-000070/2024-000006 (ata 00821/2024)
+    ➕ 10673078000120-1-000070/2024-000007 (ata 00097/2024)
+    ➕ 10673078000120-1-000072/2024-000001 (ata 00084/2024)
+    ➕ 10673078000120-1-000072/2024-000002 (ata 00085/2024)
+    ➕ 10673078000120-1-000072/2024-000003 (ata 00086/2024)
+    ➕ 10673078000120-1-000072/2024-000004 (ata 00087/2024)
+    ➕ 10673078000120-1-000072/2024-000005 (ata 00088/2024)
+    ➕ 10673078000120-1-000072/2024-000006 (ata 00089/2024)
+    ➕ 10673078000120-1-000072/2024-000007 (ata 00090/2024)
+    ➕ 10673078000120-1-000072/2024-000008 (ata 00091/2024)
+    ➕ 10673078000120-1-000072/2024-000009 (ata 00092/2024)
+    ➕ 10673078000120-1-000072/2024-000010 (ata 00093/2024)
+    ➕ 10673078000120-1-000072/2024-000011 (ata 00094/2024)
+    ➕ 10673078000120-1-000072/2024-000012 (ata 00095/2024)
+    ➕ 10673078000120-1-000072/2024-000013 (ata 00096/2024)
+    ➕ 10673078000120-1-000074/2025-000001 (ata 00131/2025)
+    ➕ 10673078000120-1-000074/2025-000002 (ata 00132/2025)
+    ➕ 10673078000120-1-000074/2025-000003 (ata 00133/2025)
+    ➕ 10673078000120-1-000074/2025-000004 (ata 00134/2025)
+    ➕ 10673078000120-1-000074/2025-000005 (ata 00135/2025)
+    ➕ 10673078000120-1-000074/2025-000006 (ata 00136/2025)
+    ➕ 10673078000120-1-000074/2025-000007 (ata 00137/2025)
+    ➕ 10673078000120-1-000074/2025-000008 (ata 00138/2025)
+    ➕ 10673078000120-1-000074/2025-000009 (ata 00139/2025)
+    ➕ 10673078000120-1-000074/2025-000010 (ata 00140/2025)
+    ➕ 10673078000120-1-000074/2025-000011 (ata 00141/2025)
+    ➕ 10673078000120-1-000074/2025-000012 (ata 00142/2025)
+    ➕ 10673078000120-1-000074/2025-000013 (ata 00143/2025)
+    ➕ 10673078000120-1-000074/2025-000014 (ata 00144/2025)
+    ➕ 10673078000120-1-000074/2025-000015 (ata 00145/2025)
+    ➕ 10673078000120-1-000074/2025-000016 (ata 00146/2025)
+    ➕ 10673078000120-1-000074/2025-000017 (ata 00147/2025)
+    ➕ 10673078000120-1-000074/2025-000018 (ata 00148/2025)
+    ➕ 10673078000120-1-000074/2025-000019 (ata 00149/2025)
+    ➕ 10673078000120-1-000074/2025-000020 (ata 00150/2025)
+    ➕ 10673078000120-1-000074/2025-000021 (ata 00151/2025)
+    ➕ 10673078000120-1-000074/2025-000022 (ata 00152/2025)
+    ➕ 10673078000120-1-000074/2025-000023 (ata 00153/2025)
+    ➕ 10673078000120-1-000074/2025-000024 (ata 00154/2025)
+    ➕ 10673078000120-1-000074/2025-000025 (ata 00155/2025)
+    ➕ 10673078000120-1-000074/2025-000026 (ata 00156/2025)
+    ➕ 10673078000120-1-000074/2025-000027 (ata 00157/2025)
+    ➕ 10673078000120-1-000074/2025-000028 (ata 00158/2025)
+    ➕ 10673078000120-1-000074/2025-000029 (ata 00159/2025)
+    ➕ 10673078000120-1-000074/2025-000030 (ata 00160/2025)
+    ➕ 10673078000120-1-000074/2025-000031 (ata 00161/2025)
+    ➕ 10673078000120-1-000074/2025-000032 (ata 00162/2025)
+    ➕ 10673078000120-1-000074/2025-000033 (ata 00163/2025)
+    ➕ 10673078000120-1-000074/2025-000034 (ata 00164/2025)
+    ➕ 10673078000120-1-000074/2025-000035 (ata 00165/2025)
+    ➕ 10673078000120-1-000075/2025-000001 (ata 00263/2025)
+    ➕ 10673078000120-1-000075/2025-000002 (ata 99263/2025)
+    ➕ 10673078000120-1-000076/2023-000001 (ata 00001/2024)
+    ➕ 10673078000120-1-000076/2023-000002 (ata 00002/2024)
+    ➕ 10673078000120-1-000076/2025-000001 (ata 00121/2025)
+    ➕ 10673078000120-1-000076/2025-000002 (ata 00122/2025)
+    ➕ 10673078000120-1-000076/2025-000003 (ata 00123/2025)
+    ➕ 10673078000120-1-000076/2025-000004 (ata 00124/2025)
+    ➕ 10673078000120-1-000076/2025-000005 (ata 00126/2025)
+    ➕ 10673078000120-1-000076/2025-000006 (ata 00127/2025)
+    ➕ 10673078000120-1-000076/2025-000007 (ata 00128/2025)
+    ➕ 10673078000120-1-000076/2025-000008 (ata 00129/2025)
+    ➕ 10673078000120-1-000076/2025-000009 (ata 00130/2025)
+    ➕ 10673078000120-1-000077/2025-000015 (ata 00189/2025)
+    ➕ 10673078000120-1-000077/2025-000016 (ata 00193/2025)
+    ➕ 10673078000120-1-000077/2025-000018 (ata 00195/2025)
+    ➕ 10673078000120-1-000077/2025-000019 (ata 00201/2025)
+    ➕ 10673078000120-1-000078/2025-000001 (ata 00170/2025)
+    ➕ 10673078000120-1-000078/2025-000002 (ata 00171/2025)
+    ➕ 10673078000120-1-000078/2025-000003 (ata 00172/2025)
+    ➕ 10673078000120-1-000078/2025-000004 (ata 00173/2025)
+    ➕ 10673078000120-1-000078/2025-000005 (ata 00174/2025)
+    ➕ 10673078000120-1-000078/2025-000006 (ata 00175/2025)
+    ➕ 10673078000120-1-000078/2025-000007 (ata 00177/2025)
+    ➕ 10673078000120-1-000078/2025-000008 (ata 00178/2025)
+    ➕ 10673078000120-1-000078/2025-000009 (ata 00179/2025)
+    ➕ 10673078000120-1-000078/2025-000010 (ata 00180/2025)
+    ➕ 10673078000120-1-000078/2025-000011 (ata 00181/2025)
+    ➕ 10673078000120-1-000078/2025-000012 (ata 00182/2025)
+    ➕ 10673078000120-1-000080/2024-000001 (ata 90014/2024)
+    ➕ 10673078000120-1-000080/2024-000003 (ata 91400/2024)
+    ➕ 10673078000120-1-000080/2025-000001 (ata 00125/2025)
+    ➕ 10673078000120-1-000082/2025-000001 (ata 00117/2025)
+    ➕ 10673078000120-1-000087/2024-000001 (ata 00102/2024)
+    ➕ 10673078000120-1-000087/2025-000001 (ata 00210/2025)
+    ➕ 10673078000120-1-000092/2023-000001 (ata 00005/2024)
+    ➕ 10673078000120-1-000092/2024-000001 (ata 00001/2025)
+    ➕ 10673078000120-1-000094/2023-000001 (ata 00011/2024)
+    ➕ 10673078000120-1-000094/2023-000002 (ata 00055/2025)
+    ➕ 10673078000120-1-000095/2023-000001 (ata 00006/2024)
+    ➕ 10673078000120-1-000095/2023-000002 (ata 00007/2024)
+    ➕ 10673078000120-1-000095/2023-000003 (ata 00008/2024)
+    ➕ 10673078000120-1-000095/2023-000004 (ata 00009/2024)
+    ➕ 10673078000120-1-000096/2023-000001 (ata 00131/2023)
+    ➕ 10673078000120-1-000096/2025-000001 (ata 00208/2025)
+    ➕ 10673078000120-1-000096/2025-000002 (ata 00209/2025)
+    ➕ 10673078000120-1-000096/2025-000003 (ata 00205/2025)
+    ➕ 10673078000120-1-000096/2025-000004 (ata 00207/2025)
+    ➕ 10673078000120-1-000096/2025-000005 (ata 00206/2025)
+    ➕ 10673078000120-1-000097/2023-000001 (ata 00012/2024)
+    ➕ 10673078000120-1-000097/2025-000001 (ata 00167/2025)
+    ➕ 10673078000120-1-000097/2025-000002 (ata 00169/2025)
+    ➕ 10673078000120-1-000097/2025-000003 (ata 00168/2025)
+    ➕ 10673078000120-1-000097/2025-000004 (ata 00166/2025)
+    ➕ 10673078000120-1-000097/2025-000005 (ata 00183/2025)
+    ➕ 10673078000120-1-000097/2025-000006 (ata 00184/2025)
+    ➕ 10673078000120-1-000100/2023-000001 (ata 00083/2024)
+    ➕ 10673078000120-1-000101/2024-000001 (ata 00047/2025)
+    ➕ 10673078000120-1-000101/2024-000002 (ata 00048/2025)
+    ➕ 10673078000120-1-000101/2024-000003 (ata 00049/2025)
+    ➕ 10673078000120-1-000101/2024-000004 (ata 00050/2025)
+    ➕ 10673078000120-1-000101/2024-000005 (ata 00120/2025)
+    ➕ 10673078000120-1-000101/2024-000006 (ata 00119/2025)
+    ➕ 10673078000120-1-000103/2025-000001 (ata 00215/2025)
+    ➕ 10673078000120-1-000103/2025-000002 (ata 00213/2025)
+    ➕ 10673078000120-1-000103/2025-000003 (ata 00214/2025)
+    ➕ 10673078000120-1-000103/2025-000004 (ata 00212/2025)
+    ➕ 10673078000120-1-000112/2025-000001 (ata 00211/2025)
+    ➕ 10673078000120-1-000127/2024-000001 (ata 00002/2025)
+    ➕ 10673078000120-1-000127/2024-000002 (ata 00003/2025)
+    ➕ 10673078000120-1-000137/2024-000001 (ata 00004/2025)
+    ➕ 10673078000120-1-000139/2024-000001 (ata 00051/2025)
+    ➕ 10673078000120-1-000139/2024-000002 (ata 00052/2025)
+    ➕ 10673078000120-1-000139/2024-000003 (ata 00053/2025)
+    ➕ 10673078000120-1-000139/2024-000004 (ata 00054/2025)
+  💾 atas_manuais.json salvo: 342 ata(s) total (342 nova(s))
+
+🔄 Regenerando atas.csv com as novas entradas manuais...
+📂 5 arquivo(s) de atas encontrado(s). Processando...
+
+✅ CSV gerado: data\atas.csv
+   Atas únicas   : 360
+   Atas excluídas: 0
+   Colunas       : 22
+  ✅ Mapa de atas carregado: 62 compras | 360 atas conhecidas
+
+
+✅ CSV gerado: data\atas_itens.csv
+   Itens únicos     : 2961
+   Material         : 2406
+   Serviço          : 555
+   Excluídos        : 0
+   Sem id_compra    : 214
+   Sem numero_compra: 214
+   Colunas          : 35
+07:40:21 | INFO     | ============================================================
+07:40:21 | INFO     | 💰 INICIANDO EXTRAÇÃO DE SALDOS DAS ATAS
+   UASG             : RT (158132)
+   Validade cache   : 3 dias
+   A extrair/atualizar: 360
+
+🚀 INICIANDO EXTRAÇÃO DE SALDOS | WORKERS: 3 | TOTAL: 360
+
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 3 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 3 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 3 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 4 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 4 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 4 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 5 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 5 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 5 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[07:44:20] ✅ DONE | RT | 00001/2024 | 1/360 (0.3%) | Falhas: 0
+[07:44:22] ❌ ERRO_400 | RT | 00001/2025 | 2/360 (0.6%) | Falhas: 1
+[07:44:30] ✅ DONE | RT | 00001/2023 | 3/360 (0.8%) | Falhas: 1
+[07:44:42] ❌ ERRO_400 | RT | 00002/2023 | 4/360 (1.1%) | Falhas: 2
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[07:45:06] ✅ DONE | RT | 00001/2026 | 5/360 (1.4%) | Falhas: 2
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[07:45:16] ✅ DONE | RT | 00002/2026 | 6/360 (1.7%) | Falhas: 2
+[07:45:18] ✅ DONE | RT | 00002/2025 | 7/360 (1.9%) | Falhas: 2
+[07:45:19] ✅ DONE | RT | 00003/2023 | 8/360 (2.2%) | Falhas: 2
+[07:45:31] ✅ DONE | RT | 00003/2024 | 9/360 (2.5%) | Falhas: 2
+[07:45:32] ✅ DONE | RT | 00003/2025 | 10/360 (2.8%) | Falhas: 2
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 3 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[07:46:24] ❌ ERRO_400 | RT | 00003/2026 | 11/360 (3.1%) | Falhas: 3
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[07:46:36] ✅ DONE | RT | 00002/2024 | 12/360 (3.3%) | Falhas: 3
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[07:47:01] ✅ DONE | RT | 00004/2023 | 13/360 (3.6%) | Falhas: 3
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[07:47:12] ✅ DONE | RT | 00004/2024 | 14/360 (3.9%) | Falhas: 3
+[07:47:22] ❌ ERRO_400 | RT | 00004/2026 | 15/360 (4.2%) | Falhas: 4
+[07:47:24] ✅ DONE | RT | 00004/2025 | 16/360 (4.4%) | Falhas: 4
+[07:47:36] ✅ DONE | RT | 00005/2024 | 17/360 (4.7%) | Falhas: 4
+[07:47:40] ✅ DONE | RT | 00005/2023 | 18/360 (5.0%) | Falhas: 4
+[07:47:42] ✅ DONE | RT | 00005/2025 | 19/360 (5.3%) | Falhas: 4
+[07:47:56] ✅ DONE | RT | 00005/2026 | 20/360 (5.6%) | Falhas: 4
+[07:48:01] ✅ DONE | RT | 00006/2023 | 21/360 (5.8%) | Falhas: 4
+[07:48:06] ✅ DONE | RT | 00006/2024 | 22/360 (6.1%) | Falhas: 4
+[07:48:22] ❌ ERRO_400 | RT | 00006/2026 | 23/360 (6.4%) | Falhas: 5
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[07:48:35] ✅ DONE | RT | 00007/2023 | 24/360 (6.7%) | Falhas: 5
+[07:48:42] ❌ ERRO_400 | RT | 00007/2024 | 25/360 (6.9%) | Falhas: 6
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[07:49:03] ❌ ERRO_400 | RT | 00007/2026 | 26/360 (7.2%) | Falhas: 7
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[07:49:27] ✅ DONE | RT | 00008/2023 | 27/360 (7.5%) | Falhas: 7
+⚠️  Tentativa 3 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[07:49:42] ✅ DONE | RT | 00007/2025 | 28/360 (7.8%) | Falhas: 7
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 4 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[07:50:48] ❌ ERRO_400 | RT | 00006/2025 | 29/360 (8.1%) | Falhas: 8
+[07:50:55] ❌ ERRO_400 | RT | 00008/2024 | 30/360 (8.3%) | Falhas: 9
+[07:51:09] ❌ ERRO_400 | RT | 00008/2026 | 31/360 (8.6%) | Falhas: 10
+[07:51:09] ❌ ERRO_400 | RT | 00008/2025 | 32/360 (8.9%) | Falhas: 11
+[07:51:15] ❌ ERRO_400 | RT | 00009/2023 | 33/360 (9.2%) | Falhas: 12
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[07:52:02] ❌ ERRO_400 | RT | 00009/2024 | 34/360 (9.4%) | Falhas: 13
+[07:52:02] ❌ ERRO_400 | RT | 00009/2025 | 35/360 (9.7%) | Falhas: 14
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[07:52:22] ❌ ERRO_400 | RT | 00010/2023 | 36/360 (10.0%) | Falhas: 15
+[07:52:22] ❌ ERRO_400 | RT | 00010/2024 | 37/360 (10.3%) | Falhas: 16
+[07:52:43] ❌ ERRO_400 | RT | 00010/2025 | 38/360 (10.6%) | Falhas: 17
+[07:52:45] ✅ DONE | RT | 00009/2026 | 39/360 (10.8%) | Falhas: 17
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[07:53:07] ✅ DONE | RT | 00011/2024 | 40/360 (11.1%) | Falhas: 17
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[07:53:22] ✅ DONE | RT | 00010/2026 | 41/360 (11.4%) | Falhas: 17
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[07:53:39] ✅ DONE | RT | 00011/2026 | 42/360 (11.7%) | Falhas: 17
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[07:54:00] ❌ ERRO_400 | RT | 00012/2023 | 43/360 (11.9%) | Falhas: 18
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[07:54:10] ❌ ERRO_400 | RT | 00011/2023 | 44/360 (12.2%) | Falhas: 19
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[07:54:34] ❌ ERRO_400 | RT | 00011/2025 | 45/360 (12.5%) | Falhas: 20
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[07:54:53] ❌ ERRO_400 | RT | 00012/2024 | 46/360 (12.8%) | Falhas: 21
+[07:54:54] ❌ ERRO_400 | RT | 00013/2023 | 47/360 (13.1%) | Falhas: 22
+[07:55:13] ❌ ERRO_400 | RT | 00013/2024 | 48/360 (13.3%) | Falhas: 23
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[07:55:15] ❌ ERRO_400 | RT | 00013/2026 | 49/360 (13.6%) | Falhas: 24
+[07:55:34] ❌ ERRO_400 | RT | 00014/2023 | 50/360 (13.9%) | Falhas: 25
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 3 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[07:55:54] ❌ ERRO_400 | RT | 00014/2026 | 51/360 (14.2%) | Falhas: 26
+[07:56:08] ❌ ERRO_400 | RT | 00014/2024 | 52/360 (14.4%) | Falhas: 27
+[07:56:14] ❌ ERRO_400 | RT | 00015/2023 | 53/360 (14.7%) | Falhas: 28
+[07:56:16] ❌ ERRO_400 | RT | 00012/2026 | 54/360 (15.0%) | Falhas: 29
+[07:56:28] ❌ ERRO_400 | RT | 00015/2024 | 55/360 (15.3%) | Falhas: 30
+[07:56:35] ❌ ERRO_400 | RT | 00015/2025 | 56/360 (15.6%) | Falhas: 31
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[07:56:49] ❌ ERRO_400 | RT | 00016/2023 | 57/360 (15.8%) | Falhas: 32
+[07:56:55] ❌ ERRO_400 | RT | 00016/2024 | 58/360 (16.1%) | Falhas: 33
+[07:57:09] ❌ ERRO_400 | RT | 00015/2026 | 59/360 (16.4%) | Falhas: 34
+[07:57:09] ❌ ERRO_400 | RT | 00016/2025 | 60/360 (16.7%) | Falhas: 35
+[07:57:16] ❌ ERRO_400 | RT | 00016/2026 | 61/360 (16.9%) | Falhas: 36
+[07:57:29] ❌ ERRO_400 | RT | 00017/2023 | 62/360 (17.2%) | Falhas: 37
+[07:57:30] ❌ ERRO_400 | RT | 00017/2024 | 63/360 (17.5%) | Falhas: 38
+[07:57:36] ❌ ERRO_400 | RT | 00017/2025 | 64/360 (17.8%) | Falhas: 39
+[07:57:50] ❌ ERRO_400 | RT | 00018/2023 | 65/360 (18.1%) | Falhas: 40
+[07:57:50] ❌ ERRO_400 | RT | 00018/2024 | 66/360 (18.3%) | Falhas: 41
+[07:57:57] ❌ ERRO_400 | RT | 00018/2025 | 67/360 (18.6%) | Falhas: 42
+[07:58:10] ❌ ERRO_400 | RT | 00019/2023 | 68/360 (18.9%) | Falhas: 43
+[07:58:11] ❌ ERRO_400 | RT | 00019/2024 | 69/360 (19.2%) | Falhas: 44
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[07:58:31] ❌ ERRO_400 | RT | 00020/2023 | 70/360 (19.4%) | Falhas: 45
+[07:58:31] ❌ ERRO_400 | RT | 00020/2024 | 71/360 (19.7%) | Falhas: 46
+[07:58:50] ❌ ERRO_400 | RT | 00019/2025 | 72/360 (20.0%) | Falhas: 47
+[07:58:51] ❌ ERRO_400 | RT | 00021/2023 | 73/360 (20.3%) | Falhas: 48
+[07:58:51] ❌ ERRO_400 | RT | 00020/2025 | 74/360 (20.6%) | Falhas: 49
+[07:59:10] ❌ ERRO_400 | RT | 00021/2024 | 75/360 (20.8%) | Falhas: 50
+[07:59:12] ❌ ERRO_400 | RT | 00021/2025 | 76/360 (21.1%) | Falhas: 51
+[07:59:12] ❌ ERRO_400 | RT | 00022/2023 | 77/360 (21.4%) | Falhas: 52
+[07:59:30] ❌ ERRO_400 | RT | 00022/2024 | 78/360 (21.7%) | Falhas: 53
+[07:59:32] ❌ ERRO_400 | RT | 00023/2023 | 79/360 (21.9%) | Falhas: 54
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[07:59:53] ❌ ERRO_400 | RT | 00023/2025 | 80/360 (22.2%) | Falhas: 55
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:00:05] ❌ ERRO_400 | RT | 00022/2025 | 81/360 (22.5%) | Falhas: 56
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:00:46] ❌ ERRO_400 | RT | 00024/2023 | 82/360 (22.8%) | Falhas: 57
+[08:00:58] ❌ ERRO_400 | RT | 00023/2024 | 83/360 (23.1%) | Falhas: 58
+[08:01:08] ✅ DONE | RT | 00024/2024 | 84/360 (23.3%) | Falhas: 58
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:02:01] ✅ DONE | RT | 00025/2024 | 85/360 (23.6%) | Falhas: 58
+[08:02:13] ❌ ERRO_400 | RT | 00024/2025 | 86/360 (23.9%) | Falhas: 59
+[08:02:22] ❌ ERRO_400 | RT | 00025/2025 | 87/360 (24.2%) | Falhas: 60
+[08:02:25] ❌ ERRO_400 | RT | 00025/2023 | 88/360 (24.4%) | Falhas: 61
+[08:02:33] ❌ ERRO_400 | RT | 00026/2023 | 89/360 (24.7%) | Falhas: 62
+[08:02:42] ❌ ERRO_400 | RT | 00026/2024 | 90/360 (25.0%) | Falhas: 63
+[08:02:46] ❌ ERRO_400 | RT | 00026/2025 | 91/360 (25.3%) | Falhas: 64
+[08:03:03] ❌ ERRO_400 | RT | 00027/2024 | 92/360 (25.6%) | Falhas: 65
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:03:07] ❌ ERRO_400 | RT | 00027/2025 | 93/360 (25.8%) | Falhas: 66
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:03:55] ❌ ERRO_400 | RT | 00028/2023 | 94/360 (26.1%) | Falhas: 67
+[08:04:00] ❌ ERRO_400 | RT | 00028/2024 | 95/360 (26.4%) | Falhas: 68
+⚠️  Tentativa 3 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:04:48] ❌ ERRO_400 | RT | 00028/2025 | 96/360 (26.7%) | Falhas: 69
+⚠️  Tentativa 4 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:04:50] ✅ DONE | RT | 00029/2023 | 97/360 (26.9%) | Falhas: 69
+[08:05:09] ✅ DONE | RT | 00029/2024 | 98/360 (27.2%) | Falhas: 69
+[08:05:11] ❌ ERRO_400 | RT | 00029/2025 | 99/360 (27.5%) | Falhas: 70
+[08:05:25] ❌ ERRO_400 | RT | 00027/2023 | 100/360 (27.8%) | Falhas: 71
+[08:05:30] ❌ ERRO_400 | RT | 00030/2023 | 101/360 (28.1%) | Falhas: 72
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:05:46] ❌ ERRO_400 | RT | 00030/2025 | 102/360 (28.3%) | Falhas: 73
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 3 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:06:57] ❌ ERRO_400 | RT | 00031/2023 | 103/360 (28.6%) | Falhas: 74
+[08:07:13] ❌ ERRO_400 | RT | 00031/2024 | 104/360 (28.9%) | Falhas: 75
+[08:07:15] ✅ DONE | RT | 00030/2024 | 105/360 (29.2%) | Falhas: 75
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:07:34] ❌ ERRO_400 | RT | 00032/2023 | 106/360 (29.4%) | Falhas: 76
+[08:07:35] ❌ ERRO_400 | RT | 00032/2024 | 107/360 (29.7%) | Falhas: 77
+[08:07:50] ❌ ERRO_400 | RT | 00031/2025 | 108/360 (30.0%) | Falhas: 78
+[08:07:54] ❌ ERRO_400 | RT | 00032/2025 | 109/360 (30.3%) | Falhas: 79
+[08:07:56] ❌ ERRO_400 | RT | 00033/2023 | 110/360 (30.6%) | Falhas: 80
+[08:08:15] ❌ ERRO_400 | RT | 00033/2025 | 111/360 (30.8%) | Falhas: 81
+[08:08:16] ❌ ERRO_400 | RT | 00034/2023 | 112/360 (31.1%) | Falhas: 82
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:08:35] ❌ ERRO_400 | RT | 00034/2024 | 113/360 (31.4%) | Falhas: 83
+[08:08:37] ❌ ERRO_400 | RT | 00034/2025 | 114/360 (31.7%) | Falhas: 84
+[08:08:43] ❌ ERRO_400 | RT | 00033/2024 | 115/360 (31.9%) | Falhas: 85
+[08:08:56] ❌ ERRO_400 | RT | 00035/2023 | 116/360 (32.2%) | Falhas: 86
+[08:08:57] ❌ ERRO_400 | RT | 00035/2024 | 117/360 (32.5%) | Falhas: 87
+[08:09:03] ❌ ERRO_400 | RT | 00035/2025 | 118/360 (32.8%) | Falhas: 88
+[08:09:16] ❌ ERRO_400 | RT | 00036/2023 | 119/360 (33.1%) | Falhas: 89
+[08:09:18] ❌ ERRO_400 | RT | 00036/2024 | 120/360 (33.3%) | Falhas: 90
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 3 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 3 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 3 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:11:09] ❌ ERRO_400 | RT | 00036/2025 | 121/360 (33.6%) | Falhas: 91
+[08:11:29] ❌ ERRO_400 | RT | 00037/2025 | 122/360 (33.9%) | Falhas: 92
+⚠️  Tentativa 4 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 4 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:12:18] ✅ DONE | RT | 00037/2023 | 123/360 (34.2%) | Falhas: 92
+[08:12:19] ✅ DONE | RT | 00037/2024 | 124/360 (34.4%) | Falhas: 92
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:12:45] ✅ DONE | RT | 00038/2025 | 125/360 (34.7%) | Falhas: 92
+[08:12:46] ✅ DONE | RT | 00038/2024 | 126/360 (35.0%) | Falhas: 92
+[08:12:57] ❌ ERRO_400 | RT | 00038/2023 | 127/360 (35.3%) | Falhas: 93
+[08:13:05] ❌ ERRO_400 | RT | 00039/2023 | 128/360 (35.6%) | Falhas: 94
+[08:13:06] ❌ ERRO_400 | RT | 00039/2024 | 129/360 (35.8%) | Falhas: 95
+[08:13:17] ❌ ERRO_400 | RT | 00039/2025 | 130/360 (36.1%) | Falhas: 96
+[08:13:26] ❌ ERRO_400 | RT | 00040/2023 | 131/360 (36.4%) | Falhas: 97
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:13:46] ❌ ERRO_400 | RT | 00041/2025 | 132/360 (36.7%) | Falhas: 98
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:14:00] ❌ ERRO_400 | RT | 00040/2025 | 133/360 (36.9%) | Falhas: 99
+[08:14:07] ❌ ERRO_400 | RT | 00042/2024 | 134/360 (37.2%) | Falhas: 100
+[08:14:11] ❌ ERRO_400 | RT | 00041/2024 | 135/360 (37.5%) | Falhas: 101
+[08:14:20] ❌ ERRO_400 | RT | 00042/2025 | 136/360 (37.8%) | Falhas: 102
+[08:14:28] ❌ ERRO_400 | RT | 00043/2024 | 137/360 (38.1%) | Falhas: 103
+[08:14:31] ❌ ERRO_400 | RT | 00043/2025 | 138/360 (38.3%) | Falhas: 104
+[08:14:48] ❌ ERRO_400 | RT | 00044/2025 | 139/360 (38.6%) | Falhas: 105
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:15:08] ❌ ERRO_400 | RT | 00045/2025 | 140/360 (38.9%) | Falhas: 106
+[08:15:13] ❌ ERRO_400 | RT | 00044/2024 | 141/360 (39.2%) | Falhas: 107
+[08:15:29] ❌ ERRO_400 | RT | 00046/2024 | 142/360 (39.4%) | Falhas: 108
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:15:58] ❌ ERRO_400 | RT | 00045/2024 | 143/360 (39.7%) | Falhas: 109
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:16:10] ❌ ERRO_400 | RT | 00046/2025 | 144/360 (40.0%) | Falhas: 110
+[08:16:19] ❌ ERRO_400 | RT | 00047/2025 | 145/360 (40.3%) | Falhas: 111
+[08:16:22] ❌ ERRO_400 | RT | 00047/2024 | 146/360 (40.6%) | Falhas: 112
+[08:16:30] ❌ ERRO_400 | RT | 00048/2024 | 147/360 (40.8%) | Falhas: 113
+[08:16:39] ❌ ERRO_400 | RT | 00048/2025 | 148/360 (41.1%) | Falhas: 114
+[08:16:51] ❌ ERRO_400 | RT | 00049/2025 | 149/360 (41.4%) | Falhas: 115
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:17:00] ❌ ERRO_400 | RT | 00050/2024 | 150/360 (41.7%) | Falhas: 116
+[08:17:11] ❌ ERRO_400 | RT | 00050/2025 | 151/360 (41.9%) | Falhas: 117
+[08:17:14] ❌ ERRO_400 | RT | 00049/2024 | 152/360 (42.2%) | Falhas: 118
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:18:04] ❌ ERRO_400 | RT | 00051/2025 | 153/360 (42.5%) | Falhas: 119
+[08:18:07] ❌ ERRO_400 | RT | 00052/2024 | 154/360 (42.8%) | Falhas: 120
+[08:18:25] ❌ ERRO_400 | RT | 00052/2025 | 155/360 (43.1%) | Falhas: 121
+[08:18:27] ❌ ERRO_400 | RT | 00051/2024 | 156/360 (43.3%) | Falhas: 122
+[08:18:28] ❌ ERRO_400 | RT | 00053/2024 | 157/360 (43.6%) | Falhas: 123
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:19:52] ❌ ERRO_400 | RT | 00053/2025 | 158/360 (43.9%) | Falhas: 124
+[08:19:55] ❌ ERRO_400 | RT | 00054/2025 | 159/360 (44.2%) | Falhas: 125
+[08:19:57] ✅ DONE | RT | 00054/2024 | 160/360 (44.4%) | Falhas: 125
+[08:19:59] ✅ DONE | RT | 00055/2025 | 161/360 (44.7%) | Falhas: 125
+[08:20:14] ✅ DONE | RT | 00056/2025 | 162/360 (45.0%) | Falhas: 125
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:20:35] ❌ ERRO_400 | RT | 00057/2024 | 163/360 (45.3%) | Falhas: 126
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:21:20] ❌ ERRO_400 | RT | 00055/2024 | 164/360 (45.6%) | Falhas: 127
+[08:21:24] ✅ DONE | RT | 00056/2024 | 165/360 (45.8%) | Falhas: 127
+[08:21:34] ✅ DONE | RT | 00057/2025 | 166/360 (46.1%) | Falhas: 127
+[08:21:42] ✅ DONE | RT | 00059/2024 | 167/360 (46.4%) | Falhas: 127
+[08:21:44] ✅ DONE | RT | 00058/2025 | 168/360 (46.7%) | Falhas: 127
+[08:21:45] ✅ DONE | RT | 00059/2025 | 169/360 (46.9%) | Falhas: 127
+[08:21:50] ✅ DONE | RT | 00060/2024 | 170/360 (47.2%) | Falhas: 127
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:21:58] ✅ DONE | RT | 00061/2024 | 171/360 (47.5%) | Falhas: 127
+[08:22:05] ✅ DONE | RT | 00058/2024 | 172/360 (47.8%) | Falhas: 127
+[08:22:08] ✅ DONE | RT | 00061/2025 | 173/360 (48.1%) | Falhas: 127
+[08:22:10] ✅ DONE | RT | 00062/2025 | 174/360 (48.3%) | Falhas: 127
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:22:19] ✅ DONE | RT | 00062/2024 | 175/360 (48.6%) | Falhas: 127
+[08:22:21] ✅ DONE | RT | 00063/2024 | 176/360 (48.9%) | Falhas: 127
+[08:22:23] ✅ DONE | RT | 00063/2025 | 177/360 (49.2%) | Falhas: 127
+[08:22:23] ✅ DONE | RT | 00060/2025 | 178/360 (49.4%) | Falhas: 127
+[08:22:27] ✅ DONE | RT | 00064/2025 | 179/360 (49.7%) | Falhas: 127
+[08:22:29] ✅ DONE | RT | 00065/2024 | 180/360 (50.0%) | Falhas: 127
+[08:22:32] ✅ DONE | RT | 00066/2024 | 181/360 (50.3%) | Falhas: 127
+[08:22:35] ✅ DONE | RT | 00066/2025 | 182/360 (50.6%) | Falhas: 127
+[08:22:43] ✅ DONE | RT | 00064/2024 | 183/360 (50.8%) | Falhas: 127
+[08:22:48] ✅ DONE | RT | 00067/2025 | 184/360 (51.1%) | Falhas: 127
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:23:02] ❌ ERRO_400 | RT | 00067/2024 | 185/360 (51.4%) | Falhas: 128
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:23:23] ❌ ERRO_400 | RT | 00068/2025 | 186/360 (51.7%) | Falhas: 129
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:23:41] ❌ ERRO_400 | RT | 00068/2024 | 187/360 (51.9%) | Falhas: 130
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:24:04] ✅ DONE | RT | 00065/2025 | 188/360 (52.2%) | Falhas: 130
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:24:16] ❌ ERRO_400 | RT | 00069/2024 | 189/360 (52.5%) | Falhas: 131
+[08:24:24] ❌ ERRO_400 | RT | 00070/2024 | 190/360 (52.8%) | Falhas: 132
+[08:24:36] ❌ ERRO_400 | RT | 00070/2025 | 191/360 (53.1%) | Falhas: 133
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:24:44] ❌ ERRO_400 | RT | 00071/2024 | 192/360 (53.3%) | Falhas: 134
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 3 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:25:29] ❌ ERRO_400 | RT | 00071/2025 | 193/360 (53.6%) | Falhas: 135
+[08:25:47] ❌ ERRO_400 | RT | 00069/2025 | 194/360 (53.9%) | Falhas: 136
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:26:12] ❌ ERRO_400 | RT | 00072/2024 | 195/360 (54.2%) | Falhas: 137
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:26:22] ❌ ERRO_400 | RT | 00072/2025 | 196/360 (54.4%) | Falhas: 138
+[08:26:32] ❌ ERRO_400 | RT | 00073/2025 | 197/360 (54.7%) | Falhas: 139
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:26:52] ❌ ERRO_400 | RT | 00074/2025 | 198/360 (55.0%) | Falhas: 140
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:27:14] ❌ ERRO_400 | RT | 00073/2024 | 199/360 (55.3%) | Falhas: 141
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:27:41] ✅ DONE | RT | 00075/2025 | 200/360 (55.6%) | Falhas: 141
+[08:27:50] ✅ DONE | RT | 00075/2024 | 201/360 (55.8%) | Falhas: 141
+⚠️  Tentativa 3 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:28:10] ❌ ERRO_400 | RT | 00076/2025 | 202/360 (56.1%) | Falhas: 142
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:28:28] ❌ ERRO_400 | RT | 00074/2024 | 203/360 (56.4%) | Falhas: 143
+[08:28:34] ❌ ERRO_400 | RT | 00076/2024 | 204/360 (56.7%) | Falhas: 144
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:28:55] ❌ ERRO_400 | RT | 00078/2024 | 205/360 (56.9%) | Falhas: 145
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:29:04] ❌ ERRO_400 | RT | 00077/2024 | 206/360 (57.2%) | Falhas: 146
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:29:56] ❌ ERRO_400 | RT | 00079/2024 | 207/360 (57.5%) | Falhas: 147
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 3 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:30:17] ❌ ERRO_400 | RT | 00079/2025 | 208/360 (57.8%) | Falhas: 148
+⚠️  Tentativa 3 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:30:33] ❌ ERRO_400 | RT | 00077/2025 | 209/360 (58.1%) | Falhas: 149
+[08:30:41] ✅ DONE | RT | 00080/2024 | 210/360 (58.3%) | Falhas: 149
+[08:31:01] ❌ ERRO_400 | RT | 00081/2024 | 211/360 (58.6%) | Falhas: 150
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 4 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:31:22] ❌ ERRO_400 | RT | 00081/2025 | 212/360 (58.9%) | Falhas: 151
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 5 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:31:59] ✅ DONE | RT | 00080/2025 | 213/360 (59.2%) | Falhas: 151
+[08:32:16] ✅ DONE | RT | 00082/2024 | 214/360 (59.4%) | Falhas: 151
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:32:46] ❌ ERRO_400 | RT | 00083/2024 | 215/360 (59.7%) | Falhas: 152
+[08:32:50] ✅ DONE | RT | 00082/2025 | 216/360 (60.0%) | Falhas: 152
+⚠️  Tentativa 6 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:33:06] ❌ ERRO_400 | RT | 00083/2025 | 217/360 (60.3%) | Falhas: 153
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:33:44] ❌ ERRO_400 | RT | 00084/2024 | 218/360 (60.6%) | Falhas: 154
+[08:33:59] ❌ ERRO_400 | RT | 00084/2025 | 219/360 (60.8%) | Falhas: 155
+[08:34:03] ❌ FALHA | RT | 00078/2025 | 220/360 (61.1%) | Falhas: 156
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:34:23] ✅ DONE | RT | 00086/2024 | 221/360 (61.4%) | Falhas: 156
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:34:37] ❌ ERRO_400 | RT | 00085/2024 | 222/360 (61.7%) | Falhas: 157
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:34:57] ❌ ERRO_400 | RT | 00087/2024 | 223/360 (61.9%) | Falhas: 158
+[08:34:59] ✅ DONE | RT | 00085/2025 | 224/360 (62.2%) | Falhas: 158
+[08:35:20] ❌ ERRO_400 | RT | 00088/2024 | 225/360 (62.5%) | Falhas: 159
+[08:35:24] ✅ DONE | RT | 00087/2025 | 226/360 (62.8%) | Falhas: 159
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:35:40] ❌ ERRO_400 | RT | 00088/2025 | 227/360 (63.1%) | Falhas: 160
+[08:35:44] ❌ ERRO_400 | RT | 00089/2024 | 228/360 (63.3%) | Falhas: 161
+[08:35:51] ❌ ERRO_400 | RT | 00086/2025 | 229/360 (63.6%) | Falhas: 162
+[08:36:01] ❌ ERRO_400 | RT | 00089/2025 | 230/360 (63.9%) | Falhas: 163
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:36:21] ❌ ERRO_400 | RT | 00091/2024 | 231/360 (64.2%) | Falhas: 164
+[08:36:37] ❌ ERRO_400 | RT | 00090/2024 | 232/360 (64.4%) | Falhas: 165
+[08:36:42] ❌ ERRO_400 | RT | 00091/2025 | 233/360 (64.7%) | Falhas: 166
+[08:36:44] ❌ ERRO_400 | RT | 00090/2025 | 234/360 (65.0%) | Falhas: 167
+[08:36:58] ❌ ERRO_400 | RT | 00092/2024 | 235/360 (65.3%) | Falhas: 168
+[08:37:02] ❌ ERRO_400 | RT | 00092/2025 | 236/360 (65.6%) | Falhas: 169
+[08:37:04] ❌ ERRO_400 | RT | 00093/2024 | 237/360 (65.8%) | Falhas: 170
+[08:37:18] ❌ ERRO_400 | RT | 00093/2025 | 238/360 (66.1%) | Falhas: 171
+[08:37:23] ❌ ERRO_400 | RT | 00094/2024 | 239/360 (66.4%) | Falhas: 172
+[08:37:24] ❌ ERRO_400 | RT | 00094/2025 | 240/360 (66.7%) | Falhas: 173
+[08:37:39] ❌ ERRO_400 | RT | 00095/2024 | 241/360 (66.9%) | Falhas: 174
+[08:37:43] ❌ ERRO_400 | RT | 00095/2025 | 242/360 (67.2%) | Falhas: 175
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:37:59] ❌ ERRO_400 | RT | 00096/2025 | 243/360 (67.5%) | Falhas: 176
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:38:17] ❌ ERRO_400 | RT | 00096/2024 | 244/360 (67.8%) | Falhas: 177
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:38:36] ❌ ERRO_400 | RT | 00097/2024 | 245/360 (68.1%) | Falhas: 178
+[08:38:38] ❌ ERRO_400 | RT | 00098/2024 | 246/360 (68.3%) | Falhas: 179
+[08:38:52] ❌ ERRO_400 | RT | 00097/2025 | 247/360 (68.6%) | Falhas: 180
+[08:38:58] ❌ ERRO_400 | RT | 00099/2024 | 248/360 (68.9%) | Falhas: 181
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:39:13] ❌ ERRO_400 | RT | 00099/2025 | 249/360 (69.2%) | Falhas: 182
+[08:39:19] ❌ ERRO_400 | RT | 00100/2024 | 250/360 (69.4%) | Falhas: 183
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:40:03] ❌ ERRO_400 | RT | 00098/2025 | 251/360 (69.7%) | Falhas: 184
+[08:40:06] ❌ ERRO_400 | RT | 00100/2025 | 252/360 (70.0%) | Falhas: 185
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:40:23] ✅ DONE | RT | 00101/2025 | 253/360 (70.3%) | Falhas: 185
+[08:40:26] ❌ ERRO_400 | RT | 00102/2024 | 254/360 (70.6%) | Falhas: 186
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 3 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:41:16] ❌ ERRO_400 | RT | 00102/2025 | 255/360 (70.8%) | Falhas: 187
+[08:41:22] ✅ DONE | RT | 00103/2025 | 256/360 (71.1%) | Falhas: 187
+[08:41:24] ❌ ERRO_400 | RT | 00101/2024 | 257/360 (71.4%) | Falhas: 188
+[08:41:37] ❌ ERRO_400 | RT | 00104/2025 | 258/360 (71.7%) | Falhas: 189
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:41:57] ❌ ERRO_400 | RT | 00107/2025 | 259/360 (71.9%) | Falhas: 190
+[08:42:15] ❌ ERRO_400 | RT | 00105/2025 | 260/360 (72.2%) | Falhas: 191
+[08:42:17] ❌ ERRO_400 | RT | 00106/2025 | 261/360 (72.5%) | Falhas: 192
+[08:42:18] ❌ ERRO_400 | RT | 00108/2025 | 262/360 (72.8%) | Falhas: 193
+[08:42:35] ❌ ERRO_400 | RT | 00109/2025 | 263/360 (73.1%) | Falhas: 194
+[08:42:38] ❌ ERRO_400 | RT | 00110/2025 | 264/360 (73.3%) | Falhas: 195
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:42:56] ❌ ERRO_400 | RT | 00112/2025 | 265/360 (73.6%) | Falhas: 196
+[08:42:58] ❌ ERRO_400 | RT | 00113/2025 | 266/360 (73.9%) | Falhas: 197
+[08:43:19] ❌ ERRO_400 | RT | 00115/2025 | 267/360 (74.2%) | Falhas: 198
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:43:38] ✅ DONE | RT | 00111/2025 | 268/360 (74.4%) | Falhas: 198
+[08:43:48] ✅ DONE | RT | 00116/2025 | 269/360 (74.7%) | Falhas: 198
+[08:43:50] ✅ DONE | RT | 00114/2025 | 270/360 (75.0%) | Falhas: 198
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:44:14] ✅ DONE | RT | 00119/2025 | 271/360 (75.3%) | Falhas: 198
+[08:44:16] ❌ ERRO_400 | RT | 00118/2025 | 272/360 (75.6%) | Falhas: 199
+[08:44:31] ❌ ERRO_400 | RT | 00117/2025 | 273/360 (75.8%) | Falhas: 200
+[08:44:35] ❌ ERRO_400 | RT | 00120/2025 | 274/360 (76.1%) | Falhas: 201
+[08:44:37] ❌ ERRO_400 | RT | 00121/2025 | 275/360 (76.4%) | Falhas: 202
+[08:44:52] ❌ ERRO_400 | RT | 00122/2025 | 276/360 (76.7%) | Falhas: 203
+[08:44:55] ❌ ERRO_400 | RT | 00123/2025 | 277/360 (76.9%) | Falhas: 204
+[08:44:57] ❌ ERRO_400 | RT | 00124/2025 | 278/360 (77.2%) | Falhas: 205
+[08:45:12] ❌ ERRO_400 | RT | 00125/2025 | 279/360 (77.5%) | Falhas: 206
+[08:45:16] ❌ ERRO_400 | RT | 00126/2025 | 280/360 (77.8%) | Falhas: 207
+[08:45:17] ❌ ERRO_400 | RT | 00127/2025 | 281/360 (78.1%) | Falhas: 208
+[08:45:38] ❌ ERRO_400 | RT | 00130/2025 | 282/360 (78.3%) | Falhas: 209
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:45:58] ❌ ERRO_400 | RT | 00131/2023 | 283/360 (78.6%) | Falhas: 210
+[08:46:05] ❌ ERRO_400 | RT | 00128/2025 | 284/360 (78.9%) | Falhas: 211
+[08:46:08] ❌ ERRO_400 | RT | 00129/2025 | 285/360 (79.2%) | Falhas: 212
+[08:46:19] ❌ ERRO_400 | RT | 00131/2025 | 286/360 (79.4%) | Falhas: 213
+[08:46:25] ❌ ERRO_400 | RT | 00132/2025 | 287/360 (79.7%) | Falhas: 214
+[08:46:29] ❌ ERRO_400 | RT | 00133/2025 | 288/360 (80.0%) | Falhas: 215
+[08:46:39] ❌ ERRO_400 | RT | 00134/2025 | 289/360 (80.3%) | Falhas: 216
+[08:46:46] ❌ ERRO_400 | RT | 00135/2025 | 290/360 (80.6%) | Falhas: 217
+[08:46:49] ❌ ERRO_400 | RT | 00136/2025 | 291/360 (80.8%) | Falhas: 218
+[08:47:00] ❌ ERRO_400 | RT | 00137/2025 | 292/360 (81.1%) | Falhas: 219
+[08:47:06] ❌ ERRO_400 | RT | 00138/2025 | 293/360 (81.4%) | Falhas: 220
+[08:47:10] ❌ ERRO_400 | RT | 00139/2025 | 294/360 (81.7%) | Falhas: 221
+[08:47:26] ❌ ERRO_400 | RT | 00141/2025 | 295/360 (81.9%) | Falhas: 222
+[08:47:30] ❌ ERRO_400 | RT | 00142/2025 | 296/360 (82.2%) | Falhas: 223
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:47:47] ❌ ERRO_400 | RT | 00143/2025 | 297/360 (82.5%) | Falhas: 224
+[08:47:50] ❌ ERRO_400 | RT | 00144/2025 | 298/360 (82.8%) | Falhas: 225
+[08:47:53] ❌ ERRO_400 | RT | 00140/2025 | 299/360 (83.1%) | Falhas: 226
+[08:48:08] ❌ ERRO_400 | RT | 00145/2025 | 300/360 (83.3%) | Falhas: 227
+[08:48:11] ❌ ERRO_400 | RT | 00146/2025 | 301/360 (83.6%) | Falhas: 228
+[08:48:14] ❌ ERRO_400 | RT | 00147/2025 | 302/360 (83.9%) | Falhas: 229
+[08:48:28] ❌ ERRO_400 | RT | 00148/2025 | 303/360 (84.2%) | Falhas: 230
+[08:48:31] ❌ ERRO_400 | RT | 00149/2025 | 304/360 (84.4%) | Falhas: 231
+[08:48:34] ❌ ERRO_400 | RT | 00150/2025 | 305/360 (84.7%) | Falhas: 232
+[08:48:49] ❌ ERRO_400 | RT | 00151/2025 | 306/360 (85.0%) | Falhas: 233
+[08:48:52] ❌ ERRO_400 | RT | 00152/2025 | 307/360 (85.3%) | Falhas: 234
+[08:48:54] ❌ ERRO_400 | RT | 00153/2025 | 308/360 (85.6%) | Falhas: 235
+[08:49:12] ❌ ERRO_400 | RT | 00155/2025 | 309/360 (85.8%) | Falhas: 236
+[08:49:15] ❌ ERRO_400 | RT | 00156/2025 | 310/360 (86.1%) | Falhas: 237
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:50:16] ❌ ERRO_400 | RT | 00154/2025 | 311/360 (86.4%) | Falhas: 238
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:50:36] ❌ ERRO_400 | RT | 00159/2025 | 312/360 (86.7%) | Falhas: 239
+[08:50:39] ❌ ERRO_400 | RT | 00157/2025 | 313/360 (86.9%) | Falhas: 240
+[08:50:42] ❌ ERRO_400 | RT | 00158/2025 | 314/360 (87.2%) | Falhas: 241
+[08:50:57] ❌ ERRO_400 | RT | 00160/2025 | 315/360 (87.5%) | Falhas: 242
+[08:51:00] ❌ ERRO_400 | RT | 00161/2025 | 316/360 (87.8%) | Falhas: 243
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:51:18] ❌ ERRO_400 | RT | 00163/2025 | 317/360 (88.1%) | Falhas: 244
+[08:51:20] ❌ ERRO_400 | RT | 00164/2025 | 318/360 (88.3%) | Falhas: 245
+[08:51:35] ❌ ERRO_400 | RT | 00162/2025 | 319/360 (88.6%) | Falhas: 246
+[08:51:39] ❌ ERRO_400 | RT | 00165/2025 | 320/360 (88.9%) | Falhas: 247
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:51:55] ❌ ERRO_400 | RT | 00167/2025 | 321/360 (89.2%) | Falhas: 248
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:52:13] ❌ ERRO_400 | RT | 00166/2025 | 322/360 (89.4%) | Falhas: 249
+[08:52:16] ❌ ERRO_400 | RT | 00169/2025 | 323/360 (89.7%) | Falhas: 250
+[08:52:31] ❌ ERRO_400 | RT | 00168/2025 | 324/360 (90.0%) | Falhas: 251
+[08:52:34] ❌ ERRO_400 | RT | 00170/2025 | 325/360 (90.3%) | Falhas: 252
+[08:52:37] ❌ ERRO_400 | RT | 00171/2025 | 326/360 (90.6%) | Falhas: 253
+[08:52:54] ❌ ERRO_400 | RT | 00173/2025 | 327/360 (90.8%) | Falhas: 254
+[08:52:57] ❌ ERRO_400 | RT | 00174/2025 | 328/360 (91.1%) | Falhas: 255
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:53:18] ❌ ERRO_400 | RT | 00177/2025 | 329/360 (91.4%) | Falhas: 256
+[08:53:25] ❌ ERRO_400 | RT | 00172/2025 | 330/360 (91.7%) | Falhas: 257
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:53:38] ❌ ERRO_400 | RT | 00178/2025 | 331/360 (91.9%) | Falhas: 258
+[08:53:47] ❌ ERRO_400 | RT | 00175/2025 | 332/360 (92.2%) | Falhas: 259
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:53:59] ❌ ERRO_400 | RT | 00180/2025 | 333/360 (92.5%) | Falhas: 260
+[08:54:17] ❌ ERRO_400 | RT | 00179/2025 | 334/360 (92.8%) | Falhas: 261
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:54:19] ❌ ERRO_400 | RT | 00182/2025 | 335/360 (93.1%) | Falhas: 262
+[08:54:38] ✅ DONE | RT | 00184/2025 | 336/360 (93.3%) | Falhas: 262
+[08:54:40] ❌ ERRO_400 | RT | 00181/2025 | 337/360 (93.6%) | Falhas: 263
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:54:58] ❌ ERRO_400 | RT | 00189/2025 | 338/360 (93.9%) | Falhas: 264
+[08:55:10] ❌ ERRO_400 | RT | 00183/2025 | 339/360 (94.2%) | Falhas: 265
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:55:33] ❌ ERRO_400 | RT | 00191/2025 | 340/360 (94.4%) | Falhas: 266
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:55:52] ✅ DONE | RT | 00193/2025 | 341/360 (94.7%) | Falhas: 266
+[08:55:54] ❌ ERRO_400 | RT | 00201/2025 | 342/360 (95.0%) | Falhas: 267
+[08:56:04] ❌ ERRO_400 | RT | 00195/2025 | 343/360 (95.3%) | Falhas: 268
+[08:56:14] ❌ ERRO_400 | RT | 00206/2025 | 344/360 (95.6%) | Falhas: 269
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:56:45] ❌ ERRO_400 | RT | 00205/2025 | 345/360 (95.8%) | Falhas: 270
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:56:57] ❌ ERRO_400 | RT | 00207/2025 | 346/360 (96.1%) | Falhas: 271
+[08:57:06] ❌ ERRO_400 | RT | 00209/2025 | 347/360 (96.4%) | Falhas: 272
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 3 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:58:20] ❌ ERRO_400 | RT | 00208/2025 | 348/360 (96.7%) | Falhas: 273
+⚠️  Tentativa 3 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:58:40] ❌ ERRO_400 | RT | 00212/2025 | 349/360 (96.9%) | Falhas: 274
+⚠️  Tentativa 3 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:59:11] ❌ ERRO_400 | RT | 00211/2025 | 350/360 (97.2%) | Falhas: 275
+⚠️  Tentativa 4 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:59:32] ❌ ERRO_400 | RT | 00214/2025 | 351/360 (97.5%) | Falhas: 276
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[08:59:49] ❌ ERRO_400 | RT | 00210/2025 | 352/360 (97.8%) | Falhas: 277
+[08:59:52] ❌ ERRO_400 | RT | 00215/2025 | 353/360 (98.1%) | Falhas: 278
+[09:00:08] ❌ ERRO_400 | RT | 00213/2025 | 354/360 (98.3%) | Falhas: 279
+[09:00:09] ❌ ERRO_400 | RT | 00263/2025 | 355/360 (98.6%) | Falhas: 280
+[09:00:13] ❌ ERRO_400 | RT | 00821/2024 | 356/360 (98.9%) | Falhas: 281
+[09:00:29] ❌ ERRO_400 | RT | 90014/2024 | 357/360 (99.2%) | Falhas: 282
+[09:00:30] ❌ ERRO_400 | RT | 90204/2025 | 358/360 (99.4%) | Falhas: 283
+⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[09:00:49] ❌ ERRO_400 | RT | 99263/2025 | 359/360 (99.7%) | Falhas: 284
+⚠️  Tentativa 2 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=30)
+[09:01:40] ❌ ERRO_400 | RT | 91400/2024 | 360/360 (100.0%) | Falhas: 285
+
+✅ FIM | Falhas: 285 | SKIPs: 0
+09:01:40 | INFO     | ============================================================
+09:01:40 | INFO     | 📤 GERANDO atas_saldos.csv...
+📂 369 arquivo(s) de saldos encontrado(s). Processando...
+
+✅ CSV gerado: data\atas_saldos.csv
+   Registros        : 2361
+   Participantes    : 2104
+   Não participantes: 150
+   Colunas          : 12
+09:01:41 | INFO     | ============================================================
+09:01:41 | INFO     | 🏢 INICIANDO EXTRAÇÃO DE UNIDADES PARTICIPANTES
+   UASG        : RT (158132)
+   A extrair   : 0
+
+⏭️  Tudo em cache. Nada a extrair.
+09:01:55 | INFO     | ============================================================
+09:01:55 | INFO     | 📤 GERANDO atas_unidades.csv...
+📂 2961 arquivo(s) de unidades encontrado(s). Processando...
+
+✅ CSV gerado: data\atas_unidades.csv
+   Registros        : 9567
+   Participantes    : 6621
+   Não participantes: 2946
+   Aceita adesão    : 3735
+   Colunas          : 27
+09:01:56 | INFO     | ============================================================
+09:01:56 | INFO     | ============================================================
+09:01:56 | INFO     | 📊 RESUMO FINAL
+09:01:56 | INFO     |   Falhas compras        : 9
+09:01:56 | INFO     |   Falhas itens          : 5
+09:01:56 | INFO     |   Falhas atas           : 3
+09:01:56 | INFO     |   Falhas atas_itens     : 0
+09:01:56 | INFO     |   Falhas atas_saldos    : 285
+09:01:56 | INFO     |   Falhas atas_unidades  : 0
+09:01:56 | INFO     | ⚠️  Pipeline finalizado com 302 falha(s).

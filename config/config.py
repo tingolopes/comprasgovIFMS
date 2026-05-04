@@ -177,17 +177,17 @@ PIPELINE_CONFIG = {
     "dias_validade_cache_empenhos": 7,
 
     # Requisições HTTP
-    "timeout_segundos":        30,
+    "timeout_segundos":        60,  # Aumentado de 30 para 60
     # Timeout menor para a API legado (instável mas responde rápido quando está no ar)
-    "timeout_segundos_legado": 10,
+    "timeout_segundos_legado": 20,
     # Timeout maior para saldos — endpoint mais lento
-    "timeout_segundos_saldos": 30,
+    "timeout_segundos_saldos": 90,
     "tamanho_pagina":      500,
 
     # Backoff exponencial (segundos)
-    "backoff_inicial":          2,
-    "backoff_tentativas":       2,      # 2 s → 4 s
-    "backoff_tentativas_saldos": 6,     # mais tentativas para endpoint instável
+    "backoff_inicial":          5,  # Aumentado de 2 para 5
+    "backoff_tentativas":       5,  # Aumentado de 2 para 5
+    "backoff_tentativas_saldos": 8,
 
     # Cache: dias antes de re-verificar contratos ainda em aberto (PNCP)
     "dias_validade_cache_pncp":          7,

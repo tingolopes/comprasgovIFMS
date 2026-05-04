@@ -1,0 +1,4 @@
+14:21:24 | INFO     | 🚀 INICIANDO PIPELINE DE EXTRAÇÃO DE COMPRAS PÚBLICAS
+14:21:24 | INFO     | ============================================================
+14:21:24 | INFO     | ℹ️  Módulo LEGADO está desativado em config.config['CONFIG_APIS']['LEGADO']['executar_legado']; pulando extração.
+14:21:24 | INFO     | ▶ Módulo LEI 14.133 — 24 tarefas | 2 threads

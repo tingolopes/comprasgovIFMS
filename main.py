@@ -39,7 +39,7 @@ Modos disponíveis:
   python main.py --modo itens_empenhados            # obtem dados do Google Drive e salva em data/itens_empenhados_TG.xlsx
 """
 
-from pipeline.logger import log_info, resumo_skips
+from pipeline.logger import log_info, resumo_skips, configurar_logging
 from pipeline.transformer_contratos_responsaveis import transformar as transformar_contratos_responsaveis
 from pipeline.transformer_contratos import transformar as transformar_contratos
 from pipeline.extractors_contratos_responsaveis import executar as executar_contratos_responsaveis
@@ -185,8 +185,7 @@ def _modo_extrator_compras_itens() -> None:
     falhas = executar_itens()
     _modo_transformer_compras_itens()
     if falhas > 0:
-        log_info("⚠️  Extração de itens finalizada com %d falha(s).", falhas)
-        sys.exit(1)
+        log_info("⚠️  Extração finalizada com %d falha(s). O pipeline prosseguirá com os dados disponíveis.", falhas)
 
 
 def _modo_transformer_atas() -> None:
@@ -453,6 +452,10 @@ def _limpar_pycache() -> None:
 # ---------------------------------------------------------------------------
 
 if __name__ == "__main__":
+    # Configura o log para gravar em arquivo (data/log/pipeline_DATA_HORA.log) e console
+    # Captura automaticamente 'prints' e erros de todos os módulos
+    arquivo_log = configurar_logging()
+
     args = _parse_args()
     try:
         if args.modo == "transformer_compras":
