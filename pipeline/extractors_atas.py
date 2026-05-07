@@ -24,7 +24,8 @@ from urllib.parse import urlencode
 
 import requests
 
-from config.config import CONFIG_ATAS, PIPELINE_CONFIG
+from config.config import CONFIG_ATAS, PIPELINE_CONFIG, HTTP_HEADERS
+from pipeline.api_client import verificar_sucesso, extraido_hoje, salvar_dados
 
 # ---------------------------------------------------------------------------
 # Configuração local
@@ -38,24 +39,6 @@ _ANOS = _CFG["anos"]
 
 
 # ---------------------------------------------------------------------------
-# Salvar
-# ---------------------------------------------------------------------------
-
-def _salvar(caminho: str, url: str, params: dict,
-            conteudo, status: str = "SUCESSO") -> None:
-    envelope = {
-        "metadata": {
-            "url_consultada": f"{url}?{urlencode(params)}",
-            "data_extracao":  datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            "status":         status,
-        },
-        "respostas": conteudo if conteudo is not None else {},
-    }
-    with open(caminho, "w", encoding="utf-8") as f:
-        json.dump(envelope, f, ensure_ascii=False, indent=4)
-
-
-# ---------------------------------------------------------------------------
 # HTTP
 # ---------------------------------------------------------------------------
 
@@ -64,6 +47,7 @@ def _get(url: str, params: dict) -> tuple[dict | None, str]:
     for tentativa in range(1, PIPELINE_CONFIG["backoff_tentativas"] + 1):
         try:
             resp = requests.get(url, params=params,
+                                headers=HTTP_HEADERS,
                                 timeout=PIPELINE_CONFIG["timeout_segundos"])
             if resp.status_code == 200:
                 return resp.json(), "SUCESSO"
@@ -91,6 +75,15 @@ def _processar(t: dict) -> str:
         nome = os.path.join(
             _PASTA, f"atas_{t['sigla']}_{t['ano']}_p{pagina}.json")
 
+        # Verifica cache antes de consultar
+        sucesso, dados_cache = verificar_sucesso(nome)
+        if sucesso and extraido_hoje(dados_cache):
+            respostas = dados_cache.get("respostas", {})
+            if isinstance(respostas, dict) and respostas.get("paginasRestantes", 0) > 0:
+                pagina += 1
+                continue
+            return f"⏭️  SKIP | {t['sigla']} | {t['ano']}"
+
         url = f"{_BASE_URL}{_PATH}"
         params = {
             "pagina":                    pagina,
@@ -101,11 +94,13 @@ def _processar(t: dict) -> str:
         }
 
         dados, status = _get(url, params)
-        _salvar(nome, url, params, dados, status)
+        salvar_dados(nome, url, params, dados, status)
 
         if status == "SUCESSO":
-            pag_rest = dados.get("respostas", {}).get(
-                "paginasRestantes", 0) if isinstance(dados, dict) else 0
+            pag_rest = (
+                dados.get("respostas", {}).get("paginasRestantes", 0)
+                if isinstance(dados, dict) else 0
+            )
             if pag_rest and pag_rest > 0:
                 pagina += 1
                 continue

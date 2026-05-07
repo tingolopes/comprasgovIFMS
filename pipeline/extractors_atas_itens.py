@@ -27,7 +27,8 @@ from urllib.parse import urlencode
 
 import requests
 
-from config.config import CONFIG_ATAS, PIPELINE_CONFIG
+from config.config import CONFIG_ATAS, PIPELINE_CONFIG, HTTP_HEADERS
+from pipeline.api_client import verificar_sucesso, extraido_hoje, salvar_dados
 
 # ---------------------------------------------------------------------------
 # Configuração local
@@ -95,6 +96,7 @@ def _get(url: str, params: dict) -> tuple[dict | None, str]:
     for tentativa in range(1, PIPELINE_CONFIG["backoff_tentativas"] + 1):
         try:
             resp = requests.get(url, params=params,
+                                headers=HTTP_HEADERS,
                                 timeout=PIPELINE_CONFIG["timeout_segundos"])
             if resp.status_code == 200:
                 return resp.json(), "SUCESSO"

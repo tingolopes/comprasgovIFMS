@@ -348,6 +348,9 @@ def _modo_extrator_compras() -> None:
     falhas_atas = executar_atas()
     _modo_transformer_atas()
 
+    if falhas_atas > 0:
+        log_info("⚠️  Extração de atas finalizada com %d falha(s). Isso pode causar a geração de atas_manuais.json.", falhas_atas)
+
     log_info("📦 INICIANDO EXTRAÇÃO DE ITENS DAS ATAS")
     falhas_atas_itens = executar_atas_itens()
     _modo_transformer_atas_itens()
