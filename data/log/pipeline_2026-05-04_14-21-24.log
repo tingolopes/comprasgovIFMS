@@ -2,3 +2,306 @@
 14:21:24 | INFO     | ============================================================
 14:21:24 | INFO     | ℹ️  Módulo LEGADO está desativado em config.config['CONFIG_APIS']['LEGADO']['executar_legado']; pulando extração.
 14:21:24 | INFO     | ▶ Módulo LEI 14.133 — 24 tarefas | 2 threads
+14:22:10 | INFO     | ⚠️  Servidor retornou 400 em https://dadosabertos.compras.gov.br/modulo-contratacoes/1_consultarContratacoes_PNCP_14133. Aguardando 5s (Tentativa 1/5)...
+14:22:10 | INFO     | ⚠️  Servidor retornou 400 em https://dadosabertos.compras.gov.br/modulo-contratacoes/1_consultarContratacoes_PNCP_14133. Aguardando 5s (Tentativa 1/5)...
+14:22:36 | INFO     | ⚠️  Servidor retornou 400 em https://dadosabertos.compras.gov.br/modulo-contratacoes/1_consultarContratacoes_PNCP_14133. Aguardando 10s (Tentativa 2/5)...
+14:22:36 | INFO     | ⚠️  Servidor retornou 400 em https://dadosabertos.compras.gov.br/modulo-contratacoes/1_consultarContratacoes_PNCP_14133. Aguardando 10s (Tentativa 2/5)...
+14:23:06 | INFO     | ⚠️  Servidor retornou 400 em https://dadosabertos.compras.gov.br/modulo-contratacoes/1_consultarContratacoes_PNCP_14133. Aguardando 15s (Tentativa 3/5)...
+14:23:25 | INFO     | ⚠️  Servidor retornou 400 em https://dadosabertos.compras.gov.br/modulo-contratacoes/1_consultarContratacoes_PNCP_14133. Aguardando 15s (Tentativa 3/5)...
+14:23:42 | INFO     | ⚠️  Servidor retornou 400 em https://dadosabertos.compras.gov.br/modulo-contratacoes/1_consultarContratacoes_PNCP_14133. Aguardando 20s (Tentativa 4/5)...
+14:24:00 | INFO     | ⚠️  Servidor retornou 400 em https://dadosabertos.compras.gov.br/modulo-contratacoes/1_consultarContratacoes_PNCP_14133. Aguardando 20s (Tentativa 4/5)...
+14:24:23 | INFO     | ⚠️  Servidor retornou 400 em https://dadosabertos.compras.gov.br/modulo-contratacoes/1_consultarContratacoes_PNCP_14133. Aguardando 25s (Tentativa 5/5)...
+14:24:41 | INFO     | ⚠️  Servidor retornou 400 em https://dadosabertos.compras.gov.br/modulo-contratacoes/1_consultarContratacoes_PNCP_14133. Aguardando 25s (Tentativa 5/5)...
+14:24:48 | INFO     | ❌ FAIL | RT | PNCP-PREGAO           | 2024 | 13/24 (54.2%) | Falhas: 1
+14:25:06 | INFO     | ❌ FAIL | RT | PNCP-CONCORRENCIA     | 2024 | 24/24 (100.0%) | Falhas: 2
+14:25:06 | INFO     |    Concluído — DONE: 0 | SKIP: 22 | FAIL: 2
+14:25:06 | INFO     | ============================================================
+14:25:06 | INFO     | 📊 RESUMO DA EXTRAÇÃO DE COMPRAS
+14:25:06 | INFO     |   Falhas Legado   : 0
+14:25:06 | INFO     |   Falhas Lei14133 : 2
+14:25:06 | INFO     |   SKIPs           : 0
+14:25:06 | INFO     | ============================================================
+14:25:06 | INFO     | 📤 GERANDO compras.csv...
+14:25:06 | INFO     | 📂 415 arquivo(s) encontrado(s). Processando...
+14:25:06 | INFO     | ✅ CSV gerado: data\compras.csv
+14:25:06 | INFO     | IDs únicos     : 2360
+14:25:06 | INFO     | Legado         : 1924
+14:25:06 | INFO     | Lei 14.133     : 436
+14:25:06 | INFO     | Com responsável: 2061
+14:25:06 | INFO     | Sem objeto     : 0
+14:25:06 | INFO     | Colunas        : 27
+14:25:06 | INFO     | ============================================================
+14:25:06 | INFO     | 🔩 INICIANDO EXTRAÇÃO DE ITENS
+14:25:06 | INFO     | 🔍 Coletando ids de compras para montar a fila de itens...
+14:25:07 | INFO     | IDs únicos     : 2360
+14:25:07 | INFO     | Consultas prev.: 4672  (vs 9440 no modo bruto)
+14:25:07 | INFO     | Já em cache    : 4668
+14:25:07 | INFO     | A extrair      : 4
+14:25:07 | INFO     | TOTAL fila     : 4
+14:25:07 | INFO     | 🚀 INICIANDO EXTRAÇÃO DE ITENS | WORKERS: 3 | TOTAL: 4
+14:25:07 | INFO     | [14:25:07] 🌐 Consultando | 15813203900872026 | pncp p1...
+14:25:07 | INFO     | [14:25:07] 🌐 Consultando | 15813206000662026 | pncp p1...
+14:25:07 | INFO     | [14:25:07] 🌐 Consultando | 15813206000742026 | pncp p1...
+14:25:28 | INFO     | [14:25:28] ❌ ERRO_400 | 15813206000742026 | pncp | 1/4 (25.0%) | Falhas: 1
+14:25:28 | INFO     | [14:25:28] 🌐 Consultando | 15813206000842026 | pncp p1...
+14:25:28 | INFO     | [14:25:28] ❌ ERRO_400 | 15813203900872026 | pncp | 2/4 (50.0%) | Falhas: 2
+14:25:29 | INFO     | [14:25:29] 🌐 Consultando | 15813206000662026 | pncp p2...
+14:25:42 | INFO     | [14:25:42] ✅ SUCESSO | 15813206000842026 | pncp | 3/4 (75.0%) | Falhas: 2
+14:25:50 | INFO     | [14:25:50] ❌ ERRO_400 | 15813206000662026 | pncp | 4/4 (100.0%) | Falhas: 3
+14:25:50 | INFO     | ✅ FIM | Falhas: 3 | SKIPs: 0
+14:25:50 | INFO     | ============================================================
+14:25:50 | INFO     | 📤 GERANDO compras_itens.csv...
+14:25:50 | INFO     | 📂 6964 arquivo(s) de itens encontrado(s). Processando...
+14:25:53 | INFO     | ✅ CSV gerado: data\compras_itens.csv
+14:25:53 | INFO     | Itens únicos  : 27469
+14:25:53 | INFO     | Legado        : 20870
+14:25:53 | INFO     | Lei 14.133    : 6599
+14:25:53 | INFO     | Colunas       : 33
+14:25:53 | INFO     | ============================================================
+14:25:53 | INFO     | 📋 INICIANDO EXTRAÇÃO DE ATAS
+14:25:53 | INFO     | UASG      : RT (158132)
+14:25:53 | INFO     | Anos      : 2023–2026
+14:25:53 | INFO     | A extrair : 4
+14:25:53 | INFO     | 🚀 INICIANDO EXTRAÇÃO DE ATAS | WORKERS: 3 | TOTAL: 4
+14:26:13 | INFO     | [14:26:13] ❌ ERRO_400 | RT | 2023 | 1/4 (25.0%) | Falhas: 1
+14:26:14 | INFO     | [14:26:14] ❌ ERRO_400 | RT | 2025 | 2/4 (50.0%) | Falhas: 2
+14:26:20 | INFO     | [14:26:20] ✅ DONE | RT | 2024 | 3/4 (75.0%) | Falhas: 2
+14:26:34 | INFO     | [14:26:34] ❌ ERRO_400 | RT | 2026 | 4/4 (100.0%) | Falhas: 3
+14:26:34 | INFO     | ✅ FIM | Falhas: 3
+14:26:34 | INFO     | ============================================================
+14:26:34 | INFO     | 📤 GERANDO atas.csv...
+14:26:34 | INFO     | 📂 5 arquivo(s) de atas encontrado(s). Processando...
+14:26:34 | INFO     | ✅ CSV gerado: data\atas.csv
+14:26:34 | INFO     | Atas únicas   : 351
+14:26:34 | INFO     | Atas excluídas: 0
+14:26:34 | INFO     | Colunas       : 22
+14:26:34 | INFO     | ============================================================
+14:26:34 | INFO     | 📦 INICIANDO EXTRAÇÃO DE ITENS DAS ATAS
+14:26:34 | INFO     | UASG        : RT (158132)
+14:26:34 | INFO     | Anos        : 2023–2027
+14:26:34 | INFO     | Já em cache : 5
+14:26:34 | INFO     | A extrair   : 0
+14:26:34 | INFO     | ⏭️  Tudo em cache. Nada a extrair.
+14:26:34 | INFO     | ============================================================
+14:26:34 | INFO     | 📤 GERANDO atas_itens.csv...
+14:26:34 | INFO     | ✅ Mapa de atas carregado: 60 compras | 351 atas conhecidas
+14:26:34 | INFO     | 📂 9 arquivo(s) de itens de atas encontrado(s). Processando...
+14:26:34 | INFO     | ✅ Nenhuma ata ausente detectada.
+14:26:34 | INFO     | ✅ CSV gerado: data\atas_itens.csv
+14:26:34 | INFO     | Itens únicos     : 2961
+14:26:34 | INFO     | Material         : 2406
+14:26:34 | INFO     | Serviço          : 555
+14:26:34 | INFO     | Excluídos        : 0
+14:26:34 | INFO     | Sem id_compra    : 121
+14:26:34 | INFO     | Sem numero_compra: 121
+14:26:34 | INFO     | Colunas          : 35
+14:26:34 | INFO     | ============================================================
+14:26:34 | INFO     | 💰 INICIANDO EXTRAÇÃO DE SALDOS DAS ATAS
+14:26:34 | INFO     | UASG             : RT (158132)
+14:26:34 | INFO     | Validade cache   : 3 dias
+14:26:34 | INFO     | A extrair/atualizar: 170
+14:26:34 | INFO     | 🚀 INICIANDO EXTRAÇÃO DE SALDOS | WORKERS: 3 | TOTAL: 170
+14:26:55 | INFO     | [14:26:55] ❌ ERRO_400 | RT | 00002/2023 | 1/170 (0.6%) | Falhas: 1
+14:26:55 | INFO     | [14:26:55] ❌ ERRO_400 | RT | 00001/2025 | 2/170 (1.2%) | Falhas: 2
+14:27:16 | INFO     | [14:27:16] ❌ ERRO_400 | RT | 00004/2026 | 3/170 (1.8%) | Falhas: 3
+14:27:16 | INFO     | [14:27:16] ❌ ERRO_400 | RT | 00006/2025 | 4/170 (2.4%) | Falhas: 4
+14:27:36 | INFO     | [14:27:36] ❌ ERRO_400 | RT | 00007/2024 | 5/170 (2.9%) | Falhas: 5
+14:28:05 | INFO     | ⚠️  Tentativa 1 (https://dadosabertos.compras.gov.br/modulo-arp/4_consultarEmpenhosSaldoItem): HTTPSConnectionPool(host='dadosabertos.compras.gov.br', port=443): Read timed out. (read timeout=90)
+14:28:05 | INFO     | [14:28:05] ❌ ERRO_400 | RT | 00006/2026 | 6/170 (3.5%) | Falhas: 6
+14:28:18 | INFO     | [14:28:18] ❌ ERRO_400 | RT | 00008/2024 | 7/170 (4.1%) | Falhas: 7
+14:28:30 | INFO     | [14:28:30] ❌ ERRO_400 | RT | 00003/2026 | 8/170 (4.7%) | Falhas: 8
+14:28:39 | INFO     | [14:28:39] ❌ ERRO_400 | RT | 00009/2025 | 9/170 (5.3%) | Falhas: 9
+14:28:49 | INFO     | [14:28:49] ❌ ERRO_400 | RT | 00008/2025 | 10/170 (5.9%) | Falhas: 10
+14:28:51 | INFO     | [14:28:51] ❌ ERRO_400 | RT | 00010/2023 | 11/170 (6.5%) | Falhas: 11
+14:28:59 | INFO     | [14:28:59] ❌ ERRO_400 | RT | 00010/2025 | 12/170 (7.1%) | Falhas: 12
+14:29:09 | INFO     | [14:29:09] ❌ ERRO_400 | RT | 00013/2023 | 13/170 (7.6%) | Falhas: 13
+14:29:11 | INFO     | [14:29:11] ❌ ERRO_400 | RT | 00015/2023 | 14/170 (8.2%) | Falhas: 14
+14:29:20 | INFO     | [14:29:20] ❌ ERRO_400 | RT | 00015/2024 | 15/170 (8.8%) | Falhas: 15
+14:29:30 | INFO     | [14:29:30] ❌ ERRO_400 | RT | 00016/2023 | 16/170 (9.4%) | Falhas: 16
+14:29:32 | INFO     | [14:29:32] ❌ ERRO_400 | RT | 00016/2024 | 17/170 (10.0%) | Falhas: 17
+14:29:40 | INFO     | [14:29:40] ❌ ERRO_400 | RT | 00016/2025 | 18/170 (10.6%) | Falhas: 18
+14:29:50 | INFO     | [14:29:50] ❌ ERRO_400 | RT | 00017/2023 | 19/170 (11.2%) | Falhas: 19
+14:29:52 | INFO     | [14:29:52] ❌ ERRO_400 | RT | 00017/2024 | 20/170 (11.8%) | Falhas: 20
+14:30:01 | INFO     | [14:30:01] ❌ ERRO_400 | RT | 00017/2025 | 21/170 (12.4%) | Falhas: 21
+14:30:11 | INFO     | [14:30:11] ❌ ERRO_400 | RT | 00018/2023 | 22/170 (12.9%) | Falhas: 22
+14:30:13 | INFO     | [14:30:13] ❌ ERRO_400 | RT | 00018/2024 | 23/170 (13.5%) | Falhas: 23
+14:30:21 | INFO     | [14:30:21] ❌ ERRO_400 | RT | 00018/2025 | 24/170 (14.1%) | Falhas: 24
+14:30:31 | INFO     | [14:30:31] ❌ ERRO_400 | RT | 00019/2023 | 25/170 (14.7%) | Falhas: 25
+14:30:33 | INFO     | [14:30:33] ❌ ERRO_400 | RT | 00019/2024 | 26/170 (15.3%) | Falhas: 26
+14:30:42 | INFO     | [14:30:42] ❌ ERRO_400 | RT | 00019/2025 | 27/170 (15.9%) | Falhas: 27
+14:30:52 | INFO     | [14:30:52] ❌ ERRO_400 | RT | 00020/2023 | 28/170 (16.5%) | Falhas: 28
+14:30:54 | INFO     | [14:30:54] ❌ ERRO_400 | RT | 00020/2024 | 29/170 (17.1%) | Falhas: 29
+14:31:02 | INFO     | [14:31:02] ❌ ERRO_400 | RT | 00021/2024 | 30/170 (17.6%) | Falhas: 30
+14:31:23 | INFO     | [14:31:23] ❌ ERRO_400 | RT | 00022/2024 | 31/170 (18.2%) | Falhas: 31
+14:31:33 | INFO     | [14:31:33] ✅ DONE | RT | 00021/2025 | 32/170 (18.8%) | Falhas: 31
+14:31:34 | INFO     | [14:31:34] ❌ ERRO_400 | RT | 00022/2023 | 33/170 (19.4%) | Falhas: 32
+14:31:43 | INFO     | [14:31:43] ❌ ERRO_400 | RT | 00023/2023 | 34/170 (20.0%) | Falhas: 33
+14:32:04 | INFO     | [14:32:04] ❌ ERRO_400 | RT | 00024/2023 | 35/170 (20.6%) | Falhas: 34
+14:32:12 | INFO     | [14:32:12] ❌ ERRO_400 | RT | 00023/2024 | 36/170 (21.2%) | Falhas: 35
+14:32:13 | INFO     | [14:32:13] ❌ ERRO_400 | RT | 00023/2025 | 37/170 (21.8%) | Falhas: 36
+14:32:25 | INFO     | [14:32:25] ❌ ERRO_400 | RT | 00024/2025 | 38/170 (22.4%) | Falhas: 37
+14:32:33 | INFO     | [14:32:33] ❌ ERRO_400 | RT | 00025/2023 | 39/170 (22.9%) | Falhas: 38
+14:32:45 | INFO     | [14:32:45] ❌ ERRO_400 | RT | 00026/2024 | 40/170 (23.5%) | Falhas: 39
+14:32:51 | INFO     | [14:32:51] ❌ ERRO_400 | RT | 00026/2023 | 41/170 (24.1%) | Falhas: 40
+14:32:53 | INFO     | [14:32:53] ❌ ERRO_400 | RT | 00026/2025 | 42/170 (24.7%) | Falhas: 41
+14:33:06 | INFO     | [14:33:06] ❌ ERRO_400 | RT | 00027/2023 | 43/170 (25.3%) | Falhas: 42
+14:33:12 | INFO     | [14:33:12] ❌ ERRO_400 | RT | 00027/2024 | 44/170 (25.9%) | Falhas: 43
+14:33:14 | INFO     | [14:33:14] ❌ ERRO_400 | RT | 00027/2025 | 45/170 (26.5%) | Falhas: 44
+14:33:32 | INFO     | [14:33:32] ❌ ERRO_400 | RT | 00028/2024 | 46/170 (27.1%) | Falhas: 45
+14:33:34 | INFO     | [14:33:34] ❌ ERRO_400 | RT | 00028/2025 | 47/170 (27.6%) | Falhas: 46
+14:33:46 | INFO     | [14:33:46] ❌ ERRO_400 | RT | 00028/2023 | 48/170 (28.2%) | Falhas: 47
+14:33:53 | INFO     | [14:33:53] ❌ ERRO_400 | RT | 00029/2025 | 49/170 (28.8%) | Falhas: 48
+14:33:55 | INFO     | [14:33:55] ❌ ERRO_400 | RT | 00030/2023 | 50/170 (29.4%) | Falhas: 49
+14:34:07 | INFO     | [14:34:07] ❌ ERRO_400 | RT | 00030/2025 | 51/170 (30.0%) | Falhas: 50
+14:34:13 | INFO     | [14:34:13] ❌ ERRO_400 | RT | 00031/2024 | 52/170 (30.6%) | Falhas: 51
+14:34:15 | INFO     | [14:34:15] ❌ ERRO_400 | RT | 00032/2023 | 53/170 (31.2%) | Falhas: 52
+14:34:27 | INFO     | [14:34:27] ❌ ERRO_400 | RT | 00032/2024 | 54/170 (31.8%) | Falhas: 53
+14:34:34 | INFO     | [14:34:34] ❌ ERRO_400 | RT | 00032/2025 | 55/170 (32.4%) | Falhas: 54
+14:34:35 | INFO     | [14:34:35] ❌ ERRO_400 | RT | 00034/2025 | 56/170 (32.9%) | Falhas: 55
+14:34:48 | INFO     | [14:34:48] ❌ ERRO_400 | RT | 00035/2023 | 57/170 (33.5%) | Falhas: 56
+14:34:54 | INFO     | [14:34:54] ❌ ERRO_400 | RT | 00035/2025 | 58/170 (34.1%) | Falhas: 57
+14:34:56 | INFO     | [14:34:56] ❌ ERRO_400 | RT | 00036/2023 | 59/170 (34.7%) | Falhas: 58
+14:35:16 | INFO     | [14:35:16] ❌ ERRO_400 | RT | 00040/2023 | 60/170 (35.3%) | Falhas: 59
+14:35:21 | INFO     | [14:35:21] ✅ DONE | RT | 00039/2023 | 61/170 (35.9%) | Falhas: 59
+14:35:35 | INFO     | [14:35:35] ❌ ERRO_400 | RT | 00039/2024 | 62/170 (36.5%) | Falhas: 60
+14:35:37 | INFO     | [14:35:37] ❌ ERRO_400 | RT | 00040/2025 | 63/170 (37.1%) | Falhas: 61
+14:35:42 | INFO     | [14:35:42] ❌ ERRO_400 | RT | 00041/2024 | 64/170 (37.6%) | Falhas: 62
+14:36:02 | INFO     | [14:36:02] ❌ ERRO_400 | RT | 00044/2024 | 65/170 (38.2%) | Falhas: 63
+14:36:16 | INFO     | [14:36:16] ✅ DONE | RT | 00041/2025 | 66/170 (38.8%) | Falhas: 63
+14:36:16 | INFO     | [14:36:16] ✅ DONE | RT | 00043/2025 | 67/170 (39.4%) | Falhas: 63
+14:36:36 | INFO     | [14:36:36] ❌ ERRO_400 | RT | 00045/2024 | 68/170 (40.0%) | Falhas: 64
+14:36:36 | INFO     | [14:36:36] ❌ ERRO_400 | RT | 00045/2025 | 69/170 (40.6%) | Falhas: 65
+14:36:43 | INFO     | [14:36:43] ❌ ERRO_400 | RT | 00044/2025 | 70/170 (41.2%) | Falhas: 66
+14:37:04 | INFO     | [14:37:04] ❌ ERRO_400 | RT | 00048/2025 | 71/170 (41.8%) | Falhas: 67
+14:37:17 | INFO     | [14:37:17] ❌ ERRO_400 | RT | 00048/2024 | 72/170 (42.4%) | Falhas: 68
+14:37:18 | INFO     | [14:37:18] ❌ ERRO_400 | RT | 00046/2024 | 73/170 (42.9%) | Falhas: 69
+14:37:24 | INFO     | [14:37:24] ❌ ERRO_400 | RT | 00050/2024 | 74/170 (43.5%) | Falhas: 70
+14:37:38 | INFO     | [14:37:38] ❌ ERRO_400 | RT | 00053/2024 | 75/170 (44.1%) | Falhas: 71
+14:37:39 | INFO     | [14:37:39] ❌ ERRO_400 | RT | 00053/2025 | 76/170 (44.7%) | Falhas: 72
+14:37:45 | INFO     | [14:37:45] ❌ ERRO_400 | RT | 00054/2025 | 77/170 (45.3%) | Falhas: 73
+14:38:05 | INFO     | [14:38:05] ❌ ERRO_400 | RT | 00067/2024 | 78/170 (45.9%) | Falhas: 74
+14:38:19 | INFO     | [14:38:19] ❌ ERRO_400 | RT | 00055/2024 | 79/170 (46.5%) | Falhas: 75
+14:38:20 | INFO     | [14:38:20] ❌ ERRO_400 | RT | 00057/2024 | 80/170 (47.1%) | Falhas: 76
+14:38:39 | INFO     | [14:38:39] ❌ ERRO_400 | RT | 00069/2024 | 81/170 (47.6%) | Falhas: 77
+14:38:40 | INFO     | [14:38:40] ❌ ERRO_400 | RT | 00069/2025 | 82/170 (48.2%) | Falhas: 78
+14:38:46 | INFO     | [14:38:46] ❌ ERRO_400 | RT | 00068/2024 | 83/170 (48.8%) | Falhas: 79
+14:39:00 | INFO     | [14:39:00] ❌ ERRO_400 | RT | 00070/2024 | 84/170 (49.4%) | Falhas: 80
+14:39:00 | INFO     | [14:39:00] ❌ ERRO_400 | RT | 00070/2025 | 85/170 (50.0%) | Falhas: 81
+14:39:06 | INFO     | [14:39:06] ❌ ERRO_400 | RT | 00071/2025 | 86/170 (50.6%) | Falhas: 82
+14:39:20 | INFO     | [14:39:20] ❌ ERRO_400 | RT | 00072/2024 | 87/170 (51.2%) | Falhas: 83
+14:39:21 | INFO     | [14:39:21] ❌ ERRO_400 | RT | 00072/2025 | 88/170 (51.8%) | Falhas: 84
+14:39:26 | INFO     | [14:39:26] ❌ ERRO_400 | RT | 00073/2025 | 89/170 (52.4%) | Falhas: 85
+14:39:41 | INFO     | [14:39:41] ❌ ERRO_400 | RT | 00074/2024 | 90/170 (52.9%) | Falhas: 86
+14:39:41 | INFO     | [14:39:41] ❌ ERRO_400 | RT | 00074/2025 | 91/170 (53.5%) | Falhas: 87
+14:39:47 | INFO     | [14:39:47] ❌ ERRO_400 | RT | 00076/2024 | 92/170 (54.1%) | Falhas: 88
+14:40:01 | INFO     | [14:40:01] ❌ ERRO_400 | RT | 00076/2025 | 93/170 (54.7%) | Falhas: 89
+14:40:02 | INFO     | [14:40:02] ❌ ERRO_400 | RT | 00078/2024 | 94/170 (55.3%) | Falhas: 90
+14:40:07 | INFO     | [14:40:07] ❌ ERRO_400 | RT | 00078/2025 | 95/170 (55.9%) | Falhas: 91
+14:40:22 | INFO     | [14:40:22] ❌ ERRO_400 | RT | 00079/2024 | 96/170 (56.5%) | Falhas: 92
+14:40:22 | INFO     | [14:40:22] ❌ ERRO_400 | RT | 00079/2025 | 97/170 (57.1%) | Falhas: 93
+14:40:28 | INFO     | [14:40:28] ❌ ERRO_400 | RT | 00081/2024 | 98/170 (57.6%) | Falhas: 94
+14:40:42 | INFO     | [14:40:42] ❌ ERRO_400 | RT | 00081/2025 | 99/170 (58.2%) | Falhas: 95
+14:40:42 | INFO     | [14:40:42] ❌ ERRO_400 | RT | 00083/2024 | 100/170 (58.8%) | Falhas: 96
+14:40:48 | INFO     | [14:40:48] ❌ ERRO_400 | RT | 00084/2024 | 101/170 (59.4%) | Falhas: 97
+14:41:03 | INFO     | [14:41:03] ❌ ERRO_400 | RT | 00086/2025 | 102/170 (60.0%) | Falhas: 98
+14:41:03 | INFO     | [14:41:03] ❌ ERRO_400 | RT | 00084/2025 | 103/170 (60.6%) | Falhas: 99
+14:41:09 | INFO     | [14:41:09] ❌ ERRO_400 | RT | 00088/2025 | 104/170 (61.2%) | Falhas: 100
+14:41:24 | INFO     | [14:41:24] ❌ ERRO_400 | RT | 00092/2024 | 105/170 (61.8%) | Falhas: 101
+14:41:29 | INFO     | [14:41:29] ❌ ERRO_400 | RT | 00092/2025 | 106/170 (62.4%) | Falhas: 102
+14:41:50 | INFO     | [14:41:50] ❌ ERRO_400 | RT | 00093/2025 | 107/170 (62.9%) | Falhas: 103
+14:41:57 | INFO     | [14:41:57] ❌ ERRO_400 | RT | 00089/2024 | 108/170 (63.5%) | Falhas: 104
+14:42:06 | INFO     | [14:42:06] ❌ ERRO_400 | RT | 00093/2024 | 109/170 (64.1%) | Falhas: 105
+14:42:10 | INFO     | [14:42:10] ❌ ERRO_400 | RT | 00096/2024 | 110/170 (64.7%) | Falhas: 106
+14:42:18 | INFO     | [14:42:18] ❌ ERRO_400 | RT | 00099/2025 | 111/170 (65.3%) | Falhas: 107
+14:42:31 | INFO     | [14:42:31] ❌ ERRO_400 | RT | 00101/2024 | 112/170 (65.9%) | Falhas: 108
+14:42:38 | INFO     | [14:42:38] ❌ ERRO_400 | RT | 00105/2025 | 113/170 (66.5%) | Falhas: 109
+14:42:45 | INFO     | [14:42:45] ✅ DONE | RT | 00100/2024 | 114/170 (67.1%) | Falhas: 109
+14:42:52 | INFO     | [14:42:52] ❌ ERRO_400 | RT | 00106/2025 | 115/170 (67.6%) | Falhas: 110
+14:42:59 | INFO     | [14:42:59] ❌ ERRO_400 | RT | 00107/2025 | 116/170 (68.2%) | Falhas: 111
+14:43:06 | INFO     | [14:43:06] ❌ ERRO_400 | RT | 00110/2025 | 117/170 (68.8%) | Falhas: 112
+14:43:12 | INFO     | [14:43:12] ❌ ERRO_400 | RT | 00118/2025 | 118/170 (69.4%) | Falhas: 113
+14:43:26 | INFO     | [14:43:26] ❌ ERRO_400 | RT | 00123/2025 | 119/170 (70.0%) | Falhas: 114
+14:43:33 | INFO     | [14:43:33] ❌ ERRO_400 | RT | 00125/2025 | 120/170 (70.6%) | Falhas: 115
+14:43:38 | INFO     | [14:43:38] ❌ ERRO_400 | RT | 00121/2025 | 121/170 (71.2%) | Falhas: 116
+14:43:47 | INFO     | [14:43:47] ❌ ERRO_400 | RT | 00127/2025 | 122/170 (71.8%) | Falhas: 117
+14:43:58 | INFO     | [14:43:58] ❌ ERRO_400 | RT | 00131/2023 | 123/170 (72.4%) | Falhas: 118
+14:44:07 | INFO     | [14:44:07] ❌ ERRO_400 | RT | 00131/2025 | 124/170 (72.9%) | Falhas: 119
+14:44:13 | INFO     | [14:44:13] ✅ DONE | RT | 00129/2025 | 125/170 (73.5%) | Falhas: 119
+14:44:19 | INFO     | [14:44:19] ❌ ERRO_400 | RT | 00132/2025 | 126/170 (74.1%) | Falhas: 120
+14:44:28 | INFO     | [14:44:28] ❌ ERRO_400 | RT | 00133/2025 | 127/170 (74.7%) | Falhas: 121
+14:44:34 | INFO     | [14:44:34] ❌ ERRO_400 | RT | 00134/2025 | 128/170 (75.3%) | Falhas: 122
+14:44:48 | INFO     | [14:44:48] ❌ ERRO_400 | RT | 00137/2025 | 129/170 (75.9%) | Falhas: 123
+14:44:54 | INFO     | [14:44:54] ❌ ERRO_400 | RT | 00138/2025 | 130/170 (76.5%) | Falhas: 124
+14:44:58 | INFO     | [14:44:58] ❌ ERRO_400 | RT | 00136/2025 | 131/170 (77.1%) | Falhas: 125
+14:45:09 | INFO     | [14:45:09] ❌ ERRO_400 | RT | 00140/2025 | 132/170 (77.6%) | Falhas: 126
+14:45:29 | INFO     | [14:45:29] ❌ ERRO_400 | RT | 00144/2025 | 133/170 (78.2%) | Falhas: 127
+14:45:34 | INFO     | [14:45:34] ✅ DONE | RT | 00142/2025 | 134/170 (78.8%) | Falhas: 127
+14:45:34 | INFO     | [14:45:34] ✅ DONE | RT | 00143/2025 | 135/170 (79.4%) | Falhas: 127
+14:45:50 | INFO     | [14:45:50] ❌ ERRO_400 | RT | 00146/2025 | 136/170 (80.0%) | Falhas: 128
+14:45:55 | INFO     | [14:45:55] ❌ ERRO_400 | RT | 00147/2025 | 137/170 (80.6%) | Falhas: 129
+14:46:10 | INFO     | [14:46:10] ❌ ERRO_400 | RT | 00149/2025 | 138/170 (81.2%) | Falhas: 130
+14:46:15 | INFO     | [14:46:15] ❌ ERRO_400 | RT | 00148/2025 | 139/170 (81.8%) | Falhas: 131
+14:46:31 | INFO     | [14:46:31] ❌ ERRO_400 | RT | 00151/2025 | 140/170 (82.4%) | Falhas: 132
+14:46:35 | INFO     | [14:46:35] ✅ DONE | RT | 00150/2025 | 141/170 (82.9%) | Falhas: 132
+14:46:36 | INFO     | [14:46:36] ❌ ERRO_400 | RT | 00152/2025 | 142/170 (83.5%) | Falhas: 133
+14:46:51 | INFO     | [14:46:51] ❌ ERRO_400 | RT | 00163/2025 | 143/170 (84.1%) | Falhas: 134
+14:46:56 | INFO     | [14:46:56] ❌ ERRO_400 | RT | 00165/2025 | 144/170 (84.7%) | Falhas: 135
+14:47:12 | INFO     | [14:47:12] ❌ ERRO_400 | RT | 00168/2025 | 145/170 (85.3%) | Falhas: 136
+14:47:15 | INFO     | [14:47:15] ❌ ERRO_400 | RT | 00167/2025 | 146/170 (85.9%) | Falhas: 137
+14:47:16 | INFO     | [14:47:16] ❌ ERRO_400 | RT | 00170/2025 | 147/170 (86.5%) | Falhas: 138
+14:47:33 | INFO     | [14:47:33] ❌ ERRO_400 | RT | 00171/2025 | 148/170 (87.1%) | Falhas: 139
+14:47:37 | INFO     | [14:47:37] ❌ ERRO_400 | RT | 00174/2025 | 149/170 (87.6%) | Falhas: 140
+14:47:53 | INFO     | [14:47:53] ❌ ERRO_400 | RT | 00178/2025 | 150/170 (88.2%) | Falhas: 141
+14:47:56 | INFO     | [14:47:56] ✅ DONE | RT | 00173/2025 | 151/170 (88.8%) | Falhas: 141
+14:47:57 | INFO     | [14:47:57] ❌ ERRO_400 | RT | 00179/2025 | 152/170 (89.4%) | Falhas: 142
+14:48:14 | INFO     | [14:48:14] ❌ ERRO_400 | RT | 00180/2025 | 153/170 (90.0%) | Falhas: 143
+14:48:17 | INFO     | [14:48:17] ❌ ERRO_400 | RT | 00181/2025 | 154/170 (90.6%) | Falhas: 144
+14:48:18 | INFO     | [14:48:18] ❌ ERRO_400 | RT | 00182/2025 | 155/170 (91.2%) | Falhas: 145
+14:48:34 | INFO     | [14:48:34] ❌ ERRO_400 | RT | 00183/2025 | 156/170 (91.8%) | Falhas: 146
+14:48:38 | INFO     | [14:48:38] ❌ ERRO_400 | RT | 00191/2025 | 157/170 (92.4%) | Falhas: 147
+14:48:55 | INFO     | [14:48:55] ❌ ERRO_400 | RT | 00195/2025 | 158/170 (92.9%) | Falhas: 148
+14:48:58 | INFO     | [14:48:58] ✅ DONE | RT | 00189/2025 | 159/170 (93.5%) | Falhas: 148
+14:48:59 | INFO     | [14:48:59] ❌ ERRO_400 | RT | 00201/2025 | 160/170 (94.1%) | Falhas: 149
+14:49:15 | INFO     | [14:49:15] ❌ ERRO_400 | RT | 00206/2025 | 161/170 (94.7%) | Falhas: 150
+14:49:18 | INFO     | [14:49:18] ❌ ERRO_400 | RT | 00209/2025 | 162/170 (95.3%) | Falhas: 151
+14:49:19 | INFO     | [14:49:19] ❌ ERRO_400 | RT | 00211/2025 | 163/170 (95.9%) | Falhas: 152
+14:49:39 | INFO     | [14:49:39] ❌ ERRO_400 | RT | 00213/2025 | 164/170 (96.5%) | Falhas: 153
+14:49:40 | INFO     | [14:49:40] ❌ ERRO_400 | RT | 00214/2025 | 165/170 (97.1%) | Falhas: 154
+14:49:59 | INFO     | [14:49:59] ✅ DONE | RT | 00212/2025 | 166/170 (97.6%) | Falhas: 154
+14:50:01 | INFO     | [14:50:01] ❌ ERRO_400 | RT | 90014/2024 | 167/170 (98.2%) | Falhas: 155
+14:50:19 | INFO     | [14:50:19] ❌ ERRO_400 | RT | 00821/2024 | 168/170 (98.8%) | Falhas: 156
+14:50:20 | INFO     | [14:50:20] ❌ ERRO_400 | RT | 91400/2024 | 169/170 (99.4%) | Falhas: 157
+14:50:21 | INFO     | [14:50:21] ❌ ERRO_400 | RT | 99263/2025 | 170/170 (100.0%) | Falhas: 158
+14:50:21 | INFO     | ✅ FIM | Falhas: 158 | SKIPs: 0
+14:50:21 | INFO     | ============================================================
+14:50:21 | INFO     | 📤 GERANDO atas_saldos.csv...
+14:50:21 | INFO     | 📂 369 arquivo(s) de saldos encontrado(s). Processando...
+14:50:21 | INFO     | ✅ CSV gerado: data\atas_saldos.csv
+14:50:21 | INFO     | Registros        : 2358
+14:50:21 | INFO     | Participantes    : 2101
+14:50:21 | INFO     | Não participantes: 150
+14:50:21 | INFO     | Colunas          : 12
+14:50:21 | INFO     | ============================================================
+14:50:21 | INFO     | 🏢 INICIANDO EXTRAÇÃO DE UNIDADES PARTICIPANTES
+14:50:22 | INFO     | UASG        : RT (158132)
+14:50:22 | INFO     | A extrair   : 0
+14:50:22 | INFO     | ⏭️  Tudo em cache. Nada a extrair.
+14:50:22 | INFO     | ============================================================
+14:50:22 | INFO     | 📤 GERANDO atas_unidades.csv...
+14:50:22 | INFO     | 📂 2961 arquivo(s) de unidades encontrado(s). Processando...
+14:50:22 | INFO     | ✅ CSV gerado: data\atas_unidades.csv
+14:50:22 | INFO     | Registros        : 9567
+14:50:22 | INFO     | Participantes    : 6621
+14:50:22 | INFO     | Não participantes: 2946
+14:50:22 | INFO     | Aceita adesão    : 3735
+14:50:22 | INFO     | Colunas          : 27
+14:50:22 | INFO     | ============================================================
+14:50:22 | INFO     | ============================================================
+14:50:22 | INFO     | 📊 RESUMO FINAL
+14:50:22 | INFO     |   Falhas compras        : 2
+14:50:22 | INFO     |   Falhas itens          : 3
+14:50:22 | INFO     |   Falhas atas           : 3
+14:50:22 | INFO     |   Falhas atas_itens     : 0
+14:50:22 | INFO     |   Falhas atas_saldos    : 158
+14:50:22 | INFO     |   Falhas atas_unidades  : 0
+14:50:22 | INFO     | ⚠️  Pipeline finalizado com 166 falha(s).
