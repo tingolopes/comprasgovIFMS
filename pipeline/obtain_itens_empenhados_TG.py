@@ -3,8 +3,8 @@ import pandas as pd
 def obter_itens_empenhados_TG():
     url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS_ctP42jBDaNS5piEuXU_VBkDxpiGA-_97Fbr03SqhdsANb8sLldukB4bkAwGo4sAr2ttvrPWE5Kvx/pub?output=xlsx'
     
-    # 1. Lê pulando o lixo inicial (Cabeçalhos Promovidos)
-    df = pd.read_excel(url, skiprows=5)
+    # 1. Lê o arquivo Excel da URL
+    df = pd.read_excel(url)
     
     # 2. Dividir Colunas e Limpar (Split + Replace)
     # Pegamos o que vem antes do " - " e removemos "Item compra: "
@@ -46,8 +46,12 @@ def obter_itens_empenhados_TG():
         "qtd_ajustada", "vlr_unitario"
     ]
     
-    return df[colunas_finais]
+    df_finais = df[colunas_finais]
+    
+    # Salva o arquivo limpo
+    df_finais.to_excel('data/itens_empenhados_TG.xlsx', index=False)
+    
+    return df_finais
 
-# Para salvar o arquivo limpo
-df_limpo = obter_itens_empenhados_TG()
-df_limpo.to_excel('data/itens_empenhados_TG.xlsx', index=False)
+if __name__ == "__main__":
+    obter_itens_empenhados_TG()
