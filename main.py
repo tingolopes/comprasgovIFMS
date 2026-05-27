@@ -205,7 +205,6 @@ def _modo_extrator_atas() -> None:
     _modo_transformer_atas()
     if falhas > 0:
         log_info("⚠️  Extração de atas finalizada com %d falha(s).", falhas)
-        sys.exit(1)
 
 
 def _modo_transformer_atas_itens() -> None:
@@ -226,7 +225,6 @@ def _modo_extrator_atas_itens() -> None:
     _modo_transformer_atas_itens()
     if falhas > 0:
         log_info("⚠️  Extração de itens das atas finalizada com %d falha(s).", falhas)
-        sys.exit(1)
 
 
 def _modo_transformer_atas_saldos() -> None:
@@ -247,7 +245,6 @@ def _modo_extrator_atas_saldos() -> None:
     _modo_transformer_atas_saldos()
     if falhas > 0:
         log_info("⚠️  Extração de saldos finalizada com %d falha(s).", falhas)
-        sys.exit(1)
 
 
 def _modo_transformer_atas_unidades() -> None:
@@ -268,7 +265,6 @@ def _modo_extrator_atas_unidades() -> None:
     _modo_transformer_atas_unidades()
     if falhas > 0:
         log_info("⚠️  Extração de unidades finalizada com %d falha(s).", falhas)
-        sys.exit(1)
 
 
 def _modo_transformer_contratos() -> None:
@@ -289,7 +285,6 @@ def _modo_extrator_contratos() -> None:
     _modo_transformer_contratos()
     if falhas > 0:
         log_info("⚠️  Extração de contratos finalizada com %d falha(s).", falhas)
-        sys.exit(1)
 
 
 def _modo_transformer_contratos_responsaveis() -> None:
@@ -310,7 +305,6 @@ def _modo_extrator_contratos_responsaveis() -> None:
     _modo_transformer_contratos_responsaveis()
     if falhas > 0:
         log_info("⚠️  Extração de responsáveis finalizada com %d falha(s).", falhas)
-        sys.exit(1)
 
 def _modo_itens_empenhados_tg():
     log_info("📦 OBTENDO ITENS EMPENHADOS DO GOOGLE DRIVE...")
@@ -382,10 +376,8 @@ def _modo_extrator_compras() -> None:
 
     if falhas_totais > 0:
         log_info("⚠️  Pipeline finalizado com %d falha(s).", falhas_totais)
-        sys.exit(1)
     else:
         log_info("🎉 PIPELINE CONCLUÍDO COM SUCESSO!")
-        sys.exit(0)
 
 
 # ---------------------------------------------------------------------------

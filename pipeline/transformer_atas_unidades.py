@@ -436,7 +436,7 @@ def transformar(
 
     if not banco:
         print("⚠️  Nenhuma unidade válida encontrada.")
-        sys.exit(1)
+        return
 
     registros = [_mapear(reg) for reg in banco.values()]
     registros.sort(key=lambda r: (

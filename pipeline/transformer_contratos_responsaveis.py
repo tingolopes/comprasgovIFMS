@@ -195,7 +195,7 @@ def transformar(
 
     if not banco:
         print("⚠️  Nenhum responsável válido encontrado.")
-        sys.exit(1)
+        return
 
     registros = [_mapear(reg) for reg in banco.values()]
     registros.sort(key=lambda r: (r.get("id_contrato")

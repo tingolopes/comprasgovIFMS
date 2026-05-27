@@ -482,7 +482,7 @@ def transformar(
 
     if not registros:
         print("⚠️  Nenhum item válido encontrado.")
-        sys.exit(1)
+        return
 
     os.makedirs(os.path.dirname(caminho_saida) or ".", exist_ok=True)
 

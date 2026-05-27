@@ -213,7 +213,7 @@ def _coletar_por_id(pastas: list[str]) -> dict[str, dict[str, dict]]:
 
     if not todos_jsons:
         print(f"⚠️  Nenhum arquivo JSON encontrado nas pastas: {pastas}")
-        sys.exit(1)
+        return {}
 
     print(f"📂 {len(todos_jsons)} arquivo(s) encontrado(s). Processando...")
 
@@ -448,7 +448,7 @@ def transformar(pastas: list[str], caminho_saida: str) -> None:
 
     if not registros:
         print("⚠️  Nenhum registro válido encontrado.")
-        sys.exit(1)
+        return
 
     os.makedirs(os.path.dirname(caminho_saida) or ".", exist_ok=True)
 

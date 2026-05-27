@@ -228,7 +228,7 @@ def transformar(
 
     if not banco:
         print("⚠️  Nenhuma ata válida encontrada.")
-        sys.exit(1)
+        return
 
     registros = [_mapear(reg) for reg in banco.values()]
 

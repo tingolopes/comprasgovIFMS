@@ -462,7 +462,7 @@ def transformar(
 
     if not banco:
         print("⚠️  Nenhum item de ata válido encontrado.")
-        sys.exit(1)
+        return
 
     # Detecta atas ausentes e cria/atualiza atas_manuais.json
     novas_manuais = _criar_atas_manuais(

@@ -1,0 +1,25 @@
+10:23:56 | INFO     | ============================================================
+10:23:56 | INFO     | 📄 EXTRAINDO CONTRATOS...
+10:23:56 | INFO     | UASGs       : 11
+10:23:56 | INFO     | Validade    : 1 dia(s)
+10:23:56 | INFO     | 🚀 INICIANDO EXTRAÇÃO DE CONTRATOS | WORKERS: 5 | TOTAL: 11
+10:23:57 | INFO     | [10:23:57] ✅ DONE | AQ | 60 contratos | 1/11 (9.1%) | Falhas: 0
+10:23:59 | INFO     | [10:23:59] ✅ DONE | CX | 109 contratos | 2/11 (18.2%) | Falhas: 0
+10:23:59 | INFO     | [10:23:59] ✅ DONE | DR | 74 contratos | 3/11 (27.3%) | Falhas: 0
+10:24:00 | INFO     | [10:24:00] ✅ DONE | CB | 147 contratos | 4/11 (36.4%) | Falhas: 0
+10:24:00 | INFO     | [10:24:00] ✅ DONE | CG | 123 contratos | 5/11 (45.5%) | Falhas: 0
+10:24:01 | INFO     | [10:24:01] ✅ DONE | JD | 100 contratos | 6/11 (54.5%) | Falhas: 0
+10:24:02 | INFO     | [10:24:02] ✅ DONE | NA | 110 contratos | 7/11 (63.6%) | Falhas: 0
+10:24:02 | INFO     | [10:24:02] ✅ DONE | NV | 99 contratos | 8/11 (72.7%) | Falhas: 0
+10:24:03 | INFO     | [10:24:03] ✅ DONE | PP | 97 contratos | 9/11 (81.8%) | Falhas: 0
+10:24:06 | INFO     | [10:24:06] ✅ DONE | TL | 165 contratos | 10/11 (90.9%) | Falhas: 0
+10:24:20 | INFO     | [10:24:20] ✅ DONE | RT | 530 contratos | 11/11 (100.0%) | Falhas: 0
+10:24:20 | INFO     | ✅ FIM | Falhas: 0 | SKIPs: 0
+10:24:20 | INFO     | ============================================================
+10:24:20 | INFO     | 📤 GERANDO contratos.csv...
+10:24:20 | INFO     | 📂 11 arquivo(s) de contratos encontrado(s). Processando...
+10:24:20 | INFO     | ✅ CSV gerado: data\contratos.csv
+10:24:20 | INFO     | Contratos    : 1614
+10:24:20 | INFO     | Prorrogáveis : 414
+10:24:20 | INFO     | Colunas      : 21
+10:24:20 | INFO     | ============================================================
