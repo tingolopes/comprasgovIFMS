@@ -1,0 +1,179 @@
+08:32:45 | INFO     | 🚀 INICIANDO PIPELINE DE EXTRAÇÃO DE COMPRAS PÚBLICAS
+08:32:45 | INFO     | ============================================================
+08:32:45 | INFO     | ℹ️  Módulo LEGADO está desativado em config.config['CONFIG_APIS']['LEGADO']['executar_legado']; pulando extração.
+08:32:45 | INFO     | ▶ Módulo LEI 14.133 — 24 tarefas | 2 threads
+08:32:45 | INFO     | ⏭️  SKIPs acumulados: 24 | 24/24 (100.0%) | Falhas: 0
+08:32:45 | INFO     |    Concluído — DONE: 0 | SKIP: 24 | FAIL: 0
+08:32:45 | INFO     | ============================================================
+08:32:45 | INFO     | 📊 RESUMO DA EXTRAÇÃO DE COMPRAS
+08:32:45 | INFO     |   Falhas Legado   : 0
+08:32:45 | INFO     |   Falhas Lei14133 : 0
+08:32:45 | INFO     |   SKIPs           : 0
+08:32:45 | INFO     | ============================================================
+08:32:45 | INFO     | 📤 GERANDO compras.csv...
+08:32:45 | INFO     | 📂 341 arquivo(s) encontrado(s). Processando...
+08:32:46 | INFO     | ✅ CSV gerado: data\compras.csv
+08:32:46 | INFO     | IDs únicos     : 2368
+08:32:46 | INFO     | Legado         : 1924
+08:32:46 | INFO     | Lei 14.133     : 444
+08:32:46 | INFO     | Com responsável: 2061
+08:32:46 | INFO     | Sem objeto     : 0
+08:32:46 | INFO     | Colunas        : 27
+08:32:46 | INFO     | ============================================================
+08:32:46 | INFO     | 🔩 INICIANDO EXTRAÇÃO DE ITENS
+08:32:46 | INFO     | 🔍 Coletando ids de compras para montar a fila de itens...
+08:33:10 | INFO     | IDs únicos     : 2368
+08:33:10 | INFO     | Consultas prev.: 4680  (vs 9472 no modo bruto)
+08:33:10 | INFO     | Já em cache    : 4680
+08:33:10 | INFO     | A extrair      : 0
+08:33:10 | INFO     | TOTAL fila     : 0
+08:33:10 | INFO     | ⚠️  Nenhuma compra encontrada ou todas já em cache.
+08:33:10 | INFO     | ============================================================
+08:33:10 | INFO     | 📤 GERANDO compras_itens.csv...
+08:33:10 | INFO     | 📂 4684 arquivo(s) de itens encontrado(s). Processando...
+08:33:13 | INFO     | ✅ CSV gerado: data\compras_itens.csv
+08:33:13 | INFO     | Itens únicos  : 27646
+08:33:13 | INFO     | Legado        : 20870
+08:33:13 | INFO     | Lei 14.133    : 6776
+08:33:13 | INFO     | Colunas       : 33
+08:33:13 | INFO     | ============================================================
+08:33:13 | INFO     | 📋 INICIANDO EXTRAÇÃO DE ATAS
+08:33:13 | INFO     | UASG      : RT (158132)
+08:33:13 | INFO     | Anos      : 2023–2027
+08:33:13 | INFO     | A extrair : 5
+08:33:13 | INFO     | 🚀 INICIANDO EXTRAÇÃO DE ATAS | WORKERS: 3 | TOTAL: 5
+08:33:13 | INFO     | [08:33:13] ⏭️  SKIP | RT | 2025 | 1/5 (20.0%) | Falhas: 0
+08:33:13 | INFO     | [08:33:13] ⏭️  SKIP | RT | 2024 | 2/5 (40.0%) | Falhas: 0
+08:33:13 | INFO     | [08:33:13] ⏭️  SKIP | RT | 2023 | 3/5 (60.0%) | Falhas: 0
+08:33:13 | INFO     | [08:33:13] ⏭️  SKIP | RT | 2027 | 4/5 (80.0%) | Falhas: 0
+08:33:13 | INFO     | [08:33:13] ⏭️  SKIP | RT | 2026 | 5/5 (100.0%) | Falhas: 0
+08:33:13 | INFO     | ✅ FIM | Falhas: 0
+08:33:13 | INFO     | ============================================================
+08:33:13 | INFO     | 📤 GERANDO atas.csv...
+08:33:13 | INFO     | 📂 6 arquivo(s) de atas encontrado(s). Processando...
+08:33:13 | INFO     | ✅ CSV gerado: data\atas.csv
+08:33:13 | INFO     | Atas únicas   : 377
+08:33:13 | INFO     | Atas excluídas: 0
+08:33:13 | INFO     | Colunas       : 22
+08:33:13 | INFO     | ============================================================
+08:33:13 | INFO     | 📦 INICIANDO EXTRAÇÃO DE ITENS DAS ATAS
+08:33:13 | INFO     | UASG        : RT (158132)
+08:33:13 | INFO     | Anos        : 2023–2027
+08:33:13 | INFO     | Já em cache : 5
+08:33:13 | INFO     | A extrair   : 0
+08:33:13 | INFO     | ⏭️  Tudo em cache. Nada a extrair.
+08:33:13 | INFO     | ============================================================
+08:33:13 | INFO     | 📤 GERANDO atas_itens.csv...
+08:33:13 | INFO     | ✅ Mapa de atas carregado: 67 compras | 377 atas conhecidas
+08:33:13 | INFO     | 📂 9 arquivo(s) de itens de atas encontrado(s). Processando...
+08:33:13 | INFO     | ✅ Nenhuma ata ausente detectada.
+08:33:13 | INFO     | ✅ CSV gerado: data\atas_itens.csv
+08:33:13 | INFO     | Itens únicos     : 2961
+08:33:13 | INFO     | Material         : 2406
+08:33:13 | INFO     | Serviço          : 555
+08:33:13 | INFO     | Excluídos        : 0
+08:33:13 | INFO     | Sem id_compra    : 0
+08:33:13 | INFO     | Sem numero_compra: 0
+08:33:13 | INFO     | Colunas          : 35
+08:33:13 | INFO     | ============================================================
+08:33:13 | INFO     | 💰 INICIANDO EXTRAÇÃO DE SALDOS DAS ATAS
+08:33:13 | INFO     | UASG             : RT (158132)
+08:33:13 | INFO     | Validade cache   : 3 dias
+08:33:13 | INFO     | A extrair/atualizar: 0
+08:33:13 | INFO     | ⏭️  Tudo em cache e dentro da validade. Nada a extrair.
+08:33:13 | INFO     | ============================================================
+08:33:13 | INFO     | 📤 GERANDO atas_saldos.csv...
+08:33:13 | INFO     | 📂 377 arquivo(s) de saldos encontrado(s). Processando...
+08:33:13 | INFO     | ✅ CSV gerado: data\atas_saldos.csv
+08:33:13 | INFO     | Registros        : 2194
+08:33:13 | INFO     | Participantes    : 1938
+08:33:13 | INFO     | Não participantes: 150
+08:33:13 | INFO     | Colunas          : 12
+08:33:13 | INFO     | ============================================================
+08:33:13 | INFO     | 🏢 INICIANDO EXTRAÇÃO DE UNIDADES PARTICIPANTES
+08:33:14 | INFO     | UASG        : RT (158132)
+08:33:14 | INFO     | A extrair   : 0
+08:33:14 | INFO     | ⏭️  Tudo em cache. Nada a extrair.
+08:33:14 | INFO     | ============================================================
+08:33:14 | INFO     | 📤 GERANDO atas_unidades.csv...
+08:33:14 | INFO     | 📂 2961 arquivo(s) de unidades encontrado(s). Processando...
+08:33:14 | INFO     | ✅ CSV gerado: data\atas_unidades.csv
+08:33:14 | INFO     | Registros        : 9567
+08:33:14 | INFO     | Participantes    : 6621
+08:33:14 | INFO     | Não participantes: 2946
+08:33:14 | INFO     | Aceita adesão    : 3735
+08:33:14 | INFO     | Colunas          : 27
+08:33:14 | INFO     | ============================================================
+08:33:14 | INFO     | 📄 INICIANDO EXTRAÇÃO DE CONTRATOS
+08:33:14 | INFO     | UASGs       : 11
+08:33:14 | INFO     | Validade    : 1 dia(s)
+08:33:14 | INFO     | 🚀 INICIANDO EXTRAÇÃO DE CONTRATOS | WORKERS: 5 | TOTAL: 11
+08:33:14 | INFO     | ✅ FIM | Falhas: 0 | SKIPs: 11
+08:33:14 | INFO     | ============================================================
+08:33:14 | INFO     | 📤 GERANDO contratos.csv...
+08:33:14 | INFO     | 📂 11 arquivo(s) de contratos encontrado(s). Processando...
+08:33:14 | INFO     | ✅ CSV gerado: data\contratos.csv
+08:33:14 | INFO     | Contratos    : 1628
+08:33:14 | INFO     | Prorrogáveis : 417
+08:33:14 | INFO     | Colunas      : 21
+08:33:14 | INFO     | ============================================================
+08:33:14 | INFO     | 👥 INICIANDO EXTRAÇÃO DE RESPONSÁVEIS DOS CONTRATOS
+08:33:15 | INFO     | Contratos na fila : 1628
+08:33:15 | INFO     | Validade cache    : 1 dia(s)
+08:33:15 | INFO     | 🚀 INICIANDO EXTRAÇÃO DE RESPONSÁVEIS | WORKERS: 15 | TOTAL: 1628
+08:33:15 | INFO     | [08:33:15] ⏭️  SKIPs: 50 | 50/1628 (3.1%) | Falhas: 0
+08:33:15 | INFO     | [08:33:15] ⏭️  SKIPs: 100 | 100/1628 (6.1%) | Falhas: 0
+08:33:15 | INFO     | [08:33:15] ⏭️  SKIPs: 150 | 150/1628 (9.2%) | Falhas: 0
+08:33:15 | INFO     | [08:33:15] ⏭️  SKIPs: 200 | 200/1628 (12.3%) | Falhas: 0
+08:33:15 | INFO     | [08:33:15] ⏭️  SKIPs: 250 | 250/1628 (15.4%) | Falhas: 0
+08:33:15 | INFO     | [08:33:15] ⏭️  SKIPs: 300 | 300/1628 (18.4%) | Falhas: 0
+08:33:15 | INFO     | [08:33:15] ⏭️  SKIPs: 350 | 350/1628 (21.5%) | Falhas: 0
+08:33:15 | INFO     | [08:33:15] ⏭️  SKIPs: 400 | 400/1628 (24.6%) | Falhas: 0
+08:33:15 | INFO     | [08:33:15] ⏭️  SKIPs: 450 | 450/1628 (27.6%) | Falhas: 0
+08:33:15 | INFO     | [08:33:15] ⏭️  SKIPs: 500 | 500/1628 (30.7%) | Falhas: 0
+08:33:15 | INFO     | [08:33:15] ⏭️  SKIPs: 550 | 550/1628 (33.8%) | Falhas: 0
+08:33:15 | INFO     | [08:33:15] ⏭️  SKIPs: 600 | 600/1628 (36.9%) | Falhas: 0
+08:33:15 | INFO     | [08:33:15] ⏭️  SKIPs: 650 | 650/1628 (39.9%) | Falhas: 0
+08:33:15 | INFO     | [08:33:15] ⏭️  SKIPs: 700 | 700/1628 (43.0%) | Falhas: 0
+08:33:15 | INFO     | [08:33:15] ⏭️  SKIPs: 750 | 750/1628 (46.1%) | Falhas: 0
+08:33:15 | INFO     | [08:33:15] ⏭️  SKIPs: 800 | 800/1628 (49.1%) | Falhas: 0
+08:33:15 | INFO     | [08:33:15] ⏭️  SKIPs: 850 | 850/1628 (52.2%) | Falhas: 0
+08:33:15 | INFO     | [08:33:15] ⏭️  SKIPs: 900 | 900/1628 (55.3%) | Falhas: 0
+08:33:15 | INFO     | [08:33:15] ⏭️  SKIPs: 950 | 950/1628 (58.4%) | Falhas: 0
+08:33:15 | INFO     | [08:33:15] ⏭️  SKIPs: 1000 | 1000/1628 (61.4%) | Falhas: 0
+08:33:15 | INFO     | [08:33:15] ⏭️  SKIPs: 1050 | 1050/1628 (64.5%) | Falhas: 0
+08:33:15 | INFO     | [08:33:15] ⏭️  SKIPs: 1100 | 1100/1628 (67.6%) | Falhas: 0
+08:33:15 | INFO     | [08:33:15] ⏭️  SKIPs: 1150 | 1150/1628 (70.6%) | Falhas: 0
+08:33:15 | INFO     | [08:33:15] ⏭️  SKIPs: 1200 | 1200/1628 (73.7%) | Falhas: 0
+08:33:15 | INFO     | [08:33:15] ⏭️  SKIPs: 1250 | 1250/1628 (76.8%) | Falhas: 0
+08:33:15 | INFO     | [08:33:15] ⏭️  SKIPs: 1300 | 1300/1628 (79.9%) | Falhas: 0
+08:33:15 | INFO     | [08:33:15] ⏭️  SKIPs: 1350 | 1350/1628 (82.9%) | Falhas: 0
+08:33:15 | INFO     | [08:33:15] ⏭️  SKIPs: 1400 | 1400/1628 (86.0%) | Falhas: 0
+08:33:15 | INFO     | [08:33:15] ⏭️  SKIPs: 1450 | 1450/1628 (89.1%) | Falhas: 0
+08:33:15 | INFO     | [08:33:15] ⏭️  SKIPs: 1500 | 1500/1628 (92.1%) | Falhas: 0
+08:33:15 | INFO     | [08:33:15] ⏭️  SKIPs: 1550 | 1550/1628 (95.2%) | Falhas: 0
+08:33:15 | INFO     | [08:33:15] ⏭️  SKIPs: 1600 | 1600/1628 (98.3%) | Falhas: 0
+08:33:15 | INFO     | ✅ FIM | Falhas: 0 | SKIPs: 1628
+08:33:15 | INFO     | ============================================================
+08:33:15 | INFO     | 📤 GERANDO contratos_responsaveis.csv...
+08:33:15 | INFO     | 📂 1645 arquivo(s) de responsáveis encontrado(s). Processando...
+08:33:15 | INFO     | ✅ CSV gerado: data\contratos_responsaveis.csv
+08:33:15 | INFO     | Responsáveis : 1118
+08:33:15 | INFO     | Ativos       : 931
+08:33:15 | INFO     | Colunas      : 11
+08:33:15 | INFO     | ============================================================
+08:33:15 | INFO     | 📦 INICIANDO OBTENÇÃO DE ITENS EMPENHADOS DO GOOGLE DRIVE
+08:33:15 | INFO     | 📦 OBTENDO ITENS EMPENHADOS DO GOOGLE DRIVE...
+08:33:30 | INFO     | ✅ ITENS EMPENHADOS OBTIDOS E SALVOS
+08:33:30 | INFO     | ============================================================
+08:33:30 | INFO     | 📊 RESUMO FINAL
+08:33:30 | INFO     |   Falhas compras        : 0
+08:33:30 | INFO     |   Falhas itens          : 0
+08:33:30 | INFO     |   Falhas atas           : 0
+08:33:30 | INFO     |   Falhas atas_itens     : 0
+08:33:30 | INFO     |   Falhas atas_saldos    : 0
+08:33:30 | INFO     |   Falhas atas_unidades  : 0
+08:33:30 | INFO     |   Falhas contratos      : 0
+08:33:30 | INFO     |   Falhas contratos_resp : 0
+08:33:30 | INFO     |   Falhas itens_empenhad : 0
+08:33:30 | INFO     | 🎉 PIPELINE CONCLUÍDO COM SUCESSO!
