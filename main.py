@@ -17,7 +17,11 @@ Fluxo completo (padrão):
  11. Consolida saldos                       → data/atas_saldos.csv
  12. Extrai unidades participantes          → temp/atas_unidades/
  13. Consolida unidades                     → data/atas_unidades.csv
- 14. Obter itens empenhados TG              → data/itens_empenhados_TG.xlsx
+ 14. Extrai contratos de todas as UASGs     → temp/contratos/
+ 15. Consolida contratos                    → data/contratos.csv
+ 16. Extrai responsáveis dos contratos      → temp/contratos_responsaveis/
+ 17. Consolida responsáveis                 → data/contratos_responsaveis.csv
+ 18. Obter itens empenhados TG              → data/itens_empenhados_TG.xlsx
 
 Modos disponíveis:
   python main.py                                    # pipeline completo
@@ -65,8 +69,13 @@ import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 # Força saída sem buffer — garante que prints de threads aparecem
 # na ordem correta no log do GitHub Actions e em ambientes com pipe.
+# Previne erros de UnicodeEncodeError em consoles Windows reconfigurando para substituir caracteres inválidos.
 os.environ.setdefault("PYTHONUNBUFFERED", "1")
-sys.stdout.reconfigure(line_buffering=True)
+try:
+    sys.stdout.reconfigure(line_buffering=True, errors="replace")
+    sys.stderr.reconfigure(errors="replace")
+except AttributeError:
+    pass
 # Fuso horário: UTC-4 (Mato Grosso do Sul)
 # Afeta datetime.now() em todos os módulos do pipeline.
 os.environ["TZ"] = "America/Campo_Grande"
@@ -362,8 +371,25 @@ def _modo_extrator_compras() -> None:
     falhas_atas_unidades = executar_atas_unidades()
     _modo_transformer_atas_unidades()
 
+    log_info("📄 INICIANDO EXTRAÇÃO DE CONTRATOS")
+    falhas_contratos = executar_contratos()
+    _modo_transformer_contratos()
+
+    log_info("👥 INICIANDO EXTRAÇÃO DE RESPONSÁVEIS DOS CONTRATOS")
+    falhas_contratos_resp = executar_contratos_responsaveis()
+    _modo_transformer_contratos_responsaveis()
+
+    log_info("📦 INICIANDO OBTENÇÃO DE ITENS EMPENHADOS DO GOOGLE DRIVE")
+    try:
+        _modo_itens_empenhados_tg()
+        falhas_itens_empenhados = 0
+    except Exception as e:
+        log_info("❌ Falha ao obter itens empenhados: %s", str(e))
+        falhas_itens_empenhados = 1
+
     falhas_totais = (falhas_compras + falhas_itens + falhas_atas
-                     + falhas_atas_itens + falhas_atas_saldos + falhas_atas_unidades)
+                     + falhas_atas_itens + falhas_atas_saldos + falhas_atas_unidades
+                     + falhas_contratos + falhas_contratos_resp + falhas_itens_empenhados)
 
     log_info("=" * 60)
     log_info("📊 RESUMO FINAL")
@@ -373,6 +399,9 @@ def _modo_extrator_compras() -> None:
     log_info("  Falhas atas_itens     : %d", falhas_atas_itens)
     log_info("  Falhas atas_saldos    : %d", falhas_atas_saldos)
     log_info("  Falhas atas_unidades  : %d", falhas_atas_unidades)
+    log_info("  Falhas contratos      : %d", falhas_contratos)
+    log_info("  Falhas contratos_resp : %d", falhas_contratos_resp)
+    log_info("  Falhas itens_empenhad : %d", falhas_itens_empenhados)
 
     if falhas_totais > 0:
         log_info("⚠️  Pipeline finalizado com %d falha(s).", falhas_totais)

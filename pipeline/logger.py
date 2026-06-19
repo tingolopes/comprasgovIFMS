@@ -18,10 +18,22 @@ class LoggerWriter:
     """Redireciona stdout/stderr para o logger para capturar 'prints' de outros módulos."""
     def __init__(self, level):
         self.level = level
+        self._in_write = False
 
     def write(self, message):
+        if self._in_write:
+            # Previne recursão infinita se o próprio logger der erro
+            sys.__stderr__.write(message)
+            return
         if message.strip():
-            self.level(message.strip())
+            self._in_write = True
+            try:
+                self.level(message.strip())
+            except Exception as e:
+                # Se falhar ao logar (ex: erro de encoding no console), escreve no stderr original
+                sys.__stderr__.write(f"[LoggerWriter Error: {e}] {message}\n")
+            finally:
+                self._in_write = False
 
     def flush(self):
         pass

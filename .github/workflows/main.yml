@@ -49,17 +49,8 @@ jobs:
           echo "Temp directories:"
           ls -1 temp || true
 
-      - name: Run full default pipeline (compras + atas)
+      - name: Run full default pipeline (compras + atas + contratos + empenhos)
         run: python main.py
-
-      - name: Run contratos modules (não executados no modo padrão)
-        run: |
-          python main.py --modo extrator_contratos
-          python main.py --modo extrator_contratos_resp
-
-      - name: Run itens empenhados module
-        run: |
-          python main.py --modo itens_empenhados
 
       - name: 💾 Salvar Bases Consolidadas no GitHub
         run: |
