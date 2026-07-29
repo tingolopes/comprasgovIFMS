@@ -1,0 +1,8 @@
+14:27:03 | INFO     | ============================================================
+14:27:03 | INFO     | 🏢 EXTRAINDO UNIDADES PARTICIPANTES DAS ATAS...
+14:27:03 | INFO     | ⚠️  Cache de itens de atas vazio. Execute extrator_atas_itens primeiro.
+14:27:03 | INFO     | ============================================================
+14:27:03 | INFO     | 📤 GERANDO atas_unidades.csv...
+14:27:03 | INFO     | ⚠️  Nenhum JSON em temp/atas_unidades
+14:27:03 | INFO     | ⚠️  Nenhuma unidade válida encontrada.
+14:27:03 | INFO     | ============================================================

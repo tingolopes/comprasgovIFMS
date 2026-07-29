@@ -1,0 +1,3 @@
+14:24:17 | ERROR    | usage: main.py [-h]
+               [--modo {extrator_compras,transformer_compras,extrator_compras_itens,transformer_compras_itens,extrator_atas,transformer_atas,extrator_atas_itens,transformer_atas_itens,extrator_atas_saldos,transformer_atas_saldos,extrator_atas_unidades,transformer_atas_unidades,extrator_contratos,transformer_contratos,extrator_contratos_resp,transformer_contratos_resp,itens_empenhados}]
+14:24:17 | ERROR    | main.py: error: unrecognized arguments: --extrator_atas_unidades

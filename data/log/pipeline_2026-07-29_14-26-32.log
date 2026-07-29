@@ -1,0 +1,13 @@
+14:26:32 | INFO     | ============================================================
+14:26:32 | INFO     | 🏢 EXTRAINDO UNIDADES PARTICIPANTES DAS ATAS...
+14:26:32 | INFO     | ⚠️  Cache de itens de atas vazio. Execute extrator_atas_itens primeiro.
+14:26:32 | INFO     | ============================================================
+14:26:32 | INFO     | 📤 GERANDO atas_unidades.csv...
+14:26:32 | INFO     | 📂 2961 arquivo(s) de unidades encontrado(s). Processando...
+14:26:33 | INFO     | ✅ CSV gerado: data\atas_unidades.csv
+14:26:33 | INFO     | Registros        : 9567
+14:26:33 | INFO     | Participantes    : 6621
+14:26:33 | INFO     | Não participantes: 2946
+14:26:33 | INFO     | Aceita adesão    : 3735
+14:26:33 | INFO     | Colunas          : 27
+14:26:33 | INFO     | ============================================================

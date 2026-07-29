@@ -1,0 +1,917 @@
+14:24:27 | INFO     | 🚀 INICIANDO PIPELINE DE EXTRAÇÃO DE COMPRAS PÚBLICAS
+14:24:27 | INFO     | ============================================================
+14:24:27 | INFO     | ℹ️  Módulo LEGADO está desativado em config.config['CONFIG_APIS']['LEGADO']['executar_legado']; pulando extração.
+14:24:27 | INFO     | ▶ Módulo LEI 14.133 — 24 tarefas | 2 threads
+14:24:27 | INFO     | ⏭️  SKIPs acumulados: 24 | 24/24 (100.0%) | Falhas: 0
+14:24:27 | INFO     |    Concluído — DONE: 0 | SKIP: 24 | FAIL: 0
+14:24:27 | INFO     | ============================================================
+14:24:27 | INFO     | 📊 RESUMO DA EXTRAÇÃO DE COMPRAS
+14:24:27 | INFO     |   Falhas Legado   : 0
+14:24:27 | INFO     |   Falhas Lei14133 : 0
+14:24:27 | INFO     |   SKIPs           : 0
+14:24:27 | INFO     | ============================================================
+14:24:27 | INFO     | 📤 GERANDO compras.csv...
+14:24:27 | INFO     | 📂 341 arquivo(s) encontrado(s). Processando...
+14:24:27 | INFO     | ✅ CSV gerado: data\compras.csv
+14:24:27 | INFO     | IDs únicos     : 2383
+14:24:27 | INFO     | Legado         : 1924
+14:24:27 | INFO     | Lei 14.133     : 459
+14:24:27 | INFO     | Com responsável: 2061
+14:24:27 | INFO     | Sem objeto     : 0
+14:24:27 | INFO     | Colunas        : 27
+14:24:27 | INFO     | ============================================================
+14:24:27 | INFO     | 🔩 INICIANDO EXTRAÇÃO DE ITENS
+14:24:27 | INFO     | 🔍 Coletando ids de compras para montar a fila de itens...
+14:24:28 | INFO     | IDs únicos     : 2383
+14:24:28 | INFO     | Consultas prev.: 4695  (vs 9532 no modo bruto)
+14:24:28 | INFO     | Já em cache    : 4695
+14:24:28 | INFO     | A extrair      : 0
+14:24:28 | INFO     | TOTAL fila     : 0
+14:24:28 | INFO     | ⚠️  Nenhuma compra encontrada ou todas já em cache.
+14:24:28 | INFO     | ============================================================
+14:24:28 | INFO     | 📤 GERANDO compras_itens.csv...
+14:24:28 | INFO     | 📂 4699 arquivo(s) de itens encontrado(s). Processando...
+14:24:31 | INFO     | ✅ CSV gerado: data\compras_itens.csv
+14:24:31 | INFO     | Itens únicos  : 27751
+14:24:31 | INFO     | Legado        : 20870
+14:24:31 | INFO     | Lei 14.133    : 6881
+14:24:31 | INFO     | Colunas       : 33
+14:24:31 | INFO     | ============================================================
+14:24:31 | INFO     | 📋 INICIANDO EXTRAÇÃO DE ATAS
+14:24:31 | INFO     | UASG      : RT (158132)
+14:24:31 | INFO     | Anos      : 2023–2027
+14:24:31 | INFO     | A extrair : 5
+14:24:31 | INFO     | 🚀 INICIANDO EXTRAÇÃO DE ATAS | WORKERS: 3 | TOTAL: 5
+14:24:31 | INFO     | [14:24:31] ⏭️  SKIP | RT | 2023 | 1/5 (20.0%) | Falhas: 0
+14:24:31 | INFO     | [14:24:31] ⏭️  SKIP | RT | 2024 | 2/5 (40.0%) | Falhas: 0
+14:24:31 | INFO     | [14:24:31] ⏭️  SKIP | RT | 2025 | 3/5 (60.0%) | Falhas: 0
+14:24:31 | INFO     | [14:24:31] ⏭️  SKIP | RT | 2027 | 4/5 (80.0%) | Falhas: 0
+14:24:31 | INFO     | [14:24:31] ⏭️  SKIP | RT | 2026 | 5/5 (100.0%) | Falhas: 0
+14:24:31 | INFO     | ✅ FIM | Falhas: 0
+14:24:31 | INFO     | ============================================================
+14:24:31 | INFO     | 📤 GERANDO atas.csv...
+14:24:31 | INFO     | 📂 6 arquivo(s) de atas encontrado(s). Processando...
+14:24:31 | INFO     | ✅ CSV gerado: data\atas.csv
+14:24:31 | INFO     | Atas únicas   : 398
+14:24:31 | INFO     | Atas excluídas: 0
+14:24:31 | INFO     | Colunas       : 22
+14:24:31 | INFO     | ============================================================
+14:24:31 | INFO     | 📦 INICIANDO EXTRAÇÃO DE ITENS DAS ATAS
+14:24:31 | INFO     | UASG        : RT (158132)
+14:24:31 | INFO     | Anos        : 2023–2027
+14:24:31 | INFO     | Já em cache : 5
+14:24:31 | INFO     | A extrair   : 0
+14:24:31 | INFO     | ⏭️  Tudo em cache. Nada a extrair.
+14:24:31 | INFO     | ============================================================
+14:24:31 | INFO     | 📤 GERANDO atas_itens.csv...
+14:24:31 | INFO     | ✅ Mapa de atas carregado: 68 compras | 398 atas conhecidas
+14:24:31 | INFO     | 📂 9 arquivo(s) de itens de atas encontrado(s). Processando...
+14:24:31 | INFO     | ✅ Nenhuma ata ausente detectada.
+14:24:31 | INFO     | ✅ CSV gerado: data\atas_itens.csv
+14:24:31 | INFO     | Itens únicos     : 2961
+14:24:31 | INFO     | Material         : 2406
+14:24:31 | INFO     | Serviço          : 555
+14:24:31 | INFO     | Excluídos        : 0
+14:24:31 | INFO     | Sem id_compra    : 0
+14:24:31 | INFO     | Sem numero_compra: 0
+14:24:31 | INFO     | Colunas          : 35
+14:24:31 | INFO     | ============================================================
+14:24:31 | INFO     | 💰 INICIANDO EXTRAÇÃO DE SALDOS DAS ATAS
+14:24:31 | INFO     | UASG             : RT (158132)
+14:24:31 | INFO     | Validade cache   : 3 dias
+14:24:31 | INFO     | A extrair/atualizar: 0
+14:24:31 | INFO     | ⏭️  Tudo em cache e dentro da validade. Nada a extrair.
+14:24:31 | INFO     | ============================================================
+14:24:31 | INFO     | 📤 GERANDO atas_saldos.csv...
+14:24:31 | INFO     | 📂 420 arquivo(s) de saldos encontrado(s). Processando...
+14:24:31 | INFO     | ✅ CSV gerado: data\atas_saldos.csv
+14:24:31 | INFO     | Registros        : 2165
+14:24:31 | INFO     | Participantes    : 1918
+14:24:31 | INFO     | Não participantes: 141
+14:24:31 | INFO     | Colunas          : 12
+14:24:31 | INFO     | ============================================================
+14:24:31 | INFO     | 🏢 INICIANDO EXTRAÇÃO DE UNIDADES PARTICIPANTES
+14:24:32 | INFO     | UASG        : RT (158132)
+14:24:32 | INFO     | A extrair   : 0
+14:24:32 | INFO     | ⏭️  Tudo em cache. Nada a extrair.
+14:24:32 | INFO     | ============================================================
+14:24:32 | INFO     | 📤 GERANDO atas_unidades.csv...
+14:24:32 | INFO     | 📂 2961 arquivo(s) de unidades encontrado(s). Processando...
+14:24:33 | INFO     | ✅ CSV gerado: data\atas_unidades.csv
+14:24:33 | INFO     | Registros        : 9567
+14:24:33 | INFO     | Participantes    : 6621
+14:24:33 | INFO     | Não participantes: 2946
+14:24:33 | INFO     | Aceita adesão    : 3735
+14:24:33 | INFO     | Colunas          : 27
+14:24:33 | INFO     | ============================================================
+14:24:33 | INFO     | 📄 INICIANDO EXTRAÇÃO DE CONTRATOS
+14:24:33 | INFO     | UASGs       : 11
+14:24:33 | INFO     | Validade    : 1 dia(s)
+14:24:33 | INFO     | 🚀 INICIANDO EXTRAÇÃO DE CONTRATOS | WORKERS: 5 | TOTAL: 11
+14:24:33 | INFO     | ✅ FIM | Falhas: 0 | SKIPs: 11
+14:24:33 | INFO     | ============================================================
+14:24:33 | INFO     | 📤 GERANDO contratos.csv...
+14:24:33 | INFO     | 📂 11 arquivo(s) de contratos encontrado(s). Processando...
+14:24:33 | INFO     | ✅ CSV gerado: data\contratos.csv
+14:24:33 | INFO     | Contratos    : 1686
+14:24:33 | INFO     | Prorrogáveis : 431
+14:24:33 | INFO     | Colunas      : 21
+14:24:33 | INFO     | ============================================================
+14:24:33 | INFO     | 👥 INICIANDO EXTRAÇÃO DE RESPONSÁVEIS DOS CONTRATOS
+14:24:33 | INFO     | Contratos na fila : 1686
+14:24:33 | INFO     | Validade cache    : 1 dia(s)
+14:24:33 | INFO     | 🚀 INICIANDO EXTRAÇÃO DE RESPONSÁVEIS | WORKERS: 15 | TOTAL: 1686
+14:24:33 | INFO     | [14:24:33] ⏭️  SKIPs: 50 | 50/1686 (3.0%) | Falhas: 0
+14:24:33 | INFO     | [14:24:33] ⏭️  SKIPs: 100 | 100/1686 (5.9%) | Falhas: 0
+14:24:33 | INFO     | [14:24:33] ⏭️  SKIPs: 150 | 150/1686 (8.9%) | Falhas: 0
+14:24:33 | INFO     | [14:24:33] ⏭️  SKIPs: 200 | 200/1686 (11.9%) | Falhas: 0
+14:24:33 | INFO     | [14:24:33] ⏭️  SKIPs: 250 | 250/1686 (14.8%) | Falhas: 0
+14:24:33 | INFO     | [14:24:33] ⏭️  SKIPs: 300 | 300/1686 (17.8%) | Falhas: 0
+14:24:33 | INFO     | [14:24:33] ⏭️  SKIPs: 350 | 350/1686 (20.8%) | Falhas: 0
+14:24:33 | INFO     | [14:24:33] ⏭️  SKIPs: 400 | 400/1686 (23.7%) | Falhas: 0
+14:24:33 | INFO     | [14:24:33] ⏭️  SKIPs: 450 | 450/1686 (26.7%) | Falhas: 0
+14:24:33 | INFO     | [14:24:33] ⏭️  SKIPs: 500 | 500/1686 (29.7%) | Falhas: 0
+14:24:33 | INFO     | [14:24:33] ⏭️  SKIPs: 550 | 550/1686 (32.6%) | Falhas: 0
+14:24:33 | INFO     | [14:24:33] ⏭️  SKIPs: 600 | 600/1686 (35.6%) | Falhas: 0
+14:24:33 | INFO     | [14:24:33] ⏭️  SKIPs: 650 | 650/1686 (38.6%) | Falhas: 0
+14:24:33 | INFO     | [14:24:33] ⏭️  SKIPs: 700 | 700/1686 (41.5%) | Falhas: 0
+14:24:34 | INFO     | [14:24:34] ✅ DONE | 564674 | 0 responsáveis | 714/1686 (42.3%) | Falhas: 0
+14:24:34 | INFO     | [14:24:34] ✅ DONE | 690248 | 0 responsáveis | 715/1686 (42.4%) | Falhas: 0
+14:24:34 | INFO     | [14:24:34] ✅ DONE | 757511 | 0 responsáveis | 716/1686 (42.5%) | Falhas: 0
+14:24:34 | INFO     | [14:24:34] ✅ DONE | 665281 | 0 responsáveis | 717/1686 (42.5%) | Falhas: 0
+14:24:34 | INFO     | [14:24:34] ✅ DONE | 698023 | 0 responsáveis | 718/1686 (42.6%) | Falhas: 0
+14:24:34 | INFO     | [14:24:34] ✅ DONE | 665391 | 0 responsáveis | 719/1686 (42.6%) | Falhas: 0
+14:24:34 | INFO     | [14:24:34] ✅ DONE | 743110 | 0 responsáveis | 720/1686 (42.7%) | Falhas: 0
+14:24:34 | INFO     | [14:24:34] ✅ DONE | 764393 | 0 responsáveis | 721/1686 (42.8%) | Falhas: 0
+14:24:34 | INFO     | [14:24:34] ✅ DONE | 785536 | 0 responsáveis | 722/1686 (42.8%) | Falhas: 0
+14:24:34 | INFO     | [14:24:34] ✅ DONE | 791398 | 0 responsáveis | 723/1686 (42.9%) | Falhas: 0
+14:24:34 | INFO     | [14:24:34] ✅ DONE | 704639 | 0 responsáveis | 724/1686 (42.9%) | Falhas: 0
+14:24:34 | INFO     | [14:24:34] ✅ DONE | 547109 | 0 responsáveis | 725/1686 (43.0%) | Falhas: 0
+14:24:34 | INFO     | [14:24:34] ✅ DONE | 791399 | 0 responsáveis | 726/1686 (43.1%) | Falhas: 0
+14:24:34 | INFO     | [14:24:34] ✅ DONE | 636955 | 0 responsáveis | 727/1686 (43.1%) | Falhas: 0
+14:24:34 | INFO     | [14:24:34] ✅ DONE | 700662 | 0 responsáveis | 728/1686 (43.2%) | Falhas: 0
+14:24:35 | INFO     | [14:24:35] ✅ DONE | 793928 | 0 responsáveis | 729/1686 (43.2%) | Falhas: 0
+14:24:35 | INFO     | [14:24:35] ✅ DONE | 806379 | 0 responsáveis | 730/1686 (43.3%) | Falhas: 0
+14:24:35 | INFO     | [14:24:35] ✅ DONE | 806377 | 0 responsáveis | 731/1686 (43.4%) | Falhas: 0
+14:24:35 | INFO     | [14:24:35] ✅ DONE | 823231 | 0 responsáveis | 732/1686 (43.4%) | Falhas: 0
+14:24:35 | INFO     | [14:24:35] ✅ DONE | 791400 | 0 responsáveis | 733/1686 (43.5%) | Falhas: 0
+14:24:35 | INFO     | [14:24:35] ✅ DONE | 802994 | 0 responsáveis | 734/1686 (43.5%) | Falhas: 0
+14:24:35 | INFO     | [14:24:35] ✅ DONE | 795761 | 0 responsáveis | 735/1686 (43.6%) | Falhas: 0
+14:24:35 | INFO     | [14:24:35] ✅ DONE | 793927 | 0 responsáveis | 736/1686 (43.7%) | Falhas: 0
+14:24:35 | INFO     | [14:24:35] ✅ DONE | 815514 | 0 responsáveis | 737/1686 (43.7%) | Falhas: 0
+14:24:35 | INFO     | [14:24:35] ✅ DONE | 806378 | 0 responsáveis | 738/1686 (43.8%) | Falhas: 0
+14:24:35 | INFO     | [14:24:35] ✅ DONE | 823229 | 0 responsáveis | 739/1686 (43.8%) | Falhas: 0
+14:24:35 | INFO     | [14:24:35] ✅ DONE | 806376 | 0 responsáveis | 740/1686 (43.9%) | Falhas: 0
+14:24:35 | INFO     | [14:24:35] ✅ DONE | 815513 | 0 responsáveis | 741/1686 (44.0%) | Falhas: 0
+14:24:35 | INFO     | [14:24:35] ✅ DONE | 823232 | 0 responsáveis | 742/1686 (44.0%) | Falhas: 0
+14:24:35 | INFO     | [14:24:35] ✅ DONE | 823230 | 0 responsáveis | 743/1686 (44.1%) | Falhas: 0
+14:24:36 | INFO     | [14:24:36] ✅ DONE | 836281 | 0 responsáveis | 744/1686 (44.1%) | Falhas: 0
+14:24:36 | INFO     | [14:24:36] ✅ DONE | 895832 | 0 responsáveis | 745/1686 (44.2%) | Falhas: 0
+14:24:36 | INFO     | [14:24:36] ✅ DONE | 857288 | 0 responsáveis | 746/1686 (44.2%) | Falhas: 0
+14:24:36 | INFO     | [14:24:36] ✅ DONE | 867078 | 1 responsáveis | 747/1686 (44.3%) | Falhas: 0
+14:24:36 | INFO     | [14:24:36] ✅ DONE | 857289 | 0 responsáveis | 748/1686 (44.4%) | Falhas: 0
+14:24:36 | INFO     | [14:24:36] ✅ DONE | 902904 | 0 responsáveis | 749/1686 (44.4%) | Falhas: 0
+14:24:36 | INFO     | [14:24:36] ✅ DONE | 907788 | 0 responsáveis | 750/1686 (44.5%) | Falhas: 0
+14:24:36 | INFO     | [14:24:36] ✅ DONE | 857287 | 0 responsáveis | 751/1686 (44.5%) | Falhas: 0
+14:24:36 | INFO     | [14:24:36] ✅ DONE | 902894 | 0 responsáveis | 752/1686 (44.6%) | Falhas: 0
+14:24:36 | INFO     | [14:24:36] ✅ DONE | 920294 | 0 responsáveis | 753/1686 (44.7%) | Falhas: 0
+14:24:36 | INFO     | [14:24:36] ✅ DONE | 836283 | 0 responsáveis | 754/1686 (44.7%) | Falhas: 0
+14:24:36 | INFO     | [14:24:36] ✅ DONE | 838415 | 0 responsáveis | 755/1686 (44.8%) | Falhas: 0
+14:24:36 | INFO     | [14:24:36] ✅ DONE | 836282 | 0 responsáveis | 756/1686 (44.8%) | Falhas: 0
+14:24:36 | INFO     | [14:24:36] ✅ DONE | 902859 | 0 responsáveis | 757/1686 (44.9%) | Falhas: 0
+14:24:36 | INFO     | [14:24:36] ✅ DONE | 922010 | 0 responsáveis | 758/1686 (45.0%) | Falhas: 0
+14:24:37 | INFO     | [14:24:37] ✅ DONE | 926556 | 0 responsáveis | 759/1686 (45.0%) | Falhas: 0
+14:24:37 | INFO     | [14:24:37] ✅ DONE | 932457 | 0 responsáveis | 760/1686 (45.1%) | Falhas: 0
+14:24:37 | INFO     | [14:24:37] ✅ DONE | 951563 | 0 responsáveis | 761/1686 (45.1%) | Falhas: 0
+14:24:37 | INFO     | [14:24:37] ✅ DONE | 29365 | 0 responsáveis | 762/1686 (45.2%) | Falhas: 0
+14:24:37 | INFO     | [14:24:37] ✅ DONE | 942592 | 0 responsáveis | 763/1686 (45.3%) | Falhas: 0
+14:24:37 | INFO     | [14:24:37] ✅ DONE | 88680 | 0 responsáveis | 764/1686 (45.3%) | Falhas: 0
+14:24:37 | INFO     | [14:24:37] ✅ DONE | 113995 | 6 responsáveis | 765/1686 (45.4%) | Falhas: 0
+14:24:37 | INFO     | [14:24:37] ✅ DONE | 168940 | 0 responsáveis | 766/1686 (45.4%) | Falhas: 0
+14:24:37 | INFO     | [14:24:37] ✅ DONE | 208144 | 6 responsáveis | 767/1686 (45.5%) | Falhas: 0
+14:24:37 | INFO     | [14:24:37] ✅ DONE | 309915 | 5 responsáveis | 768/1686 (45.6%) | Falhas: 0
+14:24:37 | INFO     | [14:24:37] ✅ DONE | 189314 | 7 responsáveis | 769/1686 (45.6%) | Falhas: 0
+14:24:37 | INFO     | [14:24:37] ✅ DONE | 233894 | 14 responsáveis | 770/1686 (45.7%) | Falhas: 0
+14:24:37 | INFO     | [14:24:37] ✅ DONE | 259545 | 16 responsáveis | 771/1686 (45.7%) | Falhas: 0
+14:24:37 | INFO     | [14:24:37] ✅ DONE | 258935 | 18 responsáveis | 772/1686 (45.8%) | Falhas: 0
+14:24:37 | INFO     | [14:24:37] ✅ DONE | 164359 | 19 responsáveis | 773/1686 (45.8%) | Falhas: 0
+14:24:37 | INFO     | [14:24:37] ✅ DONE | 317330 | 19 responsáveis | 774/1686 (45.9%) | Falhas: 0
+14:24:38 | INFO     | [14:24:38] ✅ DONE | 399523 | 0 responsáveis | 775/1686 (46.0%) | Falhas: 0
+14:24:38 | INFO     | [14:24:38] ✅ DONE | 446442 | 0 responsáveis | 776/1686 (46.0%) | Falhas: 0
+14:24:38 | INFO     | [14:24:38] ✅ DONE | 430157 | 15 responsáveis | 777/1686 (46.1%) | Falhas: 0
+14:24:38 | INFO     | [14:24:38] ✅ DONE | 447567 | 0 responsáveis | 778/1686 (46.1%) | Falhas: 0
+14:24:38 | INFO     | [14:24:38] ✅ DONE | 446616 | 0 responsáveis | 779/1686 (46.2%) | Falhas: 0
+14:24:38 | INFO     | [14:24:38] ✅ DONE | 447575 | 0 responsáveis | 780/1686 (46.3%) | Falhas: 0
+14:24:38 | INFO     | [14:24:38] ✅ DONE | 447577 | 0 responsáveis | 781/1686 (46.3%) | Falhas: 0
+14:24:38 | INFO     | [14:24:38] ✅ DONE | 447578 | 0 responsáveis | 782/1686 (46.4%) | Falhas: 0
+14:24:38 | INFO     | [14:24:38] ✅ DONE | 447579 | 0 responsáveis | 783/1686 (46.4%) | Falhas: 0
+14:24:38 | INFO     | [14:24:38] ✅ DONE | 447580 | 0 responsáveis | 784/1686 (46.5%) | Falhas: 0
+14:24:38 | INFO     | [14:24:38] ✅ DONE | 447581 | 0 responsáveis | 785/1686 (46.6%) | Falhas: 0
+14:24:38 | INFO     | [14:24:38] ✅ DONE | 447576 | 0 responsáveis | 786/1686 (46.6%) | Falhas: 0
+14:24:38 | INFO     | [14:24:38] ✅ DONE | 447583 | 0 responsáveis | 787/1686 (46.7%) | Falhas: 0
+14:24:38 | INFO     | [14:24:38] ✅ DONE | 447582 | 0 responsáveis | 788/1686 (46.7%) | Falhas: 0
+14:24:38 | INFO     | [14:24:38] ✅ DONE | 447584 | 0 responsáveis | 789/1686 (46.8%) | Falhas: 0
+14:24:38 | INFO     | [14:24:38] ✅ DONE | 447585 | 0 responsáveis | 790/1686 (46.9%) | Falhas: 0
+14:24:39 | INFO     | [14:24:39] ✅ DONE | 447586 | 0 responsáveis | 791/1686 (46.9%) | Falhas: 0
+14:24:39 | INFO     | [14:24:39] ✅ DONE | 447587 | 0 responsáveis | 792/1686 (47.0%) | Falhas: 0
+14:24:39 | INFO     | [14:24:39] ✅ DONE | 457721 | 0 responsáveis | 793/1686 (47.0%) | Falhas: 0
+14:24:39 | INFO     | [14:24:39] ✅ DONE | 461486 | 0 responsáveis | 794/1686 (47.1%) | Falhas: 0
+14:24:39 | INFO     | [14:24:39] ✅ DONE | 475903 | 0 responsáveis | 795/1686 (47.2%) | Falhas: 0
+14:24:39 | INFO     | [14:24:39] ✅ DONE | 456003 | 0 responsáveis | 796/1686 (47.2%) | Falhas: 0
+14:24:39 | INFO     | [14:24:39] ✅ DONE | 485403 | 0 responsáveis | 797/1686 (47.3%) | Falhas: 0
+14:24:39 | INFO     | [14:24:39] ✅ DONE | 488264 | 0 responsáveis | 798/1686 (47.3%) | Falhas: 0
+14:24:39 | INFO     | [14:24:39] ✅ DONE | 484998 | 0 responsáveis | 799/1686 (47.4%) | Falhas: 0
+14:24:39 | INFO     | [14:24:39] ✅ DONE | 500090 | 0 responsáveis | 800/1686 (47.4%) | Falhas: 0
+14:24:39 | INFO     | [14:24:39] ✅ DONE | 491846 | 0 responsáveis | 801/1686 (47.5%) | Falhas: 0
+14:24:39 | INFO     | [14:24:39] ✅ DONE | 485091 | 0 responsáveis | 802/1686 (47.6%) | Falhas: 0
+14:24:39 | INFO     | [14:24:39] ✅ DONE | 485557 | 0 responsáveis | 803/1686 (47.6%) | Falhas: 0
+14:24:39 | INFO     | [14:24:39] ✅ DONE | 480080 | 25 responsáveis | 804/1686 (47.7%) | Falhas: 0
+14:24:39 | INFO     | [14:24:39] ✅ DONE | 501416 | 0 responsáveis | 805/1686 (47.7%) | Falhas: 0
+14:24:40 | INFO     | [14:24:40] ✅ DONE | 506115 | 0 responsáveis | 806/1686 (47.8%) | Falhas: 0
+14:24:40 | INFO     | [14:24:40] ✅ DONE | 513653 | 6 responsáveis | 807/1686 (47.9%) | Falhas: 0
+14:24:40 | INFO     | [14:24:40] ✅ DONE | 523118 | 0 responsáveis | 808/1686 (47.9%) | Falhas: 0
+14:24:40 | INFO     | [14:24:40] ✅ DONE | 532566 | 0 responsáveis | 809/1686 (48.0%) | Falhas: 0
+14:24:40 | INFO     | [14:24:40] ✅ DONE | 532473 | 0 responsáveis | 810/1686 (48.0%) | Falhas: 0
+14:24:40 | INFO     | [14:24:40] ✅ DONE | 540287 | 0 responsáveis | 811/1686 (48.1%) | Falhas: 0
+14:24:40 | INFO     | [14:24:40] ✅ DONE | 548082 | 0 responsáveis | 812/1686 (48.2%) | Falhas: 0
+14:24:40 | INFO     | [14:24:40] ✅ DONE | 541291 | 0 responsáveis | 813/1686 (48.2%) | Falhas: 0
+14:24:40 | INFO     | [14:24:40] ✅ DONE | 559042 | 0 responsáveis | 814/1686 (48.3%) | Falhas: 0
+14:24:40 | INFO     | [14:24:40] ✅ DONE | 561633 | 0 responsáveis | 815/1686 (48.3%) | Falhas: 0
+14:24:40 | INFO     | [14:24:40] ✅ DONE | 568906 | 4 responsáveis | 816/1686 (48.4%) | Falhas: 0
+14:24:40 | INFO     | [14:24:40] ✅ DONE | 573272 | 0 responsáveis | 817/1686 (48.5%) | Falhas: 0
+14:24:40 | INFO     | [14:24:40] ✅ DONE | 568904 | 4 responsáveis | 818/1686 (48.5%) | Falhas: 0
+14:24:40 | INFO     | [14:24:40] ✅ DONE | 568908 | 4 responsáveis | 819/1686 (48.6%) | Falhas: 0
+14:24:40 | INFO     | [14:24:40] ✅ DONE | 575301 | 0 responsáveis | 820/1686 (48.6%) | Falhas: 0
+14:24:40 | INFO     | [14:24:40] ✅ DONE | 575316 | 0 responsáveis | 821/1686 (48.7%) | Falhas: 0
+14:24:41 | INFO     | [14:24:41] ✅ DONE | 580338 | 0 responsáveis | 822/1686 (48.8%) | Falhas: 0
+14:24:41 | INFO     | [14:24:41] ✅ DONE | 584182 | 0 responsáveis | 823/1686 (48.8%) | Falhas: 0
+14:24:41 | INFO     | [14:24:41] ✅ DONE | 591501 | 0 responsáveis | 824/1686 (48.9%) | Falhas: 0
+14:24:41 | INFO     | [14:24:41] ✅ DONE | 594201 | 0 responsáveis | 825/1686 (48.9%) | Falhas: 0
+14:24:41 | INFO     | [14:24:41] ✅ DONE | 712318 | 0 responsáveis | 826/1686 (49.0%) | Falhas: 0
+14:24:41 | INFO     | [14:24:41] ✅ DONE | 616289 | 4 responsáveis | 827/1686 (49.1%) | Falhas: 0
+14:24:41 | INFO     | [14:24:41] ✅ DONE | 706202 | 0 responsáveis | 828/1686 (49.1%) | Falhas: 0
+14:24:41 | INFO     | [14:24:41] ✅ DONE | 725107 | 0 responsáveis | 829/1686 (49.2%) | Falhas: 0
+14:24:41 | INFO     | [14:24:41] ✅ DONE | 724134 | 8 responsáveis | 830/1686 (49.2%) | Falhas: 0
+14:24:41 | INFO     | [14:24:41] ✅ DONE | 729792 | 0 responsáveis | 831/1686 (49.3%) | Falhas: 0
+14:24:41 | INFO     | [14:24:41] ✅ DONE | 734369 | 0 responsáveis | 832/1686 (49.3%) | Falhas: 0
+14:24:41 | INFO     | [14:24:41] ✅ DONE | 752615 | 0 responsáveis | 833/1686 (49.4%) | Falhas: 0
+14:24:41 | INFO     | [14:24:41] ✅ DONE | 736665 | 0 responsáveis | 834/1686 (49.5%) | Falhas: 0
+14:24:41 | INFO     | [14:24:41] ✅ DONE | 751128 | 0 responsáveis | 835/1686 (49.5%) | Falhas: 0
+14:24:41 | INFO     | [14:24:41] ✅ DONE | 773226 | 0 responsáveis | 836/1686 (49.6%) | Falhas: 0
+14:24:41 | INFO     | [14:24:41] ✅ DONE | 773305 | 0 responsáveis | 837/1686 (49.6%) | Falhas: 0
+14:24:42 | INFO     | [14:24:42] ✅ DONE | 776797 | 0 responsáveis | 838/1686 (49.7%) | Falhas: 0
+14:24:42 | INFO     | [14:24:42] ✅ DONE | 778433 | 0 responsáveis | 839/1686 (49.8%) | Falhas: 0
+14:24:42 | INFO     | [14:24:42] ✅ DONE | 822185 | 0 responsáveis | 840/1686 (49.8%) | Falhas: 0
+14:24:42 | INFO     | [14:24:42] ✅ DONE | 809741 | 4 responsáveis | 841/1686 (49.9%) | Falhas: 0
+14:24:42 | INFO     | [14:24:42] ✅ DONE | 833219 | 4 responsáveis | 842/1686 (49.9%) | Falhas: 0
+14:24:42 | INFO     | [14:24:42] ✅ DONE | 826022 | 0 responsáveis | 843/1686 (50.0%) | Falhas: 0
+14:24:42 | INFO     | [14:24:42] ✅ DONE | 833230 | 4 responsáveis | 844/1686 (50.1%) | Falhas: 0
+14:24:42 | INFO     | [14:24:42] ✅ DONE | 860456 | 4 responsáveis | 845/1686 (50.1%) | Falhas: 0
+14:24:42 | INFO     | [14:24:42] ✅ DONE | 837285 | 4 responsáveis | 846/1686 (50.2%) | Falhas: 0
+14:24:42 | INFO     | [14:24:42] ✅ DONE | 848634 | 4 responsáveis | 847/1686 (50.2%) | Falhas: 0
+14:24:42 | INFO     | [14:24:42] ✅ DONE | 842989 | 4 responsáveis | 848/1686 (50.3%) | Falhas: 0
+14:24:42 | INFO     | [14:24:42] ✅ DONE | 871620 | 6 responsáveis | 849/1686 (50.4%) | Falhas: 0
+14:24:42 | INFO     | [14:24:42] ✅ DONE | 894610 | 0 responsáveis | 850/1686 (50.4%) | Falhas: 0
+14:24:42 | INFO     | [14:24:42] ✅ DONE | 850260 | 4 responsáveis | 851/1686 (50.5%) | Falhas: 0
+14:24:42 | INFO     | [14:24:42] ✅ DONE | 929226 | 0 responsáveis | 852/1686 (50.5%) | Falhas: 0
+14:24:42 | INFO     | [14:24:42] ✅ DONE | 929537 | 0 responsáveis | 853/1686 (50.6%) | Falhas: 0
+14:24:43 | INFO     | [14:24:43] ✅ DONE | 934137 | 0 responsáveis | 854/1686 (50.7%) | Falhas: 0
+14:24:43 | INFO     | [14:24:43] ✅ DONE | 943831 | 0 responsáveis | 855/1686 (50.7%) | Falhas: 0
+14:24:43 | INFO     | [14:24:43] ✅ DONE | 948323 | 0 responsáveis | 856/1686 (50.8%) | Falhas: 0
+14:24:43 | INFO     | [14:24:43] ✅ DONE | 952575 | 0 responsáveis | 857/1686 (50.8%) | Falhas: 0
+14:24:43 | INFO     | [14:24:43] ✅ DONE | 10342 | 2 responsáveis | 858/1686 (50.9%) | Falhas: 0
+14:24:43 | INFO     | [14:24:43] ✅ DONE | 14953 | 0 responsáveis | 859/1686 (50.9%) | Falhas: 0
+14:24:43 | INFO     | [14:24:43] ✅ DONE | 20559 | 0 responsáveis | 860/1686 (51.0%) | Falhas: 0
+14:24:43 | INFO     | [14:24:43] ✅ DONE | 26827 | 0 responsáveis | 861/1686 (51.1%) | Falhas: 0
+14:24:43 | INFO     | [14:24:43] ✅ DONE | 21812 | 4 responsáveis | 862/1686 (51.1%) | Falhas: 0
+14:24:43 | INFO     | [14:24:43] ✅ DONE | 29851 | 0 responsáveis | 863/1686 (51.2%) | Falhas: 0
+14:24:43 | INFO     | [14:24:43] ✅ DONE | 29852 | 0 responsáveis | 864/1686 (51.2%) | Falhas: 0
+14:24:43 | INFO     | [14:24:43] ✅ DONE | 72020 | 0 responsáveis | 865/1686 (51.3%) | Falhas: 0
+14:24:43 | INFO     | [14:24:43] ✅ DONE | 29915 | 0 responsáveis | 866/1686 (51.4%) | Falhas: 0
+14:24:43 | INFO     | [14:24:43] ✅ DONE | 82432 | 2 responsáveis | 867/1686 (51.4%) | Falhas: 0
+14:24:43 | INFO     | [14:24:43] ✅ DONE | 119715 | 5 responsáveis | 868/1686 (51.5%) | Falhas: 0
+14:24:44 | INFO     | [14:24:44] ✅ DONE | 120576 | 0 responsáveis | 869/1686 (51.5%) | Falhas: 0
+14:24:44 | INFO     | [14:24:44] ✅ DONE | 147490 | 0 responsáveis | 870/1686 (51.6%) | Falhas: 0
+14:24:44 | INFO     | [14:24:44] ✅ DONE | 144476 | 0 responsáveis | 871/1686 (51.7%) | Falhas: 0
+14:24:44 | INFO     | [14:24:44] ✅ DONE | 145634 | 0 responsáveis | 872/1686 (51.7%) | Falhas: 0
+14:24:44 | INFO     | [14:24:44] ✅ DONE | 173787 | 0 responsáveis | 873/1686 (51.8%) | Falhas: 0
+14:24:44 | INFO     | [14:24:44] ✅ DONE | 157052 | 2 responsáveis | 874/1686 (51.8%) | Falhas: 0
+14:24:44 | INFO     | [14:24:44] ✅ DONE | 450466 | 0 responsáveis | 875/1686 (51.9%) | Falhas: 0
+14:24:44 | INFO     | [14:24:44] ✅ DONE | 451530 | 0 responsáveis | 876/1686 (52.0%) | Falhas: 0
+14:24:44 | INFO     | [14:24:44] ✅ DONE | 446589 | 2 responsáveis | 877/1686 (52.0%) | Falhas: 0
+14:24:44 | INFO     | [14:24:44] ✅ DONE | 451662 | 0 responsáveis | 878/1686 (52.1%) | Falhas: 0
+14:24:44 | INFO     | [14:24:44] ✅ DONE | 254798 | 1 responsáveis | 879/1686 (52.1%) | Falhas: 0
+14:24:44 | INFO     | [14:24:44] ✅ DONE | 446209 | 1 responsáveis | 880/1686 (52.2%) | Falhas: 0
+14:24:44 | INFO     | [14:24:44] ✅ DONE | 206208 | 4 responsáveis | 881/1686 (52.3%) | Falhas: 0
+14:24:44 | INFO     | [14:24:44] ✅ DONE | 174778 | 4 responsáveis | 882/1686 (52.3%) | Falhas: 0
+14:24:44 | INFO     | [14:24:44] ✅ DONE | 451742 | 0 responsáveis | 883/1686 (52.4%) | Falhas: 0
+14:24:44 | INFO     | [14:24:44] ✅ DONE | 451874 | 0 responsáveis | 884/1686 (52.4%) | Falhas: 0
+14:24:45 | INFO     | [14:24:45] ✅ DONE | 452131 | 0 responsáveis | 885/1686 (52.5%) | Falhas: 0
+14:24:45 | INFO     | [14:24:45] ✅ DONE | 451963 | 0 responsáveis | 886/1686 (52.6%) | Falhas: 0
+14:24:45 | INFO     | [14:24:45] ✅ DONE | 452708 | 0 responsáveis | 887/1686 (52.6%) | Falhas: 0
+14:24:45 | INFO     | [14:24:45] ✅ DONE | 452712 | 0 responsáveis | 888/1686 (52.7%) | Falhas: 0
+14:24:45 | INFO     | [14:24:45] ✅ DONE | 471390 | 0 responsáveis | 889/1686 (52.7%) | Falhas: 0
+14:24:45 | INFO     | [14:24:45] ✅ DONE | 471443 | 0 responsáveis | 890/1686 (52.8%) | Falhas: 0
+14:24:45 | INFO     | [14:24:45] ✅ DONE | 479725 | 0 responsáveis | 891/1686 (52.8%) | Falhas: 0
+14:24:45 | INFO     | [14:24:45] ✅ DONE | 479340 | 0 responsáveis | 892/1686 (52.9%) | Falhas: 0
+14:24:45 | INFO     | [14:24:45] ✅ DONE | 483875 | 1 responsáveis | 893/1686 (53.0%) | Falhas: 0
+14:24:45 | INFO     | [14:24:45] ✅ DONE | 483888 | 0 responsáveis | 894/1686 (53.0%) | Falhas: 0
+14:24:45 | INFO     | [14:24:45] ✅ DONE | 484344 | 0 responsáveis | 895/1686 (53.1%) | Falhas: 0
+14:24:45 | INFO     | [14:24:45] ✅ DONE | 495093 | 0 responsáveis | 896/1686 (53.1%) | Falhas: 0
+14:24:45 | INFO     | [14:24:45] ✅ DONE | 486149 | 1 responsáveis | 897/1686 (53.2%) | Falhas: 0
+14:24:45 | INFO     | [14:24:45] ✅ DONE | 499114 | 0 responsáveis | 898/1686 (53.3%) | Falhas: 0
+14:24:45 | INFO     | [14:24:45] ✅ DONE | 500050 | 0 responsáveis | 899/1686 (53.3%) | Falhas: 0
+14:24:45 | INFO     | [14:24:45] ✅ DONE | 500213 | 0 responsáveis | 900/1686 (53.4%) | Falhas: 0
+14:24:45 | INFO     | [14:24:45] ✅ DONE | 520408 | 2 responsáveis | 901/1686 (53.4%) | Falhas: 0
+14:24:45 | INFO     | [14:24:45] ✅ DONE | 531486 | 0 responsáveis | 902/1686 (53.5%) | Falhas: 0
+14:24:46 | INFO     | [14:24:46] ✅ DONE | 559219 | 0 responsáveis | 903/1686 (53.6%) | Falhas: 0
+14:24:46 | INFO     | [14:24:46] ✅ DONE | 565567 | 0 responsáveis | 904/1686 (53.6%) | Falhas: 0
+14:24:46 | INFO     | [14:24:46] ✅ DONE | 566432 | 0 responsáveis | 905/1686 (53.7%) | Falhas: 0
+14:24:46 | INFO     | [14:24:46] ✅ DONE | 577169 | 0 responsáveis | 906/1686 (53.7%) | Falhas: 0
+14:24:46 | INFO     | [14:24:46] ✅ DONE | 585317 | 2 responsáveis | 907/1686 (53.8%) | Falhas: 0
+14:24:46 | INFO     | [14:24:46] ✅ DONE | 577280 | 0 responsáveis | 908/1686 (53.9%) | Falhas: 0
+14:24:46 | INFO     | [14:24:46] ✅ DONE | 639389 | 0 responsáveis | 909/1686 (53.9%) | Falhas: 0
+14:24:46 | INFO     | [14:24:46] ✅ DONE | 615323 | 0 responsáveis | 910/1686 (54.0%) | Falhas: 0
+14:24:46 | INFO     | [14:24:46] ✅ DONE | 609937 | 0 responsáveis | 911/1686 (54.0%) | Falhas: 0
+14:24:46 | INFO     | [14:24:46] ✅ DONE | 656499 | 0 responsáveis | 912/1686 (54.1%) | Falhas: 0
+14:24:46 | INFO     | [14:24:46] ✅ DONE | 669647 | 0 responsáveis | 913/1686 (54.2%) | Falhas: 0
+14:24:46 | INFO     | [14:24:46] ✅ DONE | 694791 | 0 responsáveis | 914/1686 (54.2%) | Falhas: 0
+14:24:46 | INFO     | [14:24:46] ✅ DONE | 694909 | 0 responsáveis | 915/1686 (54.3%) | Falhas: 0
+14:24:46 | INFO     | [14:24:46] ✅ DONE | 702189 | 0 responsáveis | 916/1686 (54.3%) | Falhas: 0
+14:24:46 | INFO     | [14:24:46] ✅ DONE | 702157 | 0 responsáveis | 917/1686 (54.4%) | Falhas: 0
+14:24:46 | INFO     | [14:24:46] ✅ DONE | 702552 | 0 responsáveis | 918/1686 (54.4%) | Falhas: 0
+14:24:47 | INFO     | [14:24:47] ✅ DONE | 702602 | 0 responsáveis | 919/1686 (54.5%) | Falhas: 0
+14:24:47 | INFO     | [14:24:47] ✅ DONE | 702645 | 0 responsáveis | 920/1686 (54.6%) | Falhas: 0
+14:24:47 | INFO     | [14:24:47] ✅ DONE | 702682 | 0 responsáveis | 921/1686 (54.6%) | Falhas: 0
+14:24:47 | INFO     | [14:24:47] ✅ DONE | 702752 | 0 responsáveis | 922/1686 (54.7%) | Falhas: 0
+14:24:47 | INFO     | [14:24:47] ✅ DONE | 732884 | 0 responsáveis | 923/1686 (54.7%) | Falhas: 0
+14:24:47 | INFO     | [14:24:47] ✅ DONE | 745005 | 0 responsáveis | 924/1686 (54.8%) | Falhas: 0
+14:24:47 | INFO     | [14:24:47] ✅ DONE | 748263 | 0 responsáveis | 925/1686 (54.9%) | Falhas: 0
+14:24:47 | INFO     | [14:24:47] ✅ DONE | 751322 | 0 responsáveis | 926/1686 (54.9%) | Falhas: 0
+14:24:47 | INFO     | [14:24:47] ✅ DONE | 702819 | 0 responsáveis | 927/1686 (55.0%) | Falhas: 0
+14:24:47 | INFO     | [14:24:47] ✅ DONE | 758104 | 0 responsáveis | 928/1686 (55.0%) | Falhas: 0
+14:24:47 | INFO     | [14:24:47] ✅ DONE | 745029 | 0 responsáveis | 929/1686 (55.1%) | Falhas: 0
+14:24:47 | INFO     | [14:24:47] ✅ DONE | 758619 | 2 responsáveis | 930/1686 (55.2%) | Falhas: 0
+14:24:47 | INFO     | [14:24:47] ✅ DONE | 761771 | 0 responsáveis | 931/1686 (55.2%) | Falhas: 0
+14:24:47 | INFO     | [14:24:47] ✅ DONE | 761773 | 0 responsáveis | 932/1686 (55.3%) | Falhas: 0
+14:24:47 | INFO     | [14:24:47] ✅ DONE | 806579 | 0 responsáveis | 933/1686 (55.3%) | Falhas: 0
+14:24:47 | INFO     | [14:24:47] ✅ DONE | 806617 | 0 responsáveis | 934/1686 (55.4%) | Falhas: 0
+14:24:47 | INFO     | [14:24:47] ✅ DONE | 806665 | 0 responsáveis | 935/1686 (55.5%) | Falhas: 0
+14:24:48 | INFO     | [14:24:48] ✅ DONE | 807730 | 0 responsáveis | 936/1686 (55.5%) | Falhas: 0
+14:24:48 | INFO     | [14:24:48] ✅ DONE | 807721 | 0 responsáveis | 937/1686 (55.6%) | Falhas: 0
+14:24:48 | INFO     | [14:24:48] ✅ DONE | 809514 | 0 responsáveis | 938/1686 (55.6%) | Falhas: 0
+14:24:48 | INFO     | [14:24:48] ✅ DONE | 811947 | 0 responsáveis | 939/1686 (55.7%) | Falhas: 0
+14:24:48 | INFO     | [14:24:48] ✅ DONE | 811963 | 0 responsáveis | 940/1686 (55.8%) | Falhas: 0
+14:24:48 | INFO     | [14:24:48] ✅ DONE | 807839 | 0 responsáveis | 941/1686 (55.8%) | Falhas: 0
+14:24:48 | INFO     | [14:24:48] ✅ DONE | 823043 | 0 responsáveis | 942/1686 (55.9%) | Falhas: 0
+14:24:48 | INFO     | [14:24:48] ✅ DONE | 811981 | 0 responsáveis | 943/1686 (55.9%) | Falhas: 0
+14:24:48 | INFO     | [14:24:48] ✅ DONE | 811977 | 0 responsáveis | 944/1686 (56.0%) | Falhas: 0
+14:24:48 | INFO     | [14:24:48] ✅ DONE | 827376 | 0 responsáveis | 945/1686 (56.0%) | Falhas: 0
+14:24:48 | INFO     | [14:24:48] ✅ DONE | 828387 | 0 responsáveis | 946/1686 (56.1%) | Falhas: 0
+14:24:48 | INFO     | [14:24:48] ✅ DONE | 829788 | 2 responsáveis | 947/1686 (56.2%) | Falhas: 0
+14:24:48 | INFO     | [14:24:48] ✅ DONE | 833172 | 0 responsáveis | 948/1686 (56.2%) | Falhas: 0
+14:24:48 | INFO     | [14:24:48] ✅ DONE | 849547 | 0 responsáveis | 949/1686 (56.3%) | Falhas: 0
+14:24:48 | INFO     | [14:24:48] ✅ DONE | 835534 | 0 responsáveis | 950/1686 (56.3%) | Falhas: 0
+14:24:49 | INFO     | [14:24:49] ✅ DONE | 849721 | 0 responsáveis | 951/1686 (56.4%) | Falhas: 0
+14:24:49 | INFO     | [14:24:49] ✅ DONE | 863851 | 0 responsáveis | 952/1686 (56.5%) | Falhas: 0
+14:24:49 | INFO     | [14:24:49] ✅ DONE | 867070 | 0 responsáveis | 953/1686 (56.5%) | Falhas: 0
+14:24:49 | INFO     | [14:24:49] ✅ DONE | 868399 | 0 responsáveis | 954/1686 (56.6%) | Falhas: 0
+14:24:49 | INFO     | [14:24:49] ✅ DONE | 870783 | 0 responsáveis | 955/1686 (56.6%) | Falhas: 0
+14:24:49 | INFO     | [14:24:49] ✅ DONE | 918482 | 0 responsáveis | 956/1686 (56.7%) | Falhas: 0
+14:24:49 | INFO     | [14:24:49] ✅ DONE | 922375 | 0 responsáveis | 957/1686 (56.8%) | Falhas: 0
+14:24:49 | INFO     | [14:24:49] ✅ DONE | 940753 | 0 responsáveis | 958/1686 (56.8%) | Falhas: 0
+14:24:49 | INFO     | [14:24:49] ✅ DONE | 29919 | 0 responsáveis | 959/1686 (56.9%) | Falhas: 0
+14:24:49 | INFO     | [14:24:49] ✅ DONE | 952563 | 0 responsáveis | 960/1686 (56.9%) | Falhas: 0
+14:24:49 | INFO     | [14:24:49] ✅ DONE | 43163 | 0 responsáveis | 961/1686 (57.0%) | Falhas: 0
+14:24:49 | INFO     | [14:24:49] ✅ DONE | 44097 | 0 responsáveis | 962/1686 (57.1%) | Falhas: 0
+14:24:49 | INFO     | [14:24:49] ✅ DONE | 58223 | 6 responsáveis | 963/1686 (57.1%) | Falhas: 0
+14:24:49 | INFO     | [14:24:49] ✅ DONE | 58494 | 0 responsáveis | 964/1686 (57.2%) | Falhas: 0
+14:24:49 | INFO     | [14:24:49] ✅ DONE | 66166 | 0 responsáveis | 965/1686 (57.2%) | Falhas: 0
+14:24:49 | INFO     | [14:24:49] ✅ DONE | 70590 | 0 responsáveis | 966/1686 (57.3%) | Falhas: 0
+14:24:49 | INFO     | [14:24:49] ✅ DONE | 70569 | 0 responsáveis | 967/1686 (57.4%) | Falhas: 0
+14:24:49 | INFO     | [14:24:49] ✅ DONE | 70599 | 0 responsáveis | 968/1686 (57.4%) | Falhas: 0
+14:24:49 | INFO     | [14:24:49] ✅ DONE | 89041 | 0 responsáveis | 969/1686 (57.5%) | Falhas: 0
+14:24:50 | INFO     | [14:24:50] ✅ DONE | 126839 | 0 responsáveis | 970/1686 (57.5%) | Falhas: 0
+14:24:50 | INFO     | [14:24:50] ✅ DONE | 87430 | 0 responsáveis | 971/1686 (57.6%) | Falhas: 0
+14:24:50 | INFO     | [14:24:50] ✅ DONE | 124020 | 0 responsáveis | 972/1686 (57.7%) | Falhas: 0
+14:24:50 | INFO     | [14:24:50] ✅ DONE | 131999 | 0 responsáveis | 973/1686 (57.7%) | Falhas: 0
+14:24:50 | INFO     | [14:24:50] ✅ DONE | 129005 | 1 responsáveis | 974/1686 (57.8%) | Falhas: 0
+14:24:50 | INFO     | [14:24:50] ✅ DONE | 133054 | 1 responsáveis | 975/1686 (57.8%) | Falhas: 0
+14:24:50 | INFO     | [14:24:50] ✅ DONE | 132571 | 8 responsáveis | 976/1686 (57.9%) | Falhas: 0
+14:24:50 | INFO     | [14:24:50] ✅ DONE | 135664 | 0 responsáveis | 977/1686 (57.9%) | Falhas: 0
+14:24:50 | INFO     | [14:24:50] ✅ DONE | 134993 | 0 responsáveis | 978/1686 (58.0%) | Falhas: 0
+14:24:50 | INFO     | [14:24:50] ✅ DONE | 133252 | 27 responsáveis | 979/1686 (58.1%) | Falhas: 0
+14:24:50 | INFO     | [14:24:50] ✅ DONE | 110076 | 47 responsáveis | 980/1686 (58.1%) | Falhas: 0
+14:24:50 | INFO     | [14:24:50] ✅ DONE | 136610 | 0 responsáveis | 981/1686 (58.2%) | Falhas: 0
+14:24:50 | INFO     | [14:24:50] ✅ DONE | 136741 | 0 responsáveis | 982/1686 (58.2%) | Falhas: 0
+14:24:50 | INFO     | [14:24:50] ✅ DONE | 137395 | 0 responsáveis | 983/1686 (58.3%) | Falhas: 0
+14:24:50 | INFO     | [14:24:50] ✅ DONE | 136750 | 0 responsáveis | 984/1686 (58.4%) | Falhas: 0
+14:24:50 | INFO     | [14:24:50] ✅ DONE | 139144 | 0 responsáveis | 985/1686 (58.4%) | Falhas: 0
+14:24:50 | INFO     | [14:24:50] ✅ DONE | 139666 | 0 responsáveis | 986/1686 (58.5%) | Falhas: 0
+14:24:51 | INFO     | [14:24:51] ✅ DONE | 144649 | 2 responsáveis | 987/1686 (58.5%) | Falhas: 0
+14:24:51 | INFO     | [14:24:51] ✅ DONE | 145506 | 0 responsáveis | 988/1686 (58.6%) | Falhas: 0
+14:24:51 | INFO     | [14:24:51] ✅ DONE | 156065 | 0 responsáveis | 989/1686 (58.7%) | Falhas: 0
+14:24:51 | INFO     | [14:24:51] ✅ DONE | 145522 | 2 responsáveis | 990/1686 (58.7%) | Falhas: 0
+14:24:51 | INFO     | [14:24:51] ✅ DONE | 151777 | 2 responsáveis | 991/1686 (58.8%) | Falhas: 0
+14:24:51 | INFO     | [14:24:51] ✅ DONE | 158521 | 4 responsáveis | 992/1686 (58.8%) | Falhas: 0
+14:24:51 | INFO     | [14:24:51] ✅ DONE | 156214 | 0 responsáveis | 993/1686 (58.9%) | Falhas: 0
+14:24:51 | INFO     | [14:24:51] ✅ DONE | 161186 | 0 responsáveis | 994/1686 (59.0%) | Falhas: 0
+14:24:51 | INFO     | [14:24:51] ✅ DONE | 160257 | 26 responsáveis | 995/1686 (59.0%) | Falhas: 0
+14:24:51 | INFO     | [14:24:51] ✅ DONE | 162891 | 0 responsáveis | 996/1686 (59.1%) | Falhas: 0
+14:24:51 | INFO     | [14:24:51] ✅ DONE | 163107 | 0 responsáveis | 997/1686 (59.1%) | Falhas: 0
+14:24:51 | INFO     | [14:24:51] ✅ DONE | 163343 | 0 responsáveis | 998/1686 (59.2%) | Falhas: 0
+14:24:51 | INFO     | [14:24:51] ✅ DONE | 163844 | 2 responsáveis | 999/1686 (59.3%) | Falhas: 0
+14:24:51 | INFO     | [14:24:51] ✅ DONE | 163856 | 6 responsáveis | 1000/1686 (59.3%) | Falhas: 0
+14:24:51 | INFO     | [14:24:51] ✅ DONE | 166962 | 0 responsáveis | 1001/1686 (59.4%) | Falhas: 0
+14:24:51 | INFO     | [14:24:51] ✅ DONE | 171989 | 0 responsáveis | 1002/1686 (59.4%) | Falhas: 0
+14:24:51 | INFO     | [14:24:51] ✅ DONE | 172446 | 0 responsáveis | 1003/1686 (59.5%) | Falhas: 0
+14:24:51 | INFO     | [14:24:51] ✅ DONE | 173910 | 0 responsáveis | 1004/1686 (59.5%) | Falhas: 0
+14:24:51 | INFO     | [14:24:51] ✅ DONE | 178950 | 0 responsáveis | 1005/1686 (59.6%) | Falhas: 0
+14:24:52 | INFO     | [14:24:52] ✅ DONE | 181506 | 0 responsáveis | 1006/1686 (59.7%) | Falhas: 0
+14:24:52 | INFO     | [14:24:52] ✅ DONE | 181745 | 0 responsáveis | 1007/1686 (59.7%) | Falhas: 0
+14:24:52 | INFO     | [14:24:52] ✅ DONE | 181350 | 0 responsáveis | 1008/1686 (59.8%) | Falhas: 0
+14:24:52 | INFO     | [14:24:52] ✅ DONE | 179490 | 2 responsáveis | 1009/1686 (59.8%) | Falhas: 0
+14:24:52 | INFO     | [14:24:52] ✅ DONE | 181658 | 0 responsáveis | 1010/1686 (59.9%) | Falhas: 0
+14:24:52 | INFO     | [14:24:52] ✅ DONE | 182139 | 0 responsáveis | 1011/1686 (60.0%) | Falhas: 0
+14:24:52 | INFO     | [14:24:52] ✅ DONE | 182154 | 0 responsáveis | 1012/1686 (60.0%) | Falhas: 0
+14:24:52 | INFO     | [14:24:52] ✅ DONE | 183416 | 4 responsáveis | 1013/1686 (60.1%) | Falhas: 0
+14:24:52 | INFO     | [14:24:52] ✅ DONE | 183939 | 0 responsáveis | 1014/1686 (60.1%) | Falhas: 0
+14:24:52 | INFO     | [14:24:52] ✅ DONE | 183990 | 0 responsáveis | 1015/1686 (60.2%) | Falhas: 0
+14:24:52 | INFO     | [14:24:52] ✅ DONE | 184010 | 0 responsáveis | 1016/1686 (60.3%) | Falhas: 0
+14:24:52 | INFO     | [14:24:52] ✅ DONE | 184019 | 0 responsáveis | 1017/1686 (60.3%) | Falhas: 0
+14:24:52 | INFO     | [14:24:52] ✅ DONE | 185707 | 2 responsáveis | 1018/1686 (60.4%) | Falhas: 0
+14:24:52 | INFO     | [14:24:52] ✅ DONE | 186461 | 0 responsáveis | 1019/1686 (60.4%) | Falhas: 0
+14:24:52 | INFO     | [14:24:52] ✅ DONE | 188966 | 0 responsáveis | 1020/1686 (60.5%) | Falhas: 0
+14:24:52 | INFO     | [14:24:52] ✅ DONE | 186876 | 2 responsáveis | 1021/1686 (60.6%) | Falhas: 0
+14:24:52 | INFO     | [14:24:52] ✅ DONE | 189079 | 0 responsáveis | 1022/1686 (60.6%) | Falhas: 0
+14:24:52 | INFO     | [14:24:52] ✅ DONE | 189260 | 0 responsáveis | 1023/1686 (60.7%) | Falhas: 0
+14:24:52 | INFO     | [14:24:52] ✅ DONE | 189318 | 0 responsáveis | 1024/1686 (60.7%) | Falhas: 0
+14:24:52 | INFO     | [14:24:52] ✅ DONE | 189095 | 4 responsáveis | 1025/1686 (60.8%) | Falhas: 0
+14:24:53 | INFO     | [14:24:53] ✅ DONE | 189331 | 2 responsáveis | 1026/1686 (60.9%) | Falhas: 0
+14:24:53 | INFO     | [14:24:53] ✅ DONE | 191318 | 4 responsáveis | 1027/1686 (60.9%) | Falhas: 0
+14:24:53 | INFO     | [14:24:53] ✅ DONE | 192460 | 0 responsáveis | 1028/1686 (61.0%) | Falhas: 0
+14:24:53 | INFO     | [14:24:53] ✅ DONE | 192467 | 6 responsáveis | 1029/1686 (61.0%) | Falhas: 0
+14:24:53 | INFO     | [14:24:53] ✅ DONE | 193505 | 4 responsáveis | 1030/1686 (61.1%) | Falhas: 0
+14:24:53 | INFO     | [14:24:53] ✅ DONE | 199358 | 0 responsáveis | 1031/1686 (61.2%) | Falhas: 0
+14:24:53 | INFO     | [14:24:53] ✅ DONE | 202019 | 5 responsáveis | 1032/1686 (61.2%) | Falhas: 0
+14:24:53 | INFO     | [14:24:53] ✅ DONE | 207044 | 0 responsáveis | 1033/1686 (61.3%) | Falhas: 0
+14:24:53 | INFO     | [14:24:53] ✅ DONE | 204632 | 8 responsáveis | 1034/1686 (61.3%) | Falhas: 0
+14:24:53 | INFO     | [14:24:53] ✅ DONE | 218161 | 0 responsáveis | 1035/1686 (61.4%) | Falhas: 0
+14:24:53 | INFO     | [14:24:53] ✅ DONE | 225977 | 0 responsáveis | 1036/1686 (61.4%) | Falhas: 0
+14:24:53 | INFO     | [14:24:53] ✅ DONE | 220756 | 0 responsáveis | 1037/1686 (61.5%) | Falhas: 0
+14:24:53 | INFO     | [14:24:53] ✅ DONE | 227860 | 0 responsáveis | 1038/1686 (61.6%) | Falhas: 0
+14:24:53 | INFO     | [14:24:53] ✅ DONE | 229546 | 5 responsáveis | 1039/1686 (61.6%) | Falhas: 0
+14:24:53 | INFO     | [14:24:53] ✅ DONE | 235728 | 4 responsáveis | 1040/1686 (61.7%) | Falhas: 0
+14:24:53 | INFO     | [14:24:53] ✅ DONE | 242123 | 2 responsáveis | 1041/1686 (61.7%) | Falhas: 0
+14:24:54 | INFO     | [14:24:54] ✅ DONE | 245845 | 0 responsáveis | 1042/1686 (61.8%) | Falhas: 0
+14:24:54 | INFO     | [14:24:54] ✅ DONE | 243125 | 22 responsáveis | 1043/1686 (61.9%) | Falhas: 0
+14:24:54 | INFO     | [14:24:54] ✅ DONE | 247338 | 0 responsáveis | 1044/1686 (61.9%) | Falhas: 0
+14:24:54 | INFO     | [14:24:54] ✅ DONE | 247412 | 0 responsáveis | 1045/1686 (62.0%) | Falhas: 0
+14:24:54 | INFO     | [14:24:54] ✅ DONE | 250820 | 0 responsáveis | 1046/1686 (62.0%) | Falhas: 0
+14:24:54 | INFO     | [14:24:54] ✅ DONE | 255911 | 3 responsáveis | 1047/1686 (62.1%) | Falhas: 0
+14:24:54 | INFO     | [14:24:54] ✅ DONE | 258095 | 6 responsáveis | 1048/1686 (62.2%) | Falhas: 0
+14:24:54 | INFO     | [14:24:54] ✅ DONE | 258829 | 6 responsáveis | 1049/1686 (62.2%) | Falhas: 0
+14:24:54 | INFO     | [14:24:54] ✅ DONE | 265149 | 0 responsáveis | 1050/1686 (62.3%) | Falhas: 0
+14:24:54 | INFO     | [14:24:54] ✅ DONE | 260775 | 0 responsáveis | 1051/1686 (62.3%) | Falhas: 0
+14:24:54 | INFO     | [14:24:54] ✅ DONE | 299993 | 0 responsáveis | 1052/1686 (62.4%) | Falhas: 0
+14:24:54 | INFO     | [14:24:54] ✅ DONE | 265150 | 0 responsáveis | 1053/1686 (62.5%) | Falhas: 0
+14:24:54 | INFO     | [14:24:54] ✅ DONE | 300103 | 0 responsáveis | 1054/1686 (62.5%) | Falhas: 0
+14:24:54 | INFO     | [14:24:54] ✅ DONE | 286018 | 11 responsáveis | 1055/1686 (62.6%) | Falhas: 0
+14:24:54 | INFO     | [14:24:54] ✅ DONE | 300116 | 0 responsáveis | 1056/1686 (62.6%) | Falhas: 0
+14:24:54 | INFO     | [14:24:54] ✅ DONE | 322665 | 0 responsáveis | 1057/1686 (62.7%) | Falhas: 0
+14:24:54 | INFO     | [14:24:54] ✅ DONE | 322760 | 0 responsáveis | 1058/1686 (62.8%) | Falhas: 0
+14:24:54 | INFO     | [14:24:54] ✅ DONE | 322761 | 0 responsáveis | 1059/1686 (62.8%) | Falhas: 0
+14:24:55 | INFO     | [14:24:55] ✅ DONE | 333750 | 0 responsáveis | 1060/1686 (62.9%) | Falhas: 0
+14:24:55 | INFO     | [14:24:55] ✅ DONE | 333791 | 0 responsáveis | 1061/1686 (62.9%) | Falhas: 0
+14:24:55 | INFO     | [14:24:55] ✅ DONE | 346024 | 0 responsáveis | 1062/1686 (63.0%) | Falhas: 0
+14:24:55 | INFO     | [14:24:55] ✅ DONE | 351153 | 2 responsáveis | 1063/1686 (63.0%) | Falhas: 0
+14:24:55 | INFO     | [14:24:55] ✅ DONE | 357227 | 0 responsáveis | 1064/1686 (63.1%) | Falhas: 0
+14:24:55 | INFO     | [14:24:55] ✅ DONE | 359814 | 0 responsáveis | 1065/1686 (63.2%) | Falhas: 0
+14:24:55 | INFO     | [14:24:55] ✅ DONE | 357259 | 0 responsáveis | 1066/1686 (63.2%) | Falhas: 0
+14:24:55 | INFO     | [14:24:55] ✅ DONE | 362408 | 2 responsáveis | 1067/1686 (63.3%) | Falhas: 0
+14:24:55 | INFO     | [14:24:55] ✅ DONE | 362397 | 2 responsáveis | 1068/1686 (63.3%) | Falhas: 0
+14:24:55 | INFO     | [14:24:55] ✅ DONE | 362431 | 0 responsáveis | 1069/1686 (63.4%) | Falhas: 0
+14:24:55 | INFO     | [14:24:55] ✅ DONE | 366177 | 0 responsáveis | 1070/1686 (63.5%) | Falhas: 0
+14:24:55 | INFO     | [14:24:55] ✅ DONE | 362445 | 0 responsáveis | 1071/1686 (63.5%) | Falhas: 0
+14:24:55 | INFO     | [14:24:55] ✅ DONE | 394239 | 0 responsáveis | 1072/1686 (63.6%) | Falhas: 0
+14:24:55 | INFO     | [14:24:55] ✅ DONE | 401047 | 0 responsáveis | 1073/1686 (63.6%) | Falhas: 0
+14:24:55 | INFO     | [14:24:55] ✅ DONE | 401293 | 7 responsáveis | 1074/1686 (63.7%) | Falhas: 0
+14:24:55 | INFO     | [14:24:55] ✅ DONE | 403522 | 0 responsáveis | 1075/1686 (63.8%) | Falhas: 0
+14:24:55 | INFO     | [14:24:55] ✅ DONE | 404330 | 0 responsáveis | 1076/1686 (63.8%) | Falhas: 0
+14:24:56 | INFO     | [14:24:56] ✅ DONE | 405437 | 0 responsáveis | 1077/1686 (63.9%) | Falhas: 0
+14:24:56 | INFO     | [14:24:56] ✅ DONE | 407357 | 0 responsáveis | 1078/1686 (63.9%) | Falhas: 0
+14:24:56 | INFO     | [14:24:56] ✅ DONE | 413928 | 0 responsáveis | 1079/1686 (64.0%) | Falhas: 0
+14:24:56 | INFO     | [14:24:56] ✅ DONE | 419151 | 0 responsáveis | 1080/1686 (64.1%) | Falhas: 0
+14:24:56 | INFO     | [14:24:56] ✅ DONE | 418721 | 0 responsáveis | 1081/1686 (64.1%) | Falhas: 0
+14:24:56 | INFO     | [14:24:56] ✅ DONE | 421971 | 0 responsáveis | 1082/1686 (64.2%) | Falhas: 0
+14:24:56 | INFO     | [14:24:56] ✅ DONE | 430007 | 0 responsáveis | 1083/1686 (64.2%) | Falhas: 0
+14:24:56 | INFO     | [14:24:56] ✅ DONE | 430739 | 0 responsáveis | 1084/1686 (64.3%) | Falhas: 0
+14:24:56 | INFO     | [14:24:56] ✅ DONE | 423401 | 0 responsáveis | 1085/1686 (64.4%) | Falhas: 0
+14:24:56 | INFO     | [14:24:56] ✅ DONE | 447546 | 0 responsáveis | 1086/1686 (64.4%) | Falhas: 0
+14:24:56 | INFO     | [14:24:56] ✅ DONE | 455314 | 0 responsáveis | 1087/1686 (64.5%) | Falhas: 0
+14:24:56 | INFO     | [14:24:56] ✅ DONE | 439866 | 0 responsáveis | 1088/1686 (64.5%) | Falhas: 0
+14:24:56 | INFO     | [14:24:56] ✅ DONE | 447521 | 0 responsáveis | 1089/1686 (64.6%) | Falhas: 0
+14:24:56 | INFO     | [14:24:56] ✅ DONE | 451017 | 0 responsáveis | 1090/1686 (64.7%) | Falhas: 0
+14:24:56 | INFO     | [14:24:56] ✅ DONE | 457621 | 2 responsáveis | 1091/1686 (64.7%) | Falhas: 0
+14:24:56 | INFO     | [14:24:56] ✅ DONE | 471007 | 0 responsáveis | 1092/1686 (64.8%) | Falhas: 0
+14:24:57 | INFO     | [14:24:57] ✅ DONE | 471308 | 0 responsáveis | 1093/1686 (64.8%) | Falhas: 0
+14:24:57 | INFO     | [14:24:57] ✅ DONE | 471366 | 0 responsáveis | 1094/1686 (64.9%) | Falhas: 0
+14:24:57 | INFO     | [14:24:57] ✅ DONE | 471604 | 1 responsáveis | 1095/1686 (64.9%) | Falhas: 0
+14:24:57 | INFO     | [14:24:57] ✅ DONE | 477887 | 0 responsáveis | 1096/1686 (65.0%) | Falhas: 0
+14:24:57 | INFO     | [14:24:57] ✅ DONE | 484388 | 0 responsáveis | 1097/1686 (65.1%) | Falhas: 0
+14:24:57 | INFO     | [14:24:57] ✅ DONE | 484671 | 0 responsáveis | 1098/1686 (65.1%) | Falhas: 0
+14:24:57 | INFO     | [14:24:57] ✅ DONE | 485855 | 0 responsáveis | 1099/1686 (65.2%) | Falhas: 0
+14:24:57 | INFO     | [14:24:57] ✅ DONE | 496972 | 0 responsáveis | 1100/1686 (65.2%) | Falhas: 0
+14:24:57 | INFO     | [14:24:57] ✅ DONE | 485292 | 0 responsáveis | 1101/1686 (65.3%) | Falhas: 0
+14:24:57 | INFO     | [14:24:57] ✅ DONE | 500958 | 0 responsáveis | 1102/1686 (65.4%) | Falhas: 0
+14:24:57 | INFO     | [14:24:57] ✅ DONE | 491081 | 7 responsáveis | 1103/1686 (65.4%) | Falhas: 0
+14:24:57 | INFO     | [14:24:57] ✅ DONE | 502738 | 0 responsáveis | 1104/1686 (65.5%) | Falhas: 0
+14:24:57 | INFO     | [14:24:57] ✅ DONE | 502749 | 0 responsáveis | 1105/1686 (65.5%) | Falhas: 0
+14:24:57 | INFO     | [14:24:57] ✅ DONE | 504034 | 0 responsáveis | 1106/1686 (65.6%) | Falhas: 0
+14:24:57 | INFO     | [14:24:57] ✅ DONE | 505238 | 0 responsáveis | 1107/1686 (65.7%) | Falhas: 0
+14:24:57 | INFO     | [14:24:57] ✅ DONE | 506731 | 0 responsáveis | 1108/1686 (65.7%) | Falhas: 0
+14:24:58 | INFO     | [14:24:58] ✅ DONE | 507290 | 0 responsáveis | 1109/1686 (65.8%) | Falhas: 0
+14:24:58 | INFO     | [14:24:58] ✅ DONE | 521494 | 0 responsáveis | 1110/1686 (65.8%) | Falhas: 0
+14:24:58 | INFO     | [14:24:58] ✅ DONE | 521527 | 0 responsáveis | 1111/1686 (65.9%) | Falhas: 0
+14:24:58 | INFO     | [14:24:58] ✅ DONE | 521565 | 0 responsáveis | 1112/1686 (66.0%) | Falhas: 0
+14:24:58 | INFO     | [14:24:58] ✅ DONE | 524606 | 0 responsáveis | 1113/1686 (66.0%) | Falhas: 0
+14:24:58 | INFO     | [14:24:58] ✅ DONE | 524621 | 0 responsáveis | 1114/1686 (66.1%) | Falhas: 0
+14:24:58 | INFO     | [14:24:58] ✅ DONE | 538915 | 0 responsáveis | 1115/1686 (66.1%) | Falhas: 0
+14:24:58 | INFO     | [14:24:58] ✅ DONE | 563557 | 4 responsáveis | 1116/1686 (66.2%) | Falhas: 0
+14:24:58 | INFO     | [14:24:58] ✅ DONE | 545273 | 8 responsáveis | 1117/1686 (66.3%) | Falhas: 0
+14:24:58 | INFO     | [14:24:58] ✅ DONE | 564411 | 0 responsáveis | 1118/1686 (66.3%) | Falhas: 0
+14:24:58 | INFO     | [14:24:58] ✅ DONE | 565001 | 0 responsáveis | 1119/1686 (66.4%) | Falhas: 0
+14:24:58 | INFO     | [14:24:58] ✅ DONE | 566212 | 0 responsáveis | 1120/1686 (66.4%) | Falhas: 0
+14:24:58 | INFO     | [14:24:58] ✅ DONE | 565318 | 0 responsáveis | 1121/1686 (66.5%) | Falhas: 0
+14:24:58 | INFO     | [14:24:58] ✅ DONE | 565359 | 0 responsáveis | 1122/1686 (66.5%) | Falhas: 0
+14:24:58 | INFO     | [14:24:58] ✅ DONE | 578420 | 0 responsáveis | 1123/1686 (66.6%) | Falhas: 0
+14:24:58 | INFO     | [14:24:58] ✅ DONE | 568228 | 2 responsáveis | 1124/1686 (66.7%) | Falhas: 0
+14:24:59 | INFO     | [14:24:59] ✅ DONE | 579676 | 0 responsáveis | 1125/1686 (66.7%) | Falhas: 0
+14:24:59 | INFO     | [14:24:59] ✅ DONE | 582478 | 0 responsáveis | 1126/1686 (66.8%) | Falhas: 0
+14:24:59 | INFO     | [14:24:59] ✅ DONE | 582998 | 0 responsáveis | 1127/1686 (66.8%) | Falhas: 0
+14:24:59 | INFO     | [14:24:59] ✅ DONE | 585488 | 0 responsáveis | 1128/1686 (66.9%) | Falhas: 0
+14:24:59 | INFO     | [14:24:59] ✅ DONE | 585585 | 0 responsáveis | 1129/1686 (67.0%) | Falhas: 0
+14:24:59 | INFO     | [14:24:59] ✅ DONE | 585050 | 0 responsáveis | 1130/1686 (67.0%) | Falhas: 0
+14:24:59 | INFO     | [14:24:59] ✅ DONE | 589617 | 0 responsáveis | 1131/1686 (67.1%) | Falhas: 0
+14:24:59 | INFO     | [14:24:59] ✅ DONE | 585657 | 0 responsáveis | 1132/1686 (67.1%) | Falhas: 0
+14:24:59 | INFO     | [14:24:59] ✅ DONE | 589639 | 0 responsáveis | 1133/1686 (67.2%) | Falhas: 0
+14:24:59 | INFO     | [14:24:59] ✅ DONE | 590178 | 0 responsáveis | 1134/1686 (67.3%) | Falhas: 0
+14:24:59 | INFO     | [14:24:59] ✅ DONE | 597556 | 0 responsáveis | 1135/1686 (67.3%) | Falhas: 0
+14:24:59 | INFO     | [14:24:59] ✅ DONE | 600539 | 0 responsáveis | 1136/1686 (67.4%) | Falhas: 0
+14:24:59 | INFO     | [14:24:59] ✅ DONE | 600568 | 7 responsáveis | 1137/1686 (67.4%) | Falhas: 0
+14:24:59 | INFO     | [14:24:59] ✅ DONE | 600700 | 0 responsáveis | 1138/1686 (67.5%) | Falhas: 0
+14:24:59 | INFO     | [14:24:59] ✅ DONE | 600586 | 8 responsáveis | 1139/1686 (67.6%) | Falhas: 0
+14:24:59 | INFO     | [14:24:59] ✅ DONE | 603917 | 0 responsáveis | 1140/1686 (67.6%) | Falhas: 0
+14:24:59 | INFO     | [14:24:59] ✅ DONE | 605832 | 12 responsáveis | 1141/1686 (67.7%) | Falhas: 0
+14:25:00 | INFO     | [14:25:00] ✅ DONE | 609350 | 0 responsáveis | 1142/1686 (67.7%) | Falhas: 0
+14:25:00 | INFO     | [14:25:00] ✅ DONE | 609469 | 0 responsáveis | 1143/1686 (67.8%) | Falhas: 0
+14:25:00 | INFO     | [14:25:00] ✅ DONE | 609575 | 0 responsáveis | 1144/1686 (67.9%) | Falhas: 0
+14:25:00 | INFO     | [14:25:00] ✅ DONE | 619253 | 0 responsáveis | 1145/1686 (67.9%) | Falhas: 0
+14:25:00 | INFO     | [14:25:00] ✅ DONE | 627279 | 0 responsáveis | 1146/1686 (68.0%) | Falhas: 0
+14:25:00 | INFO     | [14:25:00] ✅ DONE | 628977 | 0 responsáveis | 1147/1686 (68.0%) | Falhas: 0
+14:25:00 | INFO     | [14:25:00] ✅ DONE | 633270 | 0 responsáveis | 1148/1686 (68.1%) | Falhas: 0
+14:25:00 | INFO     | [14:25:00] ✅ DONE | 649368 | 0 responsáveis | 1149/1686 (68.1%) | Falhas: 0
+14:25:00 | INFO     | [14:25:00] ✅ DONE | 632635 | 0 responsáveis | 1150/1686 (68.2%) | Falhas: 0
+14:25:00 | INFO     | [14:25:00] ✅ DONE | 635910 | 0 responsáveis | 1151/1686 (68.3%) | Falhas: 0
+14:25:00 | INFO     | [14:25:00] ✅ DONE | 652096 | 0 responsáveis | 1152/1686 (68.3%) | Falhas: 0
+14:25:00 | INFO     | [14:25:00] ✅ DONE | 657774 | 0 responsáveis | 1153/1686 (68.4%) | Falhas: 0
+14:25:00 | INFO     | [14:25:00] ✅ DONE | 661307 | 0 responsáveis | 1154/1686 (68.4%) | Falhas: 0
+14:25:00 | INFO     | [14:25:00] ✅ DONE | 664989 | 0 responsáveis | 1155/1686 (68.5%) | Falhas: 0
+14:25:00 | INFO     | [14:25:00] ✅ DONE | 669064 | 0 responsáveis | 1156/1686 (68.6%) | Falhas: 0
+14:25:00 | INFO     | [14:25:00] ✅ DONE | 671581 | 0 responsáveis | 1157/1686 (68.6%) | Falhas: 0
+14:25:01 | INFO     | [14:25:01] ✅ DONE | 693264 | 0 responsáveis | 1158/1686 (68.7%) | Falhas: 0
+14:25:01 | INFO     | [14:25:01] ✅ DONE | 707316 | 0 responsáveis | 1159/1686 (68.7%) | Falhas: 0
+14:25:01 | INFO     | [14:25:01] ✅ DONE | 673180 | 0 responsáveis | 1160/1686 (68.8%) | Falhas: 0
+14:25:01 | INFO     | [14:25:01] ✅ DONE | 678713 | 0 responsáveis | 1161/1686 (68.9%) | Falhas: 0
+14:25:01 | INFO     | [14:25:01] ✅ DONE | 674361 | 0 responsáveis | 1162/1686 (68.9%) | Falhas: 0
+14:25:01 | INFO     | [14:25:01] ✅ DONE | 696457 | 0 responsáveis | 1163/1686 (69.0%) | Falhas: 0
+14:25:01 | INFO     | [14:25:01] ✅ DONE | 689995 | 0 responsáveis | 1164/1686 (69.0%) | Falhas: 0
+14:25:01 | INFO     | [14:25:01] ✅ DONE | 688900 | 0 responsáveis | 1165/1686 (69.1%) | Falhas: 0
+14:25:01 | INFO     | [14:25:01] ✅ DONE | 679134 | 0 responsáveis | 1166/1686 (69.2%) | Falhas: 0
+14:25:01 | INFO     | [14:25:01] ✅ DONE | 705528 | 0 responsáveis | 1167/1686 (69.2%) | Falhas: 0
+14:25:01 | INFO     | [14:25:01] ✅ DONE | 707317 | 0 responsáveis | 1168/1686 (69.3%) | Falhas: 0
+14:25:01 | INFO     | [14:25:01] ✅ DONE | 701717 | 0 responsáveis | 1169/1686 (69.3%) | Falhas: 0
+14:25:01 | INFO     | [14:25:01] ✅ DONE | 707319 | 0 responsáveis | 1170/1686 (69.4%) | Falhas: 0
+14:25:01 | INFO     | [14:25:01] ✅ DONE | 707320 | 0 responsáveis | 1171/1686 (69.5%) | Falhas: 0
+14:25:01 | INFO     | [14:25:01] ✅ DONE | 707318 | 0 responsáveis | 1172/1686 (69.5%) | Falhas: 0
+14:25:02 | INFO     | [14:25:02] ✅ DONE | 707321 | 0 responsáveis | 1173/1686 (69.6%) | Falhas: 0
+14:25:02 | INFO     | [14:25:02] ✅ DONE | 707322 | 0 responsáveis | 1174/1686 (69.6%) | Falhas: 0
+14:25:02 | INFO     | [14:25:02] ✅ DONE | 707323 | 0 responsáveis | 1175/1686 (69.7%) | Falhas: 0
+14:25:02 | INFO     | [14:25:02] ✅ DONE | 707325 | 0 responsáveis | 1176/1686 (69.8%) | Falhas: 0
+14:25:02 | INFO     | [14:25:02] ✅ DONE | 707326 | 0 responsáveis | 1177/1686 (69.8%) | Falhas: 0
+14:25:02 | INFO     | [14:25:02] ✅ DONE | 707329 | 0 responsáveis | 1178/1686 (69.9%) | Falhas: 0
+14:25:02 | INFO     | [14:25:02] ✅ DONE | 707324 | 0 responsáveis | 1179/1686 (69.9%) | Falhas: 0
+14:25:02 | INFO     | [14:25:02] ✅ DONE | 707327 | 0 responsáveis | 1180/1686 (70.0%) | Falhas: 0
+14:25:02 | INFO     | [14:25:02] ✅ DONE | 707328 | 0 responsáveis | 1181/1686 (70.0%) | Falhas: 0
+14:25:02 | INFO     | [14:25:02] ✅ DONE | 707332 | 0 responsáveis | 1182/1686 (70.1%) | Falhas: 0
+14:25:02 | INFO     | [14:25:02] ✅ DONE | 707333 | 0 responsáveis | 1183/1686 (70.2%) | Falhas: 0
+14:25:02 | INFO     | [14:25:02] ✅ DONE | 707330 | 0 responsáveis | 1184/1686 (70.2%) | Falhas: 0
+14:25:02 | INFO     | [14:25:02] ✅ DONE | 707331 | 0 responsáveis | 1185/1686 (70.3%) | Falhas: 0
+14:25:02 | INFO     | [14:25:02] ✅ DONE | 707334 | 0 responsáveis | 1186/1686 (70.3%) | Falhas: 0
+14:25:02 | INFO     | [14:25:02] ✅ DONE | 707335 | 0 responsáveis | 1187/1686 (70.4%) | Falhas: 0
+14:25:03 | INFO     | [14:25:03] ✅ DONE | 707336 | 0 responsáveis | 1188/1686 (70.5%) | Falhas: 0
+14:25:03 | INFO     | [14:25:03] ✅ DONE | 707337 | 0 responsáveis | 1189/1686 (70.5%) | Falhas: 0
+14:25:03 | INFO     | [14:25:03] ✅ DONE | 707338 | 0 responsáveis | 1190/1686 (70.6%) | Falhas: 0
+14:25:03 | INFO     | [14:25:03] ✅ DONE | 707343 | 0 responsáveis | 1191/1686 (70.6%) | Falhas: 0
+14:25:03 | INFO     | [14:25:03] ✅ DONE | 707341 | 0 responsáveis | 1192/1686 (70.7%) | Falhas: 0
+14:25:03 | INFO     | [14:25:03] ✅ DONE | 707340 | 0 responsáveis | 1193/1686 (70.8%) | Falhas: 0
+14:25:03 | INFO     | [14:25:03] ✅ DONE | 707345 | 0 responsáveis | 1194/1686 (70.8%) | Falhas: 0
+14:25:03 | INFO     | [14:25:03] ✅ DONE | 707347 | 0 responsáveis | 1195/1686 (70.9%) | Falhas: 0
+14:25:03 | INFO     | [14:25:03] ✅ DONE | 707344 | 0 responsáveis | 1196/1686 (70.9%) | Falhas: 0
+14:25:03 | INFO     | [14:25:03] ✅ DONE | 707346 | 0 responsáveis | 1197/1686 (71.0%) | Falhas: 0
+14:25:03 | INFO     | [14:25:03] ✅ DONE | 707342 | 0 responsáveis | 1198/1686 (71.1%) | Falhas: 0
+14:25:03 | INFO     | [14:25:03] ✅ DONE | 707339 | 0 responsáveis | 1199/1686 (71.1%) | Falhas: 0
+14:25:03 | INFO     | [14:25:03] ✅ DONE | 707348 | 0 responsáveis | 1200/1686 (71.2%) | Falhas: 0
+14:25:03 | INFO     | [14:25:03] ✅ DONE | 707349 | 0 responsáveis | 1201/1686 (71.2%) | Falhas: 0
+14:25:03 | INFO     | [14:25:03] ✅ DONE | 707350 | 0 responsáveis | 1202/1686 (71.3%) | Falhas: 0
+14:25:04 | INFO     | [14:25:04] ✅ DONE | 707351 | 0 responsáveis | 1203/1686 (71.4%) | Falhas: 0
+14:25:04 | INFO     | [14:25:04] ✅ DONE | 707352 | 0 responsáveis | 1204/1686 (71.4%) | Falhas: 0
+14:25:04 | INFO     | [14:25:04] ✅ DONE | 707353 | 0 responsáveis | 1205/1686 (71.5%) | Falhas: 0
+14:25:04 | INFO     | [14:25:04] ✅ DONE | 707354 | 0 responsáveis | 1206/1686 (71.5%) | Falhas: 0
+14:25:04 | INFO     | [14:25:04] ✅ DONE | 707355 | 0 responsáveis | 1207/1686 (71.6%) | Falhas: 0
+14:25:04 | INFO     | [14:25:04] ✅ DONE | 707359 | 0 responsáveis | 1208/1686 (71.6%) | Falhas: 0
+14:25:04 | INFO     | [14:25:04] ✅ DONE | 707357 | 0 responsáveis | 1209/1686 (71.7%) | Falhas: 0
+14:25:04 | INFO     | [14:25:04] ✅ DONE | 707358 | 0 responsáveis | 1210/1686 (71.8%) | Falhas: 0
+14:25:04 | INFO     | [14:25:04] ✅ DONE | 707356 | 0 responsáveis | 1211/1686 (71.8%) | Falhas: 0
+14:25:04 | INFO     | [14:25:04] ✅ DONE | 707361 | 0 responsáveis | 1212/1686 (71.9%) | Falhas: 0
+14:25:04 | INFO     | [14:25:04] ✅ DONE | 707360 | 0 responsáveis | 1213/1686 (71.9%) | Falhas: 0
+14:25:04 | INFO     | [14:25:04] ✅ DONE | 707362 | 0 responsáveis | 1214/1686 (72.0%) | Falhas: 0
+14:25:04 | INFO     | [14:25:04] ✅ DONE | 707363 | 0 responsáveis | 1215/1686 (72.1%) | Falhas: 0
+14:25:04 | INFO     | [14:25:04] ✅ DONE | 707365 | 0 responsáveis | 1216/1686 (72.1%) | Falhas: 0
+14:25:04 | INFO     | [14:25:04] ✅ DONE | 707364 | 0 responsáveis | 1217/1686 (72.2%) | Falhas: 0
+14:25:04 | INFO     | [14:25:04] ✅ DONE | 707366 | 0 responsáveis | 1218/1686 (72.2%) | Falhas: 0
+14:25:04 | INFO     | [14:25:04] ✅ DONE | 707367 | 0 responsáveis | 1219/1686 (72.3%) | Falhas: 0
+14:25:04 | INFO     | [14:25:04] ✅ DONE | 707368 | 0 responsáveis | 1220/1686 (72.4%) | Falhas: 0
+14:25:05 | INFO     | [14:25:05] ✅ DONE | 707369 | 0 responsáveis | 1221/1686 (72.4%) | Falhas: 0
+14:25:05 | INFO     | [14:25:05] ✅ DONE | 707371 | 0 responsáveis | 1222/1686 (72.5%) | Falhas: 0
+14:25:05 | INFO     | [14:25:05] ✅ DONE | 707370 | 0 responsáveis | 1223/1686 (72.5%) | Falhas: 0
+14:25:05 | INFO     | [14:25:05] ✅ DONE | 707374 | 0 responsáveis | 1224/1686 (72.6%) | Falhas: 0
+14:25:05 | INFO     | [14:25:05] ✅ DONE | 707372 | 0 responsáveis | 1225/1686 (72.7%) | Falhas: 0
+14:25:05 | INFO     | [14:25:05] ✅ DONE | 707373 | 0 responsáveis | 1226/1686 (72.7%) | Falhas: 0
+14:25:05 | INFO     | [14:25:05] ✅ DONE | 707375 | 0 responsáveis | 1227/1686 (72.8%) | Falhas: 0
+14:25:05 | INFO     | [14:25:05] ✅ DONE | 707377 | 0 responsáveis | 1228/1686 (72.8%) | Falhas: 0
+14:25:05 | INFO     | [14:25:05] ✅ DONE | 707376 | 0 responsáveis | 1229/1686 (72.9%) | Falhas: 0
+14:25:05 | INFO     | [14:25:05] ✅ DONE | 707379 | 0 responsáveis | 1230/1686 (73.0%) | Falhas: 0
+14:25:05 | INFO     | [14:25:05] ✅ DONE | 707380 | 0 responsáveis | 1231/1686 (73.0%) | Falhas: 0
+14:25:05 | INFO     | [14:25:05] ✅ DONE | 707378 | 0 responsáveis | 1232/1686 (73.1%) | Falhas: 0
+14:25:05 | INFO     | [14:25:05] ✅ DONE | 707382 | 0 responsáveis | 1233/1686 (73.1%) | Falhas: 0
+14:25:05 | INFO     | [14:25:05] ✅ DONE | 707381 | 0 responsáveis | 1234/1686 (73.2%) | Falhas: 0
+14:25:05 | INFO     | [14:25:05] ✅ DONE | 707383 | 0 responsáveis | 1235/1686 (73.3%) | Falhas: 0
+14:25:06 | INFO     | [14:25:06] ✅ DONE | 707385 | 0 responsáveis | 1236/1686 (73.3%) | Falhas: 0
+14:25:06 | INFO     | [14:25:06] ✅ DONE | 707386 | 0 responsáveis | 1237/1686 (73.4%) | Falhas: 0
+14:25:06 | INFO     | [14:25:06] ✅ DONE | 707384 | 0 responsáveis | 1238/1686 (73.4%) | Falhas: 0
+14:25:06 | INFO     | [14:25:06] ✅ DONE | 707388 | 0 responsáveis | 1239/1686 (73.5%) | Falhas: 0
+14:25:06 | INFO     | [14:25:06] ✅ DONE | 707387 | 0 responsáveis | 1240/1686 (73.5%) | Falhas: 0
+14:25:06 | INFO     | [14:25:06] ✅ DONE | 707389 | 0 responsáveis | 1241/1686 (73.6%) | Falhas: 0
+14:25:06 | INFO     | [14:25:06] ✅ DONE | 707391 | 0 responsáveis | 1242/1686 (73.7%) | Falhas: 0
+14:25:06 | INFO     | [14:25:06] ✅ DONE | 707390 | 0 responsáveis | 1243/1686 (73.7%) | Falhas: 0
+14:25:06 | INFO     | [14:25:06] ✅ DONE | 707395 | 0 responsáveis | 1244/1686 (73.8%) | Falhas: 0
+14:25:06 | INFO     | [14:25:06] ✅ DONE | 707392 | 0 responsáveis | 1245/1686 (73.8%) | Falhas: 0
+14:25:06 | INFO     | [14:25:06] ✅ DONE | 707393 | 0 responsáveis | 1246/1686 (73.9%) | Falhas: 0
+14:25:06 | INFO     | [14:25:06] ✅ DONE | 707396 | 0 responsáveis | 1247/1686 (74.0%) | Falhas: 0
+14:25:06 | INFO     | [14:25:06] ✅ DONE | 707394 | 0 responsáveis | 1248/1686 (74.0%) | Falhas: 0
+14:25:06 | INFO     | [14:25:06] ✅ DONE | 707398 | 0 responsáveis | 1249/1686 (74.1%) | Falhas: 0
+14:25:06 | INFO     | [14:25:06] ✅ DONE | 707397 | 0 responsáveis | 1250/1686 (74.1%) | Falhas: 0
+14:25:06 | INFO     | [14:25:06] ✅ DONE | 707399 | 0 responsáveis | 1251/1686 (74.2%) | Falhas: 0
+14:25:07 | INFO     | [14:25:07] ✅ DONE | 707400 | 0 responsáveis | 1252/1686 (74.3%) | Falhas: 0
+14:25:07 | INFO     | [14:25:07] ✅ DONE | 707401 | 0 responsáveis | 1253/1686 (74.3%) | Falhas: 0
+14:25:07 | INFO     | [14:25:07] ✅ DONE | 707402 | 0 responsáveis | 1254/1686 (74.4%) | Falhas: 0
+14:25:07 | INFO     | [14:25:07] ✅ DONE | 707404 | 0 responsáveis | 1255/1686 (74.4%) | Falhas: 0
+14:25:07 | INFO     | [14:25:07] ✅ DONE | 707405 | 0 responsáveis | 1256/1686 (74.5%) | Falhas: 0
+14:25:07 | INFO     | [14:25:07] ✅ DONE | 707406 | 0 responsáveis | 1257/1686 (74.6%) | Falhas: 0
+14:25:07 | INFO     | [14:25:07] ✅ DONE | 707403 | 0 responsáveis | 1258/1686 (74.6%) | Falhas: 0
+14:25:07 | INFO     | [14:25:07] ✅ DONE | 707407 | 0 responsáveis | 1259/1686 (74.7%) | Falhas: 0
+14:25:07 | INFO     | [14:25:07] ✅ DONE | 707410 | 0 responsáveis | 1260/1686 (74.7%) | Falhas: 0
+14:25:07 | INFO     | [14:25:07] ✅ DONE | 707409 | 0 responsáveis | 1261/1686 (74.8%) | Falhas: 0
+14:25:07 | INFO     | [14:25:07] ✅ DONE | 707408 | 0 responsáveis | 1262/1686 (74.9%) | Falhas: 0
+14:25:07 | INFO     | [14:25:07] ✅ DONE | 707411 | 0 responsáveis | 1263/1686 (74.9%) | Falhas: 0
+14:25:07 | INFO     | [14:25:07] ✅ DONE | 707413 | 0 responsáveis | 1264/1686 (75.0%) | Falhas: 0
+14:25:07 | INFO     | [14:25:07] ✅ DONE | 707412 | 0 responsáveis | 1265/1686 (75.0%) | Falhas: 0
+14:25:07 | INFO     | [14:25:07] ✅ DONE | 707414 | 0 responsáveis | 1266/1686 (75.1%) | Falhas: 0
+14:25:07 | INFO     | [14:25:07] ✅ DONE | 707415 | 0 responsáveis | 1267/1686 (75.1%) | Falhas: 0
+14:25:08 | INFO     | [14:25:08] ✅ DONE | 707416 | 0 responsáveis | 1268/1686 (75.2%) | Falhas: 0
+14:25:08 | INFO     | [14:25:08] ✅ DONE | 707418 | 0 responsáveis | 1269/1686 (75.3%) | Falhas: 0
+14:25:08 | INFO     | [14:25:08] ✅ DONE | 707419 | 0 responsáveis | 1270/1686 (75.3%) | Falhas: 0
+14:25:08 | INFO     | [14:25:08] ✅ DONE | 707417 | 0 responsáveis | 1271/1686 (75.4%) | Falhas: 0
+14:25:08 | INFO     | [14:25:08] ✅ DONE | 707420 | 0 responsáveis | 1272/1686 (75.4%) | Falhas: 0
+14:25:08 | INFO     | [14:25:08] ✅ DONE | 707421 | 0 responsáveis | 1273/1686 (75.5%) | Falhas: 0
+14:25:08 | INFO     | [14:25:08] ✅ DONE | 707422 | 0 responsáveis | 1274/1686 (75.6%) | Falhas: 0
+14:25:08 | INFO     | [14:25:08] ✅ DONE | 707423 | 0 responsáveis | 1275/1686 (75.6%) | Falhas: 0
+14:25:08 | INFO     | [14:25:08] ✅ DONE | 707424 | 0 responsáveis | 1276/1686 (75.7%) | Falhas: 0
+14:25:08 | INFO     | [14:25:08] ✅ DONE | 707428 | 0 responsáveis | 1277/1686 (75.7%) | Falhas: 0
+14:25:08 | INFO     | [14:25:08] ✅ DONE | 707425 | 0 responsáveis | 1278/1686 (75.8%) | Falhas: 0
+14:25:08 | INFO     | [14:25:08] ✅ DONE | 707426 | 0 responsáveis | 1279/1686 (75.9%) | Falhas: 0
+14:25:08 | INFO     | [14:25:08] ✅ DONE | 707427 | 0 responsáveis | 1280/1686 (75.9%) | Falhas: 0
+14:25:08 | INFO     | [14:25:08] ✅ DONE | 707429 | 0 responsáveis | 1281/1686 (76.0%) | Falhas: 0
+14:25:08 | INFO     | [14:25:08] ✅ DONE | 707430 | 0 responsáveis | 1282/1686 (76.0%) | Falhas: 0
+14:25:08 | INFO     | [14:25:08] ✅ DONE | 707431 | 0 responsáveis | 1283/1686 (76.1%) | Falhas: 0
+14:25:08 | INFO     | [14:25:08] ✅ DONE | 707432 | 0 responsáveis | 1284/1686 (76.2%) | Falhas: 0
+14:25:09 | INFO     | [14:25:09] ✅ DONE | 707433 | 0 responsáveis | 1285/1686 (76.2%) | Falhas: 0
+14:25:09 | INFO     | [14:25:09] ✅ DONE | 707434 | 0 responsáveis | 1286/1686 (76.3%) | Falhas: 0
+14:25:09 | INFO     | [14:25:09] ✅ DONE | 707435 | 0 responsáveis | 1287/1686 (76.3%) | Falhas: 0
+14:25:09 | INFO     | [14:25:09] ✅ DONE | 707436 | 0 responsáveis | 1288/1686 (76.4%) | Falhas: 0
+14:25:09 | INFO     | [14:25:09] ✅ DONE | 707437 | 0 responsáveis | 1289/1686 (76.5%) | Falhas: 0
+14:25:09 | INFO     | [14:25:09] ✅ DONE | 707440 | 0 responsáveis | 1290/1686 (76.5%) | Falhas: 0
+14:25:09 | INFO     | [14:25:09] ✅ DONE | 707438 | 0 responsáveis | 1291/1686 (76.6%) | Falhas: 0
+14:25:09 | INFO     | [14:25:09] ✅ DONE | 707439 | 0 responsáveis | 1292/1686 (76.6%) | Falhas: 0
+14:25:09 | INFO     | [14:25:09] ✅ DONE | 707443 | 0 responsáveis | 1293/1686 (76.7%) | Falhas: 0
+14:25:09 | INFO     | [14:25:09] ✅ DONE | 707441 | 0 responsáveis | 1294/1686 (76.7%) | Falhas: 0
+14:25:09 | INFO     | [14:25:09] ✅ DONE | 707442 | 0 responsáveis | 1295/1686 (76.8%) | Falhas: 0
+14:25:09 | INFO     | [14:25:09] ✅ DONE | 707444 | 0 responsáveis | 1296/1686 (76.9%) | Falhas: 0
+14:25:09 | INFO     | [14:25:09] ✅ DONE | 707445 | 0 responsáveis | 1297/1686 (76.9%) | Falhas: 0
+14:25:09 | INFO     | [14:25:09] ✅ DONE | 707446 | 0 responsáveis | 1298/1686 (77.0%) | Falhas: 0
+14:25:09 | INFO     | [14:25:09] ✅ DONE | 707447 | 0 responsáveis | 1299/1686 (77.0%) | Falhas: 0
+14:25:09 | INFO     | [14:25:09] ✅ DONE | 707449 | 0 responsáveis | 1300/1686 (77.1%) | Falhas: 0
+14:25:09 | INFO     | [14:25:09] ✅ DONE | 707448 | 0 responsáveis | 1301/1686 (77.2%) | Falhas: 0
+14:25:09 | INFO     | [14:25:09] ✅ DONE | 707450 | 0 responsáveis | 1302/1686 (77.2%) | Falhas: 0
+14:25:10 | INFO     | [14:25:10] ✅ DONE | 707452 | 0 responsáveis | 1303/1686 (77.3%) | Falhas: 0
+14:25:10 | INFO     | [14:25:10] ✅ DONE | 707456 | 0 responsáveis | 1304/1686 (77.3%) | Falhas: 0
+14:25:10 | INFO     | [14:25:10] ✅ DONE | 707454 | 0 responsáveis | 1305/1686 (77.4%) | Falhas: 0
+14:25:10 | INFO     | [14:25:10] ✅ DONE | 707455 | 0 responsáveis | 1306/1686 (77.5%) | Falhas: 0
+14:25:10 | INFO     | [14:25:10] ✅ DONE | 707453 | 0 responsáveis | 1307/1686 (77.5%) | Falhas: 0
+14:25:10 | INFO     | [14:25:10] ✅ DONE | 707457 | 0 responsáveis | 1308/1686 (77.6%) | Falhas: 0
+14:25:10 | INFO     | [14:25:10] ✅ DONE | 707458 | 0 responsáveis | 1309/1686 (77.6%) | Falhas: 0
+14:25:10 | INFO     | [14:25:10] ✅ DONE | 707459 | 0 responsáveis | 1310/1686 (77.7%) | Falhas: 0
+14:25:10 | INFO     | [14:25:10] ✅ DONE | 707460 | 0 responsáveis | 1311/1686 (77.8%) | Falhas: 0
+14:25:10 | INFO     | [14:25:10] ✅ DONE | 707461 | 0 responsáveis | 1312/1686 (77.8%) | Falhas: 0
+14:25:10 | INFO     | [14:25:10] ✅ DONE | 707462 | 0 responsáveis | 1313/1686 (77.9%) | Falhas: 0
+14:25:10 | INFO     | [14:25:10] ✅ DONE | 707465 | 0 responsáveis | 1314/1686 (77.9%) | Falhas: 0
+14:25:10 | INFO     | [14:25:10] ✅ DONE | 707466 | 0 responsáveis | 1315/1686 (78.0%) | Falhas: 0
+14:25:10 | INFO     | [14:25:10] ✅ DONE | 707463 | 0 responsáveis | 1316/1686 (78.1%) | Falhas: 0
+14:25:10 | INFO     | [14:25:10] ✅ DONE | 707464 | 0 responsáveis | 1317/1686 (78.1%) | Falhas: 0
+14:25:10 | INFO     | [14:25:10] ✅ DONE | 707470 | 0 responsáveis | 1318/1686 (78.2%) | Falhas: 0
+14:25:10 | INFO     | [14:25:10] ✅ DONE | 707467 | 0 responsáveis | 1319/1686 (78.2%) | Falhas: 0
+14:25:10 | INFO     | [14:25:10] ✅ DONE | 707468 | 0 responsáveis | 1320/1686 (78.3%) | Falhas: 0
+14:25:11 | INFO     | [14:25:11] ✅ DONE | 707469 | 0 responsáveis | 1321/1686 (78.4%) | Falhas: 0
+14:25:11 | INFO     | [14:25:11] ✅ DONE | 707471 | 0 responsáveis | 1322/1686 (78.4%) | Falhas: 0
+14:25:11 | INFO     | [14:25:11] ✅ DONE | 707472 | 0 responsáveis | 1323/1686 (78.5%) | Falhas: 0
+14:25:11 | INFO     | [14:25:11] ✅ DONE | 707473 | 0 responsáveis | 1324/1686 (78.5%) | Falhas: 0
+14:25:11 | INFO     | [14:25:11] ✅ DONE | 707474 | 0 responsáveis | 1325/1686 (78.6%) | Falhas: 0
+14:25:11 | INFO     | [14:25:11] ✅ DONE | 707477 | 0 responsáveis | 1326/1686 (78.6%) | Falhas: 0
+14:25:11 | INFO     | [14:25:11] ✅ DONE | 707475 | 0 responsáveis | 1327/1686 (78.7%) | Falhas: 0
+14:25:11 | INFO     | [14:25:11] ✅ DONE | 707476 | 0 responsáveis | 1328/1686 (78.8%) | Falhas: 0
+14:25:11 | INFO     | [14:25:11] ✅ DONE | 707478 | 0 responsáveis | 1329/1686 (78.8%) | Falhas: 0
+14:25:11 | INFO     | [14:25:11] ✅ DONE | 707479 | 0 responsáveis | 1330/1686 (78.9%) | Falhas: 0
+14:25:11 | INFO     | [14:25:11] ✅ DONE | 707480 | 0 responsáveis | 1331/1686 (78.9%) | Falhas: 0
+14:25:11 | INFO     | [14:25:11] ✅ DONE | 707481 | 0 responsáveis | 1332/1686 (79.0%) | Falhas: 0
+14:25:12 | INFO     | [14:25:12] ✅ DONE | 707482 | 0 responsáveis | 1333/1686 (79.1%) | Falhas: 0
+14:25:12 | INFO     | [14:25:12] ✅ DONE | 707483 | 0 responsáveis | 1334/1686 (79.1%) | Falhas: 0
+14:25:12 | INFO     | [14:25:12] ✅ DONE | 707484 | 0 responsáveis | 1335/1686 (79.2%) | Falhas: 0
+14:25:12 | INFO     | [14:25:12] ✅ DONE | 707486 | 0 responsáveis | 1336/1686 (79.2%) | Falhas: 0
+14:25:12 | INFO     | [14:25:12] ✅ DONE | 707485 | 0 responsáveis | 1337/1686 (79.3%) | Falhas: 0
+14:25:12 | INFO     | [14:25:12] ✅ DONE | 707487 | 0 responsáveis | 1338/1686 (79.4%) | Falhas: 0
+14:25:12 | INFO     | [14:25:12] ✅ DONE | 707489 | 0 responsáveis | 1339/1686 (79.4%) | Falhas: 0
+14:25:12 | INFO     | [14:25:12] ✅ DONE | 707490 | 0 responsáveis | 1340/1686 (79.5%) | Falhas: 0
+14:25:12 | INFO     | [14:25:12] ✅ DONE | 707491 | 0 responsáveis | 1341/1686 (79.5%) | Falhas: 0
+14:25:12 | INFO     | [14:25:12] ✅ DONE | 707488 | 0 responsáveis | 1342/1686 (79.6%) | Falhas: 0
+14:25:12 | INFO     | [14:25:12] ✅ DONE | 707492 | 0 responsáveis | 1343/1686 (79.7%) | Falhas: 0
+14:25:12 | INFO     | [14:25:12] ✅ DONE | 707493 | 0 responsáveis | 1344/1686 (79.7%) | Falhas: 0
+14:25:12 | INFO     | [14:25:12] ✅ DONE | 707494 | 0 responsáveis | 1345/1686 (79.8%) | Falhas: 0
+14:25:12 | INFO     | [14:25:12] ✅ DONE | 707495 | 0 responsáveis | 1346/1686 (79.8%) | Falhas: 0
+14:25:12 | INFO     | [14:25:12] ✅ DONE | 707496 | 0 responsáveis | 1347/1686 (79.9%) | Falhas: 0
+14:25:12 | INFO     | [14:25:12] ✅ DONE | 707497 | 0 responsáveis | 1348/1686 (80.0%) | Falhas: 0
+14:25:12 | INFO     | [14:25:12] ✅ DONE | 707498 | 0 responsáveis | 1349/1686 (80.0%) | Falhas: 0
+14:25:13 | INFO     | [14:25:13] ✅ DONE | 707499 | 0 responsáveis | 1350/1686 (80.1%) | Falhas: 0
+14:25:13 | INFO     | [14:25:13] ✅ DONE | 707500 | 0 responsáveis | 1351/1686 (80.1%) | Falhas: 0
+14:25:13 | INFO     | [14:25:13] ✅ DONE | 707501 | 0 responsáveis | 1352/1686 (80.2%) | Falhas: 0
+14:25:13 | INFO     | [14:25:13] ✅ DONE | 707502 | 0 responsáveis | 1353/1686 (80.2%) | Falhas: 0
+14:25:13 | INFO     | [14:25:13] ✅ DONE | 707503 | 0 responsáveis | 1354/1686 (80.3%) | Falhas: 0
+14:25:13 | INFO     | [14:25:13] ✅ DONE | 707505 | 0 responsáveis | 1355/1686 (80.4%) | Falhas: 0
+14:25:13 | INFO     | [14:25:13] ✅ DONE | 707508 | 0 responsáveis | 1356/1686 (80.4%) | Falhas: 0
+14:25:13 | INFO     | [14:25:13] ✅ DONE | 707504 | 0 responsáveis | 1357/1686 (80.5%) | Falhas: 0
+14:25:13 | INFO     | [14:25:13] ✅ DONE | 707507 | 0 responsáveis | 1358/1686 (80.5%) | Falhas: 0
+14:25:13 | INFO     | [14:25:13] ✅ DONE | 707506 | 0 responsáveis | 1359/1686 (80.6%) | Falhas: 0
+14:25:13 | INFO     | [14:25:13] ✅ DONE | 707510 | 0 responsáveis | 1360/1686 (80.7%) | Falhas: 0
+14:25:13 | INFO     | [14:25:13] ✅ DONE | 707509 | 0 responsáveis | 1361/1686 (80.7%) | Falhas: 0
+14:25:13 | INFO     | [14:25:13] ✅ DONE | 707511 | 0 responsáveis | 1362/1686 (80.8%) | Falhas: 0
+14:25:13 | INFO     | [14:25:13] ✅ DONE | 707512 | 0 responsáveis | 1363/1686 (80.8%) | Falhas: 0
+14:25:13 | INFO     | [14:25:13] ✅ DONE | 707513 | 0 responsáveis | 1364/1686 (80.9%) | Falhas: 0
+14:25:13 | INFO     | [14:25:13] ✅ DONE | 707514 | 0 responsáveis | 1365/1686 (81.0%) | Falhas: 0
+14:25:13 | INFO     | [14:25:13] ✅ DONE | 707515 | 0 responsáveis | 1366/1686 (81.0%) | Falhas: 0
+14:25:13 | INFO     | [14:25:13] ✅ DONE | 707516 | 0 responsáveis | 1367/1686 (81.1%) | Falhas: 0
+14:25:14 | INFO     | [14:25:14] ✅ DONE | 707517 | 0 responsáveis | 1368/1686 (81.1%) | Falhas: 0
+14:25:14 | INFO     | [14:25:14] ✅ DONE | 707518 | 0 responsáveis | 1369/1686 (81.2%) | Falhas: 0
+14:25:14 | INFO     | [14:25:14] ✅ DONE | 707519 | 0 responsáveis | 1370/1686 (81.3%) | Falhas: 0
+14:25:14 | INFO     | [14:25:14] ✅ DONE | 707520 | 0 responsáveis | 1371/1686 (81.3%) | Falhas: 0
+14:25:14 | INFO     | [14:25:14] ✅ DONE | 707521 | 0 responsáveis | 1372/1686 (81.4%) | Falhas: 0
+14:25:14 | INFO     | [14:25:14] ✅ DONE | 707523 | 0 responsáveis | 1373/1686 (81.4%) | Falhas: 0
+14:25:14 | INFO     | [14:25:14] ✅ DONE | 707522 | 0 responsáveis | 1374/1686 (81.5%) | Falhas: 0
+14:25:14 | INFO     | [14:25:14] ✅ DONE | 707524 | 0 responsáveis | 1375/1686 (81.6%) | Falhas: 0
+14:25:14 | INFO     | [14:25:14] ✅ DONE | 707525 | 0 responsáveis | 1376/1686 (81.6%) | Falhas: 0
+14:25:14 | INFO     | [14:25:14] ✅ DONE | 707526 | 0 responsáveis | 1377/1686 (81.7%) | Falhas: 0
+14:25:14 | INFO     | [14:25:14] ✅ DONE | 707528 | 0 responsáveis | 1378/1686 (81.7%) | Falhas: 0
+14:25:14 | INFO     | [14:25:14] ✅ DONE | 707527 | 0 responsáveis | 1379/1686 (81.8%) | Falhas: 0
+14:25:14 | INFO     | [14:25:14] ✅ DONE | 707529 | 0 responsáveis | 1380/1686 (81.9%) | Falhas: 0
+14:25:14 | INFO     | [14:25:14] ✅ DONE | 707530 | 0 responsáveis | 1381/1686 (81.9%) | Falhas: 0
+14:25:14 | INFO     | [14:25:14] ✅ DONE | 707531 | 0 responsáveis | 1382/1686 (82.0%) | Falhas: 0
+14:25:14 | INFO     | [14:25:14] ✅ DONE | 707532 | 0 responsáveis | 1383/1686 (82.0%) | Falhas: 0
+14:25:15 | INFO     | [14:25:15] ✅ DONE | 707533 | 0 responsáveis | 1384/1686 (82.1%) | Falhas: 0
+14:25:15 | INFO     | [14:25:15] ✅ DONE | 707535 | 0 responsáveis | 1385/1686 (82.1%) | Falhas: 0
+14:25:15 | INFO     | [14:25:15] ✅ DONE | 707534 | 0 responsáveis | 1386/1686 (82.2%) | Falhas: 0
+14:25:15 | INFO     | [14:25:15] ✅ DONE | 707536 | 0 responsáveis | 1387/1686 (82.3%) | Falhas: 0
+14:25:15 | INFO     | [14:25:15] ✅ DONE | 707538 | 0 responsáveis | 1388/1686 (82.3%) | Falhas: 0
+14:25:15 | INFO     | [14:25:15] ✅ DONE | 707537 | 0 responsáveis | 1389/1686 (82.4%) | Falhas: 0
+14:25:15 | INFO     | [14:25:15] ✅ DONE | 707541 | 0 responsáveis | 1390/1686 (82.4%) | Falhas: 0
+14:25:15 | INFO     | [14:25:15] ✅ DONE | 707539 | 0 responsáveis | 1391/1686 (82.5%) | Falhas: 0
+14:25:15 | INFO     | [14:25:15] ✅ DONE | 707542 | 0 responsáveis | 1392/1686 (82.6%) | Falhas: 0
+14:25:15 | INFO     | [14:25:15] ✅ DONE | 707544 | 0 responsáveis | 1393/1686 (82.6%) | Falhas: 0
+14:25:15 | INFO     | [14:25:15] ✅ DONE | 707543 | 0 responsáveis | 1394/1686 (82.7%) | Falhas: 0
+14:25:15 | INFO     | [14:25:15] ✅ DONE | 707545 | 0 responsáveis | 1395/1686 (82.7%) | Falhas: 0
+14:25:15 | INFO     | [14:25:15] ✅ DONE | 707547 | 0 responsáveis | 1396/1686 (82.8%) | Falhas: 0
+14:25:15 | INFO     | [14:25:15] ✅ DONE | 707548 | 0 responsáveis | 1397/1686 (82.9%) | Falhas: 0
+14:25:15 | INFO     | [14:25:15] ✅ DONE | 707549 | 0 responsáveis | 1398/1686 (82.9%) | Falhas: 0
+14:25:15 | INFO     | [14:25:15] ✅ DONE | 707550 | 0 responsáveis | 1399/1686 (83.0%) | Falhas: 0
+14:25:15 | INFO     | [14:25:15] ✅ DONE | 707551 | 0 responsáveis | 1400/1686 (83.0%) | Falhas: 0
+14:25:15 | INFO     | [14:25:15] ✅ DONE | 707552 | 0 responsáveis | 1401/1686 (83.1%) | Falhas: 0
+14:25:16 | INFO     | [14:25:16] ✅ DONE | 707553 | 0 responsáveis | 1402/1686 (83.2%) | Falhas: 0
+14:25:16 | INFO     | [14:25:16] ✅ DONE | 707554 | 0 responsáveis | 1403/1686 (83.2%) | Falhas: 0
+14:25:16 | INFO     | [14:25:16] ✅ DONE | 707555 | 0 responsáveis | 1404/1686 (83.3%) | Falhas: 0
+14:25:16 | INFO     | [14:25:16] ✅ DONE | 707556 | 0 responsáveis | 1405/1686 (83.3%) | Falhas: 0
+14:25:16 | INFO     | [14:25:16] ✅ DONE | 707557 | 0 responsáveis | 1406/1686 (83.4%) | Falhas: 0
+14:25:16 | INFO     | [14:25:16] ✅ DONE | 707558 | 0 responsáveis | 1407/1686 (83.5%) | Falhas: 0
+14:25:16 | INFO     | [14:25:16] ✅ DONE | 707559 | 0 responsáveis | 1408/1686 (83.5%) | Falhas: 0
+14:25:16 | INFO     | [14:25:16] ✅ DONE | 707560 | 0 responsáveis | 1409/1686 (83.6%) | Falhas: 0
+14:25:16 | INFO     | [14:25:16] ✅ DONE | 707562 | 0 responsáveis | 1410/1686 (83.6%) | Falhas: 0
+14:25:16 | INFO     | [14:25:16] ✅ DONE | 707561 | 0 responsáveis | 1411/1686 (83.7%) | Falhas: 0
+14:25:16 | INFO     | [14:25:16] ✅ DONE | 707563 | 0 responsáveis | 1412/1686 (83.7%) | Falhas: 0
+14:25:16 | INFO     | [14:25:16] ✅ DONE | 707564 | 0 responsáveis | 1413/1686 (83.8%) | Falhas: 0
+14:25:16 | INFO     | [14:25:16] ✅ DONE | 707565 | 0 responsáveis | 1414/1686 (83.9%) | Falhas: 0
+14:25:16 | INFO     | [14:25:16] ✅ DONE | 707566 | 0 responsáveis | 1415/1686 (83.9%) | Falhas: 0
+14:25:16 | INFO     | [14:25:16] ✅ DONE | 707567 | 0 responsáveis | 1416/1686 (84.0%) | Falhas: 0
+14:25:16 | INFO     | [14:25:16] ✅ DONE | 707568 | 0 responsáveis | 1417/1686 (84.0%) | Falhas: 0
+14:25:17 | INFO     | [14:25:17] ✅ DONE | 707569 | 0 responsáveis | 1418/1686 (84.1%) | Falhas: 0
+14:25:17 | INFO     | [14:25:17] ✅ DONE | 707571 | 0 responsáveis | 1419/1686 (84.2%) | Falhas: 0
+14:25:17 | INFO     | [14:25:17] ✅ DONE | 707570 | 0 responsáveis | 1420/1686 (84.2%) | Falhas: 0
+14:25:17 | INFO     | [14:25:17] ✅ DONE | 707572 | 0 responsáveis | 1421/1686 (84.3%) | Falhas: 0
+14:25:17 | INFO     | [14:25:17] ✅ DONE | 707573 | 0 responsáveis | 1422/1686 (84.3%) | Falhas: 0
+14:25:17 | INFO     | [14:25:17] ✅ DONE | 707574 | 0 responsáveis | 1423/1686 (84.4%) | Falhas: 0
+14:25:17 | INFO     | [14:25:17] ✅ DONE | 707575 | 0 responsáveis | 1424/1686 (84.5%) | Falhas: 0
+14:25:17 | INFO     | [14:25:17] ✅ DONE | 707576 | 0 responsáveis | 1425/1686 (84.5%) | Falhas: 0
+14:25:17 | INFO     | [14:25:17] ✅ DONE | 707577 | 0 responsáveis | 1426/1686 (84.6%) | Falhas: 0
+14:25:17 | INFO     | [14:25:17] ✅ DONE | 707578 | 0 responsáveis | 1427/1686 (84.6%) | Falhas: 0
+14:25:17 | INFO     | [14:25:17] ✅ DONE | 707579 | 0 responsáveis | 1428/1686 (84.7%) | Falhas: 0
+14:25:17 | INFO     | [14:25:17] ✅ DONE | 707580 | 0 responsáveis | 1429/1686 (84.8%) | Falhas: 0
+14:25:17 | INFO     | [14:25:17] ✅ DONE | 707581 | 0 responsáveis | 1430/1686 (84.8%) | Falhas: 0
+14:25:17 | INFO     | [14:25:17] ✅ DONE | 707582 | 0 responsáveis | 1431/1686 (84.9%) | Falhas: 0
+14:25:17 | INFO     | [14:25:17] ✅ DONE | 707584 | 0 responsáveis | 1432/1686 (84.9%) | Falhas: 0
+14:25:17 | INFO     | [14:25:17] ✅ DONE | 707585 | 0 responsáveis | 1433/1686 (85.0%) | Falhas: 0
+14:25:17 | INFO     | [14:25:17] ✅ DONE | 707586 | 0 responsáveis | 1434/1686 (85.1%) | Falhas: 0
+14:25:18 | INFO     | [14:25:18] ✅ DONE | 707587 | 0 responsáveis | 1435/1686 (85.1%) | Falhas: 0
+14:25:18 | INFO     | [14:25:18] ✅ DONE | 707588 | 0 responsáveis | 1436/1686 (85.2%) | Falhas: 0
+14:25:18 | INFO     | [14:25:18] ✅ DONE | 707589 | 0 responsáveis | 1437/1686 (85.2%) | Falhas: 0
+14:25:18 | INFO     | [14:25:18] ✅ DONE | 707591 | 0 responsáveis | 1438/1686 (85.3%) | Falhas: 0
+14:25:18 | INFO     | [14:25:18] ✅ DONE | 707590 | 0 responsáveis | 1439/1686 (85.3%) | Falhas: 0
+14:25:18 | INFO     | [14:25:18] ✅ DONE | 707608 | 0 responsáveis | 1440/1686 (85.4%) | Falhas: 0
+14:25:18 | INFO     | [14:25:18] ✅ DONE | 707692 | 0 responsáveis | 1441/1686 (85.5%) | Falhas: 0
+14:25:18 | INFO     | [14:25:18] ✅ DONE | 719078 | 0 responsáveis | 1442/1686 (85.5%) | Falhas: 0
+14:25:18 | INFO     | [14:25:18] ✅ DONE | 731393 | 0 responsáveis | 1443/1686 (85.6%) | Falhas: 0
+14:25:18 | INFO     | [14:25:18] ✅ DONE | 747813 | 0 responsáveis | 1444/1686 (85.6%) | Falhas: 0
+14:25:18 | INFO     | [14:25:18] ✅ DONE | 748214 | 0 responsáveis | 1445/1686 (85.7%) | Falhas: 0
+14:25:18 | INFO     | [14:25:18] ✅ DONE | 749491 | 0 responsáveis | 1446/1686 (85.8%) | Falhas: 0
+14:25:18 | INFO     | [14:25:18] ✅ DONE | 750714 | 0 responsáveis | 1447/1686 (85.8%) | Falhas: 0
+14:25:18 | INFO     | [14:25:18] ✅ DONE | 756884 | 0 responsáveis | 1448/1686 (85.9%) | Falhas: 0
+14:25:18 | INFO     | [14:25:18] ✅ DONE | 766422 | 4 responsáveis | 1449/1686 (85.9%) | Falhas: 0
+14:25:18 | INFO     | [14:25:18] ✅ DONE | 766705 | 0 responsáveis | 1450/1686 (86.0%) | Falhas: 0
+14:25:18 | INFO     | [14:25:18] ⏭️  SKIPs: 750 | 1487/1686 (88.2%) | Falhas: 0
+14:25:18 | INFO     | [14:25:18] ⏭️  SKIPs: 800 | 1537/1686 (91.2%) | Falhas: 0
+14:25:18 | INFO     | [14:25:18] ✅ DONE | 793393 | 0 responsáveis | 1561/1686 (92.6%) | Falhas: 0
+14:25:18 | INFO     | [14:25:18] ⏭️  SKIPs: 850 | 1588/1686 (94.2%) | Falhas: 0
+14:25:18 | INFO     | [14:25:18] ⏭️  SKIPs: 900 | 1638/1686 (97.2%) | Falhas: 0
+14:25:18 | INFO     | [14:25:18] ✅ DONE | 767579 | 0 responsáveis | 1673/1686 (99.2%) | Falhas: 0
+14:25:19 | INFO     | [14:25:19] ✅ DONE | 801558 | 0 responsáveis | 1674/1686 (99.3%) | Falhas: 0
+14:25:19 | INFO     | [14:25:19] ✅ DONE | 797505 | 0 responsáveis | 1675/1686 (99.3%) | Falhas: 0
+14:25:19 | INFO     | [14:25:19] ✅ DONE | 804184 | 0 responsáveis | 1676/1686 (99.4%) | Falhas: 0
+14:25:19 | INFO     | [14:25:19] ✅ DONE | 825511 | 0 responsáveis | 1677/1686 (99.5%) | Falhas: 0
+14:25:19 | INFO     | [14:25:19] ✅ DONE | 817696 | 0 responsáveis | 1678/1686 (99.5%) | Falhas: 0
+14:25:19 | INFO     | [14:25:19] ✅ DONE | 829439 | 0 responsáveis | 1679/1686 (99.6%) | Falhas: 0
+14:25:19 | INFO     | [14:25:19] ✅ DONE | 831435 | 0 responsáveis | 1680/1686 (99.6%) | Falhas: 0
+14:25:19 | INFO     | [14:25:19] ✅ DONE | 831465 | 0 responsáveis | 1681/1686 (99.7%) | Falhas: 0
+14:25:19 | INFO     | [14:25:19] ✅ DONE | 832634 | 0 responsáveis | 1682/1686 (99.8%) | Falhas: 0
+14:25:19 | INFO     | [14:25:19] ✅ DONE | 831506 | 0 responsáveis | 1683/1686 (99.8%) | Falhas: 0
+14:25:19 | INFO     | [14:25:19] ✅ DONE | 832720 | 0 responsáveis | 1684/1686 (99.9%) | Falhas: 0
+14:25:19 | INFO     | [14:25:19] ✅ DONE | 834388 | 0 responsáveis | 1685/1686 (99.9%) | Falhas: 0
+14:25:19 | INFO     | [14:25:19] ✅ DONE | 454353 | 0 responsáveis | 1686/1686 (100.0%) | Falhas: 0
+14:25:19 | INFO     | ✅ FIM | Falhas: 0 | SKIPs: 934
+14:25:19 | INFO     | ============================================================
+14:25:19 | INFO     | 📤 GERANDO contratos_responsaveis.csv...
+14:25:19 | INFO     | 📂 1704 arquivo(s) de responsáveis encontrado(s). Processando...
+14:25:23 | INFO     | ✅ CSV gerado: data\contratos_responsaveis.csv
+14:25:23 | INFO     | Responsáveis : 1137
+14:25:23 | INFO     | Ativos       : 935
+14:25:23 | INFO     | Colunas      : 11
+14:25:23 | INFO     | ============================================================
+14:25:23 | INFO     | 📦 INICIANDO OBTENÇÃO DE ITENS EMPENHADOS DO GOOGLE DRIVE
+14:25:23 | INFO     | 📦 OBTENDO ITENS EMPENHADOS DO GOOGLE DRIVE...
+14:25:39 | INFO     | ✅ ITENS EMPENHADOS OBTIDOS E SALVOS
+14:25:39 | INFO     | ============================================================
+14:25:39 | INFO     | 📊 RESUMO FINAL
+14:25:39 | INFO     |   Falhas compras        : 0
+14:25:39 | INFO     |   Falhas itens          : 0
+14:25:39 | INFO     |   Falhas atas           : 0
+14:25:39 | INFO     |   Falhas atas_itens     : 0
+14:25:39 | INFO     |   Falhas atas_saldos    : 0
+14:25:39 | INFO     |   Falhas atas_unidades  : 0
+14:25:39 | INFO     |   Falhas contratos      : 0
+14:25:39 | INFO     |   Falhas contratos_resp : 0
+14:25:39 | INFO     |   Falhas itens_empenhad : 0
+14:25:39 | INFO     | 🎉 PIPELINE CONCLUÍDO COM SUCESSO!
