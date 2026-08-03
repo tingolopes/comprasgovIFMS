@@ -193,7 +193,7 @@ def _indexar_saldos() -> dict[str, str]:
         for reg in resultado:
             if not isinstance(reg, dict):
                 continue
-            num_item = str(reg.get("numeroItem") or "")
+            num_item = str(reg.get("numeroItem") or "").strip().zfill(5)
             cod_un = _parse_unidade(reg.get("unidade", ""))
             if not numero_ata or not num_item or not cod_un:
                 continue
@@ -204,7 +204,31 @@ def _indexar_saldos() -> dict[str, str]:
     return mapa
 
 
-def _indexar_itens_info() -> dict[str, dict[str, str]]:
+def _carregar_mapa_atas_id_compra() -> dict[tuple[str, str], str]:
+    """
+    Lê atas.csv e retorna mapa { (numero_ata, uasg_codigo): id_compra }
+    """
+    mapa: dict[tuple[str, str], str] = {}
+    caminho_atas = os.path.join(EXPORT_CONFIG["pasta_saida"], "atas.csv")
+    if not os.path.exists(caminho_atas):
+        return mapa
+    try:
+        with open(caminho_atas, encoding=EXPORT_CONFIG["encoding"]) as f:
+            reader = csv.DictReader(f, delimiter=EXPORT_CONFIG["separador"])
+            for row in reader:
+                num_ata = row.get("numero_ata", "").strip()
+                uasg = row.get("uasg_codigo", "").strip()
+                id_c = row.get("id_compra", "").strip()
+                if num_ata and uasg and id_c:
+                    mapa[(num_ata, uasg)] = id_c
+    except Exception as exc:
+        print(f"⚠️ Erro ao carregar fallback de atas.csv: {exc}")
+    return mapa
+
+
+def _indexar_itens_info(
+    mapa_ata_uasg_para_id_compra: Optional[dict[tuple[str, str], str]] = None
+) -> dict[str, dict[str, str]]:
     """
     Retorna mapa { "numero_ata|numero_item": { tipo_item, valor_unitario,
                                                id_compra, id_compra_item } }
@@ -212,6 +236,7 @@ def _indexar_itens_info() -> dict[str, dict[str, str]]:
     idCompra e obtido diretamente do atas_itens quando disponivel.
     Fallback: quando idCompra esta vazio, busca nos JSONs de temp/compras/
     via numeroControlePncpCompra -> numeroControlePNCP.
+    Fallback 2: busca no mapa carregado de atas.csv por (numeroAta, uasgGerenciadora).
     """
 
     # ------------------------------------------------------------------
@@ -274,6 +299,11 @@ def _indexar_itens_info() -> dict[str, dict[str, str]]:
                 ctrl_compra = str(reg.get("numeroControlePncpCompra") or "").strip()
                 id_compra   = mapa_ctrl_para_id.get(ctrl_compra, "")
 
+            # Fallback 2: via atas.csv
+            if not id_compra and mapa_ata_uasg_para_id_compra:
+                uasg_ger = str(reg.get("codigoUnidadeGerenciadora") or "").strip()
+                id_compra = mapa_ata_uasg_para_id_compra.get((num_ata, uasg_ger), "")
+
             id_compra_item = f"{id_compra}{num_item}" if id_compra else ""
 
             tipo_item      = str(reg.get("tipoItem") or "")
@@ -312,7 +342,8 @@ def _indexar() -> dict[str, dict]:
     print(f"📂 {len(jsons)} arquivo(s) de unidades encontrado(s). Processando...")
 
     saldos = _indexar_saldos()
-    itens_info = _indexar_itens_info()
+    mapa_ata_uasg_para_id_compra = _carregar_mapa_atas_id_compra()
+    itens_info = _indexar_itens_info(mapa_ata_uasg_para_id_compra)
 
     for caminho in jsons:
         try:
@@ -339,7 +370,7 @@ def _indexar() -> dict[str, dict]:
                 continue
 
             num_ata = str(reg.get("numeroAta") or "")
-            num_item = str(reg.get("numeroItem") or "")
+            num_item = str(reg.get("numeroItem") or "").strip().zfill(5)
             cod_un = str(reg.get("codigoUnidade") or "")
 
             if not num_ata or not num_item or not cod_un:
@@ -351,11 +382,24 @@ def _indexar() -> dict[str, dict]:
             reg["_quantidade_empenhada"] = saldos.get(chave, "")
             reg["_sigla_unidade"] = _SIGLA_POR_UASG.get(
                 str(reg.get("codigoUnidade") or ""), "")
+            
             info = itens_info.get(f"{num_ata}|{num_item}", {})
             reg["_tipo_item"]      = info.get("tipo_item", "")
             reg["_valor_unitario"] = info.get("valor_unitario", "")
-            reg["_id_compra"]      = info.get("id_compra", "")
-            reg["_id_compra_item"] = info.get("id_compra_item", "")
+            
+            id_compra = info.get("id_compra", "")
+            id_compra_item = info.get("id_compra_item", "")
+
+            # Fallback via atas.csv
+            if not id_compra:
+                uasg_ger = str(reg.get("unidadeGerenciadora") or "").strip()
+                id_compra = mapa_ata_uasg_para_id_compra.get((num_ata, uasg_ger), "")
+
+            if not id_compra_item and id_compra:
+                id_compra_item = f"{id_compra}{num_item}"
+
+            reg["_id_compra"]      = id_compra
+            reg["_id_compra_item"] = id_compra_item
 
             if chave not in banco:
                 banco[chave] = reg

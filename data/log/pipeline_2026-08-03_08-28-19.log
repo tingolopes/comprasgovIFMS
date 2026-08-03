@@ -1,0 +1,14 @@
+08:28:19 | INFO     | ============================================================
+08:28:19 | INFO     | 📤 GERANDO atas_itens.csv...
+08:28:19 | INFO     | ✅ Mapa de atas carregado: 69 compras | 422 atas conhecidas
+08:28:19 | INFO     | 📂 5 arquivo(s) de itens de atas encontrado(s). Processando...
+08:28:19 | INFO     | ✅ Nenhuma ata ausente detectada.
+08:28:19 | INFO     | ✅ CSV gerado: data\atas_itens.csv
+08:28:19 | INFO     | Itens únicos     : 1308
+08:28:19 | INFO     | Material         : 986
+08:28:19 | INFO     | Serviço          : 322
+08:28:19 | INFO     | Excluídos        : 0
+08:28:19 | INFO     | Sem id_compra    : 0
+08:28:19 | INFO     | Sem numero_compra: 0
+08:28:19 | INFO     | Colunas          : 35
+08:28:19 | INFO     | ============================================================
