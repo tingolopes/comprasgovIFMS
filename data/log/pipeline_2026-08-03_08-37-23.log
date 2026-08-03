@@ -1,0 +1,15 @@
+08:37:23 | INFO     | ============================================================
+08:37:23 | INFO     | 🏢 EXTRAINDO UNIDADES PARTICIPANTES DAS ATAS...
+08:37:23 | INFO     | UASG        : RT (158132)
+08:37:23 | INFO     | A extrair   : 0
+08:37:23 | INFO     | ⏭️  Tudo em cache. Nada a extrair.
+08:37:23 | INFO     | ============================================================
+08:37:23 | INFO     | 📤 GERANDO atas_unidades.csv...
+08:37:23 | INFO     | 📂 1308 arquivo(s) de unidades encontrado(s). Processando...
+08:37:24 | INFO     | ✅ CSV gerado: data\atas_unidades.csv
+08:37:24 | INFO     | Registros        : 4306
+08:37:24 | INFO     | Participantes    : 2998
+08:37:24 | INFO     | Não participantes: 1308
+08:37:24 | INFO     | Aceita adesão    : 2549
+08:37:24 | INFO     | Colunas          : 27
+08:37:24 | INFO     | ============================================================
