@@ -1,0 +1,14 @@
+09:49:36 | INFO     | ============================================================
+09:49:36 | INFO     | 📄 EXTRAINDO CONTRATOS...
+09:49:36 | INFO     | UASGs       : 11
+09:49:36 | INFO     | Validade    : 1 dia(s)
+09:49:36 | INFO     | 🚀 INICIANDO EXTRAÇÃO DE CONTRATOS | WORKERS: 5 | TOTAL: 11
+09:49:36 | INFO     | ✅ FIM | Falhas: 0 | SKIPs: 11
+09:49:36 | INFO     | ============================================================
+09:49:36 | INFO     | 📤 GERANDO contratos.csv...
+09:49:36 | INFO     | 📂 11 arquivo(s) de contratos encontrado(s). Processando...
+09:49:37 | INFO     | ✅ CSV gerado: data\contratos.csv
+09:49:37 | INFO     | Contratos    : 1738
+09:49:37 | INFO     | Prorrogáveis : 438
+09:49:37 | INFO     | Colunas      : 21
+09:49:37 | INFO     | ============================================================
