@@ -1,0 +1,13 @@
+10:44:19 | INFO     | ============================================================
+10:44:19 | INFO     | 💰 EXTRAINDO SALDOS DAS ATAS...
+10:44:21 | INFO     | UASG             : RT (158132)
+10:44:21 | INFO     | Validade cache   : 3 dias
+10:44:21 | INFO     | A extrair/atualizar: 1
+10:44:21 | INFO     | 🚀 INICIANDO EXTRAÇÃO DE SALDOS | WORKERS: 3 | TOTAL: 1
+10:44:23 | INFO     | [10:44:23] ✅ DONE | RT | 00025/2026 | 1/1 (100.0%) | Falhas: 0
+10:44:23 | INFO     | ✅ FIM | Falhas: 0 | SKIPs: 0
+10:44:23 | INFO     | ============================================================
+10:44:23 | INFO     | 📤 GERANDO atas_saldos.csv...
+10:44:23 | INFO     | 📂 426 arquivo(s) de saldos encontrado(s). Processando...
+10:44:23 | INFO     | ⚠️  Nenhum saldo válido encontrado.
+10:44:23 | INFO     | ============================================================
