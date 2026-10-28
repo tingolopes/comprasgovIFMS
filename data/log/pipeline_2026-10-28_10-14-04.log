@@ -1,0 +1,10 @@
+10:14:04 | INFO     | ============================================================
+10:14:04 | INFO     | 📤 GERANDO atas_unidades.csv...
+10:14:04 | INFO     | 📂 1425 arquivo(s) de unidades encontrado(s). Processando...
+10:14:05 | INFO     | ✅ CSV gerado: data\atas_unidades.csv
+10:14:05 | INFO     | Registros        : 5186
+10:14:05 | INFO     | Participantes    : 3761
+10:14:05 | INFO     | Não participantes: 1425
+10:14:05 | INFO     | Aceita adesão    : 3652
+10:14:05 | INFO     | Colunas          : 27
+10:14:05 | INFO     | ============================================================

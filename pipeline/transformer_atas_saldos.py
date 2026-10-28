@@ -80,6 +80,19 @@ def _valor(v) -> str:
         return str(v)
 
 
+def _to_float(v) -> Optional[float]:
+    if v is None:
+        return None
+    s = str(v).strip()
+    if s == "":
+        return None
+    s = s.replace(" ", "").replace("\u00A0", "").replace(",", ".")
+    try:
+        return float(s)
+    except (ValueError, TypeError):
+        return None
+
+
 def _data(valor: Optional[str]) -> str:
     if not valor:
         return ""
@@ -99,7 +112,7 @@ def _data(valor: Optional[str]) -> str:
 
 def _parse_unidade(unidade_str: str) -> tuple[str, str]:
     """
-    Extrai (codigo, nome) do campo 'unidade' do saldo.
+    Extrai (codigo, nome) do campo 'unidade' do saldo legado.
     Formato: "153164 - UNIVERSIDADE FEDERAL DE SANTA MARIA"
     """
     if not unidade_str:
@@ -114,21 +127,25 @@ def _parse_unidade(unidade_str: str) -> tuple[str, str]:
 # Indexação — deduplicação por (numero_ata + numero_item + codigo_unidade)
 # ---------------------------------------------------------------------------
 
-def _extrair_numero_ata_do_arquivo(nome_arq: str) -> str:
+def _extrair_numero_ata_do_arquivo(nome_arq: str) -> tuple[str, str]:
     """
-    Extrai o numero_ata do nome do arquivo.
-    'atas_saldos_RT_00001_2023_p1.json' → '00001/2023'
+    Extrai (numero_ata, numero_item) do nome do arquivo.
+    'atas_saldos_RT_00001_2023_00001_p1.json' → ('00001/2023', '00001')
+    Suporta formato legado: 'atas_saldos_RT_00001_2023_p1.json' → ('00001/2023', '')
     """
-    # Remove prefixo e sufixo: atas_saldos_RT_ ... _p1.json
     base = nome_arq.replace(".json", "")
-    # Últimas partes: ..._00001_2023_p1
     partes = base.split("_")
-    # Formato: atas saldos RT {num} {ano} p{pag}
-    # num = partes[-3], ano = partes[-2]
     try:
-        return f"{partes[-3]}/{partes[-2]}"
+        if len(partes) >= 7:
+            num_ata = f"{partes[-4]}/{partes[-3]}"
+            num_item = partes[-2]
+            return num_ata, num_item
+        elif len(partes) >= 6:
+            num_ata = f"{partes[-3]}/{partes[-2]}"
+            return num_ata, ""
     except IndexError:
-        return ""
+        pass
+    return "", ""
 
 
 def _indexar() -> dict[str, dict]:
@@ -158,7 +175,7 @@ def _indexar() -> dict[str, dict]:
 
         arquivo = os.path.basename(caminho)
         data_ext = envelope.get("metadata", {}).get("data_extracao", "")
-        numero_ata = _extrair_numero_ata_do_arquivo(arquivo)
+        ata_arq, item_arq = _extrair_numero_ata_do_arquivo(arquivo)
 
         respostas = envelope.get("respostas", {})
         resultado = (
@@ -170,16 +187,23 @@ def _indexar() -> dict[str, dict]:
             if not isinstance(reg, dict):
                 continue
 
-            num_item = str(reg.get("numeroItem") or "")
-            cod_un, _ = _parse_unidade(reg.get("unidade", ""))
+            num_item = str(reg.get("numeroItem") or item_arq or "").strip().zfill(5)
+            
+            # Suporta tanto 3_consultarUnidadesItem quanto o legado 4_consultarEmpenhosSaldoItem
+            cod_un = str(reg.get("codigoUnidade") or "").strip()
+            if not cod_un and "unidade" in reg:
+                cod_un, _ = _parse_unidade(reg.get("unidade", ""))
 
-            if not num_item or not cod_un:
+            num_ata = str(reg.get("numeroAta") or reg.get("numeroAtaRegistroPreco") or ata_arq or "").strip()
+
+            if not num_item or not cod_un or not num_ata:
                 continue
 
-            chave = f"{numero_ata}|{num_item}|{cod_un}"
+            chave = f"{num_ata}|{num_item}|{cod_un}"
             reg["_arquivo_origem"] = arquivo
             reg["_data_extracao"] = data_ext
-            reg["_numero_ata"] = numero_ata
+            reg["_numero_ata"] = num_ata
+            reg["_numero_item"] = num_item
 
             if chave not in banco:
                 banco[chave] = reg
@@ -195,18 +219,37 @@ def _indexar() -> dict[str, dict]:
 # ---------------------------------------------------------------------------
 
 def _mapear(reg: dict) -> dict:
-    codigo_un, nome_un = _parse_unidade(reg.get("unidade", ""))
+    cod_un = str(reg.get("codigoUnidade") or "").strip()
+    nome_un = _limpar(reg.get("nomeUnidade"))
+    if not cod_un and "unidade" in reg:
+        cod_un, nome_un = _parse_unidade(reg.get("unidade", ""))
+
+    tipo_part = str(reg.get("tipoUnidade") or reg.get("tipo") or "")
+
+    qtd_reg_num = _to_float(reg.get("quantidadeRegistrada"))
+    
+    # Em 3_consultarUnidadesItem o saldo de empenho é o saldoRemanejamentoEmpenho
+    if "saldoRemanejamentoEmpenho" in reg:
+        saldo_emp_num = _to_float(reg.get("saldoRemanejamentoEmpenho"))
+    else:
+        saldo_emp_num = _to_float(reg.get("saldoEmpenho"))
+
+    if qtd_reg_num is not None and saldo_emp_num is not None:
+        qtd_emp_num = max(0.0, qtd_reg_num - saldo_emp_num)
+    else:
+        qtd_emp_num = _to_float(reg.get("quantidadeEmpenhada"))
+
     return {
-        "arquivo_origem":      reg.get("_arquivo_origem", ""),
-        "data_extracao":       reg.get("_data_extracao", ""),
-        "numero_ata":          reg.get("_numero_ata", ""),
-        "numero_item":         reg.get("numeroItem", ""),
-        "codigo_unidade":      codigo_un,
-        "nome_unidade":        nome_un,
-        "tipo_participacao":   reg.get("tipo", ""),
-        "quantidade_registrada": _valor(reg.get("quantidadeRegistrada")),
-        "quantidade_empenhada":  _valor(reg.get("quantidadeEmpenhada")),
-        "saldo_empenho":         _valor(reg.get("saldoEmpenho")),
+        "arquivo_origem":        reg.get("_arquivo_origem", ""),
+        "data_extracao":         reg.get("_data_extracao", ""),
+        "numero_ata":            reg.get("_numero_ata", ""),
+        "numero_item":           reg.get("_numero_item", "") or reg.get("numeroItem", ""),
+        "codigo_unidade":        cod_un,
+        "nome_unidade":          nome_un,
+        "tipo_participacao":     tipo_part,
+        "quantidade_registrada": _valor(qtd_reg_num),
+        "quantidade_empenhada":  _valor(qtd_emp_num),
+        "saldo_empenho":         _valor(saldo_emp_num),
         "data_inclusao":         _data(reg.get("dataHoraInclusao")),
         "data_atualizacao":      _data(reg.get("dataHoraAtualizacao")),
     }

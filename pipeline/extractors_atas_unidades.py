@@ -34,6 +34,12 @@ import requests
 
 from config.config import CONFIG_ATAS, PIPELINE_CONFIG, HTTP_HEADERS
 
+try:
+    sys.stdout.reconfigure(errors="replace")
+    sys.stderr.reconfigure(errors="replace")
+except AttributeError:
+    pass
+
 # ---------------------------------------------------------------------------
 # Configuração local
 # ---------------------------------------------------------------------------

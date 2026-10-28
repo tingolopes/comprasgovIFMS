@@ -1,0 +1,9 @@
+10:14:57 | INFO     | ============================================================
+10:14:57 | INFO     | 📤 GERANDO atas_saldos.csv...
+10:14:57 | INFO     | 📂 1425 arquivo(s) de saldos encontrado(s). Processando...
+10:15:01 | INFO     | ✅ CSV gerado: data\atas_saldos.csv
+10:15:01 | INFO     | Registros        : 5186
+10:15:01 | INFO     | Participantes    : 3761
+10:15:01 | INFO     | Não participantes: 0
+10:15:01 | INFO     | Colunas          : 12
+10:15:01 | INFO     | ============================================================

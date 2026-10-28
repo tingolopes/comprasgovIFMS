@@ -1,17 +1,18 @@
 """
 pipeline/extractors_atas_saldos.py
 ------------------------------------
-Extrai saldos de empenho por ata via endpoint 4_consultarEmpenhosSaldoItem.
+Extrai saldos de empenho por item de ata via endpoint 3_consultarUnidadesItem.
 
-Uma consulta por ata — retorna todos os itens × unidades com quantidades
-empenhadas e saldo restante. Dado dinâmico: re-verifica a cada
-DIAS_VALIDADE_CACHE_SALDOS dias pois saldo muda com novos empenhos.
+Uma consulta por (numeroAta × numeroItem) — retorna todas as unidades com
+quantidades registradas e saldo restante para empenho (saldoRemanejamentoEmpenho).
+Dado dinâmico: re-verifica a cada DIAS_VALIDADE_CACHE_SALDOS dias pois saldo
+muda com novos empenhos.
 
-Fila montada a partir do cache temp/atas/ (atas já extraídas).
+Fila montada a partir do cache temp/atas_itens/ (itens já extraídos).
 
 Nomenclatura dos arquivos:
-    atas_saldos_RT_{numero_ata}_{ano}_p{pagina}.json
-    Ex: atas_saldos_RT_00001_2023_p1.json
+    atas_saldos_RT_{numero_ata}_{ano}_{numero_item}_p{pagina}.json
+    Ex: atas_saldos_RT_00001_2023_00001_p1.json
 
 Uso como módulo:
     from pipeline.extractors_atas_saldos import executar
@@ -33,14 +34,20 @@ import requests
 
 from config.config import CONFIG_ATAS, HTTP_HEADERS, PIPELINE_CONFIG
 
+try:
+    sys.stdout.reconfigure(errors="replace")
+    sys.stderr.reconfigure(errors="replace")
+except AttributeError:
+    pass
+
 # ---------------------------------------------------------------------------
 # Configuração local
 # ---------------------------------------------------------------------------
 _BASE_URL = CONFIG_ATAS["base_url"]
-_PATH = "/modulo-arp/4_consultarEmpenhosSaldoItem"
+_PATH = "/modulo-arp/3_consultarUnidadesItem"
 _UASG = CONFIG_ATAS["uasg"]
 _PASTA = CONFIG_ATAS["pasta_cache_saldos"]
-_PASTA_ATAS = CONFIG_ATAS["pasta_cache"]
+_PASTA_ITENS = CONFIG_ATAS["pasta_cache_itens"]
 
 _DIAS_VALIDADE = PIPELINE_CONFIG.get("dias_validade_cache_saldos", 3)
 _LOG_INTERVALO_SKIP = PIPELINE_CONFIG.get("log_intervalo_skip", 50)
@@ -55,9 +62,10 @@ def _slug(numero_ata: str) -> str:
     return numero_ata.replace("/", "_")
 
 
-def _nome_arquivo(numero_ata: str, pagina: int) -> str:
+def _nome_arquivo(numero_ata: str, numero_item: str, pagina: int) -> str:
     return os.path.join(
-        _PASTA, f"atas_saldos_{_UASG['sigla']}_{_slug(numero_ata)}_p{pagina}.json"
+        _PASTA,
+        f"atas_saldos_{_UASG['sigla']}_{_slug(numero_ata)}_{numero_item}_p{pagina}.json"
     )
 
 
@@ -155,12 +163,13 @@ def _get(url: str, params: dict) -> tuple[dict | None, str]:
 # ---------------------------------------------------------------------------
 
 def _processar(t: dict) -> str:
-    """Extrai saldo de uma ata, percorrendo páginas em loop."""
+    """Extrai saldo de um item de ata, percorrendo páginas em loop."""
     numero_ata = t["numero_ata"]
+    numero_item = t["numero_item"]
     pagina = 1
 
     while True:
-        nome = _nome_arquivo(numero_ata, pagina)
+        nome = _nome_arquivo(numero_ata, numero_item, pagina)
         valido, cache = _verificar_cache(nome)
 
         if valido:
@@ -168,14 +177,15 @@ def _processar(t: dict) -> str:
             if pag_rest and pag_rest > 0:
                 pagina += 1
                 continue
-            return f"⏭️ SKIP | {_UASG['sigla']} | {numero_ata}"
+            return f"⏭️ SKIP | {_UASG['sigla']} | {numero_ata} | item {numero_item}"
 
         url = f"{_BASE_URL}{_PATH}"
         params = {
-            "numeroAta":          numero_ata,
+            "numeroAta":           numero_ata,
             "unidadeGerenciadora": _UASG["codigo"],
-            "pagina":             pagina,
-            "tamanhoPagina":      PIPELINE_CONFIG["tamanho_pagina"],
+            "numeroItem":          numero_item,
+            "pagina":              pagina,
+            "tamanhoPagina":       PIPELINE_CONFIG["tamanho_pagina"],
         }
 
         dados, status = _get(url, params)
@@ -189,39 +199,46 @@ def _processar(t: dict) -> str:
             if pag_rest and pag_rest > 0:
                 pagina += 1
                 continue
-            return f"✅ DONE | {_UASG['sigla']} | {numero_ata}"
+            return f"✅ DONE | {_UASG['sigla']} | {numero_ata} | item {numero_item}"
         else:
-            return f"❌ {status} | {_UASG['sigla']} | {numero_ata}"
+            return f"❌ {status} | {_UASG['sigla']} | {numero_ata} | item {numero_item}"
 
 
 # ---------------------------------------------------------------------------
-# Montagem da fila — lê atas do cache temp/atas/
+# Montagem da fila — lê itens do cache temp/atas_itens/
 # ---------------------------------------------------------------------------
 
 def _montar_fila() -> list[dict]:
     """
-    Lê todas as atas em cache e monta uma tarefa por ata única.
-    Inclui atas cujo saldo ainda não foi consultado OU cujo cache expirou.
+    Lê todos os JSONs de atas_itens e monta uma tarefa por (ata × item).
+    Inclui se a p1 ainda não tem SUCESSO ou se o cache expirou (dado dinâmico).
     """
-    atas: dict[str, bool] = {}  # numero_ata → já visto
+    vistos: set[tuple[str, str]] = set()
+    fila = []
 
-    for arq in sorted(os.listdir(_PASTA_ATAS)):
+    for arq in sorted(os.listdir(_PASTA_ITENS)):
         if not arq.endswith(".json"):
             continue
-        dados = _carregar_json(os.path.join(_PASTA_ATAS, arq))
+        dados = _carregar_json(os.path.join(_PASTA_ITENS, arq))
         if dados.get("metadata", {}).get("status") != "SUCESSO":
             continue
-        for ata in dados.get("respostas", {}).get("resultado", []):
-            num = ata.get("numeroAtaRegistroPreco", "")
-            if num and num not in atas:
-                atas[num] = True
 
-    fila = []
-    for numero_ata in sorted(atas):
-        nome_p1 = _nome_arquivo(numero_ata, 1)
-        valido, _ = _verificar_cache(nome_p1)
-        if not valido:
-            fila.append({"numero_ata": numero_ata})
+        resultado = dados.get("respostas", {}).get("resultado", []) or []
+        for reg in resultado:
+            num_ata = reg.get("numeroAtaRegistroPreco", "")
+            num_item = reg.get("numeroItem", "")
+            if not num_ata or not num_item:
+                continue
+
+            chave = (num_ata, num_item)
+            if chave in vistos:
+                continue
+            vistos.add(chave)
+
+            nome_p1 = _nome_arquivo(num_ata, num_item, 1)
+            valido, _ = _verificar_cache(nome_p1)
+            if not valido:
+                fila.append({"numero_ata": num_ata, "numero_item": num_item})
 
     return fila
 
@@ -234,8 +251,8 @@ def executar() -> int:
     """Extrai saldos das atas ARP. Retorna número de falhas."""
     os.makedirs(_PASTA, exist_ok=True)
 
-    if not os.path.exists(_PASTA_ATAS) or not os.listdir(_PASTA_ATAS):
-        print("⚠️  Cache de atas vazio. Execute extrator_atas primeiro.")
+    if not os.path.exists(_PASTA_ITENS) or not os.listdir(_PASTA_ITENS):
+        print("⚠️  Cache de itens de atas vazio. Execute extrator_atas_itens primeiro.")
         return 0
 
     fila = _montar_fila()

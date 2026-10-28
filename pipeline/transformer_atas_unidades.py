@@ -443,15 +443,13 @@ def _mapear(reg: dict) -> dict:
     }
 
     qtd_registrada_num = _to_float(reg.get("quantidadeRegistrada"))
-    qtd_empenhada_num = _to_float(reg.get("_quantidade_empenhada"))
-    if qtd_registrada_num is not None and qtd_empenhada_num is not None:
-        if qtd_empenhada_num > qtd_registrada_num:
-            reg_map["quantidade_empenhada"] = _valor(qtd_registrada_num)
-        else:
-            reg_map["quantidade_empenhada"] = _valor(qtd_empenhada_num)
+    saldo_remanejado_num = _to_float(reg.get("saldoRemanejamentoEmpenho"))
+    if qtd_registrada_num is not None and saldo_remanejado_num is not None:
+        qtd_calc = max(0.0, qtd_registrada_num - saldo_remanejado_num)
+        reg_map["quantidade_empenhada"] = _valor(qtd_calc)
     else:
-        reg_map["quantidade_empenhada"] = _valor(
-            reg.get("_quantidade_empenhada"))
+        qtd_empenhada_num = _to_float(reg.get("_quantidade_empenhada"))
+        reg_map["quantidade_empenhada"] = _valor(qtd_empenhada_num)
 
     reg_map.update({
         "data_inclusao":                _data(reg.get("dataHoraInclusao")),
