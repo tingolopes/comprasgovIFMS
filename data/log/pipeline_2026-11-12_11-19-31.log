@@ -1,0 +1,8 @@
+11:19:31 | INFO     | ============================================================
+11:19:31 | INFO     | 📤 GERANDO contratos_responsaveis.csv...
+11:19:31 | INFO     | 📂 1840 arquivo(s) de responsáveis encontrado(s). Processando...
+11:19:32 | INFO     | ✅ CSV gerado: data\contratos_responsaveis.csv
+11:19:32 | INFO     | Responsáveis : 1284
+11:19:32 | INFO     | Ativos       : 1025
+11:19:32 | INFO     | Colunas      : 11
+11:19:32 | INFO     | ============================================================
